@@ -1,0 +1,103 @@
+{
+  "name": "@vert-capital/design-system",
+  "version": "v0.3.2",
+  "publishConfig": {
+    "access": "public"
+  },
+  "description": "Framework baseado no design system da Vert ",
+  "keywords": [
+    "designsystem",
+    "vert",
+    "vue",
+    "vue3",
+    "component",
+    "ui",
+    "frontend"
+  ],
+  "license": "MIT",
+  "author": "VertTec - Débora Castro <deboracastro.pm@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vert-capital/vert_design_system_ui.git"
+  },
+  "main": "./dist/index.cjs.js",
+  "module": "./dist/index.es.js",
+  "types": "./dist/index.d.ts",
+  "unpkg": "./dist/index.umd.js",
+  "jsdelivr": "./dist/index.umd.js",
+  "style": "./dist/style.css",
+  "exports": {
+    ".": {
+      "import": "./dist/index.es.js",
+      "require": "./dist/index.umd.js"
+    },
+    "./dist/style.css": {
+      "import": "./dist/style.css",
+      "require": "./dist/style.css"
+    }
+  },
+  "files": [
+    "dist/*"
+  ],
+  "bugs": {
+    "url": "https://github.com/vert-capital/vert_design_system_ui/issues"
+  },
+  "scripts": {
+    "prepare": "husky install",
+    "clean:dist": "rimraf dist",
+    "clean:coverage": "rimraf coverage",
+    "dev": "vite --mode dev",
+    "build": "pnpm clean:dist && vite build --mode prod && vue-tsc --emitDeclarationOnly",
+    "preview": "vite preview",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "test": "pnpm clean:coverage && vitest --coverage --mode test"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  },
+  "peerDependencies": {
+    "@vue/composition-api": "^1.4.9",
+    "vue": "^2.0.0 || >=3.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@vue/composition-api": {
+      "optional": true
+    }
+  },
+  "dependencies": {
+    "vue-demi": "^0.12.1"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^0.18.9",
+    "@commitlint/cli": "^16.2.3",
+    "@commitlint/config-conventional": "^16.2.1",
+    "@types/node": "^17.0.21",
+    "@vitejs/plugin-vue": "^2.2.0",
+    "c8": "^7.11.0",
+    "commitizen": "^4.2.4",
+    "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^8.11.0",
+    "happy-dom": "^2.49.0",
+    "husky": "^7.0.4",
+    "rimraf": "^3.0.2",
+    "sass": "^1.54.1",
+    "typescript": "^4.5.4",
+    "vite": "^2.8.0",
+    "vitest": "^0.7.6",
+    "vue": "^3.2.31",
+    "vue-tsc": "^0.29.8"
+  },
+  "engines": {
+    "node": ">= 14.18.0"
+  },
+  "volta": {
+    "node": "14.19.1"
+  },
+  "homepage": "https://design.vert-capital.com/component.html",
+  "directories": {
+    "test": "test"
+  }
+}

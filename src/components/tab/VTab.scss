@@ -1,0 +1,109 @@
+.tab {
+  &--x {
+    overflow-x: auto;
+    display: flex;
+    flex-wrap: nowrap;
+    > button {
+      @include mq(sm) {
+        margin-left: 1.5rem;
+      }
+      &:first-child {
+        margin-left: 0;
+      }
+      display: flex;
+      align-items: center;
+      white-space: nowrap;
+      font-size: 0.75rem;
+      border: none;
+      background: transparent;
+      text-transform: uppercase;
+      font-family: 'Lato', sans-serif;
+      font-weight: bold;
+      border-bottom: 4px solid transparent;
+      color: $neutral-color-low-medium;
+      transition: border-color ease-in-out 0.25s;
+      cursor: pointer;
+      padding: 0.75rem 1rem;
+      &:hover {
+        border-color: $neutral-color-low-medium;
+      }
+      &.active {
+        border-color: $color-primary-pure;
+        color: $neutral-color-low-pure;
+        box-shadow: 0 4px 8px -4px rgba(0, 116, 122, 0.24);
+        &:hover {
+          border-color: lighten($color-primary-pure, 10);
+        }
+      }
+    }
+  }
+  &--y {
+    @include mq(sm) {
+      min-width: 16.5rem;
+    }
+    > button {
+      cursor: pointer;
+      display: block;
+      padding: 1rem 2.5rem 1rem 1rem;
+      font-size: 0.875rem;
+      border-radius: 0 3rem 3rem 0;
+      color: $neutral-color-low-pure;
+      width: 100%;
+      @include mq(sm) {
+        max-width: 240px;
+      }
+      max-width: calc(100% - 50px);
+      transition: all ease-in-out 0.25s;
+      text-align: left;
+      border: none;
+      background-color: $neutral-color-hight-pure;
+      position: relative;
+      top: 0;
+      display: flex;
+      align-items: center;
+      &:not(:first-child) {
+        margin-top: 1.25rem;
+      }
+      @extend %shadow-level-1;
+      &:hover {
+        box-shadow: 10px 10px 8px 2px rgb(0 0 0 / 8%);
+      }
+      &::after {
+        position: absolute;
+        right: 0;
+        margin-right: 1rem;
+        // @include icon("\F0142", 1rem);
+        background-image: url(../../../static/icons/arrow.svg);
+        transform: rotate(-90deg);
+        content: '';
+        display: block;
+        width: 1rem;
+        height: 1rem;
+      }
+      &.active {
+        max-width: 100%;
+        @include mq(sm) {
+          max-width: 16.5rem;
+        }
+        background-color: $color-primary-pure;
+        color: $neutral-color-hight-pure;
+        &::after {
+          filter: invert(1);
+        }
+      }
+      &.tab-tag {
+        padding: {
+          top: 0.75rem;
+          bottom: 0.75rem;
+        }
+      }
+    }
+  }
+  &--content {
+    font-family: 'Lato', sans-serif;
+    display: none;
+    &:first-child{
+      display: block;
+    }
+  }
+}

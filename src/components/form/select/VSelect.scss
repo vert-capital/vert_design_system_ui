@@ -1,0 +1,48 @@
+.v-select {
+
+  &--label {
+    margin-bottom: 8px;
+    line-height: 22px;
+  }
+
+  &--content {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    flex: 1;
+    position: relative;
+    min-width: 0;
+
+  }
+
+  &--input {
+    background-color: transparent;
+    border-radius: 4px;
+    border: 1px solid #aaa;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' color='red' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M1 5l6 6 6-6'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-size: 16px 12px;
+    width: 100%;
+    font-size: 00.875rem;
+  }
+
+  &--size {
+    &-lg {
+      padding: 1rem 0.875rem;
+      background-position: right 1rem center;
+    }
+
+    &-md {
+      padding: 0.75rem 0.875rem;
+      background-position: right 0.75rem center;
+      line-height: 32px;
+    }
+
+    &-sm {
+      padding: 0.5rem 0.875rem;
+      background-position: right 0.75rem center;
+      line-height: 24px;
+    }
+  }
+}

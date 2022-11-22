@@ -1,0 +1,124 @@
+.form-group {
+  label {
+    display: block;
+    font-size: 0.75rem;
+    color: $neutral-color-low-pure;
+    margin-bottom: 0.25rem;
+  }
+
+  input {
+    padding: 1rem;
+    font-size: 0.875rem;
+    border: 1px solid $neutral-color-low-medium;
+    border-radius: $border-radius-sm;
+    box-sizing: border-box;
+  }
+
+  &.icon-search {
+    &::after {
+      position: relative;
+      left: -2rem;
+      color: $neutral-color-low-medium;
+      @include icon("\F0349", 1rem);
+    }
+
+    input {
+      padding-right: 2.5rem;
+    }
+  }
+}
+
+.input {
+  &-group {
+    margin-bottom: 1.5rem;
+    display: grid;
+
+    label {
+      font-size: 0.75rem;
+    }
+
+    input,
+    select,
+    textarea {
+      padding: 0.75rem 0.875rem;
+      margin-top: 0.25rem;
+      font-size: 0.875rem;
+      border: 1px solid $neutral-color-low-medium;
+      border-radius: $border-radius-sm;
+      background-color: $neutral-color-hight-pure;
+
+      &:disabled {
+        background-color: $neutral-color-hight-medium;
+      }
+
+      &::placeholder {
+        color: #adadad;
+      }
+
+      &[type="date"] {
+        &:invalid {
+          color: #adadad;
+        }
+      }
+    }
+
+    &.input--danger {
+      input {
+        border-color: $feedback-color-helper-pure;
+        border-radius: 0.25rem 0.25rem 0 0;
+      }
+
+      span {
+        color: $neutral-color-hight-pure;
+        font-size: 0.75rem;
+        padding: 0 0.875rem 0.25rem 0.875rem;
+        border-radius: 0 0 0.25rem 0.25rem;
+        background-color: $feedback-color-helper-pure;
+        display: block;
+      }
+    }
+
+    select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' color='red' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M1 5l6 6 6-6'/%3e%3c/svg%3e");
+      background-repeat: no-repeat;
+      background-position: right 0.75rem center;
+      background-size: 16px 12px;
+      min-width: 200px;
+
+      @include mq(md) {
+        min-width: 250px;
+      }
+
+      &:invalid {
+        color: #adadad;
+      }
+    }
+  }
+
+  &-size-lg {
+
+    input,
+    select,
+    textarea {
+      padding: 1rem 0.875rem;
+    }
+
+    select {
+      background-position: right 1rem center;
+    }
+  }
+
+  &-size-sm {
+
+    input,
+    select,
+    textarea {
+      padding: 0.5rem 0.875rem;
+
+      select {
+        background-position: right 0.5rem center;
+      }
+    }
+  }
+}

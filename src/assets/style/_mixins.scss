@@ -1,0 +1,56 @@
+$breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px,
+  xxxl: 1600px,
+  gigantic: 1700px,
+);
+
+@mixin mq($width, $type: min) {
+  @if map_has_key($breakpoints, $width) {
+    $width: map_get($breakpoints, $width);
+
+    @if $type ==max {
+      $width: $width - 1px;
+    }
+
+    @media only screen and (#{$type}-width: $width) {
+      @content;
+    }
+  }
+}
+
+@mixin reset-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@mixin flx($justify: initial,
+  $item: initial,
+  $direction: initial,
+  $wrap: initial) {
+  display: flex;
+  justify-content: $justify;
+  flex-direction: $direction;
+  flex-wrap: $wrap;
+  align-items: $item;
+}
+
+@mixin icon($icon, $font-size: 24px) {
+  content: $icon;
+  font-family: "Material Design Icons";
+  font-size: $font-size;
+  font-weight: normal;
+}
+
+// @mixin close-me($time: 1s) {
+//   transition: transform ease-in-out $time;
+
+//   &:hover {
+//     animation: close-me $time infinite;
+//   }
+// }
