@@ -12,8 +12,8 @@
       <div class="v-popup__content--head">
         <h3 class="v-popup__content--head-title">{{ title }}</h3>
         <span class="v-popup__content--head-close" @click="show = !show"
-          >x</span
-        >
+          ><img src="/static/icons/close.svg"
+        /></span>
       </div>
       <div class="v-popup__content--body">
         <slot name="popup-body"></slot>

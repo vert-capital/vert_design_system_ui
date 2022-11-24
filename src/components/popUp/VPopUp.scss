@@ -30,6 +30,15 @@
         right: 0;
         top: -.5rem;
         padding: .5rem;
+        transition: ease-in-out .5s opacity;
+        opacity: .4;
+        &:hover{
+          opacity: .2;
+        }
+        img {
+          width: 15px;
+          height: 15px;
+        }
       }
     }
     &--body{}
