@@ -1,5 +1,5 @@
 <template>
-  <div style="width: 80%; padding-left: 10%">
+  <div style="width: 80%; margin: 0 auto">
     <h1>COMPONENTES</h1>
     <hr />
     <h4>TABELA E PAGINAÇÃO</h4>
@@ -41,6 +41,23 @@
       <v-button icon="info" status="primary">Padrão</v-button>
     </div>
     <br />
+    <VPopUp title="Calendário de eventos" positionContent="bottom center">
+      <template #popup-body>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis
+          ipsum ipsam cupiditate dolorem quibusdam commodi fugit illo suscipit,
+          est beatae? Similique suscipit voluptatem quo ratione quas hic quis
+          molestiae officiis!
+        </p>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis
+          ipsum ipsam cupiditate dolorem quibusdam commodi fugit illo suscipit,
+          est beatae? Similique suscipit voluptatem quo ratione quas hic quis
+          molestiae officiis!
+        </p>
+      </template>
+    </VPopUp>
+
     <hr />
     <h4>TAB</h4>
     <br />
@@ -98,6 +115,7 @@
         >Padrão</v-button
       >
     </form>
+    <hr />
   </div>
 </template>
 
@@ -109,6 +127,7 @@ import VTabContent from "./components/tab/VTabContent.vue";
 import VTabHeader from "./components/tab/VTabHeader.vue";
 import VSelect from "./components/form/select/VSelect.vue";
 import VTag from "./components/tag/VTag.vue";
+import VPopUp from "./components/popUp/VPopUp.vue";
 
 export default defineComponent({
   name: "App",
@@ -121,6 +140,7 @@ export default defineComponent({
     VPagination,
     VSelect,
     VTag,
+    VPopUp,
   },
   data() {
     return {
