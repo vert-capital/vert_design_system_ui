@@ -160,15 +160,15 @@ export default defineComponent({
     const selectOptions = reactive([
       {
         value: "1",
-        label: "Option 1",
+        label: "Janeiro",
       },
       {
         value: "2",
-        label: "Option 2",
+        label: "Fevereiro",
       },
       {
         value: "3",
-        label: "Option 3",
+        label: "Março",
       },
     ]);
 
