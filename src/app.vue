@@ -61,7 +61,7 @@
     <hr />
     <h4>TAB</h4>
     <br />
-    <v-tab :eixo="typeTab">
+    <v-tab :eixo="typeTab" border-bottom>
       <template #header>
         <v-tab-header tabTo="tab1" :eixo="typeTab" actived
           >Exemplo 1</v-tab-header
