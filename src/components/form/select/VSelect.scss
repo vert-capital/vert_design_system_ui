@@ -28,6 +28,9 @@
     &:focus-visible {
       outline: 1px solid $neutral-color-low-extra-light;
     }
+    &.v-select--border:focus-visible {
+      outline: 1px solid rgba($neutral-color-low-extra-light, .5);
+    }
   }
 
   &--size {
@@ -47,6 +50,10 @@
       background-position: right 0.75rem center;
       line-height: 24px;
     }
+  }
+
+  &--border {
+    border: none;
   }
 
 }

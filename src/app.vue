@@ -98,6 +98,7 @@
     <br />
     <div>
       <v-select
+        borderNone
         id="app_select"
         name="select_app"
         :options="selectOptions"
