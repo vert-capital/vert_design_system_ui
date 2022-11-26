@@ -39,6 +39,13 @@
       >
       <v-button icon="check" status="success" disabled>Sucesso</v-button>
       <v-button icon="info" status="primary">Padrão</v-button>
+      <v-button
+        icon="info"
+        status="primary"
+        style_type="outline"
+        @click="onClickButtonWarning"
+        >Padrão out</v-button
+      >
     </div>
     <br />
     <hr />
@@ -88,16 +95,42 @@
       >
       </v-select>
     </div>
-    <form>
-      <input type="text" />
-      <v-button
-        icon="info"
-        status="primary"
-        style_type="outline"
-        @click="onClickButtonWarning"
-        >Padrão</v-button
-      >
-    </form>
+    <br />
+    <hr />
+    <h4>TAG</h4>
+    <br />
+    <div class="d-flex">
+      <v-tag status="helper">Tag helper</v-tag>
+      <v-tag status="warning">Tag warning</v-tag>
+      <v-tag status="success">Tag success</v-tag>
+      <v-tag status="primary">Tag primary</v-tag>
+      <v-tag status="secondary">Tag secondary</v-tag>
+    </div>
+    <br />
+    <div class="d-flex">
+      <v-tag status="helper" type="outline">Tag helper</v-tag>
+      <v-tag status="warning" type="outline">Tag warning</v-tag>
+      <v-tag status="success" type="outline">Tag success</v-tag>
+      <v-tag status="primary" type="outline">Tag primary</v-tag>
+      <v-tag status="secondary" type="outline">Tag secondary</v-tag>
+    </div>
+    <br />
+    <div class="d-flex">
+      <v-tag status="helper" type="ice">Tag helper</v-tag>
+      <v-tag status="warning" type="ice">Tag warning</v-tag>
+      <v-tag status="success" type="ice">Tag success</v-tag>
+      <v-tag status="primary" type="ice">Tag primary</v-tag>
+      <v-tag status="secondary" type="ice">Tag secondary</v-tag>
+    </div>
+    <br />
+    <div class="d-flex">
+      <v-tag status="helper" square>Tag helper</v-tag>
+      <v-tag status="warning" square>Tag warning</v-tag>
+      <v-tag status="success" square>Tag success</v-tag>
+      <v-tag status="primary" square>Tag primary</v-tag>
+      <v-tag status="secondary" square>Tag secondary</v-tag>
+    </div>
+    <br />
   </div>
 </template>
 
