@@ -73,6 +73,7 @@
   "dependencies": {
     "-": "^0.0.1",
     "@pnpm/exe": "^7.17.0",
+    "perfect-scrollbar": "^1.5.5",
     "vue-demi": "^0.12.1"
   },
   "devDependencies": {
