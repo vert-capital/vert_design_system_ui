@@ -1,0 +1,85 @@
+.v-section {
+  box-shadow: 0 8px 2rem 0 rgb(0 0 0 / 8%);
+  border: 1px solid $neutral-color-hight-light;
+  background-color: $neutral-color-hight-pure;
+  border-radius: 0.25rem;
+
+  &:not(:last-child) {
+    margin-bottom: 1.5rem;
+  }
+
+  &__header {
+    padding: 1.5rem;
+    @include flx(space-between, center);
+
+    &--title {
+      h3 {
+        font-size: 1.25rem;
+        font-weight: $weight-bold;
+        margin: 0;
+      }
+    }
+
+    &--btns {
+      display: flex;
+      align-items: center;
+
+      > button,
+      > div,
+      > a {
+        &:not(:last-child) {
+          margin-right: 1.5rem;
+        }
+      }
+
+      &:not(:last-child) {
+
+        > button,
+        > div,
+        > a {
+          margin-right: 1.5rem;
+        }
+      }
+    }
+
+    &--btnflexend {
+      display: flex;
+      margin-inline-start: auto;
+    }
+
+    > div:not(.section__header--btns) {
+      display: flex;
+    }
+
+    &--search {
+      .el-input-group__append {
+        border: 1px solid $neutral-color-low-medium;
+        border-left: none;
+        box-shadow: none;
+      }
+
+      .el-input-group--append > .el-input__wrapper {
+        border: 1px solid $neutral-color-low-medium;
+        border-right: none;
+        box-shadow: none;
+      }
+    }
+
+  }
+
+  &__body {
+    padding: {
+      left: 1.5rem;
+      right: 1.5rem;
+      top: 0;
+      bottom: 2.5rem;
+    }
+
+    &--px0 {
+      padding: {
+        left: 0;
+        right: 0;
+      }
+    }
+  }
+}
