@@ -96,7 +96,7 @@ export interface IConfig {
     fontFamily?: string;
     colorSchemes?: colorSchemes;
   };
-  defaultMode?:  "day" | "week" | "month";
+  defaultMode?: modeType;
   disableModes?: ('week' | 'month')[];
   isSilent?: boolean;
   dayIntervals?: dayIntervalsType;

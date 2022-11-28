@@ -6,7 +6,9 @@
         'mode-is-day': mode === 'day',
         'mode-is-week': mode === 'week',
         'mode-is-month': mode === 'month',
-        'qalendar-is-small': calendarWidth < 700,
+        'mode-is-personalized': mode === 'personalized',
+        'mode-is-mini': mode === 'mini',
+        'vcalendar-is-small': calendarWidth < 700,
       }"
     >
       <Transition name="loading">
@@ -21,7 +23,17 @@
         :period="period"
         @change-mode="handleChangeMode"
         @updated-period="handleUpdatedPeriod"
+        v-if="mode !== 'mini'"
       />
+      <AppHeaderMini 
+        v-else
+        :key="wasInitialized + mode"
+        :config="config"
+        :mode="mode"
+        :time="time"
+        :period="period"
+        @change-mode="handleChangeMode"
+        @updated-period="handleUpdatedPeriod" />
 
       <Week
         v-if="['week', 'day'].includes(mode)"
@@ -88,6 +100,7 @@ import { defineComponent, PropType } from 'vue';
 import { IEvent, IConfig, modeType } from '@/utils/types/calendar';
 import Time from '@/utils/helpers/Time';
 import AppHeader from '@/components/calendar/VCalendarHeader.vue';
+import AppHeaderMini from '@/components/calendar/VCalendarHeaderMini.vue';
 import Week from '@/components/calendar/week/Week.vue';
 import Month from '@/components/calendar/month/Month.vue';
 import Errors from './Errors';
@@ -99,6 +112,7 @@ export default defineComponent({
     Month,
     AppHeader,
     Week,
+    AppHeaderMini
   },
 
   props: {
@@ -318,8 +332,8 @@ export default defineComponent({
 
   .calendar-root {
     flex: 1;
-    border: var(--qalendar-border-gray-thin);
-    border-radius: var(--qalendar-border-radius);
+    border: var(--vcalendar-border-gray-thin);
+    border-radius: var(--vcalendar-border-radius);
     font-family: v-bind(fontFamily);
 
     position: relative;
