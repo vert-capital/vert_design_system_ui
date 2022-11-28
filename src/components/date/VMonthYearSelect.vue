@@ -1,10 +1,12 @@
 <template>
-  <VSelect :options="months"/>
+  <VSelect :options="months" borderNone v-model="monthYearSelected" @onChange="onChangeMonth"/>
 </template>
 <script lang="ts" setup>
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 import VSelect from '../form/select/VSelect.vue';
 import StringHelper from '@/utils/helpers/String';
+
+const monthYearSelected: any = ref('2022-11');
 
 const months = computed(() => {
   const months = [];
@@ -19,5 +21,14 @@ const months = computed(() => {
   }
   return months;
 });
+
+const emit = defineEmits<{
+  (e: 'updated', selected: any): void;
+}>();
+
+const onChangeMonth = (monthYear: string) => {
+  emit('updated', monthYear);
+  console.log(monthYear);
+};
 
 </script>
