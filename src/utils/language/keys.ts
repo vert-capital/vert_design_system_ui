@@ -27,6 +27,24 @@ export const languageKeys = {
     'pt-BR': 'Dia',
     'fr-FR': 'Jour',
   },
+  personalized: {
+    'it-IT': 'Personalizzato',
+    'en-US': 'Personalized',
+    'de-DE': 'Personalisiert',
+    'sv-SE': 'Personlig',
+    'zh-CN': '个性化',
+    'pt-BR': 'Personalizado',
+    'fr-FR': 'Personnalisé',
+  },
+  mini: {
+    'it-IT': 'Mini',
+    'en-US': 'Mini',
+    'de-DE': 'Mini',
+    'sv-SE': 'Mini',
+    'zh-CN': '迷你',
+    'pt-BR': 'Mini',
+    'fr-FR': 'Mini',
+  },
 
   /** Other keys */
   moreEvents: {

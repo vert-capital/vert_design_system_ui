@@ -5,11 +5,6 @@
     </div>
 
     <div class="calendar-header__period">
-      <div class="calendar-header__chevron-arrows">
-        <chevron-left @click="goToPeriod($event, 'previous')" />
-        <chevron-right @click="goToPeriod($event, 'next')" />
-      </div>
-
       <DatePicker
         ref="periodSelect"
         :mode="mode"
@@ -28,18 +23,6 @@
           class="calendar-header__mode-options"
           @mouseleave="showModePicker = false"
         >
-          <div
-            class="calendar-header__mode-option is-personalized-mode"
-            @click="$emit('change-mode', 'personalized')"
-          >
-            {{ getLanguage(languageKeys.personalized, time.CALENDAR_LOCALE) }}
-          </div>
-          <div
-            class="calendar-header__mode-option is-mini-mode"
-            @click="$emit('change-mode', 'mini')"
-          >
-            {{ getLanguage(languageKeys.mini, time.CALENDAR_LOCALE) }}
-          </div>
           <div
             v-if="
               !config.disableModes || !config.disableModes.includes('month')
