@@ -152,7 +152,7 @@
   </div>
 
   <br />
-  <div>
+  <div class="section-calendar">
     <h4>CALENDARIO</h4>
       <VCalendar
         :key="config.locale + config.week.nDays"
@@ -361,5 +361,14 @@ export default defineComponent({
 .d-flex {
   display: flex;
   flex-wrap: wrap;
+}
+.section-calendar{
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
 }
 </style>
