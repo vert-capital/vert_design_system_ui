@@ -93,6 +93,10 @@ export default defineConfig(({ mode }) => {
           find: '@',
           replacement: resolve(__dirname, './src'),
         },
+        {
+          find: '@icons',
+          replacement: resolve(__dirname, './static/icons'),
+        },
       ],
     },
     css: {
