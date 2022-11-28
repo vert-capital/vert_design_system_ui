@@ -154,29 +154,67 @@
   <br />
   <div>
     <h4>CALENDARIO</h4>
-      <VCalendar
-        :key="config.locale + config.week.nDays"
-        :selected-date="new Date()"
-        :config="config"
-        :events="events"
-        :is-loading="isLoading"
-        @event-was-clicked="reactToEvent"
-        @updated-period="updatedPeriod"
-        @updated-mode="updatedPeriod"
-        @event-was-resized="reactToEvent"
-        @edit-event="editEvent"
-        @delete-event="deleteEvent"
-        @day-was-clicked="reactToEvent"
-        @event-was-dragged="handleEventWasDragged"
-        @interval-was-clicked="handleIntervalWasClicked"
-      >
-        <template #customCurrentTime>
-          <div :style="{ height: '3px', backgroundColor: 'cornflowerblue', position: 'relative' }">
-            <div :style="{ position: 'absolute', left: '-7px', top: '-6px', height: '15px', width: '15px', backgroundColor: 'cornflowerblue', borderRadius: '50%' }"></div>
-          </div>
-        </template>
-      </VCalendar>
+    <VCalendar
+      :key="config.locale + config.week.nDays"
+      :selected-date="new Date()"
+      :config="config"
+      :events="events"
+      :is-loading="isLoading"
+      @event-was-clicked="reactToEvent"
+      @updated-period="updatedPeriod"
+      @updated-mode="updatedPeriod"
+      @event-was-resized="reactToEvent"
+      @edit-event="editEvent"
+      @delete-event="deleteEvent"
+      @day-was-clicked="reactToEvent"
+      @event-was-dragged="handleEventWasDragged"
+      @interval-was-clicked="handleIntervalWasClicked"
+    >
+      <template #customCurrentTime>
+        <div
+          :style="{
+            height: '3px',
+            backgroundColor: 'cornflowerblue',
+            position: 'relative',
+          }"
+        >
+          <div
+            :style="{
+              position: 'absolute',
+              left: '-7px',
+              top: '-6px',
+              height: '15px',
+              width: '15px',
+              backgroundColor: 'cornflowerblue',
+              borderRadius: '50%',
+            }"
+          ></div>
+        </div>
+      </template>
+    </VCalendar>
     <hr />
+
+    <v-card type="shadow">
+      <template #buttons>
+        <v-button
+          icon="info"
+          status="primary"
+          style_type="outline"
+          @click="onClickButtonWarning"
+          >Padrão</v-button
+        >
+      </template>
+      <template #input>
+        <input type="text" />
+      </template>
+      <h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h2>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo sint sunt
+        suscipit molestiae nemo laudantium, facere itaque atque dolorum, quo
+        quasi est. Possimus explicabo alias aspernatur eveniet, voluptas vel
+        aperiam!
+      </p>
+    </v-card>
   </div>
 </template>
 
@@ -191,6 +229,7 @@ import VTag from "./components/tag/VTag.vue";
 import VCalendar from "./components/calendar/VCalendar.vue";
 import { IConfig, IEvent } from "./utils/types/calendar";
 import VPopUp from "./components/popUp/VPopUp.vue";
+import VCard from "./components/card/VCard.vue";
 
 export default defineComponent({
   name: "App",
@@ -205,6 +244,7 @@ export default defineComponent({
     VTag,
     VCalendar,
     VPopUp,
+    VCard,
   },
   data() {
     return {
@@ -213,20 +253,20 @@ export default defineComponent({
 
       config: {
         week: {
-          startsOn: 'monday',
+          startsOn: "monday",
           scrollToHour: 8,
         },
-        locale: 'pt-BR',
+        locale: "pt-BR",
         style: {
           fontFamily: `'Lato', 'sans-serif', 'Verdana`,
           colorSchemes: {
             meetings: {
-              color: '#fff',
-              backgroundColor: '#131313',
+              color: "#fff",
+              backgroundColor: "#131313",
             },
             ladies: {
-              color: '#fff',
-              backgroundColor: '#ff4081',
+              color: "#fff",
+              backgroundColor: "#ff4081",
             },
           },
         },
@@ -234,7 +274,7 @@ export default defineComponent({
           start: 7,
           end: 17,
         },
-        defaultMode: 'week',
+        defaultMode: "week",
         showCurrentTime: true,
         isSilent: true,
         dayIntervals: {
@@ -245,12 +285,12 @@ export default defineComponent({
       } as IConfig,
       events: [] as IEvent[],
 
-      layout: 'none',
+      layout: "none",
       isLoading: false,
       eventDialogForm: {
-        title: '',
-        id: '',
-      }
+        title: "",
+        id: "",
+      },
     };
   },
   setup() {
@@ -327,8 +367,8 @@ export default defineComponent({
     },
 
     updatedPeriod(e) {
-      console.log('updated period')
-      console.log(e)
+      console.log("updated period");
+      console.log(e);
     },
 
     triggerLoadAnimations() {
@@ -338,22 +378,22 @@ export default defineComponent({
     },
 
     editEvent(payload: string) {
-      console.log('editEvent%s: ', payload);
+      console.log("editEvent%s: ", payload);
     },
 
     deleteEvent(payload: string) {
-      console.log('deleteEvent%s: ', payload);
+      console.log("deleteEvent%s: ", payload);
     },
 
     handleEventWasDragged(e) {
-      console.log('event was dragged')
-      console.log(e)
+      console.log("event was dragged");
+      console.log(e);
     },
 
     handleIntervalWasClicked(e) {
-      console.log('interval was clicked')
-      console.log(e)
-    }
+      console.log("interval was clicked");
+      console.log(e);
+    },
   },
 });
 </script>
