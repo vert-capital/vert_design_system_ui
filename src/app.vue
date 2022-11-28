@@ -1,5 +1,5 @@
 <template>
-  <div style="width: 80%; padding-left: 10%">
+  <div style="width: 80%; margin: 0 auto">
     <h1>COMPONENTES</h1>
     <hr />
     <h4>TABELA E PAGINAÇÃO</h4>
@@ -48,10 +48,27 @@
       >
     </div>
     <br />
+    <VPopUp title="Calendário de eventos" positionContent="bottom center">
+      <template #popup-body>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis
+          ipsum ipsam cupiditate dolorem quibusdam commodi fugit illo suscipit,
+          est beatae? Similique suscipit voluptatem quo ratione quas hic quis
+          molestiae officiis!
+        </p>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis
+          ipsum ipsam cupiditate dolorem quibusdam commodi fugit illo suscipit,
+          est beatae? Similique suscipit voluptatem quo ratione quas hic quis
+          molestiae officiis!
+        </p>
+      </template>
+    </VPopUp>
+
     <hr />
     <h4>TAB</h4>
     <br />
-    <v-tab :eixo="typeTab">
+    <v-tab :eixo="typeTab" border-bottom>
       <template #header>
         <v-tab-header tabTo="tab1" :eixo="typeTab" actived
           >Exemplo 1</v-tab-header
@@ -88,6 +105,7 @@
     <br />
     <div>
       <v-select
+        borderNone
         id="app_select"
         name="select_app"
         :options="selectOptions"
@@ -152,12 +170,17 @@
         @event-was-dragged="handleEventWasDragged"
         @interval-was-clicked="handleIntervalWasClicked"
       >
+<<<<<<< HEAD
         <template #customCurrentTime>
           <div :style="{ height: '3px', backgroundColor: 'cornflowerblue', position: 'relative' }">
             <div :style="{ position: 'absolute', left: '-7px', top: '-6px', height: '15px', width: '15px', backgroundColor: 'cornflowerblue', borderRadius: '50%' }"></div>
           </div>
         </template>
       </VCalendar>
+=======
+    </form>
+    <hr />
+>>>>>>> 04ba1480c5bafdf5515156220847cc7adb1cabe8
   </div>
 </template>
 
@@ -169,8 +192,12 @@ import VTabContent from "./components/tab/VTabContent.vue";
 import VTabHeader from "./components/tab/VTabHeader.vue";
 import VSelect from "./components/form/select/VSelect.vue";
 import VTag from "./components/tag/VTag.vue";
+<<<<<<< HEAD
 import VCalendar from "./components/calendar/VCalendar.vue";
 import { IConfig, IEvent } from "./utils/types/calendar";
+=======
+import VPopUp from "./components/popUp/VPopUp.vue";
+>>>>>>> 04ba1480c5bafdf5515156220847cc7adb1cabe8
 
 export default defineComponent({
   name: "App",
@@ -183,7 +210,11 @@ export default defineComponent({
     VPagination,
     VSelect,
     VTag,
+<<<<<<< HEAD
     VCalendar
+=======
+    VPopUp,
+>>>>>>> 04ba1480c5bafdf5515156220847cc7adb1cabe8
   },
   data() {
     return {
@@ -244,15 +275,15 @@ export default defineComponent({
     const selectOptions = reactive([
       {
         value: "1",
-        label: "Option 1",
+        label: "Janeiro",
       },
       {
         value: "2",
-        label: "Option 2",
+        label: "Fevereiro",
       },
       {
         value: "3",
-        label: "Option 3",
+        label: "Março",
       },
     ]);
 

@@ -18,13 +18,19 @@
   &--input {
     background-color: transparent;
     border-radius: 4px;
-    border: 1px solid #aaa;
+    border: 1px solid $neutral-color-hight-medium;
     appearance: none;
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' color='red' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M1 5l6 6 6-6'/%3e%3c/svg%3e");
     background-repeat: no-repeat;
     background-size: 16px 12px;
     width: 100%;
     font-size: 00.875rem;
+    &:focus-visible {
+      outline: 1px solid $neutral-color-low-extra-light;
+    }
+    &.v-select--border:focus-visible {
+      outline: 1px solid rgba($neutral-color-low-extra-light, .5);
+    }
   }
 
   &--size {
@@ -45,4 +51,9 @@
       line-height: 24px;
     }
   }
+
+  &--border {
+    border: none;
+  }
+
 }

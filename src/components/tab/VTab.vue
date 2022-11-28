@@ -1,6 +1,6 @@
 <template>
   <div class="box">
-    <div :class="`tab--${eixo}`">
+    <div :class="[{ 'tab--border': borderBottom }, `tab--${eixo}`]">
       <slot name="header"></slot>
     </div>
     <slot></slot>
@@ -15,6 +15,10 @@ export default defineComponent({
     eixo: {
       type: String,
       default: "x",
+    },
+    borderBottom: {
+      type: Boolean,
+      default: false,
     },
   },
 });
