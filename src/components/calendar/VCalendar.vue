@@ -86,7 +86,7 @@
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
 import { IEvent, IConfig, modeType } from '@/utils/types/calendar';
-import Time from '@/utils/helpers';
+import Time from '@/utils/helpers/Time';
 import AppHeader from '@/components/calendar/VCalendarHeader.vue';
 import Week from '@/components/calendar/week/Week.vue';
 import Month from '@/components/calendar/month/Month.vue';

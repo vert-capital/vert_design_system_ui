@@ -63,9 +63,10 @@ import { defineComponent, PropType } from 'vue';
 import DatePicker from '@/components/datepicker/DatePicker.vue';
 import ChevronLeft from '@/components/icons/ChevronLeft.vue';
 import ChevronRight from '@/components/icons/ChevronRight.vue';
-import { IConfig } from '@/utils/types/calendar';
-import Time from '@/utils/helpers';
+import { IConfig, modeType } from '@/utils/types/calendar';
+import Time from '@/utils/helpers/Time';
 import getLanguage from '@/utils/language';
+import String from '@/utils/helpers/String';
 
 interface IPeriod {
   start: Date;
@@ -90,7 +91,8 @@ export default defineComponent({
       default: () => ({}),
     },
     mode: {
-      type: String as PropType<"day" | "week" | "month">,
+      type: String,
+      validator: (value: modeType) => ['month', 'week', 'day'].includes(value),
       default: 'week',
     },
     time: {

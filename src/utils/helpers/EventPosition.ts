@@ -1,5 +1,5 @@
 import { IEvent, IEventsWeek, IDay } from '@/utils/types/calendar';
-import Time from './index';
+import Time from './Time';
 
 export default class EventPosition extends Time {
 

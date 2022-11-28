@@ -71,7 +71,7 @@ import { IEvent, IConfig } from '@/utils/types/calendar';
 import EventFlyoutPosition, {
   EVENT_FLYOUT_WIDTH,
 } from '@/utils/helpers/EventFlyoutPosition';
-import Time from '@/utils/helpers/index';
+import Time from '@/utils/helpers/Time;
 import {
   DATE_PATTERN,
   ITENS_COLOR,

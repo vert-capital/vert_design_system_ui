@@ -21,7 +21,7 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
-import Time from '@/utils/helpers';
+import Time from '@/utils/helpers/Time';
 import { IEvent, IConfig, IDay } from '@/utils/types/calendar';
 import { DATE_TIME_PATTERN, ITENS_COLOR } from '@/utils/constants';
 

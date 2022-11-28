@@ -45,7 +45,7 @@
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
 import Day from './Day.vue';
-import Time from '@/utils/helpers';
+import Time from '@/utils/helpers/Time';
 import { IEvent, IConfig, IPeriod, IDay } from '@/utils/types/calendar';
 import EDate from '@/utils/helpers/EDate';
 import EventFlyout from '../partials/EventFlyout.vue';

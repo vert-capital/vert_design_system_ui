@@ -108,7 +108,7 @@ import EventPosition from '@/utils/helpers/EventPosition';
 //   faMapMarkerAlt,
 //   faQuestionCircle,
 // } from '@fortawesome/free-solid-svg-icons';
-import Time from '@/utils/helpers/index';
+import Time from '@/utils/helpers/Time;
 import { ITENS_COLOR } from'@/utils/constants';
 const eventPositionHelper = new EventPosition();
 import DragAndDrop from '@/utils/helpers/DragAndDrop';

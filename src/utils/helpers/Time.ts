@@ -60,22 +60,15 @@ export default class Time {
   getCalendarWeekDateObjects(date: Date | null = null): calendarWeekType {
     const selectedDate = date ? date : new Date();
 
-    // If week starts on Sunday, we can get the first date of the week, by simply counting selectedDate.getDate() - selectedDate.getDay()
     let subtractedDaysToGetFirstDate;
     if (this.FIRST_DAY_OF_WEEK === 'sunday')
       subtractedDaysToGetFirstDate = selectedDate.getDay();
-    // However, if week starts on Monday, we need to make sure Mondays are represented as 0, instead of Sundays
     else
       subtractedDaysToGetFirstDate =
         selectedDate.getDay() === 0 ? 6 : selectedDate.getDay() - 1;
 
-    const dateOfFirstDayOfWeek =
-      selectedDate.getDate() - subtractedDaysToGetFirstDate; // First date of week is the date of the month - the day of the week
-    const firstDay = new Date(
-      selectedDate.getFullYear(),
-      selectedDate.getMonth(),
-      dateOfFirstDayOfWeek
-    );
+    const dateOfFirstDayOfWeek = selectedDate.getDate() - subtractedDaysToGetFirstDate; 
+    const firstDay = new Date(selectedDate.getFullYear() + ',' + selectedDate.getMonth() + ',' + dateOfFirstDayOfWeek);
 
     return this.getDatesBetweenTwoDates(
       firstDay,

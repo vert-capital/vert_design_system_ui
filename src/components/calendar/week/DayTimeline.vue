@@ -11,7 +11,7 @@
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
 import { IDayStarEndControl } from '@/utils/types/calendar';
-import Time from '@/utils/helpers/index';
+import Time from '@/utils/helpers/Time;
 
 export default defineComponent({
   name: 'DayTimeline',

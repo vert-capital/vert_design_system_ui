@@ -1,4 +1,4 @@
-import Time from './index';
+import Time from './Time';
 
 export type interval = {
   intervalStart: string,

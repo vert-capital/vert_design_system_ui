@@ -1,5 +1,5 @@
 import {IEvent} from '../types/calendar';
-import Time from './index';
+import Time from './Time';
 const time = new Time()
 
 export default class DragAndDrop {

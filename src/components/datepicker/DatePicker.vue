@@ -102,7 +102,7 @@ import Time, {
   calendarMonthType,
   calendarWeekType,
   calendarYearMonths,
-} from '@/utils/helpers';
+} from '@/utils/helpers/Time';
 
 interface disableDates {
   before: Date;

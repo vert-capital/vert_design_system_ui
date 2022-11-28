@@ -50,7 +50,7 @@
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
 import { IConfig, IDay, IEvent } from  '@/utils/types/calendar';
-import Time from '@/utils/helpers';
+import Time from '@/utils/helpers/Time';
 import Event from './Event.vue';
 import getLanguage from '@/utils/language';
 

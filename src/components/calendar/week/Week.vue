@@ -77,7 +77,7 @@ import DayTimeline from './DayTimeline.vue';
 import WeekTimeline from './WeekTimeline.vue';
 import Day from './Day.vue';
 import EventFlyout from '../partials/EventFlyout.vue';
-import Time from '@/utils/helpers/index';
+import Time from '@/utils/helpers/Time;
 import {
   DATE_PATTERN,
   DATE_TIME_PATTERN,

@@ -36,7 +36,7 @@
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
 import { modeType, IConfig, IEventsFullDay, IDay } from '@/utils/types/calendar';
-import Time from '@/utils/helpers/index';
+import Time from '@/utils/helpers/Time;
 import FullDayEvent from './FullDayEvent.vue';
 
 export default defineComponent({
