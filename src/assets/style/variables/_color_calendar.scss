@@ -1,0 +1,39 @@
+.calendar-root,
+.date-picker-root {
+  --v-calendar-primary: #00747a;
+  --v-calendar-primary-transparent: rgba(2, 131, 129, 0.9);
+  --v-calendar-gray-quite-dark: rgb(110 110 110);
+  --v-calendar-gray: #aaa;
+  --v-calendar-green: #41d394;
+  --v-calendar-theme-color: var(--v-calendar-primary);
+  --v-calendar-light-gray: rgba(240 236 236 / 76%);
+
+  --v-calendar-border-gray-thin: 1px solid rgb(224 224 224);
+  --v-calendar-border-dashed-gray-thin: 1px dashed rgb(224 224 224);
+  --v-calendar-border-primary-thin: 1px solid var(--v-calendar-theme-color);
+  --v-calendar-border-radius: 8px;
+
+  --v-calendar-spacing: 10px;
+  --v-calendar-spacing-half: 5px;
+  --v-calendar-spacing-double: 20px;
+
+  --v-calendar-box-shadow: 0 4px 4px rgba(0 0 0 / 6%), 0 1px 4px rgba(0 0 0 / 18%);
+  --v-calendar-text-transition: color 0.2s ease;
+  --v-calendar-week-padding-left: 56px;
+
+  --v-calendar-font-3xs: 0.625rem;
+  --v-calendar-font-2xs: 0.688rem;
+  --v-calendar-font-xs: 0.75rem;
+  --v-calendar-font-s: 0.875rem;
+  --v-calendar-font-m: 1rem;
+  --v-calendar-font-l: 1.25rem;
+  --v-calendar-font-xl: 1.5rem;
+}
+
+@media (min-width: 62rem) {
+  .calendar-root {
+    --v-calendar-spacing: 20px;
+    --v-calendar-spacing-half: 10px;
+    --v-calendar-spacing-double: 40px;
+  }
+}
