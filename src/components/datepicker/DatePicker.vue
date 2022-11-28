@@ -103,6 +103,7 @@ import Time, {
   calendarWeekType,
   calendarYearMonths,
 } from '@/utils/helpers/Time';
+import { modeType } from '@/utils/types/calendar';
 
 interface disableDates {
   before: Date;
@@ -126,7 +127,8 @@ export default defineComponent({
 
   props: {
     mode: {
-      type: String as PropType<"day" | "week" | "month">,
+      type: String,
+      validator: (value: modeType) => ['month', 'week', 'day', 'personalized', 'mini'].includes(value),
       default: 'week',
     },
     timeProp: {

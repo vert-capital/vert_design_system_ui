@@ -92,7 +92,7 @@ export default defineComponent({
     },
     mode: {
       type: String,
-      validator: (value: modeType) => ['month', 'week', 'day'].includes(value),
+      validator: (value: modeType) => ['month', 'week', 'day', 'personalized', 'mini'].includes(value),
       default: 'week',
     },
     time: {
@@ -133,15 +133,15 @@ export default defineComponent({
         const fullYear = this.currentPeriod?.start.getFullYear();
 
         return startMonth === endMonth
-          ? `${startMonth} - ${fullYear}`
-          : `${startMonth} - ${endMonth}`;
+          ? `${String.capitalizeFirstLetter(startMonth)} - ${fullYear}`
+          : `${String.capitalizeFirstLetter(startMonth)} - ${String.capitalizeFirstLetter(endMonth)}`;
       }
 
       return (
-        this.time.getLocalizedNameOfMonth(
+        String.capitalizeFirstLetter(this.time.getLocalizedNameOfMonth(
           this.currentPeriod?.selectedDate,
           'long'
-        ) +
+        )) +
         ' - ' +
         this.currentPeriod.selectedDate.getFullYear()
       );

@@ -68,7 +68,11 @@ export default class Time {
         selectedDate.getDay() === 0 ? 6 : selectedDate.getDay() - 1;
 
     const dateOfFirstDayOfWeek = selectedDate.getDate() - subtractedDaysToGetFirstDate; 
-    const firstDay = new Date(selectedDate.getFullYear() + ',' + selectedDate.getMonth() + ',' + dateOfFirstDayOfWeek);
+    const firstDay = new Date(
+      selectedDate.getFullYear(),
+      selectedDate.getMonth(),
+      dateOfFirstDayOfWeek
+    );
 
     return this.getDatesBetweenTwoDates(
       firstDay,

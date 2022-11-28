@@ -41,7 +41,7 @@ import { defineComponent, PropType } from 'vue';
 import { IEvent, IConfig, dayIntervalsType, IDay } from '@/utils/types/calendar';
 import DayEvent from './DayEvent.vue';
 import EventConcurrency from '@/utils/helpers/EventConcurrency';
-import Time from '@/utils/helpers/Time;
+import Time from '@/utils/helpers/Time';
 import { modeType } from '@/utils/types/calendar';
 import DayIntervals, { interval } from '@/utils/helpers/DayIntervals';
 const eventConcurrencyHelper = new EventConcurrency();

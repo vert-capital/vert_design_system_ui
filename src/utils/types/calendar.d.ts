@@ -8,7 +8,7 @@ export interface IDay {
 
 export type eventId = string | number;
 
-export type modeType = 'month' | 'week' | 'day';
+export type modeType = 'month' | 'week' | 'day' | 'personalized' | 'mini';
 
 export interface IEvent {
   id: eventId;
@@ -19,7 +19,7 @@ export interface IEvent {
   location?: string;
   with?: string; 
   colorScheme?: string;
-  color?: "primary" | "yellow" | "green" | "red";
+  color?: "primary" | "yellow" | "green" | "red" | "orange" | "purple" | "blue" | "black";
   isEditable?: boolean; 
   disableDnD?: modeType[];
   disableResize?: modeType[];
