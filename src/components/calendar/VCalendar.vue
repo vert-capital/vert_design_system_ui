@@ -91,6 +91,29 @@
           ></slot>
         </template>
       </Month>
+
+      <Mini
+        v-if="mode === 'mini'"
+        :key="period.start.getTime() + period.end.getTime() + eventRenderingKey"
+        :events-prop="eventsDataProperty"
+        :time="time"
+        :config="config"
+        :period="period"
+        @event-was-clicked="$emit('event-was-clicked', $event)"
+        @day-was-clicked="$emit('day-was-clicked', $event)"
+        @event-was-dragged="handleEventWasUpdated($event, 'dragged')"
+        @updated-period="handleUpdatedPeriod($event, true)"
+        @edit-event="$emit('edit-event', $event)"
+        @delete-event="$emit('delete-event', $event)"
+      >
+        <template #eventDialog="p">
+          <slot
+            name="eventDialog"
+            :event-dialog-data="p.eventDialogData"
+            :close-event-dialog="p.closeEventDialog"
+          ></slot>
+        </template>
+      </Mini>
     </div>
   </div>
 </template>

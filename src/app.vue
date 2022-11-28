@@ -234,7 +234,7 @@ export default defineComponent({
           start: 7,
           end: 17,
         },
-        defaultMode: 'week',
+        defaultMode: 'mini',
         showCurrentTime: true,
         isSilent: true,
         dayIntervals: {

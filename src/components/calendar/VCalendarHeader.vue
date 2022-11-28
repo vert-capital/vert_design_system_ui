@@ -72,7 +72,7 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
-import DatePicker from '@/components/datepicker/DatePicker.vue';
+import DatePicker from '@/components/date/DatePicker.vue';
 import ChevronLeft from '@/components/icons/ChevronLeft.vue';
 import ChevronRight from '@/components/icons/ChevronRight.vue';
 import { IConfig, modeType } from '@/utils/types/calendar';
