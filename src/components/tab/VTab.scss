@@ -36,7 +36,23 @@
         }
       }
     }
+    &.tab--border{
+      position: relative;
+      > button.active {
+        box-shadow: none;
+      }
+      &::before{
+      content: '';
+      background: $neutral-color-hight-medium;
+      position: absolute;
+      bottom: 0;
+      height: 1px;
+      width: 100%;
+      z-index: -1;
+    }
+    }
   }
+
   &--y {
     @include mq(sm) {
       min-width: 16.5rem;

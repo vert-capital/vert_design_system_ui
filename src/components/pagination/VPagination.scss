@@ -59,7 +59,8 @@
               border-left: solid 1px $neutral-color-hight-medium;
 
               a::before {
-                content: '<';
+                @extend .arrow__pagination;
+                transform: rotate(90deg);
               }
             }
 
@@ -67,7 +68,22 @@
               border-radius: 0 5rem 5rem 0;
 
               a::before {
-                content: '>';
+                @extend .arrow__pagination;
+                transform: rotate(-90deg);
+              }
+            }
+
+            .arrow__pagination {
+              content: '.';
+              color: transparent;
+              background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' color='red' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M1 5l6 6 6-6'/%3e%3c/svg%3e");
+              background-repeat: no-repeat;
+              background-size: 14px 10px;
+              display: block;
+              opacity: .5;
+              transition: ease-in-out .2s opacity;
+              &:hover {
+                opacity: 1
               }
             }
 
