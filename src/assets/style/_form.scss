@@ -10,8 +10,11 @@
     padding: 1rem;
     font-size: 0.875rem;
     border: 1px solid $neutral-color-low-medium;
-    border-radius: $border-radius-sm;
+    border-radius: $border-radius-xs;
     box-sizing: border-box;
+    &:focus-visible {
+      outline: 1px solid $neutral-color-low-extra-light;
+    }
   }
 
   &.icon-search {
@@ -44,7 +47,7 @@
       margin-top: 0.25rem;
       font-size: 0.875rem;
       border: 1px solid $neutral-color-low-medium;
-      border-radius: $border-radius-sm;
+      border-radius: $border-radius-xs;
       background-color: $neutral-color-hight-pure;
 
       &:disabled {
