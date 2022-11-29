@@ -107,7 +107,9 @@
       </v-select>
     </div>
     <form>
-      <input type="text" />
+      <div class="form-group input-size-sm icon-search">
+        <input type="text" placeholder="Pesquisar" class="" />
+      </div>
       <v-button
         icon="info"
         status="primary"
