@@ -113,6 +113,18 @@
       >
       </v-select>
     </div>
+    <form>
+      <div class="form-group input-size-sm icon-search">
+        <input type="text" placeholder="Pesquisar" class="" />
+      </div>
+      <v-button
+        icon="info"
+        status="primary"
+        style_type="outline"
+        @click="onClickButtonWarning"
+        >Padrão</v-button
+      >
+    </form>
     <br />
     <hr />
     <h4>TAG</h4>
@@ -192,6 +204,7 @@
         </div>
       </template>
     </VCalendar>
+    
     <hr />
 
     <v-card type="shadow">
