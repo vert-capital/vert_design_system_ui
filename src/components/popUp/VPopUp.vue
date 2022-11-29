@@ -28,7 +28,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from "vue";
+import { computed, ref } from "vue";
 const props = defineProps({
   title: {
     type: String,
@@ -42,8 +42,18 @@ const props = defineProps({
     type: String,
     default: "25rem",
   },
+  showIcon: {
+    type: Boolean,
+    default: true,
+  },
+  showPopUp: {
+    type: Boolean,
+    default: false,
+  },
 });
-const show = ref(false);
+
+const show = props.showIcon ? ref(false) : computed(() => props.showPopUp);
+
 </script>
 
 <style src="./VPopUp.scss" lang="scss"></style>

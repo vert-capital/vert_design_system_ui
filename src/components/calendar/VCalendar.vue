@@ -126,6 +126,7 @@ import AppHeader from '@/components/calendar/VCalendarHeader.vue';
 import AppHeaderMini from '@/components/calendar/VCalendarHeaderMini.vue';
 import Week from '@/components/calendar/week/Week.vue';
 import Month from '@/components/calendar/month/Month.vue';
+import Mini  from '@/components/calendar/mini/Mini.vue';
 import Errors from './Errors';
 
 export default defineComponent({
@@ -135,7 +136,8 @@ export default defineComponent({
     Month,
     AppHeader,
     Week,
-    AppHeaderMini
+    AppHeaderMini,
+    Mini
   },
 
   props: {
@@ -224,7 +226,7 @@ export default defineComponent({
 
   mounted() {
     this.setConfigOnMount();
-    this.onCalendarResize(); // Trigger once on mount, in order to set the correct mode, if viewing on a small screen
+    this.onCalendarResize();
     this.setPeriodOnMount();
     window.addEventListener('resize', this.onCalendarResize);
   },
@@ -255,7 +257,7 @@ export default defineComponent({
      * Update this.period according to the new mode, and then set this.mode to the provided payload
      * */
     handleChangeMode(payload: modeType) {
-      if (payload === 'day') {
+      if (payload === 'day' || payload === 'mini') {
         this.period.start = this.period.selectedDate;
         this.period.end = this.time.setDateToEndOfDay(this.period.selectedDate);
       }
