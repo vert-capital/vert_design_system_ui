@@ -114,8 +114,10 @@
       </v-select>
     </div>
     <form>
-      <div class="form-group input-size-sm icon-search">
-        <input type="text" placeholder="Pesquisar" class="" />
+      <div style="width: 250px">
+        <div class="form-group input-size-sm icon--search">
+          <input type="text" placeholder="Pesquisar" />
+        </div>
       </div>
       <v-button
         icon="info"
@@ -204,7 +206,7 @@
         </div>
       </template>
     </VCalendar>
-    
+
     <hr />
 
     <v-card type="shadow">
