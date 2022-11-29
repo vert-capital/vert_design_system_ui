@@ -1,6 +1,7 @@
 import { IDayStarEndControl } from '@/utils/types/calendar';
 import EDate from './EDate';
-
+import String
+  from './String';
 export type calendarWeekType = Date[];
 export type calendarMonthType = calendarWeekType[];
 export type calendarYearMonths = Date[];
@@ -194,9 +195,9 @@ export default class Time {
     date: Date,
     weekdayNameLength: 'long' | 'short' = 'short'
   ): string {
-    return date.toLocaleDateString(this.CALENDAR_LOCALE, {
+    return String.capitalizeFirstLetter(date.toLocaleDateString(this.CALENDAR_LOCALE, {
       weekday: weekdayNameLength,
-    });
+    }));
   }
 
   getLocalizedNameOfMonth(

@@ -27,7 +27,7 @@
       />
       <AppHeaderMini 
         v-else
-        :key="wasInitialized + mode"
+        :key="wasInitialized + mode + '-header'"
         :config="config"
         :mode="mode"
         :time="time"
@@ -76,6 +76,7 @@
         :time="time"
         :config="config"
         :period="period"
+        :n-days="week.nDays"
         @event-was-clicked="$emit('event-was-clicked', $event)"
         @day-was-clicked="$emit('day-was-clicked', $event)"
         @event-was-dragged="handleEventWasUpdated($event, 'dragged')"
@@ -92,13 +93,14 @@
         </template>
       </Month>
 
-      <Mini
+      <MiniNew
         v-if="mode === 'mini'"
         :key="period.start.getTime() + period.end.getTime() + eventRenderingKey"
         :events-prop="eventsDataProperty"
         :time="time"
         :config="config"
         :period="period"
+        :n-days="week.nDays"
         @event-was-clicked="$emit('event-was-clicked', $event)"
         @day-was-clicked="$emit('day-was-clicked', $event)"
         @event-was-dragged="handleEventWasUpdated($event, 'dragged')"
@@ -113,7 +115,7 @@
             :close-event-dialog="p.closeEventDialog"
           ></slot>
         </template>
-      </Mini>
+      </MiniNew>
     </div>
   </div>
 </template>
@@ -126,8 +128,8 @@ import AppHeader from '@/components/calendar/VCalendarHeader.vue';
 import AppHeaderMini from '@/components/calendar/VCalendarHeaderMini.vue';
 import Week from '@/components/calendar/week/Week.vue';
 import Month from '@/components/calendar/month/Month.vue';
-import Mini  from '@/components/calendar/mini/Mini.vue';
 import Errors from './Errors';
+import MiniNew from '@/components/calendar/mini/MiniNew.vue';
 
 export default defineComponent({
   name: 'VCalendar',
@@ -137,8 +139,8 @@ export default defineComponent({
     AppHeader,
     Week,
     AppHeaderMini,
-    Mini
-  },
+    MiniNew
+},
 
   props: {
     config: {
@@ -192,7 +194,7 @@ export default defineComponent({
         },
       ) as Time | any,
       fontFamily:
-        this.config?.style?.fontFamily || "'Verdana', 'Open Sans', serif",
+        this.config?.style?.fontFamily || "'Lato",
       calendarWidth: 0,
       eventRenderingKey: 0,
       eventsDataProperty: this.events || [],
@@ -257,12 +259,17 @@ export default defineComponent({
      * Update this.period according to the new mode, and then set this.mode to the provided payload
      * */
     handleChangeMode(payload: modeType) {
-      if (payload === 'day' || payload === 'mini') {
+      if (payload === 'day') {
         this.period.start = this.period.selectedDate;
         this.period.end = this.time.setDateToEndOfDay(this.period.selectedDate);
       }
 
-      if (payload === 'week') {
+      if (payload === 'day') {
+        this.period.start = this.period.selectedDate;
+        this.period.end = this.time.setDateToEndOfDay(this.period.selectedDate);
+      }
+
+      if (payload === 'week' || payload === 'mini') {
         const week = this.time.getCalendarWeekDateObjects(
           this.period.selectedDate
         );
@@ -306,7 +313,7 @@ export default defineComponent({
     },
 
     setPeriodOnMount() {
-      if (this.mode === 'week') {
+      if (this.mode === 'week' || this.mode === 'mini') {
         const currentWeek = this.time.getCalendarWeekDateObjects(
           this.period.selectedDate
         );
@@ -352,7 +359,7 @@ export default defineComponent({
   width: 100%;
   max-width: 100vw;
   height: 100%;
-  min-height: 700px;
+  // min-height: 700px;
   display: flex;
 
   .calendar-root {

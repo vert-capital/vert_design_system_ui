@@ -162,7 +162,34 @@
     </div>
     <br />
   </div>
+  <br />
+  <hr />
+  <div class="section-calendar">
+    <h4>CARD</h4>
+    <v-card type="shadow">
+      <template #buttons>
+        <v-button
+          icon="info"
+          status="primary"
+          style_type="outline"
+          @click="onClickButtonWarning"
+          >Padrão</v-button
+        >
+      </template>
+      <template #input>
+        <input type="text" />
+      </template>
+      <h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h2>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo sint sunt
+        suscipit molestiae nemo laudantium, facere itaque atque dolorum, quo
+        quasi est. Possimus explicabo alias aspernatur eveniet, voluptas vel
+        aperiam!
+      </p>
+    </v-card>
+  </div>
 
+  <hr />
   <br />
   <div class="section-calendar">
     <h4>CALENDARIO</h4>
@@ -206,28 +233,6 @@
     </VCalendar>
     
     <hr />
-
-    <v-card type="shadow">
-      <template #buttons>
-        <v-button
-          icon="info"
-          status="primary"
-          style_type="outline"
-          @click="onClickButtonWarning"
-          >Padrão</v-button
-        >
-      </template>
-      <template #input>
-        <input type="text" />
-      </template>
-      <h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h2>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo sint sunt
-        suscipit molestiae nemo laudantium, facere itaque atque dolorum, quo
-        quasi est. Possimus explicabo alias aspernatur eveniet, voluptas vel
-        aperiam!
-      </p>
-    </v-card>
   </div>
 </template>
 
@@ -291,8 +296,8 @@ export default defineComponent({
         showCurrentTime: true,
         isSilent: true,
         dayIntervals: {
-          height: 50,
-          length: 30,
+          height: 20,
+          length: 7,
           displayClickableInterval: true,
         },
       } as IConfig,
