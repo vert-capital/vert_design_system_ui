@@ -1,0 +1,399 @@
+<template>
+  <div
+    class="event-flyout"
+    :class="{ 'is-visible': isVisible, 'is-not-editable': !isEditable }"
+    :style="eventFlyoutInlineStyles"
+  >
+    <div
+      v-if="!config.eventDialog || !config.eventDialog.isCustom"
+      class="event-flyout__relative-wrapper"
+    >
+      <div class="event-flyout__menu">
+        <span v-if="isEditable" class="event-flyout__menu-editable">
+          <span @click="editEvent">edit</span>
+
+          <span @click="deleteEvent">delete</span>
+        </span>
+
+        <span class="event-flyout__menu-close">
+          <span @click="closeFlyout">closeFlyout</span>
+        </span>
+      </div>
+
+      <div v-if="calendarEvent" class="event-flyout__info-wrapper">
+        <div v-if="calendarEvent.title" class="event-flyout__row is-title">
+          <div
+            class="event-flyout__color-icon"
+            :style="{ backgroundColor: eventBackgroundColor }" />
+          {{ calendarEvent.title }}
+        </div>
+
+        <div v-if="calendarEvent.time" class="event-flyout__row is-time">
+          {{ getEventTime }}
+        </div>
+
+        <div
+          v-if="calendarEvent.location"
+          class="event-flyout__row is-location"
+        >
+          <span>L</span>
+        </div>
+
+        <div v-if="calendarEvent.with" class="event-flyout__row">
+          <span>U</span>
+        </div>
+
+        <div v-if="calendarEvent.topic" class="event-flyout__row">
+          <span>E</span>
+          {{ calendarEvent.topic }}
+        </div>
+
+        <div v-if="calendarEvent.description" class="event-flyout__row">
+          <span>i</span>
+          <!-- eslint-disable vue/no-v-html -->
+          <p v-html="calendarEvent.description" />
+          <!--eslint-enable-->
+        </div>
+      </div>
+    </div>
+
+    <slot
+      v-else
+      :event-dialog-data="calendarEvent"
+      :close-event-dialog="closeFlyout"
+    ></slot>
+  </div>
+</template>
+
+<script lang="ts">
+import { defineComponent, PropType } from 'vue';
+import { IEvent, IConfig } from '@/utils/types/calendar';
+import EventFlyoutPosition, {
+  EVENT_FLYOUT_WIDTH,
+} from '@/utils/helpers/EventFlyoutPosition';
+import Time from '@/utils/helpers/Time';
+import {
+  DATE_PATTERN,
+  ITENS_COLOR,
+} from '@/utils/constants';
+const eventFlyoutPositionHelper = new EventFlyoutPosition();
+
+export default defineComponent({
+  name: 'EventFlyout',
+
+  props: {
+    calendarEventProp: {
+      type: Object as PropType<IEvent | null>,
+      default: () => ({}),
+    },
+    eventElement: {
+      type: Object as PropType<HTMLElement | any>,
+      default: null,
+    },
+    time: {
+      type: Object as PropType<Time>,
+      required: true,
+    },
+    config: {
+      type: Object as PropType<IConfig>,
+      required: true,
+    },
+  },
+
+  emits: ['hide', 'edit-event', 'delete-event'],
+
+  data() {
+    return {
+      isVisible: false,
+      top: 0 as number | null,
+      left: 0 as number | null,
+      // icons: {
+      //   clock: faClock,
+      //   user: faUser,
+      //   description: faComment,
+      //   trash: faTrashAlt,
+      //   edit: faEdit,
+      //   times: faTimes,
+      //   topic: faQuestionCircle,
+      //   location: faMapMarkerAlt,
+      // },
+      calendarEvent: this.calendarEventProp,
+      flyoutWidth: EVENT_FLYOUT_WIDTH + 'px',
+      colors: ITENS_COLOR,
+    };
+  },
+
+  computed: {
+    getEventTime() {
+      // 1. Null handling
+      if (!this.calendarEvent || !this.calendarEvent.time) return null;
+
+      // 2. Handle full day events
+      if (
+        DATE_PATTERN.test(this.calendarEvent.time.start)
+      ) {
+        const startDate = this.getDateFromDateString(
+          this.calendarEvent.time.start
+        );
+        const endDate = this.getDateFromDateString(this.calendarEvent.time.end);
+        if (startDate === endDate) return startDate;
+
+        return `${startDate} - ${endDate}`;
+      }
+
+      // 3. Handle timed events
+      const dateString = this.getDateFromDateString(
+        this.calendarEvent.time.start
+      );
+      const timeString =
+        this.time.getLocalizedTime(this.calendarEvent.time.start) +
+        ' - ' +
+        this.time.getLocalizedTime(this.calendarEvent.time.end);
+
+      return `${dateString} ⋅ ${timeString}`;
+    },
+
+    eventFlyoutInlineStyles() {
+      if (typeof this.top === 'number' && !this.left) {
+        return {
+          top: this.top + 'px',
+          left: '50%',
+          position: 'fixed' as const,
+          transform: 'translateX(-50%)',
+        };
+      }
+
+      return {
+        top: this.top + 'px',
+        left: this.left + 'px',
+        position: 'fixed' as const,
+      };
+    },
+
+    isEditable() {
+      return this.calendarEventProp?.isEditable || false;
+    },
+
+    eventBackgroundColor() {
+      if (
+        this.calendarEvent?.colorScheme &&
+        this.config.style?.colorSchemes &&
+        this.config.style.colorSchemes[this.calendarEvent.colorScheme]
+      ) {
+        return this.config.style.colorSchemes[this.calendarEvent.colorScheme]
+          .backgroundColor;
+      }
+
+      return this.colors[this.calendarEvent?.color || 'primary'];
+    },
+  },
+
+  watch: {
+    calendarEventProp: {
+      deep: true,
+      handler(value) {
+        // Set the values with a timeout.
+        // Otherwise, the click listener for closing the flyout will believe that the flyout is already open
+        // When it is in fact just being opened
+        setTimeout(() => {
+          this.calendarEvent = value;
+          this.isVisible = !!value;
+          this.$nextTick(() => this.setFlyoutPosition());
+        }, 10);
+      },
+    },
+  },
+
+  mounted() {
+    this.listenForClickOutside();
+  },
+
+  beforeUnmount() {
+    document.removeEventListener('click', this.closeFlyoutOnClickOutside);
+  },
+
+  methods: {
+    setFlyoutPosition() {
+      const calendar = this.eventElement?.closest('.calendar-root');
+      const flyout = document.querySelector('.event-flyout');
+
+      if (!this.eventElement) return;
+
+      const flyoutPosition = eventFlyoutPositionHelper.calculateFlyoutPosition(
+        this.eventElement?.getBoundingClientRect(),
+        {
+          height: flyout?.clientHeight || 300,
+          width: flyout?.clientWidth || 0,
+        },
+        calendar ? calendar.getBoundingClientRect() : null
+      );
+
+      this.top = typeof flyoutPosition?.top === 'number' ? flyoutPosition.top : null;
+      this.left = typeof flyoutPosition?.left === 'number' ? flyoutPosition.left : null;
+    },
+
+    editEvent() {
+      this.$emit('edit-event', this.calendarEvent?.id);
+      this.closeFlyout();
+    },
+
+    deleteEvent() {
+      this.$emit('delete-event', this.calendarEvent?.id);
+      this.closeFlyout();
+    },
+
+    closeFlyout() {
+      this.isVisible = false;
+
+      setTimeout(() => {
+        this.$emit('hide');
+      }, 100);
+    },
+
+    getDateFromDateString(dateString: string) {
+      const { year, month, date } =
+        this.time.getAllVariablesFromDateTimeString(dateString);
+
+      return new Date(year, month, date).toLocaleDateString(
+        this.time.CALENDAR_LOCALE,
+        {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+        }
+      );
+    },
+
+    listenForClickOutside() {
+      document.addEventListener('click', this.closeFlyoutOnClickOutside);
+    },
+
+    closeFlyoutOnClickOutside(e: any) {
+      try {
+        const flyout = document.querySelector('.event-flyout');
+        if (!flyout || !this.isVisible) return;
+
+        const isClickOutside = !flyout.contains(e.target);
+        const isClickOnEvent = !!e.target.closest('.is-event');
+
+        if (this.isVisible && isClickOutside && !isClickOnEvent)
+          this.closeFlyout();
+      } catch (err) {
+        console.log(err);
+      }
+    },
+  },
+});
+</script>
+
+<style scoped lang="scss">
+.event-flyout {
+  position: fixed;
+  z-index: 50;
+  background-color: #fff;
+  max-height: 100%;
+  width: v-bind(flyoutWidth);
+  max-width: 98%;
+  border: var(--vcalendar-border-gray-thin);
+  border-radius: 8px;
+  box-shadow: 0 12px 24px rgb(0 0 0 / 9%), 0 6px 12px rgb(0 0 0 / 18%);
+  overflow: hidden;
+  transition: all 0.2s ease;
+  transition-property: opacity, transform;
+  transform: translateY(-40px);
+  opacity: 0;
+  pointer-events: none;
+
+  &.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: initial;
+  }
+
+  &__relative-wrapper {
+    position: relative;
+  }
+
+  &__menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .event-flyout__menu-editable,
+    .event-flyout__menu-close {
+      padding: var(--vcalendar-spacing) var(--vcalendar-spacing) 0
+        var(--vcalendar-spacing);
+      display: flex;
+      grid-gap: 20px;
+    }
+
+    .event-flyout__menu-close {
+      .is-not-editable & {
+        position: absolute;
+        top: 0;
+        right: 0;
+      }
+    }
+  }
+
+  &__menu-item {
+    font-size: var(--vcalendar-font-l);
+    color: gray;
+
+    &:hover {
+      color: var(--vcalendar-theme-color);
+      cursor: pointer;
+    }
+  }
+
+  .is-trash-icon {
+    &:hover {
+      color: red;
+    }
+  }
+
+  &__info-wrapper {
+    padding: var(--vcalendar-spacing);
+  }
+
+  &__row {
+    display: flex;
+    grid-gap: var(--vcalendar-spacing);
+    margin-bottom: 0.25em;
+    font-weight: 400;
+
+    p {
+      margin: 0;
+      padding: 0;
+    }
+
+    svg {
+      margin-top: 0.1rem;
+      color: #5f6368;
+      width: 14px;
+    }
+  }
+
+  &__color-icon {
+    --icon-height: 16px;
+
+    border-radius: 50%;
+    height: var(--icon-height);
+    width: var(--icon-height);
+  }
+
+  .is-title {
+    font-size: var(--vcalendar-font-l);
+    align-items: center;
+
+    .is-not-editable & {
+      max-width: 90%;
+    }
+  }
+
+  .is-time {
+    font-size: var(--vcalendar-font-s);
+    margin-bottom: 0.75em;
+  }
+}
+</style>

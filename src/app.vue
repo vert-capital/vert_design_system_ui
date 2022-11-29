@@ -39,6 +39,13 @@
       >
       <v-button icon="check" status="success" disabled>Sucesso</v-button>
       <v-button icon="info" status="primary">Padrão</v-button>
+      <v-button
+        icon="info"
+        status="primary"
+        style_type="outline"
+        @click="onClickButtonWarning"
+        >Padrão out</v-button
+      >
     </div>
     <br />
     <VPopUp title="Calendário de eventos" positionContent="bottom center">
@@ -118,7 +125,109 @@
         >Padrão</v-button
       >
     </form>
+    <br />
     <hr />
+    <h4>TAG</h4>
+    <br />
+    <div class="d-flex">
+      <v-tag status="helper">Tag helper</v-tag>
+      <v-tag status="warning">Tag warning</v-tag>
+      <v-tag status="success">Tag success</v-tag>
+      <v-tag status="primary">Tag primary</v-tag>
+      <v-tag status="secondary">Tag secondary</v-tag>
+    </div>
+    <br />
+    <div class="d-flex">
+      <v-tag status="helper" type="outline">Tag helper</v-tag>
+      <v-tag status="warning" type="outline">Tag warning</v-tag>
+      <v-tag status="success" type="outline">Tag success</v-tag>
+      <v-tag status="primary" type="outline">Tag primary</v-tag>
+      <v-tag status="secondary" type="outline">Tag secondary</v-tag>
+    </div>
+    <br />
+    <div class="d-flex">
+      <v-tag status="helper" type="ice">Tag helper</v-tag>
+      <v-tag status="warning" type="ice">Tag warning</v-tag>
+      <v-tag status="success" type="ice">Tag success</v-tag>
+      <v-tag status="primary" type="ice">Tag primary</v-tag>
+      <v-tag status="secondary" type="ice">Tag secondary</v-tag>
+    </div>
+    <br />
+    <div class="d-flex">
+      <v-tag status="helper" square>Tag helper</v-tag>
+      <v-tag status="warning" square>Tag warning</v-tag>
+      <v-tag status="success" square>Tag success</v-tag>
+      <v-tag status="primary" square>Tag primary</v-tag>
+      <v-tag status="secondary" square>Tag secondary</v-tag>
+    </div>
+    <br />
+  </div>
+
+  <br />
+  <div>
+    <h4>CALENDARIO</h4>
+    <VCalendar
+      :key="config.locale + config.week.nDays"
+      :selected-date="new Date()"
+      :config="config"
+      :events="events"
+      :is-loading="isLoading"
+      @event-was-clicked="reactToEvent"
+      @updated-period="updatedPeriod"
+      @updated-mode="updatedPeriod"
+      @event-was-resized="reactToEvent"
+      @edit-event="editEvent"
+      @delete-event="deleteEvent"
+      @day-was-clicked="reactToEvent"
+      @event-was-dragged="handleEventWasDragged"
+      @interval-was-clicked="handleIntervalWasClicked"
+    >
+      <template #customCurrentTime>
+        <div
+          :style="{
+            height: '3px',
+            backgroundColor: 'cornflowerblue',
+            position: 'relative',
+          }"
+        >
+          <div
+            :style="{
+              position: 'absolute',
+              left: '-7px',
+              top: '-6px',
+              height: '15px',
+              width: '15px',
+              backgroundColor: 'cornflowerblue',
+              borderRadius: '50%',
+            }"
+          ></div>
+        </div>
+      </template>
+    </VCalendar>
+    
+    <hr />
+
+    <v-card type="shadow">
+      <template #buttons>
+        <v-button
+          icon="info"
+          status="primary"
+          style_type="outline"
+          @click="onClickButtonWarning"
+          >Padrão</v-button
+        >
+      </template>
+      <template #input>
+        <input type="text" />
+      </template>
+      <h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h2>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo sint sunt
+        suscipit molestiae nemo laudantium, facere itaque atque dolorum, quo
+        quasi est. Possimus explicabo alias aspernatur eveniet, voluptas vel
+        aperiam!
+      </p>
+    </v-card>
   </div>
 </template>
 
@@ -130,7 +239,10 @@ import VTabContent from "./components/tab/VTabContent.vue";
 import VTabHeader from "./components/tab/VTabHeader.vue";
 import VSelect from "./components/form/select/VSelect.vue";
 import VTag from "./components/tag/VTag.vue";
+import VCalendar from "./components/calendar/VCalendar.vue";
+import { IConfig, IEvent } from "./utils/types/calendar";
 import VPopUp from "./components/popUp/VPopUp.vue";
+import VCard from "./components/card/VCard.vue";
 
 export default defineComponent({
   name: "App",
@@ -143,12 +255,55 @@ export default defineComponent({
     VPagination,
     VSelect,
     VTag,
+    VCalendar,
     VPopUp,
+    VCard,
   },
   data() {
     return {
       typeTab: "x",
       testeSelect: "",
+
+      config: {
+        week: {
+          startsOn: "monday",
+          scrollToHour: 8,
+        },
+        locale: "pt-BR",
+        style: {
+          fontFamily: `'Lato', 'sans-serif', 'Verdana`,
+          colorSchemes: {
+            meetings: {
+              color: "#fff",
+              backgroundColor: "#131313",
+            },
+            ladies: {
+              color: "#fff",
+              backgroundColor: "#ff4081",
+            },
+          },
+        },
+        dayBoundaries: {
+          start: 7,
+          end: 17,
+        },
+        defaultMode: "week",
+        showCurrentTime: true,
+        isSilent: true,
+        dayIntervals: {
+          height: 50,
+          length: 30,
+          displayClickableInterval: true,
+        },
+      } as IConfig,
+      events: [] as IEvent[],
+
+      layout: "none",
+      isLoading: false,
+      eventDialogForm: {
+        title: "",
+        id: "",
+      },
     };
   },
   setup() {
@@ -218,6 +373,39 @@ export default defineComponent({
     },
     onClickButtonWarning() {
       alert("Aviso");
+    },
+
+    reactToEvent(payload: any) {
+      console.log(payload);
+    },
+
+    updatedPeriod(e) {
+      console.log("updated period");
+      console.log(e);
+    },
+
+    triggerLoadAnimations() {
+      this.isLoading = !this.isLoading;
+
+      setTimeout(() => this.triggerLoadAnimations(), 5000);
+    },
+
+    editEvent(payload: string) {
+      console.log("editEvent%s: ", payload);
+    },
+
+    deleteEvent(payload: string) {
+      console.log("deleteEvent%s: ", payload);
+    },
+
+    handleEventWasDragged(e) {
+      console.log("event was dragged");
+      console.log(e);
+    },
+
+    handleIntervalWasClicked(e) {
+      console.log("interval was clicked");
+      console.log(e);
     },
   },
 });
