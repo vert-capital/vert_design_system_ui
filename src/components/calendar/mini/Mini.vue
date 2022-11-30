@@ -6,13 +6,11 @@
         :time="time"
         :full-day-events="fullDayEvents"
         :config="config"
-        :mode="mode"
         @event-was-clicked="handleClickOnEvent"
         @day-was-clicked="$emit('day-was-clicked', $event)"
       />
     </div>
     <div class="vcalendar-mini--day">
-      <hr class="day-line" />
     </div>
 </div>
 </template>
@@ -40,10 +38,6 @@ const props = defineProps({
     type: Array as PropType<IEvent[]>,
     default: () => [],
   },
-  mode: {
-    type: String as PropType<modeType>,
-    default: 'mini',
-  },
   nDays: {
     type: Number,
     default: 7,
@@ -62,7 +56,6 @@ const emits = defineEmits<{
 const days = ref<IDay[]>([]);
 const selectedEvent = ref<IEvent | null>(null);
 const selectedEventElement = ref<any | null>(null);
-const mode = ref<modeType>(props.modeProp);
 const events = ref(props.eventsProp);
 const fullDayEvents = ref<IEventsFullDay[]>([]);
 
@@ -126,12 +119,7 @@ onMounted(() => {
     flex-direction: column;
     flex: 1;
     overflow: hidden;
+    border-bottom: 1px solid #E0E0E0;
   }
-}
-
-.day-line {
-  width: 90%;
-  height: 1px;
-  background-color: $color-primary-dark;
 }
 </style>

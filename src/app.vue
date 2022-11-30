@@ -193,44 +193,18 @@
   <br />
   <div class="section-calendar">
     <h4>CALENDARIO</h4>
-    <VCalendar
-      :key="config.locale + config.week.nDays"
+    <VCalendarMini
       :selected-date="calendarSelectedDate"
       :config="config"
       :events="events"
       :is-loading="isLoading"
       @event-was-clicked="reactToEvent"
       @updated-period="updatedPeriod"
-      @updated-mode="updatedPeriod"
-      @event-was-resized="reactToEvent"
       @edit-event="editEvent"
       @delete-event="deleteEvent"
       @day-was-clicked="reactToEvent"
-      @event-was-dragged="handleEventWasDragged"
-      @interval-was-clicked="handleIntervalWasClicked"
     >
-      <template #customCurrentTime>
-        <div
-          :style="{
-            height: '3px',
-            backgroundColor: 'cornflowerblue',
-            position: 'relative',
-          }"
-        >
-          <div
-            :style="{
-              position: 'absolute',
-              left: '-7px',
-              top: '-6px',
-              height: '15px',
-              width: '15px',
-              backgroundColor: 'cornflowerblue',
-              borderRadius: '50%',
-            }"
-          ></div>
-        </div>
-      </template>
-    </VCalendar>
+    </VCalendarMini>
     
     <hr />
   </div>
@@ -244,7 +218,7 @@ import VTabContent from "./components/tab/VTabContent.vue";
 import VTabHeader from "./components/tab/VTabHeader.vue";
 import VSelect from "./components/form/select/VSelect.vue";
 import VTag from "./components/tag/VTag.vue";
-import VCalendar from "./components/calendar/VCalendar.vue";
+import VCalendarMini from "./components/calendar/VCalendarMini.vue";
 import { IConfig, IEvent } from "./utils/types/calendar";
 import VPopUp from "./components/popUp/VPopUp.vue";
 import VCard from "./components/card/VCard.vue";
@@ -260,7 +234,7 @@ export default defineComponent({
     VPagination,
     VSelect,
     VTag,
-    VCalendar,
+    VCalendarMini,
     VPopUp,
     VCard,
   },
@@ -270,10 +244,6 @@ export default defineComponent({
       testeSelect: "",
 
       config: {
-        week: {
-          startsOn: "monday",
-          scrollToHour: 8,
-        },
         locale: "pt-BR",
         defaultMode: 'mini',
         showCurrentTime: true,
@@ -294,7 +264,6 @@ export default defineComponent({
             },
         ]  as IEvent[],
 
-      layout: "none",
       isLoading: false,
       eventDialogForm: {
         title: "",
@@ -415,8 +384,9 @@ export default defineComponent({
   flex-wrap: wrap;
 }
 .section-calendar{
-  width: 50%;
-  height: 100%;
+  width: 400px;
+  height: 600px;
+  min-height: 200px;
   display: flex;
   flex-direction: column;
   justify-content: center;

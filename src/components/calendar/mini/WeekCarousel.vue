@@ -24,7 +24,7 @@
             v-if="key !== 'date'"
             :schedule-event="typeof event === 'object' ? event : null"
             :config="config"
-            :mode="mode"
+            mode="week"
             @event-was-clicked="$emit('event-was-clicked', $event)"
           />
         </template>
@@ -60,11 +60,7 @@ export default defineComponent({
     config: {
       type: Object as PropType<IConfig>,
       required: true,
-    },
-    mode: {
-      type: String as PropType<modeType>,
-      required: true,
-    },
+    }
   },
 
   emits: ['event-was-clicked', 'day-was-clicked'],
@@ -84,6 +80,13 @@ export default defineComponent({
 
       return date;
     },
+    isLastDayOfMonth(day: IDay) {
+      //validate if day is last day of last month
+      const { month, year } = this.time.getAllVariablesFromDateTimeString(
+        day.dateTimeString
+      );
+
+    },
     onHandleDayWasClicked(day: string) {
       this.selectedDay = day;
       this.$emit('day-was-clicked', day);
@@ -100,6 +103,7 @@ export default defineComponent({
   padding-bottom: 5px;
   padding-left: 0;
   border-bottom: $color-primary-medium;
+  font-family: "Lato", sans-serif;
 
   .mode-is-day & {
     width: 100%;
@@ -112,28 +116,31 @@ export default defineComponent({
     flex-flow: column;
     align-items: center;
     justify-content: flex-start;
-    :hover {
-      cursor: pointer;
-      background-color: $neutral-color-low-extra-light;
-    }
   }
 
   &__day-name {
-    font-size: 1rem;
+    font-size: 0.843rem;
     font-weight: 400;
+    font-style: normal;
     margin-bottom: 4px;
     color: $neutral-color-low-medium;
+    line-height: 17px;
   }
 
   &__date {
-    font-size: 1rem;
+    font-size: 0.843rem;
     margin-bottom: 4px;
-    height: 2rem;
-    width: 2rem;
+    height: 1rem;
+    width: 1rem;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
+    color: #4A4A4A;
+    :hover {
+      cursor: pointer;
+      background-color: $neutral-color-low-extra-light;
+    }
 
     .is-today & {
       color: $color-primary-pure;
