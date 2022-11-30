@@ -162,51 +162,10 @@
     </div>
     <br />
   </div>
-
   <br />
-  <div>
-    <h4>CALENDARIO</h4>
-    <VCalendar
-      :key="config.locale + config.week.nDays"
-      :selected-date="new Date()"
-      :config="config"
-      :events="events"
-      :is-loading="isLoading"
-      @event-was-clicked="reactToEvent"
-      @updated-period="updatedPeriod"
-      @updated-mode="updatedPeriod"
-      @event-was-resized="reactToEvent"
-      @edit-event="editEvent"
-      @delete-event="deleteEvent"
-      @day-was-clicked="reactToEvent"
-      @event-was-dragged="handleEventWasDragged"
-      @interval-was-clicked="handleIntervalWasClicked"
-    >
-      <template #customCurrentTime>
-        <div
-          :style="{
-            height: '3px',
-            backgroundColor: 'cornflowerblue',
-            position: 'relative',
-          }"
-        >
-          <div
-            :style="{
-              position: 'absolute',
-              left: '-7px',
-              top: '-6px',
-              height: '15px',
-              width: '15px',
-              backgroundColor: 'cornflowerblue',
-              borderRadius: '50%',
-            }"
-          ></div>
-        </div>
-      </template>
-    </VCalendar>
-    
-    <hr />
-
+  <hr />
+  <div class="section-calendar">
+    <h4>CARD</h4>
     <v-card type="shadow">
       <template #buttons>
         <v-button
@@ -229,6 +188,26 @@
       </p>
     </v-card>
   </div>
+
+  <hr />
+  <br />
+  <div class="section-calendar">
+    <h4>CALENDARIO</h4>
+    <VCalendarMini
+      :selected-date="calendarSelectedDate"
+      :config="config"
+      :events="events"
+      :is-loading="isLoading"
+      @event-was-clicked="reactToEvent"
+      @updated-period="updatedPeriod"
+      @edit-event="editEvent"
+      @delete-event="deleteEvent"
+      @day-was-clicked="reactToEvent"
+    >
+    </VCalendarMini>
+    
+    <hr />
+  </div>
 </template>
 
 <script lang="ts">
@@ -239,7 +218,7 @@ import VTabContent from "./components/tab/VTabContent.vue";
 import VTabHeader from "./components/tab/VTabHeader.vue";
 import VSelect from "./components/form/select/VSelect.vue";
 import VTag from "./components/tag/VTag.vue";
-import VCalendar from "./components/calendar/VCalendar.vue";
+import VCalendarMini from "./components/calendar/VCalendarMini.vue";
 import { IConfig, IEvent } from "./utils/types/calendar";
 import VPopUp from "./components/popUp/VPopUp.vue";
 import VCard from "./components/card/VCard.vue";
@@ -255,7 +234,7 @@ export default defineComponent({
     VPagination,
     VSelect,
     VTag,
-    VCalendar,
+    VCalendarMini,
     VPopUp,
     VCard,
   },
@@ -265,45 +244,32 @@ export default defineComponent({
       testeSelect: "",
 
       config: {
-        week: {
-          startsOn: "monday",
-          scrollToHour: 8,
-        },
         locale: "pt-BR",
-        style: {
-          fontFamily: `'Lato', 'sans-serif', 'Verdana`,
-          colorSchemes: {
-            meetings: {
-              color: "#fff",
-              backgroundColor: "#131313",
-            },
-            ladies: {
-              color: "#fff",
-              backgroundColor: "#ff4081",
-            },
-          },
-        },
-        dayBoundaries: {
-          start: 7,
-          end: 17,
-        },
-        defaultMode: "week",
+        defaultMode: 'mini',
         showCurrentTime: true,
-        isSilent: true,
-        dayIntervals: {
-          height: 50,
-          length: 30,
-          displayClickableInterval: true,
-        },
+        isSilent: true
       } as IConfig,
-      events: [] as IEvent[],
+        events: [
+            {
+                title: 'Beep',
+                time: { start: '2022-11-30 08:00', end: '2022-11-30 09:00' },
+                colorScheme: 'meetings',
+                id: '1',
+            },
+            {
+                title: 'Boop',
+                time: { start: '2022-11-30 08:00', end: '2022-11-30 09:00' },
+                colorScheme: 'sports',
+                id: '2',
+            },
+        ]  as IEvent[],
 
-      layout: "none",
       isLoading: false,
       eventDialogForm: {
         title: "",
         id: "",
       },
+      calendarSelectedDate: new Date(),
     };
   },
   setup() {
@@ -377,6 +343,8 @@ export default defineComponent({
 
     reactToEvent(payload: any) {
       console.log(payload);
+      const date = new Date(payload.date);
+      this.calendarSelectedDate = date;
     },
 
     updatedPeriod(e) {
@@ -414,5 +382,15 @@ export default defineComponent({
 .d-flex {
   display: flex;
   flex-wrap: wrap;
+}
+.section-calendar{
+  width: 400px;
+  height: 600px;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
 }
 </style>

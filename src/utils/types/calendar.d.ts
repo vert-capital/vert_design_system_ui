@@ -76,7 +76,7 @@ export interface colorSchemes {
   [key: string]: colorScheme;
 }
 
-export type intervalLengthType = 15 | 30 | 60;
+export type intervalLengthType = 7 | 15 | 30 | 60;
 
 export type dayIntervalsType = {
   length?: intervalLengthType;
