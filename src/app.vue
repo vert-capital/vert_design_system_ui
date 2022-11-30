@@ -195,7 +195,7 @@
     <h4>CALENDARIO</h4>
     <VCalendar
       :key="config.locale + config.week.nDays"
-      :selected-date="new Date()"
+      :selected-date="calendarSelectedDate"
       :config="config"
       :events="events"
       :is-loading="isLoading"
@@ -275,42 +275,20 @@ export default defineComponent({
           scrollToHour: 8,
         },
         locale: "pt-BR",
-        style: {
-          fontFamily: `'Lato', 'sans-serif', 'Verdana`,
-          colorSchemes: {
-            meetings: {
-              color: "#fff",
-              backgroundColor: "#131313",
-            },
-            ladies: {
-              color: "#fff",
-              backgroundColor: "#ff4081",
-            },
-          },
-        },
-        dayBoundaries: {
-          start: 7,
-          end: 17,
-        },
         defaultMode: 'mini',
         showCurrentTime: true,
-        isSilent: true,
-        dayIntervals: {
-          height: 20,
-          length: 7,
-          displayClickableInterval: true,
-        },
+        isSilent: true
       } as IConfig,
         events: [
             {
                 title: 'Beep',
-                time: { start: '2022-11-16 08:00', end: '2022-11-16 09:00' },
+                time: { start: '2022-11-30 08:00', end: '2022-11-30 09:00' },
                 colorScheme: 'meetings',
                 id: '1',
             },
             {
                 title: 'Boop',
-                time: { start: '2022-11-16 08:00', end: '2022-11-16 09:00' },
+                time: { start: '2022-11-30 08:00', end: '2022-11-30 09:00' },
                 colorScheme: 'sports',
                 id: '2',
             },
@@ -322,6 +300,7 @@ export default defineComponent({
         title: "",
         id: "",
       },
+      calendarSelectedDate: new Date(),
     };
   },
   setup() {
@@ -395,6 +374,8 @@ export default defineComponent({
 
     reactToEvent(payload: any) {
       console.log(payload);
+      const date = new Date(payload.date);
+      this.calendarSelectedDate = date;
     },
 
     updatedPeriod(e) {

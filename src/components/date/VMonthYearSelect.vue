@@ -1,5 +1,7 @@
 <template>
-  <VSelect :options="months" borderNone v-model="monthYearSelected" @onChange="onChangeMonth"/>
+  <div class="vmonth-year">
+    <VSelect :options="months" borderNone :modelValue="monthYearSelected" @onChange="onChangeMonth" size="lg"/>
+  </div>
 </template>
 <script lang="ts" setup>
 import { computed, ref } from 'vue';
@@ -14,7 +16,7 @@ const months = computed(() => {
   for (let i = 0; i < 5; i++) {
     for (let j = 0; j < 12; j++) {
       months.push({
-        value: `${currentYear + i}-${j}`,
+        value: String(`${currentYear + i}-${j+1}`),
         label: StringHelper.capitalizeFirstLetter(new Date(currentYear + i, j, 1).toLocaleString('default', { month: 'long', year: 'numeric' })),
       });
     }
@@ -27,8 +29,20 @@ const emit = defineEmits<{
 }>();
 
 const onChangeMonth = (monthYear: string) => {
-  emit('updated', monthYear);
-  console.log(monthYear);
+  const [year, month] = monthYear.split('-');
+  const date = new Date(parseInt(year), parseInt(month) - 1, 1);
+  const period = {
+    start: date,
+    end: new Date(date.getFullYear(), date.getMonth() + 1, 0),
+    selectedDate: date,
+  };
+  emit('updated', period);
 };
 
 </script>
+<style lang="scss" scoped>
+.vmonth-year {
+  width: 200px;
+  margin-bottom: 0.5rem;
+}
+</style>

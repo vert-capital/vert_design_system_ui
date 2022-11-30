@@ -4,11 +4,11 @@
       v-for="(day, dayIndex) in days"
       :key="dayIndex"
       class="week-carousel__day"
-      :class="{
+      :class="[{
         'is-today':
           time.getDateTimeStringFromDate(now, 'start') === day.dateTimeString,
-      }"
-      @click="$emit('day-was-clicked', day.dateTimeString.substring(0, 10))"
+      }, {'is-selected':day.dateTimeString.substring(0, 10) === selectedDay}]"
+      @click="onHandleDayWasClicked(day.dateTimeString.substring(0, 10))"
     >
       <div class="week-carousel__day-name">
         {{ day.dayName.substring(0, 3) }}
@@ -72,6 +72,7 @@ export default defineComponent({
   data() {
     return {
       now: new Date(),
+      selectedDay: '',
     };
   },
 
@@ -83,6 +84,10 @@ export default defineComponent({
 
       return date;
     },
+    onHandleDayWasClicked(day: string) {
+      this.selectedDay = day;
+      this.$emit('day-was-clicked', day);
+    }
   },
 });
 </script>
@@ -92,9 +97,9 @@ export default defineComponent({
   height: fit-content;
   display: flex;
   justify-content: space-evenly;
-  padding-bottom: var(--vcalendar-spacing-half);
-  padding-left: var(--vcalendar-week-padding-left);
-  border-bottom: var(--vcalendar-border-gray-thin);
+  padding-bottom: 5px;
+  padding-left: 0;
+  border-bottom: $color-primary-medium;
 
   .mode-is-day & {
     width: 100%;
@@ -107,6 +112,10 @@ export default defineComponent({
     flex-flow: column;
     align-items: center;
     justify-content: flex-start;
+    :hover {
+      cursor: pointer;
+      background-color: $neutral-color-low-extra-light;
+    }
   }
 
   &__day-name {
@@ -128,6 +137,10 @@ export default defineComponent({
 
     .is-today & {
       color: $color-primary-pure;
+    }
+
+    .is-selected & {
+      background-color: $color-primary-light;
     }
   }
 

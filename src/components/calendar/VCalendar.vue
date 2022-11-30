@@ -93,7 +93,7 @@
         </template>
       </Month>
 
-      <MiniNew
+      <Mini
         v-if="mode === 'mini'"
         :key="period.start.getTime() + period.end.getTime() + eventRenderingKey"
         :events-prop="eventsDataProperty"
@@ -115,7 +115,7 @@
             :close-event-dialog="p.closeEventDialog"
           ></slot>
         </template>
-      </MiniNew>
+      </Mini>
     </div>
   </div>
 </template>
@@ -129,7 +129,7 @@ import AppHeaderMini from '@/components/calendar/VCalendarHeaderMini.vue';
 import Week from '@/components/calendar/week/Week.vue';
 import Month from '@/components/calendar/month/Month.vue';
 import Errors from './Errors';
-import MiniNew from '@/components/calendar/mini/MiniNew.vue';
+import Mini from '@/components/calendar/mini/Mini.vue';
 
 export default defineComponent({
   name: 'VCalendar',
@@ -139,7 +139,7 @@ export default defineComponent({
     AppHeader,
     Week,
     AppHeaderMini,
-    MiniNew
+    Mini
 },
 
   props: {
@@ -249,6 +249,7 @@ export default defineComponent({
       value: { start: Date; end: Date; selectedDate: Date },
       setModeWeek = false
     ) {
+      console.log('handleUpdatedPeriod', value);
       this.$emit('updated-period', { start: value.start, end: value.end });
       this.period = value;
 
