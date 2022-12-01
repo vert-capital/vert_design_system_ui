@@ -131,7 +131,7 @@ export default defineComponent({
       }
 
       this.intervals = new DayIntervals(
-        this.dayIntervals.length || 60,
+        60,
         dayStartTimeString,
         this.time.HOURS_PER_DAY,
       ).getIntervals()

@@ -219,9 +219,9 @@
         </div>
       </template>
     </VCalendar>
-
-    <hr />
-
+  <hr />
+  <div class="section-calendar">
+    <h4>CARD</h4>
     <v-card type="shadow">
       <template #buttons>
         <v-button
@@ -244,6 +244,21 @@
       </p>
     </v-card>
   </div>
+
+  <hr />
+  <br />
+  <div class="section-calendar">
+    <h4>CALENDARIO</h4>
+    <VCalendarMini
+      :selected-date="calendarSelectedDate"
+      :config="config"
+      :events="events"
+      :day-was-clicked="reactToEvent"
+    >
+    </VCalendarMini>
+    
+    <hr />
+  </div>
 </template>
 
 <script lang="ts">
@@ -254,7 +269,7 @@ import VTabContent from "./components/tab/VTabContent.vue";
 import VTabHeader from "./components/tab/VTabHeader.vue";
 import VSelect from "./components/form/select/VSelect.vue";
 import VTag from "./components/tag/VTag.vue";
-import VCalendar from "./components/calendar/VCalendar.vue";
+import VCalendarMini from "./components/calendar/VCalendarMini.vue";
 import { IConfig, IEvent } from "./utils/types/calendar";
 import VPopUp from "./components/popUp/VPopUp.vue";
 import VCard from "./components/card/VCard.vue";
@@ -271,7 +286,7 @@ export default defineComponent({
     VPagination,
     VSelect,
     VTag,
-    VCalendar,
+    VCalendarMini,
     VPopUp,
     VCard,
     VDropdow,
@@ -284,40 +299,26 @@ export default defineComponent({
       dropDowExemplo2: "",
 
       config: {
-        week: {
-          startsOn: "monday",
-          scrollToHour: 8,
-        },
         locale: "pt-BR",
-        style: {
-          fontFamily: `'Lato', 'sans-serif', 'Verdana`,
-          colorSchemes: {
-            meetings: {
-              color: "#fff",
-              backgroundColor: "#131313",
-            },
-            ladies: {
-              color: "#fff",
-              backgroundColor: "#ff4081",
-            },
-          },
-        },
-        dayBoundaries: {
-          start: 7,
-          end: 17,
-        },
-        defaultMode: "week",
+        defaultMode: 'mini',
         showCurrentTime: true,
-        isSilent: true,
-        dayIntervals: {
-          height: 50,
-          length: 30,
-          displayClickableInterval: true,
-        },
+        isSilent: true
       } as IConfig,
-      events: [] as IEvent[],
+      events: [
+          {
+              title: 'Beep',
+              time: { start: '2022-11-30 08:00', end: '2022-11-30 09:00' },
+              colorScheme: 'meetings',
+              id: '1',
+          },
+          {
+              title: 'Boop',
+              time: { start: '2022-11-30 08:00', end: '2022-11-30 09:00' },
+              colorScheme: 'sports',
+              id: '2',
+          },
+      ]  as IEvent[],
 
-      layout: "none",
       isLoading: false,
       eventDialogForm: {
         title: "",
@@ -386,54 +387,33 @@ export default defineComponent({
       alert("click na linha: " + row.name);
     }
 
+    const calendarSelectedDate = ref(new Date());
+
+    function reactToEvent(payload: any) {
+      console.log(payload);
+      const date = new Date(payload.date);
+      calendarSelectedDate.value = date;
+    }
+
+    function onClickButtonWarning() {
+      alert("onClickButtonWarning");
+    }
+
+    function onClickButton() {
+      alert("onClickButton");
+    }
+
     return {
       pagination,
       selectOptions,
       pokemons,
       onChangePagination,
       clickRowTable,
+      calendarSelectedDate,
+      reactToEvent,
+      onClickButtonWarning,
+      onClickButton
     };
-  },
-  methods: {
-    onClickButton() {
-      alert("Erro: 402 favor falar com desenvolvedor");
-    },
-    onClickButtonWarning() {
-      alert("Aviso");
-    },
-
-    reactToEvent(payload: any) {
-      console.log(payload);
-    },
-
-    updatedPeriod(e) {
-      console.log("updated period");
-      console.log(e);
-    },
-
-    triggerLoadAnimations() {
-      this.isLoading = !this.isLoading;
-
-      setTimeout(() => this.triggerLoadAnimations(), 5000);
-    },
-
-    editEvent(payload: string) {
-      console.log("editEvent%s: ", payload);
-    },
-
-    deleteEvent(payload: string) {
-      console.log("deleteEvent%s: ", payload);
-    },
-
-    handleEventWasDragged(e) {
-      console.log("event was dragged");
-      console.log(e);
-    },
-
-    handleIntervalWasClicked(e) {
-      console.log("interval was clicked");
-      console.log(e);
-    },
   },
 });
 </script>
@@ -441,5 +421,15 @@ export default defineComponent({
 .d-flex {
   display: flex;
   flex-wrap: wrap;
+}
+.section-calendar{
+  width: 400px;
+  height: 600px;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
 }
 </style>

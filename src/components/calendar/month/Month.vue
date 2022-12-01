@@ -107,6 +107,7 @@ export default defineComponent({
   mounted() {
     this.initMonth();
     this.initScrollbar();
+    console.log('Month mounted', this.month);
   },
 
   methods: {

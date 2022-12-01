@@ -1,5 +1,5 @@
 import type { Ref, ComputedRef } from 'vue';
-type MaybeRef<T> = T | Ref<T>;
+declare type MaybeRef<T> = T | Ref<T>;
 export interface IOptions {
     page?: MaybeRef<number>;
     pageSize?: MaybeRef<number>;
@@ -32,6 +32,6 @@ export interface IEllipsisButton extends IButton {
     active: false;
     ellipsis: true;
 }
-export type IPaginatorButton = IPageButton | IEllipsisButton;
+export declare type IPaginatorButton = IPageButton | IEllipsisButton;
 declare const _default: (userOptions: IOptions) => IPagination;
 export default _default;

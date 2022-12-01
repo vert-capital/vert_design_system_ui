@@ -292,9 +292,9 @@ export default defineComponent({
   z-index: 50;
   background-color: #fff;
   max-height: 100%;
-  width: v-bind(flyoutWidth);
+  width: auto;
   max-width: 98%;
-  border: var(--vcalendar-border-gray-thin);
+  border: 1px solid #e5e5e5;
   border-radius: 8px;
   box-shadow: 0 12px 24px rgb(0 0 0 / 9%), 0 6px 12px rgb(0 0 0 / 18%);
   overflow: hidden;
@@ -321,8 +321,7 @@ export default defineComponent({
 
     .event-flyout__menu-editable,
     .event-flyout__menu-close {
-      padding: var(--vcalendar-spacing) var(--vcalendar-spacing) 0
-        var(--vcalendar-spacing);
+      padding: 0.5rem;
       display: flex;
       grid-gap: 20px;
     }
@@ -337,11 +336,11 @@ export default defineComponent({
   }
 
   &__menu-item {
-    font-size: var(--vcalendar-font-l);
+    font-size: 1rem;
     color: gray;
 
     &:hover {
-      color: var(--vcalendar-theme-color);
+      color: #e5e5e5;
       cursor: pointer;
     }
   }
@@ -353,12 +352,12 @@ export default defineComponent({
   }
 
   &__info-wrapper {
-    padding: var(--vcalendar-spacing);
+    padding: 1rem;
   }
 
   &__row {
     display: flex;
-    grid-gap: var(--vcalendar-spacing);
+    grid-gap: 20px;
     margin-bottom: 0.25em;
     font-weight: 400;
 
@@ -378,12 +377,12 @@ export default defineComponent({
     --icon-height: 16px;
 
     border-radius: 50%;
-    height: var(--icon-height);
-    width: var(--icon-height);
+    height: 32px;
+    width: 32px;
   }
 
   .is-title {
-    font-size: var(--vcalendar-font-l);
+    font-size: 1rem;
     align-items: center;
 
     .is-not-editable & {
@@ -392,7 +391,7 @@ export default defineComponent({
   }
 
   .is-time {
-    font-size: var(--vcalendar-font-s);
+    font-size: 1rem;
     margin-bottom: 0.75em;
   }
 }

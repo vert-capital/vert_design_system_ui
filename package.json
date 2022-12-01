@@ -1,6 +1,6 @@
 {
   "name": "@vert-capital/design-system",
-  "version": "v0.3.2",
+  "version": "0.4.1",
   "publishConfig": {
     "access": "public"
   },
@@ -90,7 +90,7 @@
     "husky": "^7.0.4",
     "rimraf": "^3.0.2",
     "sass": "^1.54.1",
-    "typescript": "^4.5.4",
+    "typescript": "4.5.4",
     "vite": "^2.8.0",
     "vitepress": "1.0.0-alpha.29",
     "vitest": "^0.7.6",
