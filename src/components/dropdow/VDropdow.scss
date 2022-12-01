@@ -1,0 +1,123 @@
+.v-dropdow {
+  position: relative;
+  width: 100%;
+  font-family: "Lato", sans-serif;
+  font-size: 14px;
+  &__input {
+    border: solid 1px $neutral-color-low-light;
+    border-radius: 4px;
+    min-height: 41px;
+    padding: .5rem 1rem;
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+    display: flex;
+    align-items: center;
+    transition: ease-in-out .2s outline;
+    outline: 1px solid transparent;
+
+    > span {
+      display: flex;
+    }
+    &--arrow{
+      position: absolute;
+      right: .25rem;
+      top: 0;
+      bottom: 0;
+      transition: ease-in-out .2s transform;
+      &::before{
+        content: '.';
+        color: transparent;
+        transition: ease-in-out .2s opacity;
+        display: block;
+        height: 100%;
+        width: 1.5rem;
+        background-image: url("../../../static/icons/chevron-down.svg");
+        background-size: auto;
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+      &--open{
+        transform: rotate(180deg);
+      }
+    }
+    &:focus-visible, &:focus, &:focus-within, &:active, &:hover  {
+      outline: 1px solid $neutral-color-low-extra-light;
+    }
+  }
+  &__options{
+    position: absolute;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    ul{
+      box-shadow: 0px 0px 12px #0000001f;
+      background-color: $neutral-color-hight-pure;
+      margin: .75rem 0 0 0;
+      padding-left: 0;
+      border: solid 1px $neutral-color-low-extra-light;
+      border-radius: 4px;
+      list-style: none;
+      max-height: 150px;
+      overflow: auto;
+      input{ display: none;}
+      li > input{
+        & ~ label {
+          padding: .5rem 1rem;
+          display: block;
+          cursor: pointer;
+          transition: ease-in-out .2s opacity;
+          &:hover{
+            opacity: .9;
+            background-color: $neutral-color-low-extra-light;
+
+          }
+        }
+        &:checked ~ label{
+          background-color: $feedback-color-default-pure;
+          color: $neutral-color-hight-pure;
+          &:hover{
+            opacity: .9;
+          }
+        }
+      }
+    }
+  }
+  &__fullscreen{
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    width: 100vw;
+    height: 100vh;
+  }
+  .icon--close{
+    @include close-me;
+    cursor: pointer;
+    z-index: 11;
+    &::before {
+      content: '.';
+      display: block;
+      margin-left: .25rem;
+      width: 14px;
+      height: 100%;
+      color: transparent;
+      background-image: url("../../../static/icons/close.svg");
+      filter: invert(1);
+      background-size: auto;
+      background-repeat: no-repeat;
+      background-position: bottom;
+    }
+  }
+  &__style{
+    &--2{
+      .v-dropdow{
+        &__input{
+          border: none;
+          font-weight: 700;
+          font-size: 1.25rem;
+        }
+      }
+    }
+  }
+}

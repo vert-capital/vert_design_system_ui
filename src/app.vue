@@ -163,8 +163,21 @@
       <v-tag status="secondary" square>Tag secondary</v-tag>
     </div>
     <br />
+    <v-dropdow
+      :options="selectOptions"
+      v-model="dropDowExemplo"
+      name="teste1"
+      multiple
+    ></v-dropdow>
+    <div style="width: 200px">
+      <v-dropdow
+        name="teste2"
+        :options="selectOptions"
+        v-model="dropDowExemplo2"
+        type="2"
+      ></v-dropdow>
+    </div>
   </div>
-
   <br />
   <div>
     <h4>CALENDARIO</h4>
@@ -245,6 +258,7 @@ import VCalendar from "./components/calendar/VCalendar.vue";
 import { IConfig, IEvent } from "./utils/types/calendar";
 import VPopUp from "./components/popUp/VPopUp.vue";
 import VCard from "./components/card/VCard.vue";
+import VDropdow from "./components/dropdow/VDropdow.vue";
 
 export default defineComponent({
   name: "App",
@@ -260,11 +274,14 @@ export default defineComponent({
     VCalendar,
     VPopUp,
     VCard,
+    VDropdow,
   },
   data() {
     return {
       typeTab: "x",
       testeSelect: "",
+      dropDowExemplo: [],
+      dropDowExemplo2: "",
 
       config: {
         week: {
@@ -319,16 +336,24 @@ export default defineComponent({
 
     const selectOptions = reactive([
       {
-        value: "1",
+        value: 1,
         label: "Janeiro",
       },
       {
-        value: "2",
+        value: 2,
         label: "Fevereiro",
       },
       {
-        value: "3",
+        value: 3,
         label: "Março",
+      },
+      {
+        value: 4,
+        label: "Abril",
+      },
+      {
+        value: 5,
+        label: "Maio",
       },
     ]);
 
