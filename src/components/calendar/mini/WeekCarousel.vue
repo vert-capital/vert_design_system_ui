@@ -8,7 +8,7 @@
         'is-today':
           time.getDateTimeStringFromDate(now, 'start') === day.dateTimeString,
       }, {'is-selected':day.dateTimeString.substring(0, 10) === selectedDay}]"
-      @click="onHandleDayWasClicked(day.dateTimeString.substring(0, 10))"
+      @click="onHandleDayWasClicked(day)"
     >
       <div class="week-carousel__day-name">
         {{ day.dayName.substring(0, 3) }}
@@ -87,8 +87,7 @@ export default defineComponent({
       );
 
     },
-    onHandleDayWasClicked(day: string) {
-      this.selectedDay = day;
+    onHandleDayWasClicked(day: IDay) {
       this.$emit('day-was-clicked', day);
     }
   },

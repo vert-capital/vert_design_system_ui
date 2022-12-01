@@ -6,6 +6,7 @@ import VPopUp from './popUp/VPopUp.vue';
 import VCard from './card/VCard.vue';
 import VTab from './tab/VTab.vue';
 import VTag from './tag/VTag.vue';
+import VCalendarMini from './calendar/VCalendarMini.vue';
 
 export {
   VButton,
@@ -15,5 +16,6 @@ export {
   VPopUp,
   VCard,
   VTab,
-  VTag
+  VTag,
+  VCalendarMini
 }

@@ -249,20 +249,20 @@ export default defineComponent({
         showCurrentTime: true,
         isSilent: true
       } as IConfig,
-        events: [
-            {
-                title: 'Beep',
-                time: { start: '2022-11-30 08:00', end: '2022-11-30 09:00' },
-                colorScheme: 'meetings',
-                id: '1',
-            },
-            {
-                title: 'Boop',
-                time: { start: '2022-11-30 08:00', end: '2022-11-30 09:00' },
-                colorScheme: 'sports',
-                id: '2',
-            },
-        ]  as IEvent[],
+      events: [
+          {
+              title: 'Beep',
+              time: { start: '2022-11-30 08:00', end: '2022-11-30 09:00' },
+              colorScheme: 'meetings',
+              id: '1',
+          },
+          {
+              title: 'Boop',
+              time: { start: '2022-11-30 08:00', end: '2022-11-30 09:00' },
+              colorScheme: 'sports',
+              id: '2',
+          },
+      ]  as IEvent[],
 
       isLoading: false,
       eventDialogForm: {
