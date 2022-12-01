@@ -17,16 +17,28 @@
     }
   }
 
-  &.icon-search {
+  &.icon--search {
+    position: relative;
     &::after {
-      position: relative;
-      left: -2rem;
-      color: $neutral-color-low-medium;
-      @include icon("\F0349", 1rem);
+      position: absolute;
+      right: 8px;
+      top: 0;
+      background-image: url(../../../static/icons/magnify.svg);
+      background-repeat: no-repeat;
+      background-position: center;
+      width: 20px;
+      height: 100%;
+      min-height: 20px;
+      content: '';
+      display: block;
+      opacity: .5;
+
     }
 
     input {
       padding-right: 2.5rem;
+      width: 100%;
+
     }
   }
 }
