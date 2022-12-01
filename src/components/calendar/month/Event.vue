@@ -160,10 +160,10 @@ export default defineComponent({
   align-items: center;
   overflow: hidden;
   border-radius: 4px;
-  font-size: var(--vcalendar-font-2xs);
-  width: calc(100% - #{calc(var(--event-inline-padding) * 2)});
+  font-size: 0.6rem;
+  width: 40px;
   margin-bottom: 4px;
-  padding: 2px var(--event-inline-padding);
+  padding: 2px 0;
   cursor: pointer;
   user-select: none;
 
@@ -182,11 +182,11 @@ export default defineComponent({
   }
 
   @include hover {
-    background-color: var(--vcalendar-light-gray);
+    background-color: #ccc;
   }
 
   .calendar-month__event-color {
-    background-color: v-bind(eventBackgroundColor);
+    background-color: #B0C;
     width: 6px;
     height: 6px;
     border-radius: 50%;
