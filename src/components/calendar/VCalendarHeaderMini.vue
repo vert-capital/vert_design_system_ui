@@ -118,23 +118,23 @@ export default defineComponent({
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  padding: var(--v-calendar-spacing-half);
-  border-radius: var(--v-calendar-border-radius);
+  padding: 0;
+  border-radius: 2px;
 
   @include screen-size-m {
     justify-content: space-between;
-    grid-gap: var(--v-calendar-spacing);
+    grid-gap: 10px;
   }
 
   &__period {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: var(--v-calendar-spacing);
+    gap: 20px;
   }
 
   &__period-name {
-    font-size: var(--v-calendar-font-l);
+    font-size: 'Lato, sans-serif ';
     text-align: center;
 
     @include screen-size-m {

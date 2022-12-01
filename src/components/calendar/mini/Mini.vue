@@ -69,7 +69,10 @@ const setDays = () => {
   const days_ = props.time.getCalendarWeekDateObjects(props.period.start).
     map((day: Date) => {
       const dayName = props.time.getLocalizedNameOfWeekday(day, 'long');
-      const dateTimeString = props.time.getDateTimeStringFromDate(day,'start');
+      const dateTimeString = props.time.getDateTimeStringFromDate(day, 'start');
+      if (props.time.dateIsToday(day)) {
+        getDateAndDayLongName(day, true);
+      }
       const events_ = events.value.filter((event: IEvent) => {
         const eventIsInDay = event.time.start.substring(0, 11) === dateTimeString.substring(0, 11);
         let eventIsInDayBoundaries = true;
@@ -101,21 +104,23 @@ const mergeFullDayEventsIntoDays = () => {
 const setInitialEvents = () => {
   setDays();
   mergeFullDayEventsIntoDays();
-  console.log(props.eventsProp);
-  console.log(fullDayEvents.value);
 }
 
-const getDateAndDayLongName = (day: Date) => {
-  const { year, month, date } = props.time.getAllVariablesFromDateTimeString(props.time.getDateTimeStringFromDate(day, 'start'));
-  dayNameSelected.value = props.time.getLocalizedNameOfWeekday(day, 'short') + ', ' + date + ' de ' + StringHelper.capitalizeFirstLetter(props.time.getLocalizedNameOfMonth(day, 'short'));
+const getDateAndDayLongName = (day: Date, isToday = false) => {
+  const { date } = props.time.getAllVariablesFromDateTimeString(props.time.getDateTimeStringFromDate(day, 'start'));
+  dayNameSelected.value = (isToday ? 'Hoje - ' : '') + props.time.getLocalizedNameOfWeekday(day, 'short')
+    + ', '
+    + date
+    + ' de '
+    + StringHelper.capitalizeFirstLetter(props.time.getLocalizedNameOfMonth(day, 'short'));
   return dayNameSelected.value;
 }
 
-const handleDayWasClicked = (day: string) => {
-  const dayDate = new Date(day);
-  const dayLongName = getDateAndDayLongName(dayDate);
-  const data: IDay = { dayName: dayLongName, dateTimeString: day, events: [], fullDayEvents: [] };
-  emits('day-was-clicked', data);
+const handleDayWasClicked = (day: IDay) => {
+  const replate_date = day.dateTimeString.replace('-',',');
+  const dayDate = new Date(replate_date);
+  day.dayName = getDateAndDayLongName(dayDate, props.time.dateIsToday(dayDate));
+  emits('day-was-clicked', day);
 }
 
 onMounted(() => {

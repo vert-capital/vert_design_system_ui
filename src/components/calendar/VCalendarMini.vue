@@ -17,7 +17,7 @@
         :mode="mode"
         :time="time"
         :period="period"
-        @updated-period="handleUpdatedPeriod" />
+      />
 
       <Mini
         :key="period.start.getTime() + period.end.getTime() + eventRenderingKey"
@@ -28,18 +28,7 @@
         :n-days="week.nDays"
         @event-was-clicked="$emit('event-was-clicked', $event)"
         @day-was-clicked="$emit('day-was-clicked', $event)"
-        @event-was-dragged="handleEventWasUpdated($event, 'dragged')"
-        @updated-period="handleUpdatedPeriod($event)"
-        @edit-event="$emit('edit-event', $event)"
-        @delete-event="$emit('delete-event', $event)"
       >
-        <template #eventDialog="p">
-          <slot
-            name="eventDialog"
-            :event-dialog-data="p.eventDialogData"
-            :close-event-dialog="p.closeEventDialog"
-          ></slot>
-        </template>
       </Mini>
     </div>
   </div>
@@ -47,7 +36,7 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
-import { IEvent, IConfig, modeType } from '@/utils/types/calendar';
+import { IEvent, IConfig } from '@/utils/types/calendar';
 import Time from '@/utils/helpers/Time';
 import AppHeaderMini from '@/components/calendar/VCalendarHeaderMini.vue';
 import Errors from './Errors';
@@ -82,12 +71,6 @@ export default defineComponent({
 
   emits: [
     'event-was-clicked',
-    'event-was-resized',
-    'event-was-dragged',
-    'updated-period',
-    'edit-event',
-    'delete-event',
-    'interval-was-clicked',
     'day-was-clicked',
   ],
 
@@ -106,10 +89,6 @@ export default defineComponent({
       time: new Time(
         this.config?.week?.startsOn,
         this.config?.locale || null,
-        {
-          start: this.setTimePointsFromDayBoundary(this.config?.dayBoundaries?.start || 0),
-          end: this.setTimePointsFromDayBoundary(this.config?.dayBoundaries?.end || 24),
-        },
       ) as Time | any,
       fontFamily:
         this.config?.style?.fontFamily || "'Lato",
@@ -129,7 +108,6 @@ export default defineComponent({
         }
 
         if (this.config.isSilent) return;
-
         this.events.forEach((e) => Errors.checkEventProperties(e));
       },
       immediate: true,
@@ -146,45 +124,13 @@ export default defineComponent({
 
   mounted() {
     this.setConfigOnMount();
-    this.onCalendarResize();
     this.setPeriodOnMount();
-    window.addEventListener('resize', this.onCalendarResize);
   },
 
-  beforeUnmount() {
-    window.removeEventListener('resize', this.onCalendarResize);
-  },
 
   methods: {
     setConfigOnMount() {
       this.wasInitialized = 1;
-    },
-
-    handleUpdatedPeriod(
-      value: { start: Date; end: Date; selectedDate: Date }
-    ) {
-      console.log('handleUpdatedPeriod', value);
-      this.$emit('updated-period', { start: value.start, end: value.end });
-      this.period = value;
-    },
-
-
-    onCalendarResize() {
-      // Calculate break point for day mode based on root font-size
-      const documentRoot = document.documentElement;
-      const calendarRoot = document.querySelector('.calendar-root');
-      const documentFontSize = +window
-        .getComputedStyle(documentRoot)
-        .fontSize.split('p')[0];
-      const breakPointFor1RemEquals16px = 700;
-      const multiplier = 16 / documentFontSize;
-      const dayModeBreakpoint = breakPointFor1RemEquals16px / multiplier; // For 16px root font-size, break point is at 43.75rem
-
-      if (!calendarRoot) return;
-
-      this.calendarWidth = calendarRoot.clientWidth;
-
-      if (this.calendarWidth < dayModeBreakpoint && this.mode !== 'day') this.mode = 'day';
     },
 
     setPeriodOnMount() {
@@ -204,16 +150,6 @@ export default defineComponent({
         (e) => e.id !== calendarEvent.id
       );
       this.eventsDataProperty = [calendarEvent, ...newEvents];
-      this.$emit(`event-was-${eventType}`, calendarEvent);
-    },
-
-    setTimePointsFromDayBoundary(boundary: number) {
-      // Only allow integers between 0 and 24
-      if (boundary < 0 || boundary > 24 || boundary % 1 !== 0) throw new Error('Invalid day boundary');
-
-      if (boundary === 0) return boundary;
-
-      return boundary * 100;
     }
   },
 });
