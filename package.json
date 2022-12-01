@@ -1,6 +1,6 @@
 {
   "name": "@vert-capital/design-system",
-  "version": "v0.3.2",
+  "version": "0.4.0",
   "publishConfig": {
     "access": "public"
   },
