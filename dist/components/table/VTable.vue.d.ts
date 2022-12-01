@@ -7,7 +7,7 @@ export interface IHeader {
     prop: string;
     sortType?: 'none' | 'desc' | 'asc';
 }
-export type SortType = 'asc' | 'desc';
+export declare type SortType = 'asc' | 'desc';
 declare const _default: import("vue").DefineComponent<{
     data: {
         type: ArrayConstructor;
