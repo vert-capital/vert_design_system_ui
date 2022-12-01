@@ -163,62 +163,22 @@
       <v-tag status="secondary" square>Tag secondary</v-tag>
     </div>
     <br />
-    <v-dropdow
+    <v-dropdown
       :options="selectOptions"
-      v-model="dropDowExemplo"
+      v-model="dropDownExemplo"
       name="teste1"
       multiple
-    ></v-dropdow>
+    ></v-dropdown>
     <div style="width: 200px">
-      <v-dropdow
+      <v-dropdown
         name="teste2"
         :options="selectOptions"
-        v-model="dropDowExemplo2"
+        v-model="dropDownExemplo2"
         type="2"
-      ></v-dropdow>
+      ></v-dropdown>
     </div>
   </div>
   <br />
-  <div>
-    <h4>CALENDARIO</h4>
-    <VCalendar
-      :key="config.locale + config.week.nDays"
-      :selected-date="new Date()"
-      :config="config"
-      :events="events"
-      :is-loading="isLoading"
-      @event-was-clicked="reactToEvent"
-      @updated-period="updatedPeriod"
-      @updated-mode="updatedPeriod"
-      @event-was-resized="reactToEvent"
-      @edit-event="editEvent"
-      @delete-event="deleteEvent"
-      @day-was-clicked="reactToEvent"
-      @event-was-dragged="handleEventWasDragged"
-      @interval-was-clicked="handleIntervalWasClicked"
-    >
-      <template #customCurrentTime>
-        <div
-          :style="{
-            height: '3px',
-            backgroundColor: 'cornflowerblue',
-            position: 'relative',
-          }"
-        >
-          <div
-            :style="{
-              position: 'absolute',
-              left: '-7px',
-              top: '-6px',
-              height: '15px',
-              width: '15px',
-              backgroundColor: 'cornflowerblue',
-              borderRadius: '50%',
-            }"
-          ></div>
-        </div>
-      </template>
-    </VCalendar>
   <hr />
   <div class="section-calendar">
     <h4>CARD</h4>
@@ -273,7 +233,7 @@ import VCalendarMini from "./components/calendar/VCalendarMini.vue";
 import { IConfig, IEvent } from "./utils/types/calendar";
 import VPopUp from "./components/popUp/VPopUp.vue";
 import VCard from "./components/card/VCard.vue";
-import VDropdow from "./components/dropdow/VDropdow.vue";
+import VDropdown from "./components/dropdown/VDropdown.vue";
 
 export default defineComponent({
   name: "App",
@@ -289,14 +249,13 @@ export default defineComponent({
     VCalendarMini,
     VPopUp,
     VCard,
-    VDropdow,
+    VDropdown,
   },
   data() {
     return {
       typeTab: "x",
       testeSelect: "",
-      dropDowExemplo: [],
-      dropDowExemplo2: "",
+      dropDownExemplo: [],
 
       config: {
         locale: "pt-BR",

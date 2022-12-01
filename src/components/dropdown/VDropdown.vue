@@ -81,8 +81,6 @@ const setMultiple = computed((): string =>
 );
 
 const showValue = computed(() => {
-  console.log(valueOption.value);
-
   if (valueOption.value.length == 0) {
     return props.placeholder;
   }
@@ -99,7 +97,6 @@ const showValue = computed(() => {
     });
     return options;
   }
-  // console.log(props.options)
 });
 
 const valueOption = ref(props.modelValue);
@@ -119,4 +116,4 @@ const setTypeStyle = computed((): string => {
 // https://codepen.io/elmahdim/pen/nmWyzE
 </script>
 
-<style src="./VDropdow.scss" lang="scss"></style>
+<style src="./VDropdown.scss" lang="scss"></style>
