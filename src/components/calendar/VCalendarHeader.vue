@@ -162,7 +162,7 @@ export default defineComponent({
     modeName() {
       // @ts-ignore
       return this.getLanguage(
-        this.languageKeys[this.mode],
+        this.languageKeys['mini'],
         this.time?.CALENDAR_LOCALE
       );
     },

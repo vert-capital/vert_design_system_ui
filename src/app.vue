@@ -197,12 +197,7 @@
       :selected-date="calendarSelectedDate"
       :config="config"
       :events="events"
-      :is-loading="isLoading"
-      @event-was-clicked="reactToEvent"
-      @updated-period="updatedPeriod"
-      @edit-event="editEvent"
-      @delete-event="deleteEvent"
-      @day-was-clicked="reactToEvent"
+      :day-was-clicked="reactToEvent"
     >
     </VCalendarMini>
     
@@ -269,7 +264,6 @@ export default defineComponent({
         title: "",
         id: "",
       },
-      calendarSelectedDate: new Date(),
     };
   },
   setup() {
@@ -325,56 +319,33 @@ export default defineComponent({
       alert("click na linha: " + row.name);
     }
 
+    const calendarSelectedDate = ref(new Date());
+
+    function reactToEvent(payload: any) {
+      console.log(payload);
+      const date = new Date(payload.date);
+      calendarSelectedDate.value = date;
+    }
+
+    function onClickButtonWarning() {
+      alert("onClickButtonWarning");
+    }
+
+    function onClickButton() {
+      alert("onClickButton");
+    }
+
     return {
       pagination,
       selectOptions,
       pokemons,
       onChangePagination,
       clickRowTable,
+      calendarSelectedDate,
+      reactToEvent,
+      onClickButtonWarning,
+      onClickButton
     };
-  },
-  methods: {
-    onClickButton() {
-      alert("Erro: 402 favor falar com desenvolvedor");
-    },
-    onClickButtonWarning() {
-      alert("Aviso");
-    },
-
-    reactToEvent(payload: any) {
-      console.log(payload);
-      const date = new Date(payload.date);
-      this.calendarSelectedDate = date;
-    },
-
-    updatedPeriod(e) {
-      console.log("updated period");
-      console.log(e);
-    },
-
-    triggerLoadAnimations() {
-      this.isLoading = !this.isLoading;
-
-      setTimeout(() => this.triggerLoadAnimations(), 5000);
-    },
-
-    editEvent(payload: string) {
-      console.log("editEvent%s: ", payload);
-    },
-
-    deleteEvent(payload: string) {
-      console.log("deleteEvent%s: ", payload);
-    },
-
-    handleEventWasDragged(e) {
-      console.log("event was dragged");
-      console.log(e);
-    },
-
-    handleIntervalWasClicked(e) {
-      console.log("interval was clicked");
-      console.log(e);
-    },
   },
 });
 </script>

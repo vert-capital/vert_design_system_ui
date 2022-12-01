@@ -365,9 +365,9 @@ export default defineComponent({
 
   .calendar-root {
     flex: 1;
-    border: var(--vcalendar-border-gray-thin);
-    border-radius: var(--vcalendar-border-radius);
-    font-family: v-bind(fontFamily);
+    border: 1 solid #e0e0e0;
+    border-radius: 5px; 
+    font-family: 'Lato', sans-serif;
 
     position: relative;
     width: 100%;

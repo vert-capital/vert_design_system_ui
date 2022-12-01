@@ -66,7 +66,7 @@ const handleClickOnEvent = (event: IEvent, element: any) => {
 };
 
 const setDays = () => {
-  const days_ = props.time.getCalendarWeekDateObjects(props.period.start).
+  const days_: IDay[] = props.time.getCalendarWeekDateObjects(props.period.start).
     map((day: Date) => {
       const dayName = props.time.getLocalizedNameOfWeekday(day, 'long');
       const dateTimeString = props.time.getDateTimeStringFromDate(day, 'start');
@@ -79,7 +79,7 @@ const setDays = () => {
 
         return eventIsInDay && eventIsInDayBoundaries;
       });
-      return { dayName, dateTimeString, events_ };
+      return { dayName, dateTimeString, events: events_ };
     });
 
   if (props.nDays === 5 && props.time.FIRST_DAY_OF_WEEK === 'monday') {
