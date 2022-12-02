@@ -1,12 +1,12 @@
 <template>
   <div class="vmonth-year">
-    <VSelect :options="months" borderNone :modelValue="monthYearSelected" @onChange="onChangeMonth" size="lg"/>
+    <v-dropdown :options="months" type="2" v-model="monthYearSelected" @onChange="onChangeMonth" size="lg"/>
   </div>
 </template>
 <script lang="ts" setup>
 import { computed, ref } from 'vue';
-import VSelect from '../form/select/VSelect.vue';
 import StringHelper from '@/utils/helpers/String';
+import VDropdown from '@/components/dropdown/VDropdown.vue';
 
 const monthYearSelected: any = ref('2022-11');
 
@@ -29,6 +29,7 @@ const emit = defineEmits<{
 }>();
 
 const onChangeMonth = (monthYear: string) => {
+  console.log(monthYear);
   const [year, month] = monthYear.split('-');
   const date = new Date(parseInt(year), parseInt(month) - 1, 1);
   const period = {

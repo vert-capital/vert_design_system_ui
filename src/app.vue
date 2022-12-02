@@ -208,16 +208,9 @@
   <hr />
   <br />
   <div class="section-calendar">
-    <h4>CALENDARIO</h4>
-    <VCalendarMini
-      :selected-date="calendarSelectedDate"
-      :config="config"
-      :events="events"
-      :day-was-clicked="reactToEvent"
-    >
-    </VCalendarMini>
-    
-    <hr />
+    <h4>Calendário de eventos</h4>
+    <h3>Calendário reduzido (popUp)</h3>
+    <v-calendar-button :events="events" @day-was-clicked="onHandleClickDay"></v-calendar-button>
   </div>
 </template>
 
@@ -234,6 +227,7 @@ import { IConfig, IEvent } from "./utils/types/calendar";
 import VPopUp from "./components/popUp/VPopUp.vue";
 import VCard from "./components/card/VCard.vue";
 import VDropdown from "./components/dropdown/VDropdown.vue";
+import VCalendarButton from "./components/calendar/VCalendarButton.vue";
 
 export default defineComponent({
   name: "App",
@@ -250,13 +244,15 @@ export default defineComponent({
     VPopUp,
     VCard,
     VDropdown,
+    VCalendarButton
   },
   data() {
     return {
       typeTab: "x",
       testeSelect: "",
       dropDownExemplo: [],
-
+      dropDownExemplo2: [],
+      
       config: {
         locale: "pt-BR",
         defaultMode: 'mini',
@@ -266,15 +262,38 @@ export default defineComponent({
       events: [
           {
               title: 'Beep',
+              application: 1,
               time: { start: '2022-11-30 08:00', end: '2022-11-30 09:00' },
-              colorScheme: 'meetings',
               id: '1',
+              event_data:'2022-11-30'
           },
           {
               title: 'Boop',
+              application: 2,
               time: { start: '2022-11-30 08:00', end: '2022-11-30 09:00' },
-              colorScheme: 'sports',
               id: '2',
+              event_data:'2022-11-30'
+          },
+          {
+              title: 'teste',
+              application: 4,
+              time: { start: '2022-11-28 08:00', end: '2022-11-28 09:00' },
+              id: '2',
+              event_data:'2022-11-28'
+          },
+          {
+              title: 'teste 2',
+              application: 5,
+              time: { start: '2022-12-02 08:00', end: '2022-12-02 09:00' },
+              id: '2',
+              event_data:'2022-12-02'
+          },
+          {
+              title: 'teste 3',
+              application: 5,
+              time: { start: '2022-12-02 08:00', end: '2022-12-02 09:00' },
+              id: '2',
+              event_data:'2022-12-02'
           },
       ]  as IEvent[],
 
@@ -362,6 +381,10 @@ export default defineComponent({
       alert("onClickButton");
     }
 
+    function onHandleClickDay() {
+      alert("onHandleClickDay");
+    }
+
     return {
       pagination,
       selectOptions,
@@ -371,7 +394,8 @@ export default defineComponent({
       calendarSelectedDate,
       reactToEvent,
       onClickButtonWarning,
-      onClickButton
+      onClickButton,
+      onHandleClickDay
     };
   },
 });
@@ -390,5 +414,6 @@ export default defineComponent({
   justify-content: center;
   align-items: center;
   margin: 0 auto;
+  padding-bottom: 400px;
 }
 </style>

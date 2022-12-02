@@ -3,6 +3,7 @@
   width: 100%;
   font-family: "Lato", sans-serif;
   font-size: 14px;
+
   &__input {
     border: solid 1px $neutral-color-low-light;
     border-radius: 4px;
@@ -19,13 +20,15 @@
     > span {
       display: flex;
     }
-    &--arrow{
+
+    &--arrow {
       position: absolute;
       right: .25rem;
       top: 0;
       bottom: 0;
       transition: ease-in-out .2s transform;
-      &::before{
+
+      &::before {
         content: '.';
         color: transparent;
         transition: ease-in-out .2s opacity;
@@ -37,20 +40,28 @@
         background-repeat: no-repeat;
         background-position: center;
       }
-      &--open{
+
+      &--open {
         transform: rotate(180deg);
       }
     }
-    &:focus-visible, &:focus, &:focus-within, &:active, &:hover  {
+
+    &:focus-visible,
+    &:focus,
+    &:focus-within,
+    &:active,
+    &:hover {
       outline: 1px solid $neutral-color-low-extra-light;
     }
   }
-  &__options{
+
+  &__options {
     position: absolute;
     left: 0;
     right: 0;
     z-index: 100;
-    ul{
+
+    ul {
       box-shadow: 0px 0px 12px #0000001f;
       background-color: $neutral-color-hight-pure;
       margin: .75rem 0 0 0;
@@ -60,30 +71,38 @@
       list-style: none;
       max-height: 150px;
       overflow: auto;
-      input{ display: none;}
-      li > input{
+
+      input {
+        display: none;
+      }
+
+      li > input {
         & ~ label {
           padding: .5rem 1rem;
           display: block;
           cursor: pointer;
           transition: ease-in-out .2s opacity;
-          &:hover{
+
+          &:hover {
             opacity: .9;
             background-color: $neutral-color-low-extra-light;
 
           }
         }
-        &:checked ~ label{
+
+        &:checked ~ label {
           background-color: $feedback-color-default-pure;
           color: $neutral-color-hight-pure;
-          &:hover{
+
+          &:hover {
             opacity: .9;
           }
         }
       }
     }
   }
-  &__fullscreen{
+
+  &__fullscreen {
     position: fixed;
     top: 0;
     left: 0;
@@ -91,10 +110,12 @@
     width: 100vw;
     height: 100vh;
   }
-  .icon--close{
+
+  .icon--close {
     @include close-me;
     cursor: pointer;
     z-index: 11;
+
     &::before {
       content: '.';
       display: block;
@@ -109,13 +130,14 @@
       background-position: bottom;
     }
   }
-  &__style{
-    &--2{
-      .v-dropdow{
-        &__input{
+
+  &__style {
+    &--2 {
+      .v-dropdow {
+        &__input {
           border: none;
           font-weight: 700;
-          font-size: 1.25rem;
+          font-size: 1rem;
         }
       }
     }

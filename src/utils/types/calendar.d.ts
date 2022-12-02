@@ -11,23 +11,15 @@ export type eventId = string | number;
 export type modeType = 'month' | 'week' | 'day' | 'personalized' | 'mini';
 
 export interface IEvent {
-  id: eventId;
+  id?: eventId;
   title?: string;
+  application: number;
+  patrimony?: number;
+  series?: number;
+  emission?: number;
   time: { start: string; end: string }; 
-  description?: string;
-  topic?: string;
-  location?: string;
-  with?: string; 
-  colorScheme?: string;
-  color?: "primary" | "yellow" | "green" | "red" | "orange" | "purple" | "blue" | "black";
-  isEditable?: boolean; 
-  disableDnD?: modeType[];
-  disableResize?: modeType[];
-  isCustom?: boolean;
-  zIndex?: number;
-  nOfPreviousConcurrentEvents?: number;
-  totalConcurrentEvents?: number;
-  timeJS?: { start: Date, end: Date }
+  event_data: string;
+  data?: {}
 }
 
 export interface IEventsFullDay {

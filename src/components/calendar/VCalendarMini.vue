@@ -1,9 +1,8 @@
 <template>
   <div class="calendar-root-wrapper">
     <div
-      class="calendar-root"
+      class="calendar-root mode-is-mini"
       :class="{
-        'mode-is-mini': mode === 'mini',
         'vcalendar-is-small': calendarWidth < 700,
       }"
     >

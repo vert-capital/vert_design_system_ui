@@ -3,9 +3,6 @@
     <div class="calendar-header__period">
       <VMonthYearPicker
         ref="periodSelect"
-        :mode="mode"
-        :time-prop="time"
-        :period-prop="period"
         @updated="handlePeriodChange"
       />
     </div>
