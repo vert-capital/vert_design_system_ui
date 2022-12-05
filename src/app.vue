@@ -204,7 +204,7 @@
         </div>
       </template>
     </VCalendar>
-    
+
     <hr />
 
     <v-card type="shadow">
@@ -228,6 +228,22 @@
         aperiam!
       </p>
     </v-card>
+    <hr />
+
+    <div v-for="(item, index) in aplication" :key="index">
+      <v-event-card
+        style="margin-top: 20px"
+        title="Obrigações - Pagamento de Juros"
+        subtitle="(3CRIBMG - 1)(#556 | 1 - Senior - CDI+%)"
+        responsible="Frederico Quadros (Responsável), Douglas Queres e João Dias"
+        size="small"
+        :aplication="item"
+      >
+        <template #tag>
+          <v-tag style="margin-bottom: 12px" status="helper">Tag helper</v-tag>
+        </template>
+      </v-event-card>
+    </div>
   </div>
 </template>
 
@@ -243,6 +259,7 @@ import VCalendar from "./components/calendar/VCalendar.vue";
 import { IConfig, IEvent } from "./utils/types/calendar";
 import VPopUp from "./components/popUp/VPopUp.vue";
 import VCard from "./components/card/VCard.vue";
+import VEventCard from "./components/eventCard/VEventCard.vue";
 
 export default defineComponent({
   name: "App",
@@ -258,6 +275,7 @@ export default defineComponent({
     VCalendar,
     VPopUp,
     VCard,
+    VEventCard,
   },
   data() {
     return {
@@ -330,6 +348,17 @@ export default defineComponent({
       },
     ]);
 
+    const aplication = reactive([
+      "obligations",
+      "payment_events",
+      "payments",
+      "subscriptions",
+      "patrimony_status",
+      "patrimony",
+      "series_status",
+      "series_expiration",
+    ]);
+
     function onChangePagination(data: any) {
       updateDataPokemons({
         offset: Number(data.page_size) * Number(data.page),
@@ -365,6 +394,7 @@ export default defineComponent({
       pokemons,
       onChangePagination,
       clickRowTable,
+      aplication,
     };
   },
   methods: {
