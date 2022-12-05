@@ -427,7 +427,7 @@ export default defineComponent({
 <style scoped lang="scss">
 .calendar-week__wrapper {
   position: relative;
-  padding-left: var(--qalendar-week-padding-left);
+  padding-left: 10px;
   overflow-y: auto;
 }
 
@@ -439,7 +439,7 @@ export default defineComponent({
   &__events {
     display: flex;
     width: 100%;
-    height: v-bind(weekHeight);
+    height: 40px;
     overflow: hidden;
   }
 

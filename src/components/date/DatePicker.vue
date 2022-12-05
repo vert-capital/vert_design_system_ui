@@ -9,7 +9,7 @@
       class="date-picker__value-display"
       @click="togglePeriodSelector"
     >
-      <calendar-day />
+      <IconCalendarDay />
       <span class="date-picker__value-display-text">{{ periodText }}</span>
     </div>
 
@@ -20,7 +20,7 @@
       @mouseleave="hideDatePicker"
     >
       <div class="date-picker__week-picker-navigation">
-        <cherevron-left @click="toggleDatePickerPeriod('previous')"/>
+        <IconChevronLeft @click="toggleDatePickerPeriod('previous')"/>
         <span class="date-picker__toggle-mode" @click="toggleDatePickerMode">
           <template v-if="datePickerMode === 'month'">
             {{
@@ -39,7 +39,7 @@
             }}
           </template>
         </span>
-        <cherevron-right @click="toggleDatePickerPeriod('next')"/>
+        <IconChevronRight @click="toggleDatePickerPeriod('next')"/>
       </div>
 
       <div
@@ -92,12 +92,11 @@
     </div>
   </div>
 </template>
-
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
-import CalendarDay from '@/components/icons/CalendarDay.vue';
-import ChevronLeft from '@/components/icons/ChevronLeft.vue';
-import ChevronRight from '@/components/icons/ChevronRight.vue';
+import IconCalendarDay from '@/components/icons/CalendarDay.vue';
+import IconChevronLeft from '@/components/icons/ChevronLeft.vue';
+import IconChevronRight from '@/components/icons/ChevronRight.vue';
 import Time, {
   calendarMonthType,
   calendarWeekType,
@@ -120,9 +119,9 @@ export default defineComponent({
   name: 'DatePicker',
 
   components: {
-    CalendarDay,
-    ChevronLeft,
-    ChevronRight,
+    IconCalendarDay,
+    IconChevronLeft,
+    IconChevronRight,
   },
 
   props: {
@@ -164,11 +163,6 @@ export default defineComponent({
       periodText: '',
       weekPickerDates: [] as calendarMonthType,
       monthPickerDates: [] as calendarYearMonths,
-      icons: {
-        calendarIcon: CalendarDay,
-        chevronLeft: ChevronLeft,
-        chevronRight: ChevronRight,
-      },
       showDatePicker: !!(this.locale && this.firstDayOfWeek) as boolean,
       datePickerCurrentDate:
         this.periodProp?.selectedDate || this.defaultDate || new Date(),

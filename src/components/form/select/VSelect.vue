@@ -54,6 +54,7 @@ const props = withDefaults(defineProps<Props>(), {
   size: "lg",
   borderNone: false,
   options: () => [],
+  modelValue: "",
 });
 
 const emit = defineEmits<{
@@ -61,7 +62,7 @@ const emit = defineEmits<{
   (e: "update:modelValue", selected: any): void;
 }>();
 
-const selected = ref<any>(null);
+const selected = ref<any>(props.modelValue);
 
 watch(["modelValue"], (modelValue) => {
   if (modelValue !== selected.value) {

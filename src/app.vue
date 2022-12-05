@@ -1,3 +1,11 @@
+Skip to content Search or jump to… Pull requests Issues Codespaces Marketplace
+Explore @Brayanx16 Brayanx16 / vert_design_system_ui Public forked from
+vert-capital/vert_design_system_ui Code Pull requests Actions Projects Wiki
+Security Insights Settings vert_design_system_ui/src/app.vue @deborastoscastro
+deborastoscastro naming correction Latest commit 993e256 4 days ago History 4
+contributors @deborastoscastro@JKranmer@Brayanx16@deboracastrodev 394 lines (375
+sloc) 10.4 KB
+
 <template>
   <div style="width: 80%; margin: 0 auto">
     <h1>COMPONENTES</h1>
@@ -114,8 +122,10 @@
       </v-select>
     </div>
     <form>
-      <div class="form-group input-size-sm icon-search">
-        <input type="text" placeholder="Pesquisar" class="" />
+      <div style="width: 250px">
+        <div class="form-group input-size-sm icon--search">
+          <input type="text" placeholder="Pesquisar" />
+        </div>
       </div>
       <v-button
         icon="info"
@@ -161,52 +171,25 @@
       <v-tag status="secondary" square>Tag secondary</v-tag>
     </div>
     <br />
+    <v-dropdown
+      :options="selectOptions"
+      v-model="dropDownExemplo"
+      name="teste1"
+      multiple
+    ></v-dropdown>
+    <div style="width: 200px">
+      <v-dropdown
+        name="teste2"
+        :options="selectOptions"
+        v-model="dropDownExemplo2"
+        type="2"
+      ></v-dropdown>
+    </div>
   </div>
-
   <br />
-  <div>
-    <h4>CALENDARIO</h4>
-    <VCalendar
-      :key="config.locale + config.week.nDays"
-      :selected-date="new Date()"
-      :config="config"
-      :events="events"
-      :is-loading="isLoading"
-      @event-was-clicked="reactToEvent"
-      @updated-period="updatedPeriod"
-      @updated-mode="updatedPeriod"
-      @event-was-resized="reactToEvent"
-      @edit-event="editEvent"
-      @delete-event="deleteEvent"
-      @day-was-clicked="reactToEvent"
-      @event-was-dragged="handleEventWasDragged"
-      @interval-was-clicked="handleIntervalWasClicked"
-    >
-      <template #customCurrentTime>
-        <div
-          :style="{
-            height: '3px',
-            backgroundColor: 'cornflowerblue',
-            position: 'relative',
-          }"
-        >
-          <div
-            :style="{
-              position: 'absolute',
-              left: '-7px',
-              top: '-6px',
-              height: '15px',
-              width: '15px',
-              backgroundColor: 'cornflowerblue',
-              borderRadius: '50%',
-            }"
-          ></div>
-        </div>
-      </template>
-    </VCalendar>
-
-    <hr />
-
+  <hr />
+  <div class="section-calendar">
+    <h4>CARD</h4>
     <v-card type="shadow">
       <template #buttons>
         <v-button
@@ -228,22 +211,38 @@
         aperiam!
       </p>
     </v-card>
-    <hr />
+  </div>
 
-    <div v-for="(item, index) in aplication" :key="index">
-      <v-event-card
-        style="margin-top: 20px"
-        title="Obrigações - Pagamento de Juros"
-        subtitle="(3CRIBMG - 1)(#556 | 1 - Senior - CDI+%)"
-        responsible="Frederico Quadros (Responsável), Douglas Queres e João Dias"
-        size="small"
-        :aplication="item"
-      >
-        <template #tag>
-          <v-tag style="margin-bottom: 12px" status="helper">Tag helper</v-tag>
-        </template>
-      </v-event-card>
-    </div>
+  <hr />
+  <br />
+  <div class="section-calendar">
+    <h4>CALENDARIO</h4>
+    <VCalendarMini
+      :selected-date="calendarSelectedDate"
+      :config="config"
+      :events="events"
+      :day-was-clicked="reactToEvent"
+    >
+    </VCalendarMini>
+
+    <hr />
+  </div>
+
+  <hr />
+  <br />
+  <div v-for="(item, index) in aplication" :key="index">
+    <v-event-card
+      title="Obrigações - Pagamento de Juros"
+      style="margin-top: 20px"
+      subtitle="(3CRIBMG - 1)(#556 | 1 - Senior - CDI+%)"
+      responsible="Frederico Quadros (Responsável), Douglas Queres e João Dias"
+      size="small"
+      :aplication="item"
+    >
+      <template #tag>
+        <v-tag style="margin-bottom: 12px" status="helper">Tag helper</v-tag>
+      </template>
+    </v-event-card>
   </div>
 </template>
 
@@ -255,14 +254,16 @@ import VTabContent from "./components/tab/VTabContent.vue";
 import VTabHeader from "./components/tab/VTabHeader.vue";
 import VSelect from "./components/form/select/VSelect.vue";
 import VTag from "./components/tag/VTag.vue";
-import VCalendar from "./components/calendar/VCalendar.vue";
+import VCalendarMini from "./components/calendar/VCalendarMini.vue";
 import { IConfig, IEvent } from "./utils/types/calendar";
 import VPopUp from "./components/popUp/VPopUp.vue";
 import VCard from "./components/card/VCard.vue";
+import VDropdown from "./components/dropdown/VDropdown.vue";
 import VEventCard from "./components/eventCard/VEventCard.vue";
 
 export default defineComponent({
   name: "App",
+
   components: {
     VTable,
     VButton,
@@ -272,51 +273,38 @@ export default defineComponent({
     VPagination,
     VSelect,
     VTag,
-    VCalendar,
+    VCalendarMini,
     VPopUp,
     VCard,
+    VDropdown,
     VEventCard,
   },
+
   data() {
     return {
       typeTab: "x",
       testeSelect: "",
-
+      dropDownExemplo: [],
       config: {
-        week: {
-          startsOn: "monday",
-          scrollToHour: 8,
-        },
         locale: "pt-BR",
-        style: {
-          fontFamily: `'Lato', 'sans-serif', 'Verdana`,
-          colorSchemes: {
-            meetings: {
-              color: "#fff",
-              backgroundColor: "#131313",
-            },
-            ladies: {
-              color: "#fff",
-              backgroundColor: "#ff4081",
-            },
-          },
-        },
-        dayBoundaries: {
-          start: 7,
-          end: 17,
-        },
-        defaultMode: "week",
+        defaultMode: "mini",
         showCurrentTime: true,
         isSilent: true,
-        dayIntervals: {
-          height: 50,
-          length: 30,
-          displayClickableInterval: true,
-        },
       } as IConfig,
-      events: [] as IEvent[],
-
-      layout: "none",
+      events: [
+        {
+          title: "Beep",
+          time: { start: "2022-11-30 08:00", end: "2022-11-30 09:00" },
+          colorScheme: "meetings",
+          id: "1",
+        },
+        {
+          title: "Boop",
+          time: { start: "2022-11-30 08:00", end: "2022-11-30 09:00" },
+          colorScheme: "sports",
+          id: "2",
+        },
+      ] as IEvent[],
       isLoading: false,
       eventDialogForm: {
         title: "",
@@ -324,6 +312,7 @@ export default defineComponent({
       },
     };
   },
+
   setup() {
     const pokemons = ref({ count: 0, next: "", previous: "", results: [] });
 
@@ -335,16 +324,24 @@ export default defineComponent({
 
     const selectOptions = reactive([
       {
-        value: "1",
+        value: 1,
         label: "Janeiro",
       },
       {
-        value: "2",
+        value: 2,
         label: "Fevereiro",
       },
       {
-        value: "3",
+        value: 3,
         label: "Março",
+      },
+      {
+        value: 4,
+        label: "Abril",
+      },
+      {
+        value: 5,
+        label: "Maio",
       },
     ]);
 
@@ -388,55 +385,34 @@ export default defineComponent({
       alert("click na linha: " + row.name);
     }
 
+    const calendarSelectedDate = ref(new Date());
+
+    function reactToEvent(payload: any) {
+      console.log(payload);
+      const date = new Date(payload.date);
+      calendarSelectedDate.value = date;
+    }
+
+    function onClickButtonWarning() {
+      alert("onClickButtonWarning");
+    }
+
+    function onClickButton() {
+      alert("onClickButton");
+    }
+
     return {
       pagination,
       selectOptions,
       pokemons,
       onChangePagination,
       clickRowTable,
+      calendarSelectedDate,
+      reactToEvent,
+      onClickButtonWarning,
+      onClickButton,
       aplication,
     };
-  },
-  methods: {
-    onClickButton() {
-      alert("Erro: 402 favor falar com desenvolvedor");
-    },
-    onClickButtonWarning() {
-      alert("Aviso");
-    },
-
-    reactToEvent(payload: any) {
-      console.log(payload);
-    },
-
-    updatedPeriod(e) {
-      console.log("updated period");
-      console.log(e);
-    },
-
-    triggerLoadAnimations() {
-      this.isLoading = !this.isLoading;
-
-      setTimeout(() => this.triggerLoadAnimations(), 5000);
-    },
-
-    editEvent(payload: string) {
-      console.log("editEvent%s: ", payload);
-    },
-
-    deleteEvent(payload: string) {
-      console.log("deleteEvent%s: ", payload);
-    },
-
-    handleEventWasDragged(e) {
-      console.log("event was dragged");
-      console.log(e);
-    },
-
-    handleIntervalWasClicked(e) {
-      console.log("interval was clicked");
-      console.log(e);
-    },
   },
 });
 </script>
@@ -444,5 +420,15 @@ export default defineComponent({
 .d-flex {
   display: flex;
   flex-wrap: wrap;
+}
+.section-calendar {
+  width: 400px;
+  height: 600px;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
 }
 </style>
