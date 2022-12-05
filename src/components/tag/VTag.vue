@@ -16,12 +16,10 @@ export default defineComponent({
     status: {
       type: String,
       default: "helper",
-      required: true,
     },
     type: {
       type: String,
       default: "solid",
-      required: true,
     },
     icon: {
       type: String,

@@ -24,7 +24,7 @@
             v-if="key !== 'date'"
             :schedule-event="typeof event === 'object' ? event : null"
             :config="config"
-            mode="week"
+            mode="mini"
             @event-was-clicked="$emit('event-was-clicked', $event)"
           />
         </template>

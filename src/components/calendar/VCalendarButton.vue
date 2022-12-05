@@ -41,7 +41,8 @@
 import { VPopUp, VCalendarMini } from '@/components';
 import IconCalendar from '@/components/icons/CalendarDay.vue';
 import { IEvent } from '@/utils/types/calendar';
-import { PropType, ref } from 'vue';
+import { onMounted, PropType, ref } from 'vue';
+import PerfectScrollbar from 'perfect-scrollbar';
 
 const props = defineProps({
   events: {
@@ -69,6 +70,21 @@ const search = ref('');
 function searchEvent() {
   console.log(search.value);
 }
+
+
+const scrollbar = ref<any | null>(null);
+
+function initScrollbar() {
+  scrollbar.value = new PerfectScrollbar('.list-events', {
+    wheelSpeed: 0.5,
+    wheelPropagation: true,
+    minScrollbarLength: 20,
+  });
+}
+
+onMounted(() => {
+  initScrollbar();
+});
 </script>
 
 <style lang="scss">

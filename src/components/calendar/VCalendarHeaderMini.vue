@@ -11,10 +11,8 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
-import { IConfig, modeType } from '@/utils/types/calendar';
 import Time from '@/utils/helpers/Time';
 import getLanguage from '@/utils/language';
-import String from '@/utils/helpers/String';
 import VMonthYearPicker from '@/components/date/VMonthYearSelect.vue';
 
 interface IPeriod {
@@ -33,15 +31,6 @@ export default defineComponent({
   mixins: [getLanguage],
 
   props: {
-    config: {
-      type: Object as PropType<IConfig>,
-      default: () => ({}),
-    },
-    mode: {
-      type: String,
-      validator: (value: modeType) => ['month', 'week', 'day', 'personalized', 'mini'].includes(value),
-      default: 'week',
-    },
     time: {
       type: Object as PropType<Time>,
       default: () => ({}),
@@ -52,50 +41,12 @@ export default defineComponent({
     },
   },
 
-  emits: ['change-mode', 'updated-period'],
+  emits: ['updated-period'],
 
   data() {
     return {
       currentPeriod: this.period,
     };
-  },
-
-  computed: {
-    periodName() {
-      if (this.mode === 'week') {
-        const startMonth = this.time.getLocalizedNameOfMonth(
-          this.currentPeriod?.start,
-          'long'
-        );
-        const endMonth = this.time.getLocalizedNameOfMonth(
-          this.currentPeriod?.end,
-          'long'
-        );
-
-        const fullYear = this.currentPeriod?.start.getFullYear();
-
-        return startMonth === endMonth
-          ? `${String.capitalizeFirstLetter(startMonth)} - ${fullYear}`
-          : `${String.capitalizeFirstLetter(startMonth)} - ${String.capitalizeFirstLetter(endMonth)}`;
-      }
-
-      return (
-        String.capitalizeFirstLetter(this.time.getLocalizedNameOfMonth(
-          this.currentPeriod?.selectedDate,
-          'long'
-        )) +
-        ' - ' +
-        this.currentPeriod.selectedDate.getFullYear()
-      );
-    },
-
-    modeName() {
-      // @ts-ignore
-      return this.getLanguage(
-        this.languageKeys['mini'],
-        this.time?.CALENDAR_LOCALE
-      );
-    },
   },
 
   methods: {

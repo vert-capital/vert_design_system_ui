@@ -12,8 +12,6 @@
 
       <AppHeaderMini 
         :key="wasInitialized + mode + '-header'"
-        :config="config"
-        :mode="mode"
         :time="time"
         :period="period"
       />
