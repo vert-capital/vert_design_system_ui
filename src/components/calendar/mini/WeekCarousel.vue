@@ -81,11 +81,9 @@ export default defineComponent({
       return date;
     },
     isLastDayOfMonth(day: IDay) {
-      //validate if day is last day of last month
       const { month, year } = this.time.getAllVariablesFromDateTimeString(
         day.dateTimeString
       );
-
     },
     onHandleDayWasClicked(day: IDay) {
       this.$emit('day-was-clicked', day);
@@ -128,6 +126,7 @@ export default defineComponent({
 
   &__date {
     font-size: 0.843rem;
+    line-height: 1rem;
     margin-bottom: 4px;
     height: 1rem;
     width: 1rem;
@@ -143,6 +142,7 @@ export default defineComponent({
 
     .is-today & {
       color: $color-primary-pure;
+      font-weight: 700;
     }
 
     .is-selected & {

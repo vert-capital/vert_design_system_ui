@@ -96,20 +96,6 @@ export default defineComponent({
   },
 
   watch: {
-    events: {
-      deep: true,
-      handler(newVal, oldVal) {
-        if (JSON.stringify(newVal) !== JSON.stringify(oldVal)) {
-          this.eventsDataProperty = newVal;
-          this.eventRenderingKey = this.eventRenderingKey + 1;
-        }
-
-        if (this.config.isSilent) return;
-        this.events.forEach((e) => Errors.checkEventProperties(e));
-      },
-      immediate: true,
-    },
-
     config: {
       deep: true,
       handler(value: IConfig) {
@@ -124,29 +110,17 @@ export default defineComponent({
     this.setPeriodOnMount();
   },
 
-
   methods: {
     setConfigOnMount() {
       this.wasInitialized = 1;
     },
 
     setPeriodOnMount() {
-
         const currentWeek = this.time.getCalendarWeekDateObjects(
           this.period.selectedDate
         );
         this.period.start = currentWeek[0];
         this.period.end = currentWeek[6];
-    },
-
-    handleEventWasUpdated(
-      calendarEvent: IEvent,
-      eventType: 'dragged' | 'resized'
-    ) {
-      const newEvents = this.eventsDataProperty.filter(
-        (e) => e.id !== calendarEvent.id
-      );
-      this.eventsDataProperty = [calendarEvent, ...newEvents];
     }
   },
 });

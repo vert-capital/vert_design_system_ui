@@ -2,7 +2,7 @@
 export interface IDay {
   dayName: string;
   dateTimeString: string;
-  events: IEvent[];
+  events?: IEvent[];
   fullDayEvents?: IEventsFullDay;
 }
 

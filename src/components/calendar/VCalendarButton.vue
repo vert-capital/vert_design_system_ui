@@ -19,9 +19,9 @@
         />
       </div>
 
-      <div class="list-events">
+      <div id="container-list" class="list-events">
         <div
-          v-for="event in events"
+          v-for="event in eventsOfDay"
           :key="event.id"
           class="list-events__item"
           @click="reactToEvent(event)"
@@ -41,7 +41,7 @@
 import { VPopUp, VCalendarMini } from '@/components';
 import IconCalendar from '@/components/icons/CalendarDay.vue';
 import { IEvent } from '@/utils/types/calendar';
-import { onMounted, PropType, ref } from 'vue';
+import { onMounted, PropType, ref, watch } from 'vue';
 import PerfectScrollbar from 'perfect-scrollbar';
 
 const props = defineProps({
@@ -61,9 +61,14 @@ const config = {
 const calendarSelectedDate = ref(new Date());
 
 function reactToEvent(payload: any) {
-  console.log(payload);
-  const date = new Date(payload.date);
+  const date = new Date(payload.dateTimeString);
   calendarSelectedDate.value = date;
+
+  const dateTimeString = payload.dateTimeString.substring(0, 10);
+  eventsOfDay.value = eventsDataProperty.value.filter((event: IEvent) => {
+    const eventIsInDay = event.time.start.substring(0, 10) === dateTimeString;
+    return eventIsInDay;
+  });
 }
 
 const search = ref('');
@@ -78,13 +83,33 @@ function initScrollbar() {
   scrollbar.value = new PerfectScrollbar('.list-events', {
     wheelSpeed: 0.5,
     wheelPropagation: true,
-    minScrollbarLength: 20,
   });
 }
 
 onMounted(() => {
   initScrollbar();
 });
+
+const eventsDataProperty = ref(props.events);
+const eventsOfDay = ref(props.events);
+const eventRenderingKey = ref(0);
+
+watch(
+  () => props.events,
+  (newVal, oldVal) => {
+    if (JSON.stringify(newVal) !== JSON.stringify(oldVal)) {
+      eventsDataProperty.value = props.events;
+      const dateTimeString = calendarSelectedDate.value.toISOString().substring(0, 10);
+      eventsOfDay.value = eventsDataProperty.value.filter((event: IEvent) => {
+        const eventIsInDay = event.time.start.substring(0, 10) === dateTimeString;
+        return eventIsInDay;
+      });
+      eventRenderingKey.value = eventRenderingKey.value + 1;
+    }
+  },
+  { deep: true, immediate: true }
+)
+
 </script>
 
 <style lang="scss">
@@ -110,20 +135,36 @@ onMounted(() => {
 
 .list-events {
   margin-top: 1rem;
-  width: 100%;
-  max-width: 100vw;
-  height: 300px;
-  min-height: 0px;
-  display: flex;
-  flex-direction: column;
-  overflow-y: auto;
   .list-events__item {
-    width: 90%;
+    width: 95%;
     padding: 0.5rem;
     border: 1px solid #ccc;
     border-radius: 0.25rem;
     margin-bottom: 0.5rem;
     cursor: pointer;
+  }
+}
+
+#container-list {
+  height: 300px;
+  overflow: auto;
+  max-height: 100%;
+  min-height: 0px;
+  position: relative;
+  .ps__rail-y {
+    right: 0;
+    width: 6px;
+    background-color: #fff;
+    opacity: 0.5;
+    z-index: 1;
+    .ps__thumb-y {
+      background-color: $v-calendar-gray;
+      border-radius: 3px;
+      width: 6px;
+      height: 100px;
+      margin-top: 0;
+      margin-bottom: 0;
+    }
   }
 }
 </style>

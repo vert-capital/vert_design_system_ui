@@ -6,7 +6,6 @@
         :time="time"
         :full-day-events="fullDayEvents"
         :config="config"
-        @event-was-clicked="handleClickOnEvent"
         @day-was-clicked="handleDayWasClicked"
       />
     </div>
@@ -19,7 +18,6 @@
 import { onMounted, PropType, ref } from 'vue';
 import { IConfig, IEvent, IPeriod, IDay, IEventsFullDay } from '@/utils/types/calendar';
 import Time from '@/utils/helpers/Time';
-import EDate from '@/utils/helpers/EDate';
 import WeekCarousel from './WeekCarousel.vue';
 import StringHelper from '@/utils/helpers/String';
 
@@ -36,10 +34,6 @@ const props = defineProps({
     type: Object as PropType<IPeriod>,
     required: true,
   },
-  eventsProp: {
-    type: Array as PropType<IEvent[]>,
-    default: () => [],
-  },
   nDays: {
     type: Number,
     default: 7,
@@ -47,23 +41,13 @@ const props = defineProps({
 });
 
 const emits = defineEmits({
-  'event-was-clicked': (event: IEvent) => true,
   'day-was-clicked': (day: IDay) => true,
 });
 
 
 const days = ref<IDay[]>([]);
-const selectedEvent = ref<IEvent | null>(null);
-const selectedEventElement = ref<any | null>(null);
-const events = ref(props.eventsProp);
 const fullDayEvents = ref<IEventsFullDay[]>([]);
 const dayNameSelected = ref('');
-
-const handleClickOnEvent = (event: IEvent, element: any) => {
-  selectedEvent.value = event;
-  selectedEventElement.value = element;
-  emits('event-was-clicked', event);
-};
 
 const setDays = () => {
   const days_: IDay[] = props.time.getCalendarWeekDateObjects(props.period.start).
@@ -73,13 +57,7 @@ const setDays = () => {
       if (props.time.dateIsToday(day)) {
         getDateAndDayLongName(day, true);
       }
-      const events_ = events.value.filter((event: IEvent) => {
-        const eventIsInDay = event.time.start.substring(0, 11) === dateTimeString.substring(0, 11);
-        let eventIsInDayBoundaries = true;
-
-        return eventIsInDay && eventIsInDayBoundaries;
-      });
-      return { dayName, dateTimeString, events: events_ };
+      return { dayName, dateTimeString };
     });
 
   if (props.nDays === 5 && props.time.FIRST_DAY_OF_WEEK === 'monday') {
