@@ -1,11 +1,3 @@
-Skip to content Search or jump to… Pull requests Issues Codespaces Marketplace
-Explore @Brayanx16 Brayanx16 / vert_design_system_ui Public forked from
-vert-capital/vert_design_system_ui Code Pull requests Actions Projects Wiki
-Security Insights Settings vert_design_system_ui/src/app.vue @deborastoscastro
-deborastoscastro naming correction Latest commit 993e256 4 days ago History 4
-contributors @deborastoscastro@JKranmer@Brayanx16@deboracastrodev 394 lines (375
-sloc) 10.4 KB
-
 <template>
   <div style="width: 80%; margin: 0 auto">
     <h1>COMPONENTES</h1>
