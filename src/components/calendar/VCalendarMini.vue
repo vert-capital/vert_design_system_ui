@@ -23,7 +23,6 @@
         :config="config"
         :period="period"
         :n-days="week.nDays"
-        @event-was-clicked="$emit('event-was-clicked', $event)"
         @day-was-clicked="$emit('day-was-clicked', $event)"
       >
       </Mini>

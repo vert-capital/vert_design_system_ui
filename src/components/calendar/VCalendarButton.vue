@@ -8,7 +8,7 @@
         :config="config"
         :events="events"
         :selected-date="calendarSelectedDate"
-        @day-was-clicked="reactToEvent"
+        @day-was-clicked="onHandleDayClicked"
       ></v-calendar-mini>
 
       <div class="search-events">
@@ -24,7 +24,7 @@
           v-for="event in eventsOfDay"
           :key="event.id"
           class="list-events__item"
-          @click="reactToEvent(event)"
+          @click="onHandleEventClicked(event)"
         >
           <div class="list-events__item--title">
             {{ event.title }}
@@ -60,7 +60,7 @@ const config = {
 
 const calendarSelectedDate = ref(new Date());
 
-function reactToEvent(payload: any) {
+function onHandleDayClicked(payload: any) {
   const date = new Date(payload.dateTimeString);
   calendarSelectedDate.value = date;
 
@@ -76,6 +76,10 @@ function searchEvent() {
   console.log(search.value);
 }
 
+
+function onHandleEventClicked(event: any) {
+  console.log('event clicked', event);
+}
 
 const scrollbar = ref<any | null>(null);
 

@@ -17,18 +17,6 @@
       <div class="week-carousel__date">
         {{ getDaysDate(day) }}
       </div>
-
-      <div class="week-carousel__events">
-        <template v-for="(event, key) in day.fullDayEvents" :key="key">
-          <FullDayEvent
-            v-if="key !== 'date'"
-            :schedule-event="typeof event === 'object' ? event : null"
-            :config="config"
-            mode="mini"
-            @event-was-clicked="$emit('event-was-clicked', $event)"
-          />
-        </template>
-      </div>
     </div>
   </div>
 </template>
@@ -37,12 +25,9 @@
 import { defineComponent, PropType } from 'vue';
 import { modeType, IConfig, IEventsFullDay, IDay } from '@/utils/types/calendar';
 import Time from '@/utils/helpers/Time';
-import FullDayEvent from './FullDayEvent.vue';
 
 export default defineComponent({
   name: 'Weekcarousel',
-
-  components: { FullDayEvent },
 
   props: {
     days: {
@@ -52,10 +37,6 @@ export default defineComponent({
     time: {
       type: Object as PropType<Time>,
       required: true,
-    },
-    fullDayEvents: {
-      type: Array as PropType<IEventsFullDay[]>,
-      default: () => [],
     },
     config: {
       type: Object as PropType<IConfig>,
