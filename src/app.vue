@@ -210,7 +210,13 @@
   <div class="section-calendar">
     <h4>Calendário de eventos</h4>
     <h3>Calendário reduzido (popUp)</h3>
-    <v-calendar-button :events="events" @day-was-clicked="onHandleClickDay"></v-calendar-button>
+    <v-calendar-button 
+      :events="events" 
+      @day-was-clicked="onHandleClickDay" 
+      @search-was-inputed="onHandleSearch"
+      @event-was-clicked="onHandleEventClicked"
+    >
+    </v-calendar-button>
   </div>
 
   <hr />
@@ -413,7 +419,6 @@ export default defineComponent({
     const calendarSelectedDate = ref(new Date());
 
     function reactToEvent(payload: any) {
-      console.log(payload);
       const date = new Date(payload.date);
       calendarSelectedDate.value = date;
     }
@@ -430,6 +435,14 @@ export default defineComponent({
       alert("onHandleClickDay");
     }
 
+    function onHandleSearch(search: any) {
+      alert("search:" + search);
+    }
+
+    function onHandleEventClicked(event: any) {
+      alert("event:" + event);
+    }
+
     return {
       pagination,
       selectOptions,
@@ -442,6 +455,8 @@ export default defineComponent({
       onClickButton,
       onHandleClickDay,
       aplication,
+      onHandleSearch,
+      onHandleEventClicked
     };
   },
 });

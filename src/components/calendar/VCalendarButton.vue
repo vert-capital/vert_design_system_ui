@@ -5,7 +5,6 @@
     </template>
     <template #popup-body>
       <v-calendar-mini
-        :config="config"
         :events="events"
         :selected-date="calendarSelectedDate"
         @day-was-clicked="onHandleDayClicked"
@@ -21,7 +20,7 @@
 
       <div id="container-list" class="list-events">
           <div class="list-events__item" v-for="event in eventsOfDay">
-            <Event :event="event" ></Event>
+            <Event :event="event" @click="onHandleEventClicked(event)" ></Event>
           </div>
       </div>
     </template>
@@ -42,11 +41,7 @@ const props = defineProps({
   },
 })
 
-const config = {
-  locale: 'pt-BR',
-  showCurrentTime: true,
-  isSilent: true
-};
+const emits = defineEmits(['search-event', 'event-was-clicked', 'day-was-clicked']);
 
 
 const calendarSelectedDate = ref(new Date());
@@ -60,16 +55,17 @@ function onHandleDayClicked(payload: any) {
     const eventIsInDay = event.time.start.substring(0, 10) === dateTimeString;
     return eventIsInDay;
   });
+  emits('day-was-clicked', payload)
 }
 
 const search = ref('');
 function searchEvent() {
-  console.log(search.value);
+  emits('search-event', search.value);
 }
 
 
 function onHandleEventClicked(event: any) {
-  console.log('event clicked', event);
+  emits('event-was-clicked', event);
 }
 
 const scrollbar = ref<any | null>(null);

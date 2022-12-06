@@ -20,9 +20,5 @@ const props = defineProps({
   }
 })
 
-console.log(props.event)
 const eventShow = new EventShow(props.event);
-
-console.log(eventShow.getApplicationsReferenceName())
-
 </script>

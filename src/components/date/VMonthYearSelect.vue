@@ -29,7 +29,6 @@ const emit = defineEmits<{
 }>();
 
 const onChangeMonth = (monthYear: string) => {
-  console.log(monthYear);
   const [year, month] = monthYear.split('-');
   const date = new Date(parseInt(year), parseInt(month) - 1, 1);
   const period = {
