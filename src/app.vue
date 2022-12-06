@@ -212,6 +212,23 @@
     <h3>Calendário reduzido (popUp)</h3>
     <v-calendar-button :events="events" @day-was-clicked="onHandleClickDay"></v-calendar-button>
   </div>
+
+  <hr />
+  <br />
+  <div v-for="(item, index) in aplication" :key="index">
+    <v-event-card
+      title="Obrigações - Pagamento de Juros"
+      style="margin-top: 20px"
+      subtitle="(3CRIBMG - 1)(#556 | 1 - Senior - CDI+%)"
+      responsible="Frederico Quadros (Responsável), Douglas Queres e João Dias"
+      size="small"
+      :aplication="item"
+    >
+      <template #tag>
+        <v-tag style="margin-bottom: 12px" status="helper">Tag helper</v-tag>
+      </template>
+    </v-event-card>
+  </div>
 </template>
 
 <script lang="ts">
@@ -228,9 +245,11 @@ import VPopUp from "./components/popUp/VPopUp.vue";
 import VCard from "./components/card/VCard.vue";
 import VDropdown from "./components/dropdown/VDropdown.vue";
 import VCalendarButton from "./components/calendar/VCalendarButton.vue";
+import VEventCard from "./components/eventCard/VEventCard.vue";
 
 export default defineComponent({
   name: "App",
+
   components: {
     VTable,
     VButton,
@@ -244,8 +263,10 @@ export default defineComponent({
     VPopUp,
     VCard,
     VDropdown,
-    VCalendarButton
+    VCalendarButton,
+    VEventCard,
   },
+
   data() {
     return {
       typeTab: "x",
@@ -255,9 +276,9 @@ export default defineComponent({
       
       config: {
         locale: "pt-BR",
-        defaultMode: 'mini',
+        defaultMode: "mini",
         showCurrentTime: true,
-        isSilent: true
+        isSilent: true,
       } as IConfig,
       events: [
           {
@@ -325,6 +346,7 @@ export default defineComponent({
       },
     };
   },
+
   setup() {
     const pokemons = ref({ count: 0, next: "", previous: "", results: [] });
 
@@ -355,6 +377,17 @@ export default defineComponent({
         value: 5,
         label: "Maio",
       },
+    ]);
+
+    const aplication = reactive([
+      "obligations",
+      "payment_events",
+      "payments",
+      "subscriptions",
+      "patrimony_status",
+      "patrimony",
+      "series_status",
+      "series_expiration",
     ]);
 
     function onChangePagination(data: any) {
@@ -416,7 +449,8 @@ export default defineComponent({
       reactToEvent,
       onClickButtonWarning,
       onClickButton,
-      onHandleClickDay
+      onHandleClickDay,
+      aplication,
     };
   },
 });
@@ -426,7 +460,7 @@ export default defineComponent({
   display: flex;
   flex-wrap: wrap;
 }
-.section-calendar{
+.section-calendar {
   width: 400px;
   height: 600px;
   min-height: 200px;

@@ -17,7 +17,7 @@
       border: none;
       background: transparent;
       text-transform: uppercase;
-      font-family: 'Lato', sans-serif;
+      font-family: "Lato", sans-serif;
       font-weight: bold;
       border-bottom: 4px solid transparent;
       color: $neutral-color-low-medium;
@@ -36,20 +36,20 @@
         }
       }
     }
-    &.tab--border{
+    &.tab--border {
       position: relative;
       > button.active {
         box-shadow: none;
       }
-      &::before{
-      content: '';
-      background: $neutral-color-hight-medium;
-      position: absolute;
-      bottom: 0;
-      height: 1px;
-      width: 100%;
-      z-index: -1;
-    }
+      &::before {
+        content: "";
+        background: $neutral-color-hight-medium;
+        position: absolute;
+        bottom: 0;
+        height: 1px;
+        width: 100%;
+        z-index: -1;
+      }
     }
   }
 
@@ -91,7 +91,7 @@
         // @include icon("\F0142", 1rem);
         background-image: url(../../../static/icons/arrow.svg);
         transform: rotate(-90deg);
-        content: '';
+        content: "";
         display: block;
         width: 1rem;
         height: 1rem;
@@ -116,9 +116,9 @@
     }
   }
   &--content {
-    font-family: 'Lato', sans-serif;
+    font-family: "Lato", sans-serif;
     display: none;
-    &:first-child{
+    &:first-child {
       display: block;
     }
   }

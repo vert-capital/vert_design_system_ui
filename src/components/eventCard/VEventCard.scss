@@ -1,0 +1,73 @@
+.event-card {
+  font-family: "Lato", sans-serif;
+  border-radius: 12px;
+  background-color: #f2f2f2;
+  box-sizing: border-box;
+  min-height: 40px;
+  max-height: 111px;
+  p {
+    margin: 0px;
+  }
+  h4 {
+    margin: 0px;
+    font-weight: $weight-bold;
+    font-size: $font-size-xs;
+  }
+
+  .event-status {
+    border-left: 12px solid;
+    border-radius: 12px;
+    min-height: 40px;
+    max-height: 111px;
+
+    &--obligations {
+      border-color: $feedback-color-default-light;
+    }
+    &--payment_events {
+      border-color: #2b7373;
+    }
+    &--payments {
+      border-color: #3b634e;
+    }
+    &--subscriptions {
+      border-color: #86381d;
+    }
+    &--patrimony_status {
+      border-color: #f4a053;
+    }
+    &--patrimony {
+      border-color: #a5af80;
+    }
+    &--series_status {
+      border-color: #f28e83;
+    }
+    &--series_expiration {
+      border-color: $neutral-color-low-pure;
+    }
+    .event-body {
+      // width: 200px;
+      &--small {
+        padding: 4px 16px 4px 16px;
+      }
+      &--default {
+        padding: 16px 8px 16px 8px;
+      }
+    }
+  }
+}
+
+.break-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  &--one_line {
+    -webkit-line-clamp: 1;
+  }
+  &--two_line {
+    -webkit-line-clamp: 2;
+  }
+  &--three_line {
+    -webkit-line-clamp: 3;
+  }
+}
