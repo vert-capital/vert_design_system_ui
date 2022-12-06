@@ -8,7 +8,7 @@ import { computed, ref } from 'vue';
 import StringHelper from '@/utils/helpers/String';
 import VDropdown from '@/components/dropdown/VDropdown.vue';
 
-const monthYearSelected: any = ref('2022-11');
+const monthYearSelected: any = ref(String(`${new Date().getFullYear()}-${new Date().getMonth() + 1}`));
 
 const months = computed(() => {
   const months = [];
