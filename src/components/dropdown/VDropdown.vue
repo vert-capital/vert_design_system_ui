@@ -5,7 +5,7 @@
         {{ showValue }}
       </span>
       <span v-else>
-        <v-tag v-for="selected in showValue" status="secondary" square>
+        <v-tag v-for="(selected, index) in showValue" status="secondary" square :key="index">
           {{ selected.label }}
           <label class="icon--close" :for="name + '-' + selected.value"></label>
         </v-tag>
@@ -24,7 +24,7 @@
             :value="option.value"
             :id="name + '-' + option.value"
             :type="setMultiple"
-            @change="selectChange($event)"
+            @change="selectChange()"
           />
           <label :for="name + '-' + option.value">{{ option.label }}</label>
         </li>
@@ -80,7 +80,7 @@ const setMultiple = computed((): string =>
   props.multiple ? "checkbox" : "radio"
 );
 
-const showValue = computed(() => {
+const showValue: any = computed(() => {
   if (valueOption.value.length == 0) {
     return props.placeholder;
   }

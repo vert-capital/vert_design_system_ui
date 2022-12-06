@@ -52,7 +52,7 @@ function onHandleDayClicked(payload: any) {
 
   const dateTimeString = payload.dateTimeString.substring(0, 10);
   eventsOfDay.value = eventsDataProperty.value.filter((event: IEvent) => {
-    const eventIsInDay = event.time.start.substring(0, 10) === dateTimeString;
+    const eventIsInDay = event?.time?.start.substring(0, 10) === dateTimeString;
     return eventIsInDay;
   });
   emits('day-was-clicked', payload)
@@ -92,7 +92,7 @@ watch(
       eventsDataProperty.value = props.events;
       const dateTimeString = calendarSelectedDate.value.toISOString().substring(0, 10);
       eventsOfDay.value = eventsDataProperty.value.filter((event: IEvent) => {
-        const eventIsInDay = event.time.start.substring(0, 10) === dateTimeString;
+        const eventIsInDay = event?.time?.start.substring(0, 10) === dateTimeString;
         return eventIsInDay;
       });
       eventRenderingKey.value = eventRenderingKey.value + 1;

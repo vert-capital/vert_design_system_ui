@@ -21,10 +21,10 @@ export interface IEvent {
   patrimony?: number;
   series?: number;
   emission?: number;
-  time: { start: string; end: string }; 
+  time?: { start: string; end: string }; 
   event_data: string;
   data?: {},
-  responsabile?: string;
+  responsable?: string;
 }
 
 export interface IEventsFullDay {

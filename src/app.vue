@@ -229,7 +229,6 @@
       responsable="Frederico Quadros (Responsável), Douglas Queres e João Dias"
       size="small"
       :aplication="(item as any)" 
-      status:="warning"
     >
       <template #tag>
         <v-tag style="margin-bottom: 12px" status="helper">Tag helper</v-tag>

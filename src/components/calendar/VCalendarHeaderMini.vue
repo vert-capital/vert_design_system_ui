@@ -34,8 +34,15 @@ export default defineComponent({
 
   data() {
     return {
-      currentPeriod: this.period,
+      currentPeriod: this.period as any,
     };
+  },
+
+  methods: {
+    handlePeriodChange(period: any) {
+      this.currentPeriod = period;
+      this.$emit('updated-period', period);
+    },
   },
 });
 </script>

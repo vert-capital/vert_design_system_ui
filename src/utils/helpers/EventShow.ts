@@ -13,7 +13,7 @@ export class EventShow implements IEvent {
   public time: { start: string; end: string };
   public event_data: string;
   public data?: {};
-  public responsabile?: string | undefined;
+  public responsable?: string | undefined;
 
   public timeHelper = new Time();
 
@@ -27,7 +27,7 @@ export class EventShow implements IEvent {
     this.time = data?.time || { start: this.timeHelper.getDateTimeStringFromDate(new Date()), end: this.timeHelper.getDateTimeStringFromDate(new Date()) };
     this.event_data = data?.event_data || this.timeHelper.getDateStringFromDate(new Date());
     this.data = data ? data.data : {};
-    this.responsabile = data?.responsabile;
+    this.responsable = data?.responsable;
   }
 
 

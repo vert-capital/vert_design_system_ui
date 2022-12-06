@@ -2,12 +2,10 @@ declare const _default: import("vue").DefineComponent<{
     status: {
         type: StringConstructor;
         default: string;
-        required: true;
     };
     type: {
         type: StringConstructor;
         default: string;
-        required: true;
     };
     icon: {
         type: StringConstructor;
@@ -23,12 +21,10 @@ declare const _default: import("vue").DefineComponent<{
     status: {
         type: StringConstructor;
         default: string;
-        required: true;
     };
     type: {
         type: StringConstructor;
         default: string;
-        required: true;
     };
     icon: {
         type: StringConstructor;

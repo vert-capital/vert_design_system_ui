@@ -1,4 +1,4 @@
-import { IConfig, IEvent } from "./utils/types/calendar";
+import type { IEvent } from "./utils/types/calendar";
 declare const _default: import("vue").DefineComponent<{}, {
     pagination: {
         count: number;
@@ -6,7 +6,7 @@ declare const _default: import("vue").DefineComponent<{}, {
         size: number;
     };
     selectOptions: {
-        value: string;
+        value: number;
         label: string;
     }[];
     pokemons: import("vue").Ref<{
@@ -80,15 +80,16 @@ declare const _default: import("vue").DefineComponent<{}, {
     reactToEvent: (payload: any) => void;
     onClickButtonWarning: () => void;
     onClickButton: () => void;
+    onHandleClickDay: () => void;
+    aplication: string[];
+    onHandleSearch: (search: any) => void;
+    onHandleEventClicked: (event: any) => void;
 }, {
     typeTab: string;
     testeSelect: string;
-    config: IConfig;
+    dropDownExemplo: never[];
+    dropDownExemplo2: never[];
     events: IEvent[];
     isLoading: boolean;
-    eventDialogForm: {
-        title: string;
-        id: string;
-    };
 }, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{}>>, {}>;
 export default _default;
