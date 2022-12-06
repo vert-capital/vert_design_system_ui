@@ -2,9 +2,6 @@
   <div class="calendar-root-wrapper">
     <div
       class="calendar-root mode-is-mini"
-      :class="{
-        'vcalendar-is-small': calendarWidth < 700,
-      }"
     >
       <Transition name="loading">
         <div v-if="isLoading" class="top-bar-loader" />
@@ -12,15 +9,11 @@
 
       <AppHeaderMini 
         :key="wasInitialized + mode + '-header'"
-        :time="time"
-        :period="period"
       />
 
       <Mini
-        :key="period.start.getTime() + period.end.getTime() + eventRenderingKey"
-        :events-prop="eventsDataProperty"
+        :key="period.start.getTime() + period.end.getTime()"
         :time="time"
-        :config="config"
         :period="period"
         :n-days="week.nDays"
         @day-was-clicked="$emit('day-was-clicked', $event)"
@@ -47,10 +40,6 @@ export default defineComponent({
 },
 
   props: {
-    config: {
-      type: Object as PropType<IConfig>,
-      default: () => ({}),
-    },
     events: {
       type: Array as PropType<IEvent[]>,
       default: () => [],
@@ -82,26 +71,8 @@ export default defineComponent({
         nDays: 7,
       },
       mode: 'mini',
-      time: new Time(
-        this.config?.week?.startsOn,
-        this.config?.locale || null,
-      ) as Time | any,
-      fontFamily:
-        this.config?.style?.fontFamily || "'Lato",
-      calendarWidth: 0,
-      eventRenderingKey: 0,
-      eventsDataProperty: this.events || [],
+      time: new Time() as Time | any,
     };
-  },
-
-  watch: {
-    config: {
-      deep: true,
-      handler(value: IConfig) {
-        Errors.checkConfig(value);
-      },
-      immediate: true,
-    },
   },
 
   mounted() {

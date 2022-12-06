@@ -4,7 +4,6 @@
       <WeekCarousel
         :days="days"
         :time="time"
-        :config="config"
         @day-was-clicked="handleDayWasClicked"
       />
     </div>
@@ -15,16 +14,12 @@
 </template>
 <script lang="ts" setup>
 import { onMounted, PropType, ref } from 'vue';
-import { IConfig, IPeriod, IDay } from '@/utils/types/calendar';
+import { IPeriod, IDay } from '@/utils/types/calendar';
 import Time from '@/utils/helpers/Time';
 import WeekCarousel from './WeekCarousel.vue';
 import StringHelper from '@/utils/helpers/String';
 
 const props = defineProps({
-  config: {
-    type: Object as PropType<IConfig>,
-    required: true,
-  },
   time: {
     type: Object as PropType<Time>,
     required: true,

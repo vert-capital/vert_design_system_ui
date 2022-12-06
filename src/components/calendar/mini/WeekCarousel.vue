@@ -23,7 +23,7 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
-import { modeType, IConfig, IEventsFullDay, IDay } from '@/utils/types/calendar';
+import { IConfig, IDay } from '@/utils/types/calendar';
 import Time from '@/utils/helpers/Time';
 
 export default defineComponent({
@@ -36,10 +36,6 @@ export default defineComponent({
     },
     time: {
       type: Object as PropType<Time>,
-      required: true,
-    },
-    config: {
-      type: Object as PropType<IConfig>,
       required: true,
     }
   },

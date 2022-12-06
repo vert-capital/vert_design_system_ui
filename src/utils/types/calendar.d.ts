@@ -1,4 +1,6 @@
+import type { APPLICATIONS_NAME } from "../constants";
 
+export type applicationsNumber =  1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 ;
 export interface IDay {
   dayName: string;
   dateTimeString: string;
@@ -13,7 +15,7 @@ export type modeType = 'month' | 'week' | 'day' | 'personalized' | 'mini';
 export interface IEvent {
   id?: eventId;
   title?: string;
-  application: number;
+  application: applicationsNumber;
   patrimony?: number;
   series?: number;
   emission?: number;

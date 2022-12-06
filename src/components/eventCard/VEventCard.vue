@@ -18,13 +18,14 @@
 
 <script lang="ts" setup>
 import { computed } from "vue";
+import { applicationsNumber } from "@/utils/types/calendar";
 
 export interface Props {
   title: string;
   subtitle: string;
   responsible: string;
   size: string;
-  aplication: string;
+  aplication: applicationsNumber;
   status: string;
 }
 

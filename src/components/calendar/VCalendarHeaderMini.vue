@@ -30,31 +30,12 @@ export default defineComponent({
 
   mixins: [getLanguage],
 
-  props: {
-    time: {
-      type: Object as PropType<Time>,
-      default: () => ({}),
-    },
-    period: {
-      type: Object as PropType<IPeriod>,
-      required: true,
-    },
-  },
-
   emits: ['updated-period'],
 
   data() {
     return {
       currentPeriod: this.period,
     };
-  },
-
-  methods: {
-    handlePeriodChange(value: { start: Date; end: Date; selectedDate: Date }) {
-      this.currentPeriod = value;
-
-      this.$emit('updated-period', value);
-    },
   },
 });
 </script>
