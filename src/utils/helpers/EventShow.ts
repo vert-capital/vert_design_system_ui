@@ -13,29 +13,21 @@ export class EventShow implements IEvent {
   public time: { start: string; end: string };
   public event_data: string;
   public data?: {};
+  public responsabile?: string | undefined;
 
   public timeHelper = new Time();
 
-  constructor(
-    id?: string | number,
-    title?: string,
-    application?: applicationsNumber,
-    patrimony?: number,
-    series?: number,
-    emission?: number,
-    time?: { start: string; end: string },
-    event_data?: string,
-    data?: {}
-  ) {
-    this.id = id;
-    this.title = title;
-    this.application = application || 1;
-    this.patrimony = patrimony;
-    this.series = series;
-    this.emission = emission;
-    this.time = time || { start: this.timeHelper.getDateTimeStringFromDate(new Date()), end: this.timeHelper.getDateTimeStringFromDate(new Date()) };
-    this.event_data = event_data || this.timeHelper.getDateStringFromDate(new Date());
-    this.data = data;
+  constructor(data: IEvent) {
+    this.id = data?.id;
+    this.title = data?.title;
+    this.application = data?.application || 1;
+    this.patrimony = data?.patrimony;
+    this.series = data?.series;
+    this.emission = data?.emission;
+    this.time = data?.time || { start: this.timeHelper.getDateTimeStringFromDate(new Date()), end: this.timeHelper.getDateTimeStringFromDate(new Date()) };
+    this.event_data = data?.event_data || this.timeHelper.getDateStringFromDate(new Date());
+    this.data = data ? data.data : {};
+    this.responsabile = data?.responsabile;
   }
 
 
@@ -49,6 +41,20 @@ export class EventShow implements IEvent {
 
   getApplicationsReferenceName(): applicationReference {
     return APPLICATIONS_REFERENCE_NAME[this.application] as applicationReference;
+  }
+
+  getSubtitle(): string {
+    let subtitle = '';
+    if (this.patrimony) {
+      subtitle += `Patrimônio: ${this.patrimony}`;
+    }
+    if (this.series) {
+      subtitle += ` Série: ${this.series}`;
+    }
+    if (this.emission) {
+      subtitle += ` Emissão: ${this.emission}`;
+    }
+    return subtitle;
   }
 
 }

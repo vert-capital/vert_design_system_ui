@@ -1,7 +1,9 @@
 <template>
     <v-event-card
       :title="event.title"
-      :aplication="application"
+      :aplication="eventShow.getApplicationsReferenceName()"
+      :subtitle="eventShow.getSubtitle()"
+      :responsable="event.responsable"
     ></v-event-card>
 </template>
 <script lang="ts" setup>
@@ -18,7 +20,9 @@ const props = defineProps({
   }
 })
 
+console.log(props.event)
 const eventShow = new EventShow(props.event);
 
-const application = computed((): applicationReference => eventShow.getApplicationsReferenceName());
+console.log(eventShow.getApplicationsReferenceName())
+
 </script>

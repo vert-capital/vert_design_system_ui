@@ -23,7 +23,8 @@ export interface IEvent {
   emission?: number;
   time: { start: string; end: string }; 
   event_data: string;
-  data?: {}
+  data?: {},
+  responsabile?: string;
 }
 
 export interface IEventsFullDay {

@@ -33,6 +33,7 @@ import IconCalendar from '@/components/icons/CalendarDay.vue';
 import { IEvent } from '@/utils/types/calendar';
 import { onMounted, PropType, ref, watch } from 'vue';
 import PerfectScrollbar from 'perfect-scrollbar';
+import Event from '@/components/calendar/mini/Event.vue';
 
 const props = defineProps({
   events: {
@@ -130,10 +131,7 @@ watch(
 .list-events {
   margin-top: 1rem;
   .list-events__item {
-    width: 95%;
-    padding: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 0.25rem;
+    width: 100%;
     margin-bottom: 0.5rem;
     cursor: pointer;
   }

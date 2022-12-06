@@ -7,9 +7,9 @@
         <p class="break-ellipsis break-ellipsis--one_line">{{ subtitle }}</p>
         <p
           class="break-ellipsis break-ellipsis--one_line"
-          v-if="size !== 'small' && responsible"
+          v-if="size !== 'small' && responsable"
         >
-          {{ responsible }}
+          {{ responsable }}
         </p>
       </div>
     </div>
@@ -23,7 +23,7 @@ import { applicationReference } from "@/utils/types/calendar";
 export interface Props {
   title: string;
   subtitle: string;
-  responsible: string;
+  responsable: string;
   size: string;
   aplication: applicationReference;
   status: string;
