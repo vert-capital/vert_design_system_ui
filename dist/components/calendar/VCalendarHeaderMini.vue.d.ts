@@ -1,41 +1,7 @@
-import { PropType } from 'vue';
-import { IConfig, modeType } from '@/utils/types/calendar';
-import Time from '@/utils/helpers/Time';
-import String from '@/utils/helpers/String';
-interface IPeriod {
-    start: Date;
-    end: Date;
-    selectedDate: Date;
-}
-declare const _default: import("vue").DefineComponent<{
-    config: {
-        type: PropType<IConfig>;
-        default: () => {};
-    };
-    mode: {
-        type: typeof String;
-        validator: (value: modeType) => boolean;
-        default: string;
-    };
-    time: {
-        type: PropType<Time>;
-        default: () => {};
-    };
-    period: {
-        type: PropType<IPeriod>;
-        required: true;
-    };
-}, unknown, {
-    currentPeriod: IPeriod;
-}, {
-    periodName(): string;
-    modeName(): any;
-}, {
-    handlePeriodChange(value: {
-        start: Date;
-        end: Date;
-        selectedDate: Date;
-    }): void;
+declare const _default: import("vue").DefineComponent<{}, {}, {
+    currentPeriod: any;
+}, {}, {
+    handlePeriodChange(period: any): void;
 }, {
     data(): {
         languageKeys: {
@@ -98,30 +64,7 @@ declare const _default: import("vue").DefineComponent<{
     methods: {
         getLanguage(languageKeys: any, locale: string): any;
     };
-}, import("vue").ComponentOptionsMixin, ("change-mode" | "updated-period")[], "change-mode" | "updated-period", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
-    config: {
-        type: PropType<IConfig>;
-        default: () => {};
-    };
-    mode: {
-        type: typeof String;
-        validator: (value: modeType) => boolean;
-        default: string;
-    };
-    time: {
-        type: PropType<Time>;
-        default: () => {};
-    };
-    period: {
-        type: PropType<IPeriod>;
-        required: true;
-    };
-}>> & {
-    "onChange-mode"?: ((...args: any[]) => any) | undefined;
+}, import("vue").ComponentOptionsMixin, "updated-period"[], "updated-period", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{}>> & {
     "onUpdated-period"?: ((...args: any[]) => any) | undefined;
-}, {
-    mode: string;
-    config: IConfig;
-    time: Time;
-}>;
+}, {}>;
 export default _default;

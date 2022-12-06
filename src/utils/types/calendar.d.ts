@@ -1,8 +1,12 @@
+import type { APPLICATIONS_NAME } from "../constants";
 
+export type applicationsNumber = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
+
+export type applicationReference = 'obligations' | 'payment_events' | 'integrations' | 'subscriptions' | 'patrimony_status' | 'patrimony' | 'series_expiration' | 'series_status';
 export interface IDay {
   dayName: string;
   dateTimeString: string;
-  events: IEvent[];
+  events?: IEvent[];
   fullDayEvents?: IEventsFullDay;
 }
 
@@ -11,23 +15,16 @@ export type eventId = string | number;
 export type modeType = 'month' | 'week' | 'day' | 'personalized' | 'mini';
 
 export interface IEvent {
-  id: eventId;
+  id?: eventId;
   title?: string;
-  time: { start: string; end: string }; 
-  description?: string;
-  topic?: string;
-  location?: string;
-  with?: string; 
-  colorScheme?: string;
-  color?: "primary" | "yellow" | "green" | "red" | "orange" | "purple" | "blue" | "black";
-  isEditable?: boolean; 
-  disableDnD?: modeType[];
-  disableResize?: modeType[];
-  isCustom?: boolean;
-  zIndex?: number;
-  nOfPreviousConcurrentEvents?: number;
-  totalConcurrentEvents?: number;
-  timeJS?: { start: Date, end: Date }
+  application: applicationsNumber;
+  patrimony?: number;
+  series?: number;
+  emission?: number;
+  time?: { start: string; end: string }; 
+  event_data: string;
+  data?: {},
+  responsable?: string;
 }
 
 export interface IEventsFullDay {

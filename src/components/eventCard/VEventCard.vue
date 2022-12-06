@@ -7,9 +7,9 @@
         <p class="break-ellipsis break-ellipsis--one_line">{{ subtitle }}</p>
         <p
           class="break-ellipsis break-ellipsis--one_line"
-          v-if="size !== 'small' && responsible"
+          v-if="size !== 'small' && responsable"
         >
-          {{ responsible }}
+          {{ responsable }}
         </p>
       </div>
     </div>
@@ -17,21 +17,44 @@
 </template>
 
 <script lang="ts" setup>
-import { computed } from "vue";
+import { computed, PropType } from "vue";
+import { applicationReference } from "@/utils/types/calendar";
 
 export interface Props {
   title: string;
   subtitle: string;
-  responsible: string;
+  responsable: string;
   size: string;
-  aplication: string;
+  aplication: applicationReference;
   status: string;
 }
 
-const props = withDefaults(defineProps<Props>(), {
-  title: "Titulo",
-  size: "default",
-});
+const props = defineProps(
+  {
+    title: {
+      type: String,
+      default: 'Título do evento'
+    },
+    subtitle: {
+      type: String,
+      default: ''
+    },
+    responsable: {
+      type: String
+    },
+    size: {
+      type: String,
+      default: 'default'
+    },
+    aplication: {
+      type: String as PropType<applicationReference>,
+      default: 'obligation'
+    },
+    status: {
+      type: String,
+    }
+  }
+)
 
 const setAplicationClass = computed(
   (): string => `event-status--${props.aplication}`

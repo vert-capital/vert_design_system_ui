@@ -1,5 +1,5 @@
 import { PropType } from 'vue';
-import { IConfig, IEventsFullDay, IDay } from '@/utils/types/calendar';
+import { IDay } from '@/utils/types/calendar';
 import Time from '@/utils/helpers/Time';
 declare const _default: import("vue").DefineComponent<{
     days: {
@@ -8,14 +8,6 @@ declare const _default: import("vue").DefineComponent<{
     };
     time: {
         type: PropType<Time>;
-        required: true;
-    };
-    fullDayEvents: {
-        type: PropType<IEventsFullDay[]>;
-        default: () => never[];
-    };
-    config: {
-        type: PropType<IConfig>;
         required: true;
     };
 }, unknown, {
@@ -34,18 +26,8 @@ declare const _default: import("vue").DefineComponent<{
         type: PropType<Time>;
         required: true;
     };
-    fullDayEvents: {
-        type: PropType<IEventsFullDay[]>;
-        default: () => never[];
-    };
-    config: {
-        type: PropType<IConfig>;
-        required: true;
-    };
 }>> & {
     "onEvent-was-clicked"?: ((...args: any[]) => any) | undefined;
     "onDay-was-clicked"?: ((...args: any[]) => any) | undefined;
-}, {
-    fullDayEvents: IEventsFullDay[];
-}>;
+}, {}>;
 export default _default;

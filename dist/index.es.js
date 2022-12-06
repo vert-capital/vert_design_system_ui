@@ -4,7 +4,7 @@ var __publicField = (obj, key, value) => {
   __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
   return value;
 };
-import { defineComponent, openBlock, createElementBlock, mergeProps, createElementVNode, createCommentVNode, renderSlot, useSlots, ref, Fragment, renderList, normalizeClass, withModifiers, toDisplayString, normalizeProps, createTextVNode, watch, computed, unref, withDirectives, normalizeStyle, vShow, createVNode, resolveComponent, createBlock, onMounted, Transition, withCtx } from "vue";
+import { defineComponent, openBlock, createElementBlock, mergeProps, createElementVNode, createCommentVNode, renderSlot, useSlots, ref, Fragment, renderList, normalizeClass, withModifiers, toDisplayString, normalizeProps, createTextVNode, watch, computed, unref, withDirectives, normalizeStyle, vShow, createBlock, withCtx, vModelDynamic, createVNode, resolveComponent, onMounted, Transition, vModelText } from "vue";
 var VButton_scss_vue_type_style_index_0_src_6e5341db_lang = "";
 var _export_sfc = (sfc, props) => {
   const target = sfc.__vccOpts || sfc;
@@ -13,7 +13,7 @@ var _export_sfc = (sfc, props) => {
   }
   return target;
 };
-const _sfc_main$f = defineComponent({
+const _sfc_main$j = defineComponent({
   name: "VButton",
   props: {
     size: {
@@ -50,25 +50,25 @@ const _sfc_main$f = defineComponent({
     }
   }
 });
-const _hoisted_1$f = ["disabled"];
-const _hoisted_2$b = {
+const _hoisted_1$i = ["disabled"];
+const _hoisted_2$d = {
   key: 0,
   class: "v-btn--img"
 };
-const _hoisted_3$7 = ["src"];
+const _hoisted_3$b = ["src"];
 function _sfc_render$a(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("button", mergeProps({
     class: [_ctx.setSizeClass, _ctx.setStatus],
     disabled: _ctx.disabled,
     type: "button"
   }, _ctx.$attrs), [
-    _ctx.icon ? (openBlock(), createElementBlock("div", _hoisted_2$b, [
-      createElementVNode("img", { src: _ctx.setIcon }, null, 8, _hoisted_3$7)
+    _ctx.icon ? (openBlock(), createElementBlock("div", _hoisted_2$d, [
+      createElementVNode("img", { src: _ctx.setIcon }, null, 8, _hoisted_3$b)
     ])) : createCommentVNode("v-if", true),
     renderSlot(_ctx.$slots, "default")
-  ], 16, _hoisted_1$f);
+  ], 16, _hoisted_1$i);
 }
-var VButton = /* @__PURE__ */ _export_sfc(_sfc_main$f, [["render", _sfc_render$a], ["__file", "/home/debora/www/vert_design_system_ui/src/components/button/VButton.vue"]]);
+var VButton = /* @__PURE__ */ _export_sfc(_sfc_main$j, [["render", _sfc_render$a], ["__file", "/home/debora/www/vert_design_system_ui/src/components/button/VButton.vue"]]);
 function getItemValue(column, item) {
   if (column.includes(".")) {
     let content = "";
@@ -85,7 +85,7 @@ function generateColumnContent(column, item) {
   return Array.isArray(content) ? content.join(",") : content;
 }
 var VTable_scss_vue_type_style_index_0_src_52ffde09_lang = "";
-const _sfc_main$e = defineComponent({
+const _sfc_main$i = defineComponent({
   name: "VTable",
   props: {
     data: {
@@ -137,16 +137,16 @@ const _sfc_main$e = defineComponent({
     };
   }
 });
-const _hoisted_1$e = { class: "v-table" };
-const _hoisted_2$a = { class: "v-table__body-wrapper" };
-const _hoisted_3$6 = { class: "responsive-table" };
-const _hoisted_4$4 = ["onClick"];
+const _hoisted_1$h = { class: "v-table" };
+const _hoisted_2$c = { class: "v-table__body-wrapper" };
+const _hoisted_3$a = { class: "responsive-table" };
+const _hoisted_4$6 = ["onClick"];
 const _hoisted_5$4 = ["onClick"];
-const _hoisted_6$3 = { class: "v-table__cell" };
+const _hoisted_6$4 = { class: "v-table__cell" };
 function _sfc_render$9(_ctx, _cache, $props, $setup, $data, $options) {
-  return openBlock(), createElementBlock("div", _hoisted_1$e, [
-    createElementVNode("div", _hoisted_2$a, [
-      createElementVNode("table", _hoisted_3$6, [
+  return openBlock(), createElementBlock("div", _hoisted_1$h, [
+    createElementVNode("div", _hoisted_2$c, [
+      createElementVNode("table", _hoisted_3$a, [
         createElementVNode("thead", null, [
           createElementVNode("tr", null, [
             (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.headers, (col) => {
@@ -158,7 +158,7 @@ function _sfc_render$9(_ctx, _cache, $props, $setup, $data, $options) {
                   "asc": col.sortable && col.sortType === "asc"
                 }]]),
                 onClick: withModifiers(($event) => col.sortable && col.sortType ? _ctx.updateSortField(col.prop, col.sortType) : null, ["stop"])
-              }, toDisplayString(col.label), 11, _hoisted_4$4);
+              }, toDisplayString(col.label), 11, _hoisted_4$6);
             }), 256))
           ])
         ]),
@@ -170,7 +170,7 @@ function _sfc_render$9(_ctx, _cache, $props, $setup, $data, $options) {
               onClick: ($event) => _ctx.clickRow(item)
             }, [
               (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.headers, (col) => {
-                return openBlock(), createElementBlock("td", _hoisted_6$3, [
+                return openBlock(), createElementBlock("td", _hoisted_6$4, [
                   _ctx.slots[`item-${col.prop}`] ? renderSlot(_ctx.$slots, `item-${col.prop}`, normalizeProps(mergeProps({ key: 0 }, item))) : (openBlock(), createElementBlock(Fragment, { key: 1 }, [
                     createTextVNode(toDisplayString(_ctx.generateColumnContent(col.prop, item)), 1)
                   ], 64))
@@ -183,22 +183,22 @@ function _sfc_render$9(_ctx, _cache, $props, $setup, $data, $options) {
     ])
   ]);
 }
-var VTable = /* @__PURE__ */ _export_sfc(_sfc_main$e, [["render", _sfc_render$9], ["__file", "/home/debora/www/vert_design_system_ui/src/components/table/VTable.vue"]]);
+var VTable = /* @__PURE__ */ _export_sfc(_sfc_main$i, [["render", _sfc_render$9], ["__file", "/home/debora/www/vert_design_system_ui/src/components/table/VTable.vue"]]);
 var VSelect_scss_vue_type_style_index_0_src_4a2786ac_lang = "";
-const _hoisted_1$d = { class: "v-select" };
-const _hoisted_2$9 = {
+const _hoisted_1$g = { class: "v-select" };
+const _hoisted_2$b = {
   key: 0,
   class: "v-select--label"
 };
-const _hoisted_3$5 = ["for"];
-const _hoisted_4$3 = { class: "v-selec--content" };
+const _hoisted_3$9 = ["for"];
+const _hoisted_4$5 = { class: "v-selec--content" };
 const _hoisted_5$3 = ["name", "id", "required", "disabled"];
-const _hoisted_6$2 = {
+const _hoisted_6$3 = {
   key: 0,
   value: ""
 };
 const _hoisted_7$2 = ["value", "selected"];
-const _sfc_main$d = defineComponent({
+const _sfc_main$h = defineComponent({
   __name: "VSelect",
   props: {
     id: { type: String, required: false },
@@ -227,11 +227,11 @@ const _sfc_main$d = defineComponent({
       emit("update:modelValue", selected.value);
     }
     return (_ctx, _cache) => {
-      return openBlock(), createElementBlock("div", _hoisted_1$d, [
-        __props.label ? (openBlock(), createElementBlock("div", _hoisted_2$9, [
-          createElementVNode("label", { for: __props.id }, toDisplayString(__props.label), 9, _hoisted_3$5)
+      return openBlock(), createElementBlock("div", _hoisted_1$g, [
+        __props.label ? (openBlock(), createElementBlock("div", _hoisted_2$b, [
+          createElementVNode("label", { for: __props.id }, toDisplayString(__props.label), 9, _hoisted_3$9)
         ])) : createCommentVNode("v-if", true),
-        createElementVNode("div", _hoisted_4$3, [
+        createElementVNode("div", _hoisted_4$5, [
           createElementVNode("select", {
             class: normalizeClass([
               { "v-select--border": props.borderNone },
@@ -243,7 +243,7 @@ const _sfc_main$d = defineComponent({
             disabled: __props.disable,
             onChange: _cache[0] || (_cache[0] = ($event) => selectChange($event))
           }, [
-            __props.placeholder ? (openBlock(), createElementBlock("option", _hoisted_6$2, toDisplayString(__props.placeholder), 1)) : createCommentVNode("v-if", true),
+            __props.placeholder ? (openBlock(), createElementBlock("option", _hoisted_6$3, toDisplayString(__props.placeholder), 1)) : createCommentVNode("v-if", true),
             (openBlock(true), createElementBlock(Fragment, null, renderList(__props.options, (option) => {
               return openBlock(), createElementBlock("option", {
                 value: option.value,
@@ -257,23 +257,23 @@ const _sfc_main$d = defineComponent({
     };
   }
 });
-var VSelect = /* @__PURE__ */ _export_sfc(_sfc_main$d, [["__file", "/home/debora/www/vert_design_system_ui/src/components/form/select/VSelect.vue"]]);
-var _imports_0 = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTE5LDYuNDFMMTcuNTksNUwxMiwxMC41OUw2LjQxLDVMNSw2LjQxTDEwLjU5LDEyTDUsMTcuNTlMNi40MSwxOUwxMiwxMy40MUwxNy41OSwxOUwxOSwxNy41OUwxMy40MSwxMkwxOSw2LjQxWiIgLz48L3N2Zz4=";
+var VSelect = /* @__PURE__ */ _export_sfc(_sfc_main$h, [["__file", "/home/debora/www/vert_design_system_ui/src/components/form/select/VSelect.vue"]]);
+var _imports_0$1 = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTE5LDYuNDFMMTcuNTksNUwxMiwxMC41OUw2LjQxLDVMNSw2LjQxTDEwLjU5LDEyTDUsMTcuNTlMNi40MSwxOUwxMiwxMy40MUwxNy41OSwxOUwxOSwxNy41OUwxMy40MSwxMkwxOSw2LjQxWiIgLz48L3N2Zz4=";
 var VPopUp_scss_vue_type_style_index_0_src_12e74449_lang = "";
-const _hoisted_1$c = { class: "v-popup" };
-const _hoisted_2$8 = { class: "v-popup__content--head" };
-const _hoisted_3$4 = { class: "v-popup__content--head-title" };
-const _hoisted_4$2 = /* @__PURE__ */ createElementVNode("img", { src: _imports_0 }, null, -1);
+const _hoisted_1$f = { class: "v-popup" };
+const _hoisted_2$a = { class: "v-popup__content--head" };
+const _hoisted_3$8 = { class: "v-popup__content--head-title" };
+const _hoisted_4$4 = /* @__PURE__ */ createElementVNode("img", { src: _imports_0$1 }, null, -1);
 const _hoisted_5$2 = [
-  _hoisted_4$2
+  _hoisted_4$4
 ];
-const _hoisted_6$1 = { class: "v-popup__content--body" };
+const _hoisted_6$2 = { class: "v-popup__content--body" };
 const _hoisted_7$1 = { class: "v-popup__content--footer" };
 const _hoisted_8$1 = /* @__PURE__ */ createElementVNode("a", {
   href: "#",
   target: "_blank"
 }, "Ir para vis\xE3o completa", -1);
-const _sfc_main$c = /* @__PURE__ */ defineComponent({
+const _sfc_main$g = /* @__PURE__ */ defineComponent({
   __name: "VPopUp",
   props: {
     title: {
@@ -301,7 +301,7 @@ const _sfc_main$c = /* @__PURE__ */ defineComponent({
     const props = __props;
     const show = props.showIcon ? ref(false) : computed(() => props.showPopUp);
     return (_ctx, _cache) => {
-      return openBlock(), createElementBlock("div", _hoisted_1$c, [
+      return openBlock(), createElementBlock("div", _hoisted_1$f, [
         createElementVNode("div", {
           onClick: _cache[0] || (_cache[0] = ($event) => show.value = !unref(show)),
           class: "v-popup--click"
@@ -314,14 +314,14 @@ const _sfc_main$c = /* @__PURE__ */ defineComponent({
           class: normalizeClass(["v-popup__content", __props.positionContent]),
           style: normalizeStyle(`min-width: ${__props.widthContent}`)
         }, [
-          createElementVNode("div", _hoisted_2$8, [
-            createElementVNode("h3", _hoisted_3$4, toDisplayString(__props.title), 1),
+          createElementVNode("div", _hoisted_2$a, [
+            createElementVNode("h3", _hoisted_3$8, toDisplayString(__props.title), 1),
             createElementVNode("span", {
               class: "v-popup__content--head-close",
               onClick: _cache[1] || (_cache[1] = ($event) => show.value = !unref(show))
             }, _hoisted_5$2)
           ]),
-          createElementVNode("div", _hoisted_6$1, [
+          createElementVNode("div", _hoisted_6$2, [
             renderSlot(_ctx.$slots, "popup-body")
           ]),
           createElementVNode("div", _hoisted_7$1, [
@@ -336,12 +336,12 @@ const _sfc_main$c = /* @__PURE__ */ defineComponent({
     };
   }
 });
-var VPopUp = /* @__PURE__ */ _export_sfc(_sfc_main$c, [["__file", "/home/debora/www/vert_design_system_ui/src/components/popUp/VPopUp.vue"]]);
+var VPopUp = /* @__PURE__ */ _export_sfc(_sfc_main$g, [["__file", "/home/debora/www/vert_design_system_ui/src/components/popUp/VPopUp.vue"]]);
 var VCard_scss_vue_type_style_index_0_src_28d3c952_lang = "";
-const _hoisted_1$b = { class: "v-section__header" };
-const _hoisted_2$7 = { class: "v-section__header--title" };
-const _hoisted_3$3 = { class: "v-section__body" };
-const _sfc_main$b = defineComponent({
+const _hoisted_1$e = { class: "v-section__header" };
+const _hoisted_2$9 = { class: "v-section__header--title" };
+const _hoisted_3$7 = { class: "v-section__body" };
+const _sfc_main$f = defineComponent({
   __name: "VCard",
   props: {
     title: { type: String, required: true, default: "Titulo" },
@@ -354,8 +354,8 @@ const _sfc_main$b = defineComponent({
       return openBlock(), createElementBlock("div", {
         class: normalizeClass(["card", [unref(setType)]])
       }, [
-        createElementVNode("div", _hoisted_1$b, [
-          createElementVNode("div", _hoisted_2$7, [
+        createElementVNode("div", _hoisted_1$e, [
+          createElementVNode("div", _hoisted_2$9, [
             createElementVNode("h3", null, toDisplayString(props.title), 1)
           ]),
           createElementVNode("div", null, [
@@ -363,16 +363,16 @@ const _sfc_main$b = defineComponent({
             renderSlot(_ctx.$slots, "input")
           ])
         ]),
-        createElementVNode("div", _hoisted_3$3, [
+        createElementVNode("div", _hoisted_3$7, [
           renderSlot(_ctx.$slots, "default")
         ])
       ], 2);
     };
   }
 });
-var VCard = /* @__PURE__ */ _export_sfc(_sfc_main$b, [["__file", "/home/debora/www/vert_design_system_ui/src/components/card/VCard.vue"]]);
+var VCard = /* @__PURE__ */ _export_sfc(_sfc_main$f, [["__file", "/home/debora/www/vert_design_system_ui/src/components/card/VCard.vue"]]);
 var VTab_scss_vue_type_style_index_0_src_a3c685ae_lang = "";
-const _sfc_main$a = defineComponent({
+const _sfc_main$e = defineComponent({
   name: "VTab",
   props: {
     eixo: {
@@ -385,9 +385,9 @@ const _sfc_main$a = defineComponent({
     }
   }
 });
-const _hoisted_1$a = { class: "box" };
+const _hoisted_1$d = { class: "box" };
 function _sfc_render$8(_ctx, _cache, $props, $setup, $data, $options) {
-  return openBlock(), createElementBlock("div", _hoisted_1$a, [
+  return openBlock(), createElementBlock("div", _hoisted_1$d, [
     createElementVNode("div", {
       class: normalizeClass([{ "tab--border": _ctx.borderBottom }, `tab--${_ctx.eixo}`])
     }, [
@@ -396,20 +396,18 @@ function _sfc_render$8(_ctx, _cache, $props, $setup, $data, $options) {
     renderSlot(_ctx.$slots, "default")
   ]);
 }
-var VTab = /* @__PURE__ */ _export_sfc(_sfc_main$a, [["render", _sfc_render$8], ["__file", "/home/debora/www/vert_design_system_ui/src/components/tab/VTab.vue"]]);
+var VTab = /* @__PURE__ */ _export_sfc(_sfc_main$e, [["render", _sfc_render$8], ["__file", "/home/debora/www/vert_design_system_ui/src/components/tab/VTab.vue"]]);
 var VTag_scss_vue_type_style_index_0_src_73d26849_lang = "";
-const _sfc_main$9 = defineComponent({
+const _sfc_main$d = defineComponent({
   name: "VTag",
   props: {
     status: {
       type: String,
-      default: "helper",
-      required: true
+      default: "helper"
     },
     type: {
       type: String,
-      default: "solid",
-      required: true
+      default: "solid"
     },
     icon: {
       type: String,
@@ -426,22 +424,22 @@ const _sfc_main$9 = defineComponent({
     }
   }
 });
-const _hoisted_1$9 = {
+const _hoisted_1$c = {
   key: 0,
   class: "v-tag--img"
 };
-const _hoisted_2$6 = ["src"];
+const _hoisted_2$8 = ["src"];
 function _sfc_render$7(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("div", {
     class: normalizeClass([`v-tag__${_ctx.type}--${_ctx.status}`, { "v-tag--square": _ctx.square }])
   }, [
-    _ctx.icon ? (openBlock(), createElementBlock("div", _hoisted_1$9, [
-      createElementVNode("img", { src: _ctx.setIcon }, null, 8, _hoisted_2$6)
+    _ctx.icon ? (openBlock(), createElementBlock("div", _hoisted_1$c, [
+      createElementVNode("img", { src: _ctx.setIcon }, null, 8, _hoisted_2$8)
     ])) : createCommentVNode("v-if", true),
     renderSlot(_ctx.$slots, "default")
   ], 2);
 }
-var VTag = /* @__PURE__ */ _export_sfc(_sfc_main$9, [["render", _sfc_render$7], ["__file", "/home/debora/www/vert_design_system_ui/src/components/tag/VTag.vue"]]);
+var VTag = /* @__PURE__ */ _export_sfc(_sfc_main$d, [["render", _sfc_render$7], ["__file", "/home/debora/www/vert_design_system_ui/src/components/tag/VTag.vue"]]);
 class EDate extends Date {
   get fullYear() {
     return this.getFullYear();
@@ -847,13 +845,138 @@ var getLanguage = {
     }
   }
 };
+var VDropdown_scss_vue_type_style_index_0_src_12d7f8ce_lang = "";
+const _hoisted_1$b = { key: 0 };
+const _hoisted_2$7 = { key: 1 };
+const _hoisted_3$6 = ["for"];
+const _hoisted_4$3 = { class: "v-dropdow__options" };
+const _hoisted_5$1 = ["value", "id", "type"];
+const _hoisted_6$1 = ["for"];
+const _sfc_main$c = defineComponent({
+  __name: "VDropdown",
+  props: {
+    id: { type: String, required: false },
+    name: { type: String, required: false, default: "exemplo" },
+    placeholder: { type: String, required: false, default: "Selecione" },
+    label: { type: String, required: false },
+    options: { type: Array, required: true, default: () => [] },
+    required: { type: Boolean, required: false },
+    disable: { type: Boolean, required: false },
+    size: { type: String, required: false },
+    modelValue: { type: null, required: false, default: [] },
+    borderNone: { type: Boolean, required: false },
+    multiple: { type: Boolean, required: false, default: false },
+    type: { type: String, required: false, default: "1" }
+  },
+  emits: ["onChange", "update:modelValue"],
+  setup(__props, { emit }) {
+    const props = __props;
+    const setMultiple = computed(
+      () => props.multiple ? "checkbox" : "radio"
+    );
+    const showValue = computed(() => {
+      if (valueOption.value.length == 0) {
+        return props.placeholder;
+      }
+      if (!props.multiple) {
+        const option = props.options.find(
+          (element) => element.value == valueOption.value
+        );
+        return option == null ? void 0 : option.label;
+      } else {
+        let options = [];
+        valueOption.value.forEach((item) => {
+          const find = props.options.find((element) => element.value == item);
+          options.push(find);
+        });
+        return options;
+      }
+    });
+    const valueOption = ref(props.modelValue);
+    const showOptions = ref(false);
+    function selectChange() {
+      emit("onChange", valueOption.value);
+      emit("update:modelValue", valueOption.value);
+    }
+    const setTypeStyle = computed(() => {
+      if (props.type == "2") {
+        return "v-dropdow__style--2";
+      }
+      return "";
+    });
+    return (_ctx, _cache) => {
+      return openBlock(), createElementBlock(Fragment, null, [
+        createElementVNode("div", {
+          class: normalizeClass(["v-dropdow", unref(setTypeStyle)])
+        }, [
+          createElementVNode("div", {
+            class: "v-dropdow__input",
+            onClick: _cache[0] || (_cache[0] = ($event) => showOptions.value = !showOptions.value)
+          }, [
+            !__props.multiple || unref(showValue) == __props.placeholder ? (openBlock(), createElementBlock("span", _hoisted_1$b, toDisplayString(unref(showValue)), 1)) : (openBlock(), createElementBlock("span", _hoisted_2$7, [
+              (openBlock(true), createElementBlock(Fragment, null, renderList(unref(showValue), (selected, index) => {
+                return openBlock(), createBlock(VTag, {
+                  status: "secondary",
+                  square: "",
+                  key: index
+                }, {
+                  default: withCtx(() => [
+                    createTextVNode(toDisplayString(selected.label) + " ", 1),
+                    createElementVNode("label", {
+                      class: "icon--close",
+                      for: __props.name + "-" + selected.value
+                    }, null, 8, _hoisted_3$6)
+                  ]),
+                  _: 2
+                }, 1024);
+              }), 128))
+            ])),
+            createElementVNode("div", {
+              class: normalizeClass(["v-dropdow__input--arrow", { "v-dropdow__input--arrow--open": showOptions.value }])
+            }, null, 2)
+          ]),
+          withDirectives(createElementVNode("div", _hoisted_4$3, [
+            createElementVNode("ul", null, [
+              (openBlock(true), createElementBlock(Fragment, null, renderList(__props.options, (option) => {
+                return openBlock(), createElementBlock("li", null, [
+                  withDirectives(createElementVNode("input", {
+                    "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => valueOption.value = $event),
+                    name: "option",
+                    value: option.value,
+                    id: __props.name + "-" + option.value,
+                    type: unref(setMultiple),
+                    onChange: _cache[2] || (_cache[2] = ($event) => selectChange())
+                  }, null, 40, _hoisted_5$1), [
+                    [vModelDynamic, valueOption.value]
+                  ]),
+                  createElementVNode("label", {
+                    for: __props.name + "-" + option.value
+                  }, toDisplayString(option.label), 9, _hoisted_6$1)
+                ]);
+              }), 256))
+            ])
+          ], 512), [
+            [vShow, showOptions.value]
+          ])
+        ], 2),
+        withDirectives(createElementVNode("div", {
+          class: "v-dropdow__fullscreen",
+          onClick: _cache[3] || (_cache[3] = ($event) => showOptions.value = !showOptions.value)
+        }, null, 512), [
+          [vShow, showOptions.value]
+        ])
+      ], 64);
+    };
+  }
+});
+var VDropdown = /* @__PURE__ */ _export_sfc(_sfc_main$c, [["__file", "/home/debora/www/vert_design_system_ui/src/components/dropdown/VDropdown.vue"]]);
 var VMonthYearSelect_vue_vue_type_style_index_0_scoped_true_lang = "";
-const _hoisted_1$8 = { class: "vmonth-year" };
-const _sfc_main$8 = /* @__PURE__ */ defineComponent({
+const _hoisted_1$a = { class: "vmonth-year" };
+const _sfc_main$b = /* @__PURE__ */ defineComponent({
   __name: "VMonthYearSelect",
   emits: ["updated"],
   setup(__props, { emit }) {
-    const monthYearSelected = ref("2022-11");
+    const monthYearSelected = ref(String(`${new Date().getFullYear()}-${new Date().getMonth() + 1}`));
     const months = computed(() => {
       const months2 = [];
       const currentYear = new Date().getFullYear();
@@ -878,11 +1001,12 @@ const _sfc_main$8 = /* @__PURE__ */ defineComponent({
       emit("updated", period);
     };
     return (_ctx, _cache) => {
-      return openBlock(), createElementBlock("div", _hoisted_1$8, [
-        createVNode(VSelect, {
+      return openBlock(), createElementBlock("div", _hoisted_1$a, [
+        createVNode(VDropdown, {
           options: unref(months),
-          borderNone: "",
+          type: "2",
           modelValue: monthYearSelected.value,
+          "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => monthYearSelected.value = $event),
           onOnChange: onChangeMonth,
           size: "lg"
         }, null, 8, ["options", "modelValue"])
@@ -890,262 +1014,50 @@ const _sfc_main$8 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-var VMonthYearPicker = /* @__PURE__ */ _export_sfc(_sfc_main$8, [["__scopeId", "data-v-59a07538"], ["__file", "/home/debora/www/vert_design_system_ui/src/components/date/VMonthYearSelect.vue"]]);
+var VMonthYearPicker = /* @__PURE__ */ _export_sfc(_sfc_main$b, [["__scopeId", "data-v-59a07538"], ["__file", "/home/debora/www/vert_design_system_ui/src/components/date/VMonthYearSelect.vue"]]);
 var VCalendarHeaderMini_vue_vue_type_style_index_0_scoped_true_lang = "";
-const _sfc_main$7 = defineComponent({
+const _sfc_main$a = defineComponent({
   name: "VCalendarHeaderMini",
   components: {
     VMonthYearPicker
   },
   mixins: [getLanguage],
-  props: {
-    config: {
-      type: Object,
-      default: () => ({})
-    },
-    mode: {
-      type: String$1,
-      validator: (value) => ["month", "week", "day", "personalized", "mini"].includes(value),
-      default: "week"
-    },
-    time: {
-      type: Object,
-      default: () => ({})
-    },
-    period: {
-      type: Object,
-      required: true
-    }
-  },
-  emits: ["change-mode", "updated-period"],
+  emits: ["updated-period"],
   data() {
     return {
       currentPeriod: this.period
     };
   },
-  computed: {
-    periodName() {
-      var _a, _b, _c, _d;
-      if (this.mode === "week") {
-        const startMonth = this.time.getLocalizedNameOfMonth(
-          (_a = this.currentPeriod) == null ? void 0 : _a.start,
-          "long"
-        );
-        const endMonth = this.time.getLocalizedNameOfMonth(
-          (_b = this.currentPeriod) == null ? void 0 : _b.end,
-          "long"
-        );
-        const fullYear = (_c = this.currentPeriod) == null ? void 0 : _c.start.getFullYear();
-        return startMonth === endMonth ? `${String$1.capitalizeFirstLetter(startMonth)} - ${fullYear}` : `${String$1.capitalizeFirstLetter(startMonth)} - ${String$1.capitalizeFirstLetter(endMonth)}`;
-      }
-      return String$1.capitalizeFirstLetter(this.time.getLocalizedNameOfMonth(
-        (_d = this.currentPeriod) == null ? void 0 : _d.selectedDate,
-        "long"
-      )) + " - " + this.currentPeriod.selectedDate.getFullYear();
-    },
-    modeName() {
-      var _a;
-      return this.getLanguage(
-        this.languageKeys["mini"],
-        (_a = this.time) == null ? void 0 : _a.CALENDAR_LOCALE
-      );
-    }
-  },
   methods: {
-    handlePeriodChange(value) {
-      this.currentPeriod = value;
-      this.$emit("updated-period", value);
+    handlePeriodChange(period) {
+      this.currentPeriod = period;
+      this.$emit("updated-period", period);
     }
   }
 });
-const _hoisted_1$7 = { class: "calendar-header" };
-const _hoisted_2$5 = { class: "calendar-header__period" };
+const _hoisted_1$9 = { class: "calendar-header" };
+const _hoisted_2$6 = { class: "calendar-header__period" };
 function _sfc_render$6(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_VMonthYearPicker = resolveComponent("VMonthYearPicker");
-  return openBlock(), createElementBlock("div", _hoisted_1$7, [
-    createElementVNode("div", _hoisted_2$5, [
+  return openBlock(), createElementBlock("div", _hoisted_1$9, [
+    createElementVNode("div", _hoisted_2$6, [
       createVNode(_component_VMonthYearPicker, {
         ref: "periodSelect",
-        mode: _ctx.mode,
-        "time-prop": _ctx.time,
-        "period-prop": _ctx.period,
         onUpdated: _ctx.handlePeriodChange
-      }, null, 8, ["mode", "time-prop", "period-prop", "onUpdated"])
+      }, null, 8, ["onUpdated"])
     ])
   ]);
 }
-var AppHeaderMini = /* @__PURE__ */ _export_sfc(_sfc_main$7, [["render", _sfc_render$6], ["__scopeId", "data-v-16b59cd2"], ["__file", "/home/debora/www/vert_design_system_ui/src/components/calendar/VCalendarHeaderMini.vue"]]);
-const DATE_TIME_PATTERN = /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}$/;
-const DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
-const ITENS_COLOR = {
-  yellow: "#E6CF42",
-  primary: "#00747A",
-  green: "#41d394",
-  red: "#F07363",
-  orange: "#F4A053",
-  purple: "#885DE2",
-  blue: "#8CB3FF",
-  black: "#171919"
-};
-class Errors {
-  static checkEventProperties(event) {
-    if (!event.id)
-      console.warn(
-        `${this.PREFIX} o campo 'id' \xE9 obrigat\xF3rio 
-${this.SUFFIX}`
-      );
-    if (!event.title)
-      console.warn(
-        `${this.PREFIX}o campo 'title' \xE9 obrigat\xF3rio 
-${this.SUFFIX}`
-      );
-    if (!event.time)
-      console.warn(
-        `${this.PREFIX} required event property 'time' is missing 
-${this.SUFFIX}`
-      );
-    if (!event.time.start)
-      console.warn(
-        `${this.PREFIX} required event property 'time.start' is missing 
-${this.SUFFIX}`
-      );
-    if (!event.time.end)
-      console.warn(
-        `${this.PREFIX} required event property 'time.end' is missing 
-${this.SUFFIX}`
-      );
-    if (!["number", "string"].includes(typeof event.id))
-      console.warn(
-        `${this.PREFIX} event property 'id' expects a string or a number, received ${typeof event.id} 
-${this.SUFFIX}`
-      );
-    if (typeof event.title !== "string")
-      console.warn(
-        `${this.PREFIX} event property 'title' expects a string, received ${typeof event.title} 
-${this.SUFFIX}`
-      );
-    if (!DATE_TIME_PATTERN.test(event.time.start) && !DATE_PATTERN.test(event.time.start))
-      console.warn(
-        `${this.PREFIX} event property 'time.start' expects a string formatted like 'YYYY-MM-DD hh:mm', or 'YYYY-MM-DD', received ${event.time.start} 
-${this.SUFFIX}`
-      );
-    if (!DATE_TIME_PATTERN.test(event.time.end) && !DATE_PATTERN.test(event.time.end))
-      console.warn(
-        `${this.PREFIX} event property 'time.end' expects a string formatted like 'YYYY-MM-DD hh:mm',  or 'YYYY-MM-DD', received ${event.time.end} 
-${this.SUFFIX}`
-      );
-  }
-  static checkConfig(config) {
-    if (config.locale && !/^[a-z]{2}-[A-Z]{2}$/.test(config.locale))
-      console.warn(
-        `${this.PREFIX} config.locale expects a string of format xx-XX, received: ${config.locale}`
-      );
-    if (config.defaultMode && !["month", "week", "day"].some((mode) => mode === config.defaultMode))
-      console.warn(
-        `${this.PREFIX} config.defaultMode expects either one of the values "day", "week" or "month"`
-      );
-  }
-}
-__publicField(Errors, "PREFIX", "[VCalendar warning]");
-__publicField(Errors, "SUFFIX", "");
-var FullDayEvent_vue_vue_type_style_index_0_scoped_true_lang = "";
-const _sfc_main$6 = defineComponent({
-  name: "FullDayEvent",
-  props: {
-    scheduleEvent: {
-      type: Object,
-      default: null
-    },
-    config: {
-      type: Object,
-      required: true
-    },
-    mode: {
-      type: String,
-      required: true
-    }
-  },
-  emits: ["event-was-clicked"],
-  data() {
-    return {
-      colors: ITENS_COLOR,
-      eventColor: "#fff",
-      eventBackgroundColor: "",
-      eventElementIdPrefix: "week-carousel__event-id-"
-    };
-  },
-  computed: {
-    eventWidth() {
-      if (this.mode !== "day")
-        return `calc(${this.scheduleEvent.nDays * 100}% - 6px)`;
-      return "calc(100% - 6px)";
-    }
-  },
-  mounted() {
-    this.setColors();
-  },
-  methods: {
-    setColors() {
-      var _a, _b, _c;
-      if (((_a = this.scheduleEvent) == null ? void 0 : _a.colorScheme) && ((_b = this.config.style) == null ? void 0 : _b.colorSchemes) && this.config.style.colorSchemes[this.scheduleEvent.colorScheme]) {
-        this.eventColor = this.config.style.colorSchemes[this.scheduleEvent.colorScheme].color;
-        return this.eventBackgroundColor = this.config.style.colorSchemes[this.scheduleEvent.colorScheme].backgroundColor;
-      }
-      if ((_c = this.scheduleEvent) == null ? void 0 : _c.color) {
-        this.eventColor = "#fff";
-        return this.eventBackgroundColor = this.colors[this.scheduleEvent.color];
-      }
-      return this.eventBackgroundColor = this.colors.blue;
-    },
-    handleClickOnEvent() {
-      const eventElement = document.getElementById(
-        this.eventElementIdPrefix + this.scheduleEvent.id
-      );
-      this.$emit("event-was-clicked", {
-        clickedEvent: this.scheduleEvent,
-        eventElement
-      });
-    }
-  }
-});
-const _hoisted_1$6 = ["id"];
-const _hoisted_2$4 = {
-  key: 1,
-  class: "week-carousel__event"
-};
-function _sfc_render$5(_ctx, _cache, $props, $setup, $data, $options) {
-  return _ctx.scheduleEvent ? (openBlock(), createElementBlock("div", {
-    key: 0,
-    id: `${_ctx.eventElementIdPrefix}${_ctx.scheduleEvent.id}`,
-    class: "week-carousel__event is-event",
-    style: normalizeStyle({
-      width: _ctx.eventWidth,
-      color: _ctx.eventColor,
-      backgroundColor: _ctx.eventBackgroundColor,
-      zIndex: 1
-    }),
-    onClick: _cache[0] || (_cache[0] = (...args) => _ctx.handleClickOnEvent && _ctx.handleClickOnEvent(...args))
-  }, toDisplayString(_ctx.scheduleEvent.title), 13, _hoisted_1$6)) : (openBlock(), createElementBlock("div", _hoisted_2$4));
-}
-var FullDayEvent = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["render", _sfc_render$5], ["__scopeId", "data-v-113e4e64"], ["__file", "/home/debora/www/vert_design_system_ui/src/components/calendar/mini/FullDayEvent.vue"]]);
+var AppHeaderMini = /* @__PURE__ */ _export_sfc(_sfc_main$a, [["render", _sfc_render$6], ["__scopeId", "data-v-16b59cd2"], ["__file", "/home/debora/www/vert_design_system_ui/src/components/calendar/VCalendarHeaderMini.vue"]]);
 var WeekCarousel_vue_vue_type_style_index_0_scoped_true_lang = "";
-const _sfc_main$5 = defineComponent({
+const _sfc_main$9 = defineComponent({
   name: "Weekcarousel",
-  components: { FullDayEvent },
   props: {
     days: {
       type: Array,
       required: true
     },
     time: {
-      type: Object,
-      required: true
-    },
-    fullDayEvents: {
-      type: Array,
-      default: () => []
-    },
-    config: {
       type: Object,
       required: true
     }
@@ -1174,14 +1086,12 @@ const _sfc_main$5 = defineComponent({
     }
   }
 });
-const _hoisted_1$5 = { class: "week-carousel" };
-const _hoisted_2$3 = ["onClick"];
-const _hoisted_3$2 = { class: "week-carousel__day-name" };
-const _hoisted_4$1 = { class: "week-carousel__date" };
-const _hoisted_5$1 = { class: "week-carousel__events" };
-function _sfc_render$4(_ctx, _cache, $props, $setup, $data, $options) {
-  const _component_FullDayEvent = resolveComponent("FullDayEvent");
-  return openBlock(), createElementBlock("div", _hoisted_1$5, [
+const _hoisted_1$8 = { class: "week-carousel" };
+const _hoisted_2$5 = ["onClick"];
+const _hoisted_3$5 = { class: "week-carousel__day-name" };
+const _hoisted_4$2 = { class: "week-carousel__date" };
+function _sfc_render$5(_ctx, _cache, $props, $setup, $data, $options) {
+  return openBlock(), createElementBlock("div", _hoisted_1$8, [
     (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.days, (day, dayIndex) => {
       return openBlock(), createElementBlock("div", {
         key: dayIndex,
@@ -1190,37 +1100,20 @@ function _sfc_render$4(_ctx, _cache, $props, $setup, $data, $options) {
         }, { "is-selected": day.dateTimeString.substring(0, 10) === _ctx.selectedDay }]]),
         onClick: ($event) => _ctx.onHandleDayWasClicked(day)
       }, [
-        createElementVNode("div", _hoisted_3$2, toDisplayString(day.dayName.substring(0, 3)), 1),
-        createElementVNode("div", _hoisted_4$1, toDisplayString(_ctx.getDaysDate(day)), 1),
-        createElementVNode("div", _hoisted_5$1, [
-          (openBlock(true), createElementBlock(Fragment, null, renderList(day.fullDayEvents, (event, key) => {
-            return openBlock(), createElementBlock(Fragment, { key }, [
-              key !== "date" ? (openBlock(), createBlock(_component_FullDayEvent, {
-                key: 0,
-                "schedule-event": typeof event === "object" ? event : null,
-                config: _ctx.config,
-                mode: "week",
-                onEventWasClicked: _cache[0] || (_cache[0] = ($event) => _ctx.$emit("event-was-clicked", $event))
-              }, null, 8, ["schedule-event", "config"])) : createCommentVNode("v-if", true)
-            ], 64);
-          }), 128))
-        ])
-      ], 10, _hoisted_2$3);
+        createElementVNode("div", _hoisted_3$5, toDisplayString(day.dayName.substring(0, 3)), 1),
+        createElementVNode("div", _hoisted_4$2, toDisplayString(_ctx.getDaysDate(day)), 1)
+      ], 10, _hoisted_2$5);
     }), 128))
   ]);
 }
-var WeekCarousel = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["render", _sfc_render$4], ["__scopeId", "data-v-5d140c4b"], ["__file", "/home/debora/www/vert_design_system_ui/src/components/calendar/mini/WeekCarousel.vue"]]);
+var WeekCarousel = /* @__PURE__ */ _export_sfc(_sfc_main$9, [["render", _sfc_render$5], ["__scopeId", "data-v-5d140c4b"], ["__file", "/home/debora/www/vert_design_system_ui/src/components/calendar/mini/WeekCarousel.vue"]]);
 var Mini_vue_vue_type_style_index_0_scoped_true_lang = "";
-const _hoisted_1$4 = { class: "vcalendar-mini" };
-const _hoisted_2$2 = { class: "vcalendar-mini--week" };
-const _hoisted_3$1 = { class: "vcalendar-mini--day" };
-const _sfc_main$4 = /* @__PURE__ */ defineComponent({
+const _hoisted_1$7 = { class: "vcalendar-mini" };
+const _hoisted_2$4 = { class: "vcalendar-mini--week" };
+const _hoisted_3$4 = { class: "vcalendar-mini--day" };
+const _sfc_main$8 = /* @__PURE__ */ defineComponent({
   __name: "Mini",
   props: {
-    config: {
-      type: Object,
-      required: true
-    },
     time: {
       type: Object,
       required: true
@@ -1229,32 +1122,18 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
       type: Object,
       required: true
     },
-    eventsProp: {
-      type: Array,
-      default: () => []
-    },
     nDays: {
       type: Number,
       default: 7
     }
   },
   emits: {
-    "event-was-clicked": (event) => true,
     "day-was-clicked": (day) => true
   },
   setup(__props, { emit: emits }) {
     const props = __props;
     const days = ref([]);
-    const selectedEvent = ref(null);
-    const selectedEventElement = ref(null);
-    const events = ref(props.eventsProp);
-    const fullDayEvents = ref([]);
     const dayNameSelected = ref("");
-    const handleClickOnEvent = (event, element) => {
-      selectedEvent.value = event;
-      selectedEventElement.value = element;
-      emits("event-was-clicked", event);
-    };
     const setDays = () => {
       const days_ = props.time.getCalendarWeekDateObjects(props.period.start).map((day) => {
         const dayName = props.time.getLocalizedNameOfWeekday(day, "long");
@@ -1262,32 +1141,12 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
         if (props.time.dateIsToday(day)) {
           getDateAndDayLongName(day, true);
         }
-        const events_ = events.value.filter((event) => {
-          const eventIsInDay = event.time.start.substring(0, 11) === dateTimeString.substring(0, 11);
-          let eventIsInDayBoundaries = true;
-          return eventIsInDay && eventIsInDayBoundaries;
-        });
-        return { dayName, dateTimeString, events: events_ };
+        return { dayName, dateTimeString };
       });
-      if (props.nDays === 5 && props.time.FIRST_DAY_OF_WEEK === "monday") {
-        days_.splice(5, 2);
-        fullDayEvents.value.splice(5, 2);
-      } else if (props.nDays === 5 && props.time.FIRST_DAY_OF_WEEK === "sunday") {
-        days_.splice(6, 1);
-        fullDayEvents.value.splice(6, 1);
-        days_.splice(0, 1);
-        fullDayEvents.value.splice(0, 1);
-      }
       days.value = days_;
-    };
-    const mergeFullDayEventsIntoDays = () => {
-      for (const [dayIndex] of days.value.entries()) {
-        days.value[dayIndex].fullDayEvents = fullDayEvents.value[dayIndex];
-      }
     };
     const setInitialEvents = () => {
       setDays();
-      mergeFullDayEventsIntoDays();
     };
     const getDateAndDayLongName = (day, isToday = false) => {
       const { date } = props.time.getAllVariablesFromDateTimeString(props.time.getDateTimeStringFromDate(day, "start"));
@@ -1304,35 +1163,28 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
       setInitialEvents();
     });
     return (_ctx, _cache) => {
-      return openBlock(), createElementBlock("div", _hoisted_1$4, [
-        createElementVNode("div", _hoisted_2$2, [
+      return openBlock(), createElementBlock("div", _hoisted_1$7, [
+        createElementVNode("div", _hoisted_2$4, [
           createVNode(WeekCarousel, {
             days: days.value,
             time: __props.time,
-            "full-day-events": fullDayEvents.value,
-            config: __props.config,
-            onEventWasClicked: handleClickOnEvent,
             onDayWasClicked: handleDayWasClicked
-          }, null, 8, ["days", "time", "full-day-events", "config"])
+          }, null, 8, ["days", "time"])
         ]),
-        createElementVNode("div", _hoisted_3$1, toDisplayString(dayNameSelected.value), 1)
+        createElementVNode("div", _hoisted_3$4, toDisplayString(dayNameSelected.value), 1)
       ]);
     };
   }
 });
-var Mini = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["__scopeId", "data-v-7d7d84ae"], ["__file", "/home/debora/www/vert_design_system_ui/src/components/calendar/mini/Mini.vue"]]);
+var Mini = /* @__PURE__ */ _export_sfc(_sfc_main$8, [["__scopeId", "data-v-7d7d84ae"], ["__file", "/home/debora/www/vert_design_system_ui/src/components/calendar/mini/Mini.vue"]]);
 var VCalendarMini_vue_vue_type_style_index_0_lang = "";
-const _sfc_main$3 = defineComponent({
+const _sfc_main$7 = defineComponent({
   name: "VCalendarMini",
   components: {
     AppHeaderMini,
     Mini
   },
   props: {
-    config: {
-      type: Object,
-      default: () => ({})
-    },
     events: {
       type: Array,
       default: () => []
@@ -1351,7 +1203,6 @@ const _sfc_main$3 = defineComponent({
     "day-was-clicked"
   ],
   data() {
-    var _a, _b, _c, _d, _e;
     return {
       wasInitialized: 0,
       period: {
@@ -1363,37 +1214,8 @@ const _sfc_main$3 = defineComponent({
         nDays: 7
       },
       mode: "mini",
-      time: new Time(
-        (_b = (_a = this.config) == null ? void 0 : _a.week) == null ? void 0 : _b.startsOn,
-        ((_c = this.config) == null ? void 0 : _c.locale) || null
-      ),
-      fontFamily: ((_e = (_d = this.config) == null ? void 0 : _d.style) == null ? void 0 : _e.fontFamily) || "'Lato",
-      calendarWidth: 0,
-      eventRenderingKey: 0,
-      eventsDataProperty: this.events || []
+      time: new Time()
     };
-  },
-  watch: {
-    events: {
-      deep: true,
-      handler(newVal, oldVal) {
-        if (JSON.stringify(newVal) !== JSON.stringify(oldVal)) {
-          this.eventsDataProperty = newVal;
-          this.eventRenderingKey = this.eventRenderingKey + 1;
-        }
-        if (this.config.isSilent)
-          return;
-        this.events.forEach((e) => Errors.checkEventProperties(e));
-      },
-      immediate: true
-    },
-    config: {
-      deep: true,
-      handler(value) {
-        Errors.checkConfig(value);
-      },
-      immediate: true
-    }
   },
   mounted() {
     this.setConfigOnMount();
@@ -1409,57 +1231,1380 @@ const _sfc_main$3 = defineComponent({
       );
       this.period.start = currentWeek[0];
       this.period.end = currentWeek[6];
-    },
-    handleEventWasUpdated(calendarEvent, eventType) {
-      const newEvents = this.eventsDataProperty.filter(
-        (e) => e.id !== calendarEvent.id
-      );
-      this.eventsDataProperty = [calendarEvent, ...newEvents];
     }
   }
 });
-const _hoisted_1$3 = { class: "calendar-root-wrapper" };
-const _hoisted_2$1 = {
+const _hoisted_1$6 = { class: "calendar-root-wrapper" };
+const _hoisted_2$3 = { class: "calendar-root mode-is-mini" };
+const _hoisted_3$3 = {
   key: 0,
   class: "top-bar-loader"
 };
-function _sfc_render$3(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$4(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_AppHeaderMini = resolveComponent("AppHeaderMini");
   const _component_Mini = resolveComponent("Mini");
-  return openBlock(), createElementBlock("div", _hoisted_1$3, [
-    createElementVNode("div", {
-      class: normalizeClass(["calendar-root", {
-        "mode-is-mini": _ctx.mode === "mini",
-        "vcalendar-is-small": _ctx.calendarWidth < 700
-      }])
-    }, [
+  return openBlock(), createElementBlock("div", _hoisted_1$6, [
+    createElementVNode("div", _hoisted_2$3, [
       createVNode(Transition, { name: "loading" }, {
         default: withCtx(() => [
-          _ctx.isLoading ? (openBlock(), createElementBlock("div", _hoisted_2$1)) : createCommentVNode("v-if", true)
+          _ctx.isLoading ? (openBlock(), createElementBlock("div", _hoisted_3$3)) : createCommentVNode("v-if", true)
         ]),
         _: 1
       }),
       (openBlock(), createBlock(_component_AppHeaderMini, {
-        key: _ctx.wasInitialized + _ctx.mode + "-header",
-        config: _ctx.config,
-        mode: _ctx.mode,
-        time: _ctx.time,
-        period: _ctx.period
-      }, null, 8, ["config", "mode", "time", "period"])),
+        key: _ctx.wasInitialized + _ctx.mode + "-header"
+      })),
       (openBlock(), createBlock(_component_Mini, {
-        key: _ctx.period.start.getTime() + _ctx.period.end.getTime() + _ctx.eventRenderingKey,
-        "events-prop": _ctx.eventsDataProperty,
+        key: _ctx.period.start.getTime() + _ctx.period.end.getTime(),
         time: _ctx.time,
-        config: _ctx.config,
         period: _ctx.period,
         "n-days": _ctx.week.nDays,
-        onEventWasClicked: _cache[0] || (_cache[0] = ($event) => _ctx.$emit("event-was-clicked", $event)),
-        onDayWasClicked: _cache[1] || (_cache[1] = ($event) => _ctx.$emit("day-was-clicked", $event))
-      }, null, 8, ["events-prop", "time", "config", "period", "n-days"]))
-    ], 2)
+        onDayWasClicked: _cache[0] || (_cache[0] = ($event) => _ctx.$emit("day-was-clicked", $event))
+      }, null, 8, ["time", "period", "n-days"]))
+    ])
   ]);
 }
-var VCalendarMini = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["render", _sfc_render$3], ["__file", "/home/debora/www/vert_design_system_ui/src/components/calendar/VCalendarMini.vue"]]);
+var VCalendarMini = /* @__PURE__ */ _export_sfc(_sfc_main$7, [["render", _sfc_render$4], ["__file", "/home/debora/www/vert_design_system_ui/src/components/calendar/VCalendarMini.vue"]]);
+var _imports_0 = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+CiAgIDxwYXRoIGZpbGw9IiMwMDAwMDAiIGQ9Ik03LDEwSDEyVjE1SDdNMTksMTlINVY4SDE5TTE5LDNIMThWMUgxNlYzSDhWMUg2VjNINUMzLjg5LDMgMywzLjkgMyw1VjE5QTIsMiAwIDAsMCA1LDIxSDE5QTIsMiAwIDAsMCAyMSwxOVY1QTIsMiAwIDAsMCAxOSwzWiIgLz4KPC9zdmc+";
+const _sfc_main$6 = defineComponent({
+  name: "CalendarDay"
+});
+const _hoisted_1$5 = {
+  src: _imports_0,
+  width: "24"
+};
+function _sfc_render$3(_ctx, _cache, $props, $setup, $data, $options) {
+  return openBlock(), createElementBlock("img", _hoisted_1$5);
+}
+var IconCalendar = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["render", _sfc_render$3], ["__file", "/home/debora/www/vert_design_system_ui/src/components/icons/CalendarDay.vue"]]);
+/*!
+ * perfect-scrollbar v1.5.3
+ * Copyright 2021 Hyunje Jun, MDBootstrap and Contributors
+ * Licensed under MIT
+ */
+function get(element) {
+  return getComputedStyle(element);
+}
+function set(element, obj) {
+  for (var key in obj) {
+    var val = obj[key];
+    if (typeof val === "number") {
+      val = val + "px";
+    }
+    element.style[key] = val;
+  }
+  return element;
+}
+function div(className) {
+  var div2 = document.createElement("div");
+  div2.className = className;
+  return div2;
+}
+var elMatches = typeof Element !== "undefined" && (Element.prototype.matches || Element.prototype.webkitMatchesSelector || Element.prototype.mozMatchesSelector || Element.prototype.msMatchesSelector);
+function matches(element, query) {
+  if (!elMatches) {
+    throw new Error("No element matching method supported");
+  }
+  return elMatches.call(element, query);
+}
+function remove(element) {
+  if (element.remove) {
+    element.remove();
+  } else {
+    if (element.parentNode) {
+      element.parentNode.removeChild(element);
+    }
+  }
+}
+function queryChildren(element, selector) {
+  return Array.prototype.filter.call(
+    element.children,
+    function(child) {
+      return matches(child, selector);
+    }
+  );
+}
+var cls = {
+  main: "ps",
+  rtl: "ps__rtl",
+  element: {
+    thumb: function(x) {
+      return "ps__thumb-" + x;
+    },
+    rail: function(x) {
+      return "ps__rail-" + x;
+    },
+    consuming: "ps__child--consume"
+  },
+  state: {
+    focus: "ps--focus",
+    clicking: "ps--clicking",
+    active: function(x) {
+      return "ps--active-" + x;
+    },
+    scrolling: function(x) {
+      return "ps--scrolling-" + x;
+    }
+  }
+};
+var scrollingClassTimeout = { x: null, y: null };
+function addScrollingClass(i, x) {
+  var classList = i.element.classList;
+  var className = cls.state.scrolling(x);
+  if (classList.contains(className)) {
+    clearTimeout(scrollingClassTimeout[x]);
+  } else {
+    classList.add(className);
+  }
+}
+function removeScrollingClass(i, x) {
+  scrollingClassTimeout[x] = setTimeout(
+    function() {
+      return i.isAlive && i.element.classList.remove(cls.state.scrolling(x));
+    },
+    i.settings.scrollingThreshold
+  );
+}
+function setScrollingClassInstantly(i, x) {
+  addScrollingClass(i, x);
+  removeScrollingClass(i, x);
+}
+var EventElement = function EventElement2(element) {
+  this.element = element;
+  this.handlers = {};
+};
+var prototypeAccessors = { isEmpty: { configurable: true } };
+EventElement.prototype.bind = function bind(eventName, handler) {
+  if (typeof this.handlers[eventName] === "undefined") {
+    this.handlers[eventName] = [];
+  }
+  this.handlers[eventName].push(handler);
+  this.element.addEventListener(eventName, handler, false);
+};
+EventElement.prototype.unbind = function unbind(eventName, target) {
+  var this$1$1 = this;
+  this.handlers[eventName] = this.handlers[eventName].filter(function(handler) {
+    if (target && handler !== target) {
+      return true;
+    }
+    this$1$1.element.removeEventListener(eventName, handler, false);
+    return false;
+  });
+};
+EventElement.prototype.unbindAll = function unbindAll() {
+  for (var name in this.handlers) {
+    this.unbind(name);
+  }
+};
+prototypeAccessors.isEmpty.get = function() {
+  var this$1$1 = this;
+  return Object.keys(this.handlers).every(
+    function(key) {
+      return this$1$1.handlers[key].length === 0;
+    }
+  );
+};
+Object.defineProperties(EventElement.prototype, prototypeAccessors);
+var EventManager = function EventManager2() {
+  this.eventElements = [];
+};
+EventManager.prototype.eventElement = function eventElement(element) {
+  var ee = this.eventElements.filter(function(ee2) {
+    return ee2.element === element;
+  })[0];
+  if (!ee) {
+    ee = new EventElement(element);
+    this.eventElements.push(ee);
+  }
+  return ee;
+};
+EventManager.prototype.bind = function bind2(element, eventName, handler) {
+  this.eventElement(element).bind(eventName, handler);
+};
+EventManager.prototype.unbind = function unbind2(element, eventName, handler) {
+  var ee = this.eventElement(element);
+  ee.unbind(eventName, handler);
+  if (ee.isEmpty) {
+    this.eventElements.splice(this.eventElements.indexOf(ee), 1);
+  }
+};
+EventManager.prototype.unbindAll = function unbindAll2() {
+  this.eventElements.forEach(function(e) {
+    return e.unbindAll();
+  });
+  this.eventElements = [];
+};
+EventManager.prototype.once = function once(element, eventName, handler) {
+  var ee = this.eventElement(element);
+  var onceHandler = function(evt) {
+    ee.unbind(eventName, onceHandler);
+    handler(evt);
+  };
+  ee.bind(eventName, onceHandler);
+};
+function createEvent(name) {
+  if (typeof window.CustomEvent === "function") {
+    return new CustomEvent(name);
+  } else {
+    var evt = document.createEvent("CustomEvent");
+    evt.initCustomEvent(name, false, false, void 0);
+    return evt;
+  }
+}
+function processScrollDiff(i, axis, diff, useScrollingClass, forceFireReachEvent) {
+  if (useScrollingClass === void 0)
+    useScrollingClass = true;
+  if (forceFireReachEvent === void 0)
+    forceFireReachEvent = false;
+  var fields;
+  if (axis === "top") {
+    fields = [
+      "contentHeight",
+      "containerHeight",
+      "scrollTop",
+      "y",
+      "up",
+      "down"
+    ];
+  } else if (axis === "left") {
+    fields = [
+      "contentWidth",
+      "containerWidth",
+      "scrollLeft",
+      "x",
+      "left",
+      "right"
+    ];
+  } else {
+    throw new Error("A proper axis should be provided");
+  }
+  processScrollDiff$1(i, diff, fields, useScrollingClass, forceFireReachEvent);
+}
+function processScrollDiff$1(i, diff, ref2, useScrollingClass, forceFireReachEvent) {
+  var contentHeight = ref2[0];
+  var containerHeight = ref2[1];
+  var scrollTop = ref2[2];
+  var y = ref2[3];
+  var up = ref2[4];
+  var down = ref2[5];
+  if (useScrollingClass === void 0)
+    useScrollingClass = true;
+  if (forceFireReachEvent === void 0)
+    forceFireReachEvent = false;
+  var element = i.element;
+  i.reach[y] = null;
+  if (element[scrollTop] < 1) {
+    i.reach[y] = "start";
+  }
+  if (element[scrollTop] > i[contentHeight] - i[containerHeight] - 1) {
+    i.reach[y] = "end";
+  }
+  if (diff) {
+    element.dispatchEvent(createEvent("ps-scroll-" + y));
+    if (diff < 0) {
+      element.dispatchEvent(createEvent("ps-scroll-" + up));
+    } else if (diff > 0) {
+      element.dispatchEvent(createEvent("ps-scroll-" + down));
+    }
+    if (useScrollingClass) {
+      setScrollingClassInstantly(i, y);
+    }
+  }
+  if (i.reach[y] && (diff || forceFireReachEvent)) {
+    element.dispatchEvent(createEvent("ps-" + y + "-reach-" + i.reach[y]));
+  }
+}
+function toInt(x) {
+  return parseInt(x, 10) || 0;
+}
+function isEditable(el) {
+  return matches(el, "input,[contenteditable]") || matches(el, "select,[contenteditable]") || matches(el, "textarea,[contenteditable]") || matches(el, "button,[contenteditable]");
+}
+function outerWidth(element) {
+  var styles = get(element);
+  return toInt(styles.width) + toInt(styles.paddingLeft) + toInt(styles.paddingRight) + toInt(styles.borderLeftWidth) + toInt(styles.borderRightWidth);
+}
+var env = {
+  isWebKit: typeof document !== "undefined" && "WebkitAppearance" in document.documentElement.style,
+  supportsTouch: typeof window !== "undefined" && ("ontouchstart" in window || "maxTouchPoints" in window.navigator && window.navigator.maxTouchPoints > 0 || window.DocumentTouch && document instanceof window.DocumentTouch),
+  supportsIePointer: typeof navigator !== "undefined" && navigator.msMaxTouchPoints,
+  isChrome: typeof navigator !== "undefined" && /Chrome/i.test(navigator && navigator.userAgent)
+};
+function updateGeometry(i) {
+  var element = i.element;
+  var roundedScrollTop = Math.floor(element.scrollTop);
+  var rect = element.getBoundingClientRect();
+  i.containerWidth = Math.round(rect.width);
+  i.containerHeight = Math.round(rect.height);
+  i.contentWidth = element.scrollWidth;
+  i.contentHeight = element.scrollHeight;
+  if (!element.contains(i.scrollbarXRail)) {
+    queryChildren(element, cls.element.rail("x")).forEach(
+      function(el) {
+        return remove(el);
+      }
+    );
+    element.appendChild(i.scrollbarXRail);
+  }
+  if (!element.contains(i.scrollbarYRail)) {
+    queryChildren(element, cls.element.rail("y")).forEach(
+      function(el) {
+        return remove(el);
+      }
+    );
+    element.appendChild(i.scrollbarYRail);
+  }
+  if (!i.settings.suppressScrollX && i.containerWidth + i.settings.scrollXMarginOffset < i.contentWidth) {
+    i.scrollbarXActive = true;
+    i.railXWidth = i.containerWidth - i.railXMarginWidth;
+    i.railXRatio = i.containerWidth / i.railXWidth;
+    i.scrollbarXWidth = getThumbSize(
+      i,
+      toInt(i.railXWidth * i.containerWidth / i.contentWidth)
+    );
+    i.scrollbarXLeft = toInt(
+      (i.negativeScrollAdjustment + element.scrollLeft) * (i.railXWidth - i.scrollbarXWidth) / (i.contentWidth - i.containerWidth)
+    );
+  } else {
+    i.scrollbarXActive = false;
+  }
+  if (!i.settings.suppressScrollY && i.containerHeight + i.settings.scrollYMarginOffset < i.contentHeight) {
+    i.scrollbarYActive = true;
+    i.railYHeight = i.containerHeight - i.railYMarginHeight;
+    i.railYRatio = i.containerHeight / i.railYHeight;
+    i.scrollbarYHeight = getThumbSize(
+      i,
+      toInt(i.railYHeight * i.containerHeight / i.contentHeight)
+    );
+    i.scrollbarYTop = toInt(
+      roundedScrollTop * (i.railYHeight - i.scrollbarYHeight) / (i.contentHeight - i.containerHeight)
+    );
+  } else {
+    i.scrollbarYActive = false;
+  }
+  if (i.scrollbarXLeft >= i.railXWidth - i.scrollbarXWidth) {
+    i.scrollbarXLeft = i.railXWidth - i.scrollbarXWidth;
+  }
+  if (i.scrollbarYTop >= i.railYHeight - i.scrollbarYHeight) {
+    i.scrollbarYTop = i.railYHeight - i.scrollbarYHeight;
+  }
+  updateCss(element, i);
+  if (i.scrollbarXActive) {
+    element.classList.add(cls.state.active("x"));
+  } else {
+    element.classList.remove(cls.state.active("x"));
+    i.scrollbarXWidth = 0;
+    i.scrollbarXLeft = 0;
+    element.scrollLeft = i.isRtl === true ? i.contentWidth : 0;
+  }
+  if (i.scrollbarYActive) {
+    element.classList.add(cls.state.active("y"));
+  } else {
+    element.classList.remove(cls.state.active("y"));
+    i.scrollbarYHeight = 0;
+    i.scrollbarYTop = 0;
+    element.scrollTop = 0;
+  }
+}
+function getThumbSize(i, thumbSize) {
+  if (i.settings.minScrollbarLength) {
+    thumbSize = Math.max(thumbSize, i.settings.minScrollbarLength);
+  }
+  if (i.settings.maxScrollbarLength) {
+    thumbSize = Math.min(thumbSize, i.settings.maxScrollbarLength);
+  }
+  return thumbSize;
+}
+function updateCss(element, i) {
+  var xRailOffset = { width: i.railXWidth };
+  var roundedScrollTop = Math.floor(element.scrollTop);
+  if (i.isRtl) {
+    xRailOffset.left = i.negativeScrollAdjustment + element.scrollLeft + i.containerWidth - i.contentWidth;
+  } else {
+    xRailOffset.left = element.scrollLeft;
+  }
+  if (i.isScrollbarXUsingBottom) {
+    xRailOffset.bottom = i.scrollbarXBottom - roundedScrollTop;
+  } else {
+    xRailOffset.top = i.scrollbarXTop + roundedScrollTop;
+  }
+  set(i.scrollbarXRail, xRailOffset);
+  var yRailOffset = { top: roundedScrollTop, height: i.railYHeight };
+  if (i.isScrollbarYUsingRight) {
+    if (i.isRtl) {
+      yRailOffset.right = i.contentWidth - (i.negativeScrollAdjustment + element.scrollLeft) - i.scrollbarYRight - i.scrollbarYOuterWidth - 9;
+    } else {
+      yRailOffset.right = i.scrollbarYRight - element.scrollLeft;
+    }
+  } else {
+    if (i.isRtl) {
+      yRailOffset.left = i.negativeScrollAdjustment + element.scrollLeft + i.containerWidth * 2 - i.contentWidth - i.scrollbarYLeft - i.scrollbarYOuterWidth;
+    } else {
+      yRailOffset.left = i.scrollbarYLeft + element.scrollLeft;
+    }
+  }
+  set(i.scrollbarYRail, yRailOffset);
+  set(i.scrollbarX, {
+    left: i.scrollbarXLeft,
+    width: i.scrollbarXWidth - i.railBorderXWidth
+  });
+  set(i.scrollbarY, {
+    top: i.scrollbarYTop,
+    height: i.scrollbarYHeight - i.railBorderYWidth
+  });
+}
+function clickRail(i) {
+  i.element;
+  i.event.bind(i.scrollbarY, "mousedown", function(e) {
+    return e.stopPropagation();
+  });
+  i.event.bind(i.scrollbarYRail, "mousedown", function(e) {
+    var positionTop = e.pageY - window.pageYOffset - i.scrollbarYRail.getBoundingClientRect().top;
+    var direction = positionTop > i.scrollbarYTop ? 1 : -1;
+    i.element.scrollTop += direction * i.containerHeight;
+    updateGeometry(i);
+    e.stopPropagation();
+  });
+  i.event.bind(i.scrollbarX, "mousedown", function(e) {
+    return e.stopPropagation();
+  });
+  i.event.bind(i.scrollbarXRail, "mousedown", function(e) {
+    var positionLeft = e.pageX - window.pageXOffset - i.scrollbarXRail.getBoundingClientRect().left;
+    var direction = positionLeft > i.scrollbarXLeft ? 1 : -1;
+    i.element.scrollLeft += direction * i.containerWidth;
+    updateGeometry(i);
+    e.stopPropagation();
+  });
+}
+function dragThumb(i) {
+  bindMouseScrollHandler(i, [
+    "containerWidth",
+    "contentWidth",
+    "pageX",
+    "railXWidth",
+    "scrollbarX",
+    "scrollbarXWidth",
+    "scrollLeft",
+    "x",
+    "scrollbarXRail"
+  ]);
+  bindMouseScrollHandler(i, [
+    "containerHeight",
+    "contentHeight",
+    "pageY",
+    "railYHeight",
+    "scrollbarY",
+    "scrollbarYHeight",
+    "scrollTop",
+    "y",
+    "scrollbarYRail"
+  ]);
+}
+function bindMouseScrollHandler(i, ref2) {
+  var containerHeight = ref2[0];
+  var contentHeight = ref2[1];
+  var pageY = ref2[2];
+  var railYHeight = ref2[3];
+  var scrollbarY = ref2[4];
+  var scrollbarYHeight = ref2[5];
+  var scrollTop = ref2[6];
+  var y = ref2[7];
+  var scrollbarYRail = ref2[8];
+  var element = i.element;
+  var startingScrollTop = null;
+  var startingMousePageY = null;
+  var scrollBy = null;
+  function mouseMoveHandler(e) {
+    if (e.touches && e.touches[0]) {
+      e[pageY] = e.touches[0].pageY;
+    }
+    element[scrollTop] = startingScrollTop + scrollBy * (e[pageY] - startingMousePageY);
+    addScrollingClass(i, y);
+    updateGeometry(i);
+    e.stopPropagation();
+    if (e.type.startsWith("touch") && e.changedTouches.length > 1) {
+      e.preventDefault();
+    }
+  }
+  function mouseUpHandler() {
+    removeScrollingClass(i, y);
+    i[scrollbarYRail].classList.remove(cls.state.clicking);
+    i.event.unbind(i.ownerDocument, "mousemove", mouseMoveHandler);
+  }
+  function bindMoves(e, touchMode) {
+    startingScrollTop = element[scrollTop];
+    if (touchMode && e.touches) {
+      e[pageY] = e.touches[0].pageY;
+    }
+    startingMousePageY = e[pageY];
+    scrollBy = (i[contentHeight] - i[containerHeight]) / (i[railYHeight] - i[scrollbarYHeight]);
+    if (!touchMode) {
+      i.event.bind(i.ownerDocument, "mousemove", mouseMoveHandler);
+      i.event.once(i.ownerDocument, "mouseup", mouseUpHandler);
+      e.preventDefault();
+    } else {
+      i.event.bind(i.ownerDocument, "touchmove", mouseMoveHandler);
+    }
+    i[scrollbarYRail].classList.add(cls.state.clicking);
+    e.stopPropagation();
+  }
+  i.event.bind(i[scrollbarY], "mousedown", function(e) {
+    bindMoves(e);
+  });
+  i.event.bind(i[scrollbarY], "touchstart", function(e) {
+    bindMoves(e, true);
+  });
+}
+function keyboard(i) {
+  var element = i.element;
+  var elementHovered = function() {
+    return matches(element, ":hover");
+  };
+  var scrollbarFocused = function() {
+    return matches(i.scrollbarX, ":focus") || matches(i.scrollbarY, ":focus");
+  };
+  function shouldPreventDefault(deltaX, deltaY) {
+    var scrollTop = Math.floor(element.scrollTop);
+    if (deltaX === 0) {
+      if (!i.scrollbarYActive) {
+        return false;
+      }
+      if (scrollTop === 0 && deltaY > 0 || scrollTop >= i.contentHeight - i.containerHeight && deltaY < 0) {
+        return !i.settings.wheelPropagation;
+      }
+    }
+    var scrollLeft = element.scrollLeft;
+    if (deltaY === 0) {
+      if (!i.scrollbarXActive) {
+        return false;
+      }
+      if (scrollLeft === 0 && deltaX < 0 || scrollLeft >= i.contentWidth - i.containerWidth && deltaX > 0) {
+        return !i.settings.wheelPropagation;
+      }
+    }
+    return true;
+  }
+  i.event.bind(i.ownerDocument, "keydown", function(e) {
+    if (e.isDefaultPrevented && e.isDefaultPrevented() || e.defaultPrevented) {
+      return;
+    }
+    if (!elementHovered() && !scrollbarFocused()) {
+      return;
+    }
+    var activeElement = document.activeElement ? document.activeElement : i.ownerDocument.activeElement;
+    if (activeElement) {
+      if (activeElement.tagName === "IFRAME") {
+        activeElement = activeElement.contentDocument.activeElement;
+      } else {
+        while (activeElement.shadowRoot) {
+          activeElement = activeElement.shadowRoot.activeElement;
+        }
+      }
+      if (isEditable(activeElement)) {
+        return;
+      }
+    }
+    var deltaX = 0;
+    var deltaY = 0;
+    switch (e.which) {
+      case 37:
+        if (e.metaKey) {
+          deltaX = -i.contentWidth;
+        } else if (e.altKey) {
+          deltaX = -i.containerWidth;
+        } else {
+          deltaX = -30;
+        }
+        break;
+      case 38:
+        if (e.metaKey) {
+          deltaY = i.contentHeight;
+        } else if (e.altKey) {
+          deltaY = i.containerHeight;
+        } else {
+          deltaY = 30;
+        }
+        break;
+      case 39:
+        if (e.metaKey) {
+          deltaX = i.contentWidth;
+        } else if (e.altKey) {
+          deltaX = i.containerWidth;
+        } else {
+          deltaX = 30;
+        }
+        break;
+      case 40:
+        if (e.metaKey) {
+          deltaY = -i.contentHeight;
+        } else if (e.altKey) {
+          deltaY = -i.containerHeight;
+        } else {
+          deltaY = -30;
+        }
+        break;
+      case 32:
+        if (e.shiftKey) {
+          deltaY = i.containerHeight;
+        } else {
+          deltaY = -i.containerHeight;
+        }
+        break;
+      case 33:
+        deltaY = i.containerHeight;
+        break;
+      case 34:
+        deltaY = -i.containerHeight;
+        break;
+      case 36:
+        deltaY = i.contentHeight;
+        break;
+      case 35:
+        deltaY = -i.contentHeight;
+        break;
+      default:
+        return;
+    }
+    if (i.settings.suppressScrollX && deltaX !== 0) {
+      return;
+    }
+    if (i.settings.suppressScrollY && deltaY !== 0) {
+      return;
+    }
+    element.scrollTop -= deltaY;
+    element.scrollLeft += deltaX;
+    updateGeometry(i);
+    if (shouldPreventDefault(deltaX, deltaY)) {
+      e.preventDefault();
+    }
+  });
+}
+function wheel(i) {
+  var element = i.element;
+  function shouldPreventDefault(deltaX, deltaY) {
+    var roundedScrollTop = Math.floor(element.scrollTop);
+    var isTop = element.scrollTop === 0;
+    var isBottom = roundedScrollTop + element.offsetHeight === element.scrollHeight;
+    var isLeft = element.scrollLeft === 0;
+    var isRight = element.scrollLeft + element.offsetWidth === element.scrollWidth;
+    var hitsBound;
+    if (Math.abs(deltaY) > Math.abs(deltaX)) {
+      hitsBound = isTop || isBottom;
+    } else {
+      hitsBound = isLeft || isRight;
+    }
+    return hitsBound ? !i.settings.wheelPropagation : true;
+  }
+  function getDeltaFromEvent(e) {
+    var deltaX = e.deltaX;
+    var deltaY = -1 * e.deltaY;
+    if (typeof deltaX === "undefined" || typeof deltaY === "undefined") {
+      deltaX = -1 * e.wheelDeltaX / 6;
+      deltaY = e.wheelDeltaY / 6;
+    }
+    if (e.deltaMode && e.deltaMode === 1) {
+      deltaX *= 10;
+      deltaY *= 10;
+    }
+    if (deltaX !== deltaX && deltaY !== deltaY) {
+      deltaX = 0;
+      deltaY = e.wheelDelta;
+    }
+    if (e.shiftKey) {
+      return [-deltaY, -deltaX];
+    }
+    return [deltaX, deltaY];
+  }
+  function shouldBeConsumedByChild(target, deltaX, deltaY) {
+    if (!env.isWebKit && element.querySelector("select:focus")) {
+      return true;
+    }
+    if (!element.contains(target)) {
+      return false;
+    }
+    var cursor = target;
+    while (cursor && cursor !== element) {
+      if (cursor.classList.contains(cls.element.consuming)) {
+        return true;
+      }
+      var style = get(cursor);
+      if (deltaY && style.overflowY.match(/(scroll|auto)/)) {
+        var maxScrollTop = cursor.scrollHeight - cursor.clientHeight;
+        if (maxScrollTop > 0) {
+          if (cursor.scrollTop > 0 && deltaY < 0 || cursor.scrollTop < maxScrollTop && deltaY > 0) {
+            return true;
+          }
+        }
+      }
+      if (deltaX && style.overflowX.match(/(scroll|auto)/)) {
+        var maxScrollLeft = cursor.scrollWidth - cursor.clientWidth;
+        if (maxScrollLeft > 0) {
+          if (cursor.scrollLeft > 0 && deltaX < 0 || cursor.scrollLeft < maxScrollLeft && deltaX > 0) {
+            return true;
+          }
+        }
+      }
+      cursor = cursor.parentNode;
+    }
+    return false;
+  }
+  function mousewheelHandler(e) {
+    var ref2 = getDeltaFromEvent(e);
+    var deltaX = ref2[0];
+    var deltaY = ref2[1];
+    if (shouldBeConsumedByChild(e.target, deltaX, deltaY)) {
+      return;
+    }
+    var shouldPrevent = false;
+    if (!i.settings.useBothWheelAxes) {
+      element.scrollTop -= deltaY * i.settings.wheelSpeed;
+      element.scrollLeft += deltaX * i.settings.wheelSpeed;
+    } else if (i.scrollbarYActive && !i.scrollbarXActive) {
+      if (deltaY) {
+        element.scrollTop -= deltaY * i.settings.wheelSpeed;
+      } else {
+        element.scrollTop += deltaX * i.settings.wheelSpeed;
+      }
+      shouldPrevent = true;
+    } else if (i.scrollbarXActive && !i.scrollbarYActive) {
+      if (deltaX) {
+        element.scrollLeft += deltaX * i.settings.wheelSpeed;
+      } else {
+        element.scrollLeft -= deltaY * i.settings.wheelSpeed;
+      }
+      shouldPrevent = true;
+    }
+    updateGeometry(i);
+    shouldPrevent = shouldPrevent || shouldPreventDefault(deltaX, deltaY);
+    if (shouldPrevent && !e.ctrlKey) {
+      e.stopPropagation();
+      e.preventDefault();
+    }
+  }
+  if (typeof window.onwheel !== "undefined") {
+    i.event.bind(element, "wheel", mousewheelHandler);
+  } else if (typeof window.onmousewheel !== "undefined") {
+    i.event.bind(element, "mousewheel", mousewheelHandler);
+  }
+}
+function touch(i) {
+  if (!env.supportsTouch && !env.supportsIePointer) {
+    return;
+  }
+  var element = i.element;
+  function shouldPrevent(deltaX, deltaY) {
+    var scrollTop = Math.floor(element.scrollTop);
+    var scrollLeft = element.scrollLeft;
+    var magnitudeX = Math.abs(deltaX);
+    var magnitudeY = Math.abs(deltaY);
+    if (magnitudeY > magnitudeX) {
+      if (deltaY < 0 && scrollTop === i.contentHeight - i.containerHeight || deltaY > 0 && scrollTop === 0) {
+        return window.scrollY === 0 && deltaY > 0 && env.isChrome;
+      }
+    } else if (magnitudeX > magnitudeY) {
+      if (deltaX < 0 && scrollLeft === i.contentWidth - i.containerWidth || deltaX > 0 && scrollLeft === 0) {
+        return true;
+      }
+    }
+    return true;
+  }
+  function applyTouchMove(differenceX, differenceY) {
+    element.scrollTop -= differenceY;
+    element.scrollLeft -= differenceX;
+    updateGeometry(i);
+  }
+  var startOffset = {};
+  var startTime = 0;
+  var speed = {};
+  var easingLoop = null;
+  function getTouch(e) {
+    if (e.targetTouches) {
+      return e.targetTouches[0];
+    } else {
+      return e;
+    }
+  }
+  function shouldHandle(e) {
+    if (e.pointerType && e.pointerType === "pen" && e.buttons === 0) {
+      return false;
+    }
+    if (e.targetTouches && e.targetTouches.length === 1) {
+      return true;
+    }
+    if (e.pointerType && e.pointerType !== "mouse" && e.pointerType !== e.MSPOINTER_TYPE_MOUSE) {
+      return true;
+    }
+    return false;
+  }
+  function touchStart(e) {
+    if (!shouldHandle(e)) {
+      return;
+    }
+    var touch2 = getTouch(e);
+    startOffset.pageX = touch2.pageX;
+    startOffset.pageY = touch2.pageY;
+    startTime = new Date().getTime();
+    if (easingLoop !== null) {
+      clearInterval(easingLoop);
+    }
+  }
+  function shouldBeConsumedByChild(target, deltaX, deltaY) {
+    if (!element.contains(target)) {
+      return false;
+    }
+    var cursor = target;
+    while (cursor && cursor !== element) {
+      if (cursor.classList.contains(cls.element.consuming)) {
+        return true;
+      }
+      var style = get(cursor);
+      if (deltaY && style.overflowY.match(/(scroll|auto)/)) {
+        var maxScrollTop = cursor.scrollHeight - cursor.clientHeight;
+        if (maxScrollTop > 0) {
+          if (cursor.scrollTop > 0 && deltaY < 0 || cursor.scrollTop < maxScrollTop && deltaY > 0) {
+            return true;
+          }
+        }
+      }
+      if (deltaX && style.overflowX.match(/(scroll|auto)/)) {
+        var maxScrollLeft = cursor.scrollWidth - cursor.clientWidth;
+        if (maxScrollLeft > 0) {
+          if (cursor.scrollLeft > 0 && deltaX < 0 || cursor.scrollLeft < maxScrollLeft && deltaX > 0) {
+            return true;
+          }
+        }
+      }
+      cursor = cursor.parentNode;
+    }
+    return false;
+  }
+  function touchMove(e) {
+    if (shouldHandle(e)) {
+      var touch2 = getTouch(e);
+      var currentOffset = { pageX: touch2.pageX, pageY: touch2.pageY };
+      var differenceX = currentOffset.pageX - startOffset.pageX;
+      var differenceY = currentOffset.pageY - startOffset.pageY;
+      if (shouldBeConsumedByChild(e.target, differenceX, differenceY)) {
+        return;
+      }
+      applyTouchMove(differenceX, differenceY);
+      startOffset = currentOffset;
+      var currentTime = new Date().getTime();
+      var timeGap = currentTime - startTime;
+      if (timeGap > 0) {
+        speed.x = differenceX / timeGap;
+        speed.y = differenceY / timeGap;
+        startTime = currentTime;
+      }
+      if (shouldPrevent(differenceX, differenceY)) {
+        e.preventDefault();
+      }
+    }
+  }
+  function touchEnd() {
+    if (i.settings.swipeEasing) {
+      clearInterval(easingLoop);
+      easingLoop = setInterval(function() {
+        if (i.isInitialized) {
+          clearInterval(easingLoop);
+          return;
+        }
+        if (!speed.x && !speed.y) {
+          clearInterval(easingLoop);
+          return;
+        }
+        if (Math.abs(speed.x) < 0.01 && Math.abs(speed.y) < 0.01) {
+          clearInterval(easingLoop);
+          return;
+        }
+        if (!i.element) {
+          clearInterval(easingLoop);
+          return;
+        }
+        applyTouchMove(speed.x * 30, speed.y * 30);
+        speed.x *= 0.8;
+        speed.y *= 0.8;
+      }, 10);
+    }
+  }
+  if (env.supportsTouch) {
+    i.event.bind(element, "touchstart", touchStart);
+    i.event.bind(element, "touchmove", touchMove);
+    i.event.bind(element, "touchend", touchEnd);
+  } else if (env.supportsIePointer) {
+    if (window.PointerEvent) {
+      i.event.bind(element, "pointerdown", touchStart);
+      i.event.bind(element, "pointermove", touchMove);
+      i.event.bind(element, "pointerup", touchEnd);
+    } else if (window.MSPointerEvent) {
+      i.event.bind(element, "MSPointerDown", touchStart);
+      i.event.bind(element, "MSPointerMove", touchMove);
+      i.event.bind(element, "MSPointerUp", touchEnd);
+    }
+  }
+}
+var defaultSettings = function() {
+  return {
+    handlers: ["click-rail", "drag-thumb", "keyboard", "wheel", "touch"],
+    maxScrollbarLength: null,
+    minScrollbarLength: null,
+    scrollingThreshold: 1e3,
+    scrollXMarginOffset: 0,
+    scrollYMarginOffset: 0,
+    suppressScrollX: false,
+    suppressScrollY: false,
+    swipeEasing: true,
+    useBothWheelAxes: false,
+    wheelPropagation: true,
+    wheelSpeed: 1
+  };
+};
+var handlers = {
+  "click-rail": clickRail,
+  "drag-thumb": dragThumb,
+  keyboard,
+  wheel,
+  touch
+};
+var PerfectScrollbar = function PerfectScrollbar2(element, userSettings) {
+  var this$1$1 = this;
+  if (userSettings === void 0)
+    userSettings = {};
+  if (typeof element === "string") {
+    element = document.querySelector(element);
+  }
+  if (!element || !element.nodeName) {
+    throw new Error("no element is specified to initialize PerfectScrollbar");
+  }
+  this.element = element;
+  element.classList.add(cls.main);
+  this.settings = defaultSettings();
+  for (var key in userSettings) {
+    this.settings[key] = userSettings[key];
+  }
+  this.containerWidth = null;
+  this.containerHeight = null;
+  this.contentWidth = null;
+  this.contentHeight = null;
+  var focus = function() {
+    return element.classList.add(cls.state.focus);
+  };
+  var blur = function() {
+    return element.classList.remove(cls.state.focus);
+  };
+  this.isRtl = get(element).direction === "rtl";
+  if (this.isRtl === true) {
+    element.classList.add(cls.rtl);
+  }
+  this.isNegativeScroll = function() {
+    var originalScrollLeft = element.scrollLeft;
+    var result = null;
+    element.scrollLeft = -1;
+    result = element.scrollLeft < 0;
+    element.scrollLeft = originalScrollLeft;
+    return result;
+  }();
+  this.negativeScrollAdjustment = this.isNegativeScroll ? element.scrollWidth - element.clientWidth : 0;
+  this.event = new EventManager();
+  this.ownerDocument = element.ownerDocument || document;
+  this.scrollbarXRail = div(cls.element.rail("x"));
+  element.appendChild(this.scrollbarXRail);
+  this.scrollbarX = div(cls.element.thumb("x"));
+  this.scrollbarXRail.appendChild(this.scrollbarX);
+  this.scrollbarX.setAttribute("tabindex", 0);
+  this.event.bind(this.scrollbarX, "focus", focus);
+  this.event.bind(this.scrollbarX, "blur", blur);
+  this.scrollbarXActive = null;
+  this.scrollbarXWidth = null;
+  this.scrollbarXLeft = null;
+  var railXStyle = get(this.scrollbarXRail);
+  this.scrollbarXBottom = parseInt(railXStyle.bottom, 10);
+  if (isNaN(this.scrollbarXBottom)) {
+    this.isScrollbarXUsingBottom = false;
+    this.scrollbarXTop = toInt(railXStyle.top);
+  } else {
+    this.isScrollbarXUsingBottom = true;
+  }
+  this.railBorderXWidth = toInt(railXStyle.borderLeftWidth) + toInt(railXStyle.borderRightWidth);
+  set(this.scrollbarXRail, { display: "block" });
+  this.railXMarginWidth = toInt(railXStyle.marginLeft) + toInt(railXStyle.marginRight);
+  set(this.scrollbarXRail, { display: "" });
+  this.railXWidth = null;
+  this.railXRatio = null;
+  this.scrollbarYRail = div(cls.element.rail("y"));
+  element.appendChild(this.scrollbarYRail);
+  this.scrollbarY = div(cls.element.thumb("y"));
+  this.scrollbarYRail.appendChild(this.scrollbarY);
+  this.scrollbarY.setAttribute("tabindex", 0);
+  this.event.bind(this.scrollbarY, "focus", focus);
+  this.event.bind(this.scrollbarY, "blur", blur);
+  this.scrollbarYActive = null;
+  this.scrollbarYHeight = null;
+  this.scrollbarYTop = null;
+  var railYStyle = get(this.scrollbarYRail);
+  this.scrollbarYRight = parseInt(railYStyle.right, 10);
+  if (isNaN(this.scrollbarYRight)) {
+    this.isScrollbarYUsingRight = false;
+    this.scrollbarYLeft = toInt(railYStyle.left);
+  } else {
+    this.isScrollbarYUsingRight = true;
+  }
+  this.scrollbarYOuterWidth = this.isRtl ? outerWidth(this.scrollbarY) : null;
+  this.railBorderYWidth = toInt(railYStyle.borderTopWidth) + toInt(railYStyle.borderBottomWidth);
+  set(this.scrollbarYRail, { display: "block" });
+  this.railYMarginHeight = toInt(railYStyle.marginTop) + toInt(railYStyle.marginBottom);
+  set(this.scrollbarYRail, { display: "" });
+  this.railYHeight = null;
+  this.railYRatio = null;
+  this.reach = {
+    x: element.scrollLeft <= 0 ? "start" : element.scrollLeft >= this.contentWidth - this.containerWidth ? "end" : null,
+    y: element.scrollTop <= 0 ? "start" : element.scrollTop >= this.contentHeight - this.containerHeight ? "end" : null
+  };
+  this.isAlive = true;
+  this.settings.handlers.forEach(function(handlerName) {
+    return handlers[handlerName](this$1$1);
+  });
+  this.lastScrollTop = Math.floor(element.scrollTop);
+  this.lastScrollLeft = element.scrollLeft;
+  this.event.bind(this.element, "scroll", function(e) {
+    return this$1$1.onScroll(e);
+  });
+  updateGeometry(this);
+};
+PerfectScrollbar.prototype.update = function update() {
+  if (!this.isAlive) {
+    return;
+  }
+  this.negativeScrollAdjustment = this.isNegativeScroll ? this.element.scrollWidth - this.element.clientWidth : 0;
+  set(this.scrollbarXRail, { display: "block" });
+  set(this.scrollbarYRail, { display: "block" });
+  this.railXMarginWidth = toInt(get(this.scrollbarXRail).marginLeft) + toInt(get(this.scrollbarXRail).marginRight);
+  this.railYMarginHeight = toInt(get(this.scrollbarYRail).marginTop) + toInt(get(this.scrollbarYRail).marginBottom);
+  set(this.scrollbarXRail, { display: "none" });
+  set(this.scrollbarYRail, { display: "none" });
+  updateGeometry(this);
+  processScrollDiff(this, "top", 0, false, true);
+  processScrollDiff(this, "left", 0, false, true);
+  set(this.scrollbarXRail, { display: "" });
+  set(this.scrollbarYRail, { display: "" });
+};
+PerfectScrollbar.prototype.onScroll = function onScroll(e) {
+  if (!this.isAlive) {
+    return;
+  }
+  updateGeometry(this);
+  processScrollDiff(this, "top", this.element.scrollTop - this.lastScrollTop);
+  processScrollDiff(
+    this,
+    "left",
+    this.element.scrollLeft - this.lastScrollLeft
+  );
+  this.lastScrollTop = Math.floor(this.element.scrollTop);
+  this.lastScrollLeft = this.element.scrollLeft;
+};
+PerfectScrollbar.prototype.destroy = function destroy() {
+  if (!this.isAlive) {
+    return;
+  }
+  this.event.unbindAll();
+  remove(this.scrollbarX);
+  remove(this.scrollbarY);
+  remove(this.scrollbarXRail);
+  remove(this.scrollbarYRail);
+  this.removePsClasses();
+  this.element = null;
+  this.scrollbarX = null;
+  this.scrollbarY = null;
+  this.scrollbarXRail = null;
+  this.scrollbarYRail = null;
+  this.isAlive = false;
+};
+PerfectScrollbar.prototype.removePsClasses = function removePsClasses() {
+  this.element.className = this.element.className.split(" ").filter(function(name) {
+    return !name.match(/^ps([-_].+|)$/);
+  }).join(" ");
+};
+const DATE_TIME_PATTERN = /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}$/;
+const DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
+const ITENS_COLOR = {
+  yellow: "#E6CF42",
+  primary: "#00747A",
+  green: "#41d394",
+  red: "#F07363",
+  orange: "#F4A053",
+  purple: "#885DE2",
+  blue: "#8CB3FF",
+  black: "#171919"
+};
+const APPLICATIONS_NAME = {
+  1: "Obriga\xE7\xF5es",
+  2: "Eventos de pagamentos",
+  3: "Integraliza\xE7\xF5es",
+  4: "Subscri\xE7\xF5es",
+  5: "Atualiza\xE7\xE3o de status dos patrim\xF4nios",
+  6: "Marcos dos patrim\xF4nios",
+  7: "Vencimento das s\xE9ries",
+  8: "Status das s\xE9ries"
+};
+const APPLICATIONS_COLORS = {
+  1: { color: "#3DA5A5", disabled: "#77C0C0", hover: "#2B7373" },
+  2: { color: "#F28E83", disabled: "#F2B5B0", hover: "#C15A4F" },
+  3: { color: "#3B634E", disabled: "#6E8C7C", hover: "#2B3F3A" },
+  4: { color: "#86381D", disabled: "#B36A4D", hover: "#5A2412" },
+  5: { color: "#F4A053", disabled: "#F4CFA3", hover: "#C17A2B" },
+  6: { color: "#A5AF80", disabled: "#C0C9A5", hover: "#737B4F" },
+  7: { color: "#E6CF42", disabled: "#E6E0A5", hover: "#B3A12B" },
+  8: { color: "#171919", disabled: "#4F4F4F", hover: "#000000" }
+};
+const APPLICATIONS_REFERENCE_NAME = {
+  1: "obligations",
+  2: "payment_events",
+  3: "integrations",
+  4: "subscriptions",
+  5: "patrimony_status",
+  6: "patrimony",
+  7: "series_expiration",
+  8: "series_status"
+};
+var constants = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+  __proto__: null,
+  DATE_TIME_PATTERN,
+  DATE_PATTERN,
+  ITENS_COLOR,
+  APPLICATIONS_NAME,
+  APPLICATIONS_COLORS,
+  APPLICATIONS_REFERENCE_NAME
+}, Symbol.toStringTag, { value: "Module" }));
+class EventShow {
+  constructor(data) {
+    __publicField(this, "id");
+    __publicField(this, "title");
+    __publicField(this, "application");
+    __publicField(this, "patrimony");
+    __publicField(this, "series");
+    __publicField(this, "emission");
+    __publicField(this, "time");
+    __publicField(this, "event_data");
+    __publicField(this, "data");
+    __publicField(this, "responsable");
+    __publicField(this, "timeHelper", new Time());
+    this.id = data == null ? void 0 : data.id;
+    this.title = data == null ? void 0 : data.title;
+    this.application = (data == null ? void 0 : data.application) || 1;
+    this.patrimony = data == null ? void 0 : data.patrimony;
+    this.series = data == null ? void 0 : data.series;
+    this.emission = data == null ? void 0 : data.emission;
+    this.time = (data == null ? void 0 : data.time) || { start: this.timeHelper.getDateTimeStringFromDate(new Date()), end: this.timeHelper.getDateTimeStringFromDate(new Date()) };
+    this.event_data = (data == null ? void 0 : data.event_data) || this.timeHelper.getDateStringFromDate(new Date());
+    this.data = data ? data.data : {};
+    this.responsable = data == null ? void 0 : data.responsable;
+  }
+  getApplicationName() {
+    return APPLICATIONS_NAME[this.application];
+  }
+  getApplicationColors() {
+    return APPLICATIONS_COLORS[this.application];
+  }
+  getApplicationsReferenceName() {
+    return APPLICATIONS_REFERENCE_NAME[this.application];
+  }
+  getSubtitle() {
+    let subtitle = "";
+    if (this.patrimony) {
+      subtitle += `Patrim\xF4nio: ${this.patrimony}`;
+    }
+    if (this.series) {
+      subtitle += ` S\xE9rie: ${this.series}`;
+    }
+    if (this.emission) {
+      subtitle += ` Emiss\xE3o: ${this.emission}`;
+    }
+    return subtitle;
+  }
+}
+var VEventCard_scss_vue_type_style_index_0_src_67fe39ee_lang = "";
+const _hoisted_1$4 = { class: "event-card" };
+const _hoisted_2$2 = { class: "break-ellipsis break-ellipsis--three_line" };
+const _hoisted_3$2 = { class: "break-ellipsis break-ellipsis--one_line" };
+const _hoisted_4$1 = {
+  key: 1,
+  class: "break-ellipsis break-ellipsis--one_line"
+};
+const _sfc_main$5 = defineComponent({
+  __name: "VEventCard",
+  props: {
+    title: {
+      type: String,
+      default: "T\xEDtulo do evento"
+    },
+    subtitle: {
+      type: String,
+      default: ""
+    },
+    responsable: {
+      type: String
+    },
+    size: {
+      type: String,
+      default: "default"
+    },
+    aplication: {
+      type: String,
+      default: "obligation"
+    },
+    status: {
+      type: String
+    }
+  },
+  setup(__props) {
+    const props = __props;
+    const setAplicationClass = computed(
+      () => `event-status--${props.aplication}`
+    );
+    return (_ctx, _cache) => {
+      return openBlock(), createElementBlock("div", _hoisted_1$4, [
+        createElementVNode("div", {
+          class: normalizeClass(["event-status", unref(setAplicationClass)])
+        }, [
+          createElementVNode("div", {
+            class: normalizeClass(["event-body", `event-body--${__props.size}`])
+          }, [
+            __props.size !== "small" ? renderSlot(_ctx.$slots, "tag", { key: 0 }) : createCommentVNode("v-if", true),
+            createElementVNode("h4", _hoisted_2$2, toDisplayString(__props.title), 1),
+            createElementVNode("p", _hoisted_3$2, toDisplayString(__props.subtitle), 1),
+            __props.size !== "small" && __props.responsable ? (openBlock(), createElementBlock("p", _hoisted_4$1, toDisplayString(__props.responsable), 1)) : createCommentVNode("v-if", true)
+          ], 2)
+        ], 2)
+      ]);
+    };
+  }
+});
+var VEventCard = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["__file", "/home/debora/www/vert_design_system_ui/src/components/eventCard/VEventCard.vue"]]);
+const _sfc_main$4 = /* @__PURE__ */ defineComponent({
+  __name: "Event",
+  props: {
+    event: {
+      type: Object,
+      required: true
+    }
+  },
+  setup(__props) {
+    const props = __props;
+    const eventShow = new EventShow(props.event);
+    return (_ctx, _cache) => {
+      return openBlock(), createBlock(VEventCard, {
+        title: __props.event.title,
+        aplication: unref(eventShow).getApplicationsReferenceName(),
+        subtitle: unref(eventShow).getSubtitle(),
+        responsable: __props.event.responsable
+      }, null, 8, ["title", "aplication", "subtitle", "responsable"]);
+    };
+  }
+});
+var Event = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["__file", "/home/debora/www/vert_design_system_ui/src/components/calendar/mini/Event.vue"]]);
+var VCalendarButton_vue_vue_type_style_index_0_lang = "";
+const _hoisted_1$3 = { class: "search-events" };
+const _hoisted_2$1 = {
+  id: "container-list",
+  class: "list-events"
+};
+const _hoisted_3$1 = { class: "list-events__item" };
+const _sfc_main$3 = /* @__PURE__ */ defineComponent({
+  __name: "VCalendarButton",
+  props: {
+    events: {
+      type: Array,
+      default: () => []
+    }
+  },
+  emits: ["search-event", "event-was-clicked", "day-was-clicked"],
+  setup(__props, { emit: emits }) {
+    const props = __props;
+    const calendarSelectedDate = ref(new Date());
+    function onHandleDayClicked(payload) {
+      const date = new Date(payload.dateTimeString);
+      calendarSelectedDate.value = date;
+      const dateTimeString = payload.dateTimeString.substring(0, 10);
+      eventsOfDay.value = eventsDataProperty.value.filter((event) => {
+        var _a;
+        const eventIsInDay = ((_a = event == null ? void 0 : event.time) == null ? void 0 : _a.start.substring(0, 10)) === dateTimeString;
+        return eventIsInDay;
+      });
+      emits("day-was-clicked", payload);
+    }
+    const search = ref("");
+    function searchEvent() {
+      emits("search-event", search.value);
+    }
+    function onHandleEventClicked(event) {
+      emits("event-was-clicked", event);
+    }
+    const scrollbar = ref(null);
+    function initScrollbar() {
+      scrollbar.value = new PerfectScrollbar(".list-events", {
+        wheelSpeed: 0.5,
+        wheelPropagation: true
+      });
+    }
+    onMounted(() => {
+      initScrollbar();
+    });
+    const eventsDataProperty = ref(props.events);
+    const eventsOfDay = ref(props.events);
+    const eventRenderingKey = ref(0);
+    watch(
+      () => props.events,
+      (newVal, oldVal) => {
+        if (JSON.stringify(newVal) !== JSON.stringify(oldVal)) {
+          eventsDataProperty.value = props.events;
+          const dateTimeString = calendarSelectedDate.value.toISOString().substring(0, 10);
+          eventsOfDay.value = eventsDataProperty.value.filter((event) => {
+            var _a;
+            const eventIsInDay = ((_a = event == null ? void 0 : event.time) == null ? void 0 : _a.start.substring(0, 10)) === dateTimeString;
+            return eventIsInDay;
+          });
+          eventRenderingKey.value = eventRenderingKey.value + 1;
+        }
+      },
+      { deep: true, immediate: true }
+    );
+    return (_ctx, _cache) => {
+      return openBlock(), createBlock(unref(VPopUp), { "position-content": "center center" }, {
+        "event-area": withCtx(() => [
+          createVNode(IconCalendar)
+        ]),
+        "popup-body": withCtx(() => [
+          createVNode(unref(VCalendarMini), {
+            events: __props.events,
+            "selected-date": calendarSelectedDate.value,
+            onDayWasClicked: onHandleDayClicked
+          }, null, 8, ["events", "selected-date"]),
+          createElementVNode("div", _hoisted_1$3, [
+            withDirectives(createElementVNode("input", {
+              "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => search.value = $event),
+              placeholder: "Search",
+              onInput: searchEvent
+            }, null, 544), [
+              [vModelText, search.value]
+            ])
+          ]),
+          createElementVNode("div", _hoisted_2$1, [
+            (openBlock(true), createElementBlock(Fragment, null, renderList(eventsOfDay.value, (event) => {
+              return openBlock(), createElementBlock("div", _hoisted_3$1, [
+                createVNode(Event, {
+                  event,
+                  onClick: ($event) => onHandleEventClicked(event)
+                }, null, 8, ["event", "onClick"])
+              ]);
+            }), 256))
+          ])
+        ]),
+        _: 1
+      });
+    };
+  }
+});
+var VCalendarButton = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["__file", "/home/debora/www/vert_design_system_ui/src/components/calendar/VCalendarButton.vue"]]);
 const defaultOptions = {
   page: 1,
   pageSize: 5,
@@ -1783,4 +2928,4 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
   ], 10, _hoisted_1);
 }
 var VTabHeader = /* @__PURE__ */ _export_sfc(_sfc_main, [["render", _sfc_render], ["__file", "/home/debora/www/vert_design_system_ui/src/components/tab/VTabHeader.vue"]]);
-export { VButton, VCalendarMini, VCard, VPagination, VPopUp, VSelect, VTab, VTabContent, VTabHeader, VTable, VTag };
+export { VButton, VCalendarButton, VCalendarMini, VCard, VEventCard, VPagination, VPopUp, VSelect, VTab, VTabContent, VTabHeader, VTable, VTag, constants };

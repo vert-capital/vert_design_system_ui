@@ -17,32 +17,17 @@
       <div class="week-carousel__date">
         {{ getDaysDate(day) }}
       </div>
-
-      <div class="week-carousel__events">
-        <template v-for="(event, key) in day.fullDayEvents" :key="key">
-          <FullDayEvent
-            v-if="key !== 'date'"
-            :schedule-event="typeof event === 'object' ? event : null"
-            :config="config"
-            mode="week"
-            @event-was-clicked="$emit('event-was-clicked', $event)"
-          />
-        </template>
-      </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
-import { modeType, IConfig, IEventsFullDay, IDay } from '@/utils/types/calendar';
+import { IConfig, IDay } from '@/utils/types/calendar';
 import Time from '@/utils/helpers/Time';
-import FullDayEvent from './FullDayEvent.vue';
 
 export default defineComponent({
   name: 'Weekcarousel',
-
-  components: { FullDayEvent },
 
   props: {
     days: {
@@ -51,14 +36,6 @@ export default defineComponent({
     },
     time: {
       type: Object as PropType<Time>,
-      required: true,
-    },
-    fullDayEvents: {
-      type: Array as PropType<IEventsFullDay[]>,
-      default: () => [],
-    },
-    config: {
-      type: Object as PropType<IConfig>,
       required: true,
     }
   },
@@ -81,11 +58,9 @@ export default defineComponent({
       return date;
     },
     isLastDayOfMonth(day: IDay) {
-      //validate if day is last day of last month
       const { month, year } = this.time.getAllVariablesFromDateTimeString(
         day.dateTimeString
       );
-
     },
     onHandleDayWasClicked(day: IDay) {
       this.$emit('day-was-clicked', day);
@@ -128,6 +103,7 @@ export default defineComponent({
 
   &__date {
     font-size: 0.843rem;
+    line-height: 1rem;
     margin-bottom: 4px;
     height: 1rem;
     width: 1rem;
@@ -143,6 +119,7 @@ export default defineComponent({
 
     .is-today & {
       color: $color-primary-pure;
+      font-weight: 700;
     }
 
     .is-selected & {

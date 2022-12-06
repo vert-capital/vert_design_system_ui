@@ -7,4 +7,6 @@ import VCard from './card/VCard.vue';
 import VTab from './tab/VTab.vue';
 import VTag from './tag/VTag.vue';
 import VCalendarMini from './calendar/VCalendarMini.vue';
-export { VButton, VTable, VSelect, VPagination, VPopUp, VCard, VTab, VTag, VCalendarMini };
+import VCalendarButton from './calendar/VCalendarButton.vue';
+import VEventCard from './eventCard/VEventCard.vue';
+export { VButton, VTable, VSelect, VPagination, VPopUp, VCard, VTab, VTag, VCalendarMini, VCalendarButton, VEventCard };

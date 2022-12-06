@@ -208,16 +208,15 @@
   <hr />
   <br />
   <div class="section-calendar">
-    <h4>CALENDARIO</h4>
-    <VCalendarMini
-      :selected-date="calendarSelectedDate"
-      :config="config"
-      :events="events"
-      :day-was-clicked="reactToEvent"
+    <h4>Calendário de eventos</h4>
+    <h3>Calendário reduzido (popUp)</h3>
+    <v-calendar-button 
+      :events="events" 
+      @day-was-clicked="onHandleClickDay" 
+      @search-was-inputed="onHandleSearch"
+      @event-was-clicked="onHandleEventClicked"
     >
-    </VCalendarMini>
-
-    <hr />
+    </v-calendar-button>
   </div>
 
   <hr />
@@ -227,9 +226,9 @@
       title="Obrigações - Pagamento de Juros"
       style="margin-top: 20px"
       subtitle="(3CRIBMG - 1)(#556 | 1 - Senior - CDI+%)"
-      responsible="Frederico Quadros (Responsável), Douglas Queres e João Dias"
+      responsable="Frederico Quadros (Responsável), Douglas Queres e João Dias"
       size="small"
-      :aplication="item"
+      :aplication="(item as any)" 
     >
       <template #tag>
         <v-tag style="margin-bottom: 12px" status="helper">Tag helper</v-tag>
@@ -247,10 +246,11 @@ import VTabHeader from "./components/tab/VTabHeader.vue";
 import VSelect from "./components/form/select/VSelect.vue";
 import VTag from "./components/tag/VTag.vue";
 import VCalendarMini from "./components/calendar/VCalendarMini.vue";
-import { IConfig, IEvent } from "./utils/types/calendar";
+import type { IEvent } from "./utils/types/calendar";
 import VPopUp from "./components/popUp/VPopUp.vue";
 import VCard from "./components/card/VCard.vue";
 import VDropdown from "./components/dropdown/VDropdown.vue";
+import VCalendarButton from "./components/calendar/VCalendarButton.vue";
 import VEventCard from "./components/eventCard/VEventCard.vue";
 
 export default defineComponent({
@@ -269,6 +269,7 @@ export default defineComponent({
     VPopUp,
     VCard,
     VDropdown,
+    VCalendarButton,
     VEventCard,
   },
 
@@ -277,31 +278,68 @@ export default defineComponent({
       typeTab: "x",
       testeSelect: "",
       dropDownExemplo: [],
-      config: {
-        locale: "pt-BR",
-        defaultMode: "mini",
-        showCurrentTime: true,
-        isSilent: true,
-      } as IConfig,
+      dropDownExemplo2: [],
       events: [
-        {
-          title: "Beep",
-          time: { start: "2022-11-30 08:00", end: "2022-11-30 09:00" },
-          colorScheme: "meetings",
-          id: "1",
+        {   
+          id: 1,
+          title: 'Obrigações',
+          application: 1,
+          time: { start: '2022-12-06 08:00', end: '2022-12-06 09:00' },
+          event_data:'2022-12-06',
+          responsable: 'Caio Arruda',
+          emission: 1
         },
         {
-          title: "Boop",
-          time: { start: "2022-11-30 08:00", end: "2022-11-30 09:00" },
-          colorScheme: "sports",
-          id: "2",
+          id: 2,
+          title: 'Pagamento de Juros',
+          application: 2,
+          time: { start: '2022-12-06 08:00', end: '2022-12-06 09:00' },
+          event_data: '2022-12-06',
+          responsable: 'Márcio'
         },
-      ] as IEvent[],
+        {
+          id: 3,
+          title: 'Pagamento de Juros A',
+          application: 3,
+          time: { start: '2022-12-06 08:00', end: '2022-12-06 09:00' },
+          event_data: '2022-12-06',
+          responsable: 'Maria das Dores'
+        },
+        {
+          id: 4,
+          title: 'Pagamento de Juros B',
+          application: 4,
+          time: { start: '2022-12-06 08:00', end: '2022-12-06 09:00' },
+          event_data: '2022-12-06',
+          responsable: 'João das Neves'
+        },
+        {
+          id: 5,
+          title: 'Pagamento de Juros C',
+          application: 5,
+          time: { start: '2022-12-06 08:00', end: '2022-12-06 09:00' },
+          event_data: '2022-12-06',
+          responsable: 'João das Couves'
+        },
+        {
+          id: 6,
+          title: 'Pagamento de Juros D',
+          application: 6,
+          time: { start: '2022-12-06 08:00', end: '2022-12-06 09:00' },
+          event_data: '2022-12-06',
+          responsable: 'João das Flores'
+        },
+        {
+          id: 8,
+          title: 'Pagamento de Juros E',
+          application: 7,
+          time: { start: '2022-12-06 08:00', end: '2022-12-06 09:00' },
+          event_data: '2022-12-06',
+          responsable: 'José das Couves'
+        }
+      ]  as IEvent[],
+
       isLoading: false,
-      eventDialogForm: {
-        title: "",
-        id: "",
-      },
     };
   },
 
@@ -380,7 +418,6 @@ export default defineComponent({
     const calendarSelectedDate = ref(new Date());
 
     function reactToEvent(payload: any) {
-      console.log(payload);
       const date = new Date(payload.date);
       calendarSelectedDate.value = date;
     }
@@ -393,6 +430,18 @@ export default defineComponent({
       alert("onClickButton");
     }
 
+    function onHandleClickDay() {
+      alert("onHandleClickDay");
+    }
+
+    function onHandleSearch(search: any) {
+      alert("search:" + search);
+    }
+
+    function onHandleEventClicked(event: any) {
+      alert("event:" + event);
+    }
+
     return {
       pagination,
       selectOptions,
@@ -403,7 +452,10 @@ export default defineComponent({
       reactToEvent,
       onClickButtonWarning,
       onClickButton,
+      onHandleClickDay,
       aplication,
+      onHandleSearch,
+      onHandleEventClicked
     };
   },
 });
@@ -422,5 +474,6 @@ export default defineComponent({
   justify-content: center;
   align-items: center;
   margin: 0 auto;
+  padding-bottom: 400px;
 }
 </style>

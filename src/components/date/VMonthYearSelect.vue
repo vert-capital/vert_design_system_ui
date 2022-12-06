@@ -1,14 +1,14 @@
 <template>
   <div class="vmonth-year">
-    <VSelect :options="months" borderNone :modelValue="monthYearSelected" @onChange="onChangeMonth" size="lg"/>
+    <v-dropdown :options="months" type="2" v-model="monthYearSelected" @onChange="onChangeMonth" size="lg"/>
   </div>
 </template>
 <script lang="ts" setup>
 import { computed, ref } from 'vue';
-import VSelect from '../form/select/VSelect.vue';
 import StringHelper from '@/utils/helpers/String';
+import VDropdown from '@/components/dropdown/VDropdown.vue';
 
-const monthYearSelected: any = ref('2022-11');
+const monthYearSelected: any = ref(String(`${new Date().getFullYear()}-${new Date().getMonth() + 1}`));
 
 const months = computed(() => {
   const months = [];

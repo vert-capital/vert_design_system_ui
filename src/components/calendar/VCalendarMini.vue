@@ -1,11 +1,7 @@
 <template>
   <div class="calendar-root-wrapper">
     <div
-      class="calendar-root"
-      :class="{
-        'mode-is-mini': mode === 'mini',
-        'vcalendar-is-small': calendarWidth < 700,
-      }"
+      class="calendar-root mode-is-mini"
     >
       <Transition name="loading">
         <div v-if="isLoading" class="top-bar-loader" />
@@ -13,20 +9,13 @@
 
       <AppHeaderMini 
         :key="wasInitialized + mode + '-header'"
-        :config="config"
-        :mode="mode"
-        :time="time"
-        :period="period"
       />
 
       <Mini
-        :key="period.start.getTime() + period.end.getTime() + eventRenderingKey"
-        :events-prop="eventsDataProperty"
+        :key="period.start.getTime() + period.end.getTime()"
         :time="time"
-        :config="config"
         :period="period"
         :n-days="week.nDays"
-        @event-was-clicked="$emit('event-was-clicked', $event)"
         @day-was-clicked="$emit('day-was-clicked', $event)"
       >
       </Mini>
@@ -36,10 +25,9 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
-import { IEvent, IConfig } from '@/utils/types/calendar';
+import { IEvent } from '@/utils/types/calendar';
 import Time from '@/utils/helpers/Time';
 import AppHeaderMini from '@/components/calendar/VCalendarHeaderMini.vue';
-import Errors from './Errors';
 import Mini from '@/components/calendar/mini/Mini.vue';
 
 export default defineComponent({
@@ -51,10 +39,6 @@ export default defineComponent({
 },
 
   props: {
-    config: {
-      type: Object as PropType<IConfig>,
-      default: () => ({}),
-    },
     events: {
       type: Array as PropType<IEvent[]>,
       default: () => [],
@@ -86,40 +70,8 @@ export default defineComponent({
         nDays: 7,
       },
       mode: 'mini',
-      time: new Time(
-        this.config?.week?.startsOn,
-        this.config?.locale || null,
-      ) as Time | any,
-      fontFamily:
-        this.config?.style?.fontFamily || "'Lato",
-      calendarWidth: 0,
-      eventRenderingKey: 0,
-      eventsDataProperty: this.events || [],
+      time: new Time() as Time | any,
     };
-  },
-
-  watch: {
-    events: {
-      deep: true,
-      handler(newVal, oldVal) {
-        if (JSON.stringify(newVal) !== JSON.stringify(oldVal)) {
-          this.eventsDataProperty = newVal;
-          this.eventRenderingKey = this.eventRenderingKey + 1;
-        }
-
-        if (this.config.isSilent) return;
-        this.events.forEach((e) => Errors.checkEventProperties(e));
-      },
-      immediate: true,
-    },
-
-    config: {
-      deep: true,
-      handler(value: IConfig) {
-        Errors.checkConfig(value);
-      },
-      immediate: true,
-    },
   },
 
   mounted() {
@@ -127,29 +79,17 @@ export default defineComponent({
     this.setPeriodOnMount();
   },
 
-
   methods: {
     setConfigOnMount() {
       this.wasInitialized = 1;
     },
 
     setPeriodOnMount() {
-
         const currentWeek = this.time.getCalendarWeekDateObjects(
           this.period.selectedDate
         );
         this.period.start = currentWeek[0];
         this.period.end = currentWeek[6];
-    },
-
-    handleEventWasUpdated(
-      calendarEvent: IEvent,
-      eventType: 'dragged' | 'resized'
-    ) {
-      const newEvents = this.eventsDataProperty.filter(
-        (e) => e.id !== calendarEvent.id
-      );
-      this.eventsDataProperty = [calendarEvent, ...newEvents];
     }
   },
 });
