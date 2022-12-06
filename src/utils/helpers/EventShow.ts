@@ -1,4 +1,4 @@
-import { applicationsNumber, IEvent } from "../types/calendar";
+import { applicationReference, applicationsNumber, IEvent } from "../types/calendar";
 import Time from "./Time";
 import { APPLICATIONS_COLORS, APPLICATIONS_NAME, APPLICATIONS_REFERENCE_NAME } from "../constants";
 
@@ -47,8 +47,8 @@ export class EventShow implements IEvent {
     return APPLICATIONS_COLORS[this.application];
   }
 
-  getApplicationsReferenceName(): typeof APPLICATIONS_REFERENCE_NAME[keyof typeof APPLICATIONS_REFERENCE_NAME] {
-    return APPLICATIONS_REFERENCE_NAME[this.application];
+  getApplicationsReferenceName(): applicationReference {
+    return APPLICATIONS_REFERENCE_NAME[this.application] as applicationReference;
   }
 
 }

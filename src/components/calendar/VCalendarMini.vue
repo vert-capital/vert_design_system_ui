@@ -25,10 +25,9 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
-import { IEvent, IConfig } from '@/utils/types/calendar';
+import { IEvent } from '@/utils/types/calendar';
 import Time from '@/utils/helpers/Time';
 import AppHeaderMini from '@/components/calendar/VCalendarHeaderMini.vue';
-import Errors from './Errors';
 import Mini from '@/components/calendar/mini/Mini.vue';
 
 export default defineComponent({

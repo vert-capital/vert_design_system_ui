@@ -222,7 +222,7 @@
       subtitle="(3CRIBMG - 1)(#556 | 1 - Senior - CDI+%)"
       responsible="Frederico Quadros (Responsável), Douglas Queres e João Dias"
       size="small"
-      :aplication="item"
+      :aplication="(item as any)" 
       status:="warning"
     >
       <template #tag>

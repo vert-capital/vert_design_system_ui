@@ -1,6 +1,8 @@
 import type { APPLICATIONS_NAME } from "../constants";
 
-export type applicationsNumber =  1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 ;
+export type applicationsNumber = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
+
+export type applicationReference = 'obligations' | 'payment_events' | 'integrations' | 'subscriptions' | 'patrimony_status' | 'patrimony' | 'series_expiration' | 'series_status';
 export interface IDay {
   dayName: string;
   dateTimeString: string;

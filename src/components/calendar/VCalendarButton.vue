@@ -20,19 +20,9 @@
       </div>
 
       <div id="container-list" class="list-events">
-        <div
-          v-for="event in eventsOfDay"
-          :key="event.id"
-          class="list-events__item"
-          @click="onHandleEventClicked(event)"
-        >
-          <div class="list-events__item--title">
-            {{ event.title }}
+          <div class="list-events__item" v-for="event in eventsOfDay">
+            <Event :event="event" ></Event>
           </div>
-          <div class="list-events__item--date">
-            {{ event.event_data }}
-          </div>
-        </div>
       </div>
     </template>
   </v-pop-up>
