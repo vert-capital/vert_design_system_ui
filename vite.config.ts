@@ -94,6 +94,10 @@ export default defineConfig(({ mode }) => {
           replacement: resolve(__dirname, './src'),
         },
         {
+          find: '~',
+          replacement: resolve(__dirname, './node_modules'),
+        },
+        {
           find: '@icons',
           replacement: resolve(__dirname, './static/icons'),
         },
