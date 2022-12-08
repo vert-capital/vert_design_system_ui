@@ -1,6 +1,6 @@
 <template>
-  <div class="card" :class="[setType]">
-    <div class="v-section__header">
+  <div class="card" :class="[setType, setBorder]">
+    <div class="v-section__header" v-if="props.title">
       <div class="v-section__header--title">
         <h3>{{ props.title }}</h3>
       </div>
@@ -19,13 +19,17 @@
 import { computed } from "vue";
 
 export interface Props {
-  title: string;
+  title?: string;
   type: string;
+  borderSize: string;
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  title: "Titulo",
   type: "default",
+  borderSize: "sm",
+});
+const setBorder = computed(() => {
+  return `card__border--${props.borderSize}`;
 });
 
 const setType = computed(() => `card--${props.type}`);

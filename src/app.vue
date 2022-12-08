@@ -210,9 +210,9 @@
   <div class="section-calendar">
     <h4>Calendário de eventos</h4>
     <h3>Calendário reduzido (popUp)</h3>
-    <v-calendar-button 
-      :events="events" 
-      @day-was-clicked="onHandleClickDay" 
+    <v-calendar-button
+      :events="events"
+      @day-was-clicked="onHandleClickDay"
       @search-was-inputed="onHandleSearch"
       @event-was-clicked="onHandleEventClicked"
     >
@@ -228,13 +228,20 @@
       subtitle="(3CRIBMG - 1)(#556 | 1 - Senior - CDI+%)"
       responsable="Frederico Quadros (Responsável), Douglas Queres e João Dias"
       size="small"
-      :aplication="(item as any)" 
+      :aplication="(item as any)"
     >
       <template #tag>
         <v-tag style="margin-bottom: 12px" status="helper">Tag helper</v-tag>
       </template>
     </v-event-card>
   </div>
+  <br />
+  <v-card type="shadow">
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa modi
+    voluptatibus quam consequatur, quae perspiciatis debitis quas molestias
+    repudiandae, nesciunt adipisci vel harum iste, ullam rerum corporis tempora.
+    Laborum, excepturi!
+  </v-card>
 </template>
 
 <script lang="ts">
@@ -280,64 +287,64 @@ export default defineComponent({
       dropDownExemplo: [],
       dropDownExemplo2: [],
       events: [
-        {   
+        {
           id: 1,
-          title: 'Obrigações',
+          title: "Obrigações",
           application: 1,
-          time: { start: '2022-12-06 08:00', end: '2022-12-06 09:00' },
-          event_data:'2022-12-06',
-          responsable: 'Caio Arruda',
-          emission: 1
+          time: { start: "2022-12-06 08:00", end: "2022-12-06 09:00" },
+          event_data: "2022-12-06",
+          responsable: "Caio Arruda",
+          emission: 1,
         },
         {
           id: 2,
-          title: 'Pagamento de Juros',
+          title: "Pagamento de Juros",
           application: 2,
-          time: { start: '2022-12-06 08:00', end: '2022-12-06 09:00' },
-          event_data: '2022-12-06',
-          responsable: 'Márcio'
+          time: { start: "2022-12-06 08:00", end: "2022-12-06 09:00" },
+          event_data: "2022-12-06",
+          responsable: "Márcio",
         },
         {
           id: 3,
-          title: 'Pagamento de Juros A',
+          title: "Pagamento de Juros A",
           application: 3,
-          time: { start: '2022-12-06 08:00', end: '2022-12-06 09:00' },
-          event_data: '2022-12-06',
-          responsable: 'Maria das Dores'
+          time: { start: "2022-12-06 08:00", end: "2022-12-06 09:00" },
+          event_data: "2022-12-06",
+          responsable: "Maria das Dores",
         },
         {
           id: 4,
-          title: 'Pagamento de Juros B',
+          title: "Pagamento de Juros B",
           application: 4,
-          time: { start: '2022-12-06 08:00', end: '2022-12-06 09:00' },
-          event_data: '2022-12-06',
-          responsable: 'João das Neves'
+          time: { start: "2022-12-06 08:00", end: "2022-12-06 09:00" },
+          event_data: "2022-12-06",
+          responsable: "João das Neves",
         },
         {
           id: 5,
-          title: 'Pagamento de Juros C',
+          title: "Pagamento de Juros C",
           application: 5,
-          time: { start: '2022-12-06 08:00', end: '2022-12-06 09:00' },
-          event_data: '2022-12-06',
-          responsable: 'João das Couves'
+          time: { start: "2022-12-06 08:00", end: "2022-12-06 09:00" },
+          event_data: "2022-12-06",
+          responsable: "João das Couves",
         },
         {
           id: 6,
-          title: 'Pagamento de Juros D',
+          title: "Pagamento de Juros D",
           application: 6,
-          time: { start: '2022-12-06 08:00', end: '2022-12-06 09:00' },
-          event_data: '2022-12-06',
-          responsable: 'João das Flores'
+          time: { start: "2022-12-06 08:00", end: "2022-12-06 09:00" },
+          event_data: "2022-12-06",
+          responsable: "João das Flores",
         },
         {
           id: 8,
-          title: 'Pagamento de Juros E',
+          title: "Pagamento de Juros E",
           application: 7,
-          time: { start: '2022-12-06 08:00', end: '2022-12-06 09:00' },
-          event_data: '2022-12-06',
-          responsable: 'José das Couves'
-        }
-      ]  as IEvent[],
+          time: { start: "2022-12-06 08:00", end: "2022-12-06 09:00" },
+          event_data: "2022-12-06",
+          responsable: "José das Couves",
+        },
+      ] as IEvent[],
 
       isLoading: false,
     };
@@ -455,7 +462,7 @@ export default defineComponent({
       onHandleClickDay,
       aplication,
       onHandleSearch,
-      onHandleEventClicked
+      onHandleEventClicked,
     };
   },
 });
