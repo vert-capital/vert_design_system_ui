@@ -9,11 +9,8 @@ export type calendarYearMonths = Date[];
 export default class Time {
   FIRST_DAY_OF_WEEK: 'sunday' | 'monday';
   CALENDAR_LOCALE: string;
-  ALL_HOURS: IDayStarEndControl[];
   DAY_START: number;
   DAY_END: number;
-  HOURS_PER_DAY = 24;
-  MS_PER_DAY: number;
 
   constructor(
     firstDayOfWeek: 'sunday' | 'monday' = 'monday',
@@ -25,25 +22,8 @@ export default class Time {
   ) {
     this.FIRST_DAY_OF_WEEK = firstDayOfWeek;
     this.CALENDAR_LOCALE = locale ? locale : 'pt-BR';
-    this.ALL_HOURS = [
-      0, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300,
-      1400, 1500, 1600, 1700, 1800, 1900, 2000, 2100, 2200, 2300, 2400,
-    ];
     this.DAY_START = dayBoundaries.start;
     this.DAY_END = dayBoundaries.end;
-    this.HOURS_PER_DAY = (() => {
-      const convertTimePointToHours = (timePoint: number) => {
-        if (timePoint === 0) return 0;
-
-        return timePoint / 100;
-      };
-
-      return (
-        convertTimePointToHours(this.DAY_END) -
-        convertTimePointToHours(this.DAY_START)
-      );
-    })();
-    this.MS_PER_DAY = 86400000;
   }
 
   getDatesBetweenTwoDates(start: Date, end: Date) {
@@ -99,7 +79,6 @@ export default class Time {
       ? new Date(yyyy, mm, 1)
       : new Date();
 
-    // 1. Get the first date of the month, and push the full week of this date into the month list
     const firstDateOfMonth = new Date(
       selectedDate.getFullYear(),
       selectedDate.getMonth(),
@@ -108,8 +87,6 @@ export default class Time {
     const firstWeekOfMonth = this.getCalendarWeekDateObjects(firstDateOfMonth);
     month.push(firstWeekOfMonth);
 
-    // 2. Then enter a while-loop, which pushes weeks onto the month,
-    // until the first Monday is reached, that is not in the specified month
     let isInMonth = true;
     let mondayOfWeekToPush = firstWeekOfMonth[0];
     const specifiedMonth = selectedDate.getMonth();
@@ -132,10 +109,6 @@ export default class Time {
     return month;
   }
 
-  /**
-   * Returns an array with the length of 12 dates,
-   * one date for the first day of each month of the year
-   * */
   getCalendarYearMonths(year: number | null = null): calendarYearMonths {
     const selectedYear = year ? year : new Date().getFullYear();
     const yearList: calendarYearMonths = [];
@@ -148,49 +121,6 @@ export default class Time {
     }
 
     return yearList;
-  }
-
-  getHourAndMinutesFromTimePoints(timePoints: number) {
-    const time = timePoints.toString();
-    let hour = '0';
-    let minutes = '0';
-
-    if (time.length === 4) {
-      hour = time[0] + time[1];
-      minutes = time[2] + time[3];
-    } else if (time.length === 3) {
-      hour = time[0];
-      minutes = time[1] + time[2];
-    }
-
-    return {
-      hour: +hour,
-      minutes: +minutes,
-    };
-  }
-
-  /**
-   * Given timePoints (0, 100, 200 etc.), this function returns
-   * a localized string with the respective hour
-   * (in en-US for example: 0 => 12 AM, 1600 => 4 PM )
-   * */
-  getHourLocaleStringFromHourDigits(timePoints: number) {
-    const { hour, minutes } = this.getHourAndMinutesFromTimePoints(timePoints);
-
-    const hourLocaleString = new Date(
-      2100,
-      0,
-      1,
-      +hour,
-      +minutes,
-      0
-    ).toLocaleTimeString(this.CALENDAR_LOCALE, {
-      hour: '2-digit',
-    });
-
-    if (hourLocaleString[0] === '0') return hourLocaleString.substring(1);
-
-    return hourLocaleString;
   }
 
   getLocalizedNameOfWeekday(
@@ -215,10 +145,6 @@ export default class Time {
     return date.toLocaleDateString(this.CALENDAR_LOCALE);
   }
 
-  /**
-   * Takes a date object, and creates a time string from it, in the format of
-   * YYYY-MM-DD hh:mm
-   * */
   getDateTimeStringFromDate(
     date: Date,
     timeIsStartOrEndOfDay?: 'start' | 'end'
@@ -242,27 +168,6 @@ export default class Time {
     return `${fullDate} ${fullTime}`;
   }
 
-  getLocalizedTime(dateTimeString: string) {
-    const h = dateTimeString.substring(11, 13);
-    const m = dateTimeString.substring(14, 16);
-    const d = new Date();
-    d.setHours(+h);
-    d.setMinutes(+m);
-
-    return d.toLocaleTimeString(this.CALENDAR_LOCALE, {
-      hour: 'numeric',
-      minute: 'numeric',
-    });
-  }
-
-  getLocalizedHour(date: Date) {
-    return date.toLocaleTimeString(this.CALENDAR_LOCALE, { hour: '2-digit' });
-  }
-
-  /**
-   * Returns numeric values for year, month, date, hour and minutes, given a dateTimeString
-   * All variables are Date-Object compatible, meaning "month" is zero-indexed
-   * */
   getAllVariablesFromDateTimeString(dateTimeString: string) {
     return {
       year: +dateTimeString.substring(0, 4),
@@ -314,31 +219,6 @@ export default class Time {
     return `${yyyy}-${mm >= 10 ? mm : '0' + mm}-${dd >= 10 ? dd : '0' + dd}`;
   }
 
-  addMinutesToDateTimeString(minutes: number, dateTimeString: string) {
-    const {
-      year: oldYear,
-      month: oldMonth,
-      date: oldDate,
-      hour: oldHour,
-      minutes: oldMinutes,
-    } = this.getAllVariablesFromDateTimeString(dateTimeString);
-
-    const oldDateObject = new Date(
-      oldYear,
-      oldMonth,
-      oldDate,
-      oldHour,
-      oldMinutes
-    );
-    const newDateObject = new Date(oldDateObject.getTime() + minutes * 60000);
-
-    return this.getDateTimeStringFromDate(newDateObject);
-  }
-
-  addDaysToDateTimeString(days: number, dateTimeString: string) {
-    return this.addMinutesToDateTimeString(days * 1440, dateTimeString);
-  }
-
   dateStringsHaveEqualDates(dateTimeString1: string, dateTimeString2: string) {
     const {
       year: year1,
@@ -364,55 +244,6 @@ export default class Time {
       59,
       999
     );
-  }
-
-  protected turnMinutesIntoPercentageOfHour(minutes: number): string {
-    const oneMinutePercentage = 100 / 60;
-
-    const minutePoints = oneMinutePercentage * minutes;
-
-    if (minutePoints < 10) return '0' + minutePoints;
-
-    return minutePoints.toString();
-  }
-
-  /**
-   * Every hour between 'dayStart' and 'dayEnd' is 100, in this function referred to as 100 points
-   * If an event starts 30 minutes after 'dayStart', it should have 50 pointsIntoDay
-   * If a day consists of 4 hours (400 points), we then have to count
-   * (50 / 400) * 100 = 12.5 => event starts after 12.5 percent of the day
-   *
-   * Result is supposed to be a number between 0 and 100, and is used for setting the CSS- top- and height-attributes for events
-   * */
-  getPercentageOfDayFromDateTimeString(
-    dateTimeString: string,
-    dayStart: number,
-    dayEnd: number
-  ) {
-    const pointsInDay = dayEnd - dayStart;
-    const hour = dateTimeString.substring(11, 13);
-    const minutes = dateTimeString.substring(14, 16);
-    const minutesPoints = this.turnMinutesIntoPercentageOfHour(+minutes);
-    const eventPoints = +(hour + minutesPoints);
-    const eventPointsIntoDay = eventPoints - dayStart;
-
-    return (eventPointsIntoDay / pointsInDay) * 100;
-  }
-
-  setSegmentOfDateTimeString(
-    dateTimeString: string,
-    segments: { hour: number | string }
-  ) {
-    if (segments.hour < 0 || segments.hour > 23)
-      throw new Error('Invalid hour');
-
-    segments.hour = String(
-      segments.hour < 10 ? '0' + segments.hour : segments.hour
-    );
-
-    dateTimeString = dateTimeString.replace(/\d{2}:/, segments.hour + ':');
-
-    return dateTimeString;
   }
 
   getNextWeek(day: Date) {
