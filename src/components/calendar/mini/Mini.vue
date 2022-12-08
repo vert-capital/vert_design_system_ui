@@ -5,6 +5,7 @@
         :days="days"
         :time="time"
         @day-was-clicked="handleDayWasClicked"
+        @event-was-clicked="changeWeekDays"
       />
     </div>
     <div class="vcalendar-mini--day">
@@ -42,8 +43,8 @@ const emits = defineEmits({
 const days = ref<IDay[]>([]);
 const dayNameSelected = ref('');
 
-const setDays = () => {
-  const days_: IDay[] = props.time.getCalendarWeekDateObjects(props.period.start).
+const setDays = (day: Date) => {
+  const days_: IDay[] = props.time.getCalendarWeekDateObjects(day).
     map((day: Date) => {
       const dayName = props.time.getLocalizedNameOfWeekday(day, 'long');
       const dateTimeString = props.time.getDateTimeStringFromDate(day, 'start');
@@ -56,8 +57,22 @@ const setDays = () => {
   days.value = days_;
 }
 
+const changeWeekDays = (event: string) => {
+  if (event === 'chevron-left'){
+    const firstDayOfWeek = new Date(days.value[0].dateTimeString);
+    firstDayOfWeek.setDate(firstDayOfWeek.getDate() - 7);
+    setDays(firstDayOfWeek);
+  }
+  else if (event === 'chevron-right'){
+    const lastDayOfWeek = new Date(days.value[days.value.length - 1].dateTimeString);
+    lastDayOfWeek.setDate(lastDayOfWeek.getDate() + 7);
+    setDays(lastDayOfWeek);
+  }
+    
+}
+
 const setInitialEvents = () => {
-  setDays();
+  setDays(props.period.start);
 }
 
 const getDateAndDayLongName = (day: Date, isToday = false) => {

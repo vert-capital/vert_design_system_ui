@@ -10,8 +10,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue';
-import Time from '@/utils/helpers/Time';
+import { defineComponent } from 'vue';
 import getLanguage from '@/utils/language';
 import VMonthYearPicker from '@/components/date/VMonthYearSelect.vue';
 

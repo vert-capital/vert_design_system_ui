@@ -62,11 +62,13 @@ export default class Time {
     const selectedDate = date ? date : new Date();
 
     let subtractedDaysToGetFirstDate;
-    if (this.FIRST_DAY_OF_WEEK === 'sunday')
+    if (this.FIRST_DAY_OF_WEEK === 'sunday'){
       subtractedDaysToGetFirstDate = selectedDate.getDay();
-    else
+      }
+    else {
       subtractedDaysToGetFirstDate =
         selectedDate.getDay() === 0 ? 6 : selectedDate.getDay() - 1;
+    }
 
     const dateOfFirstDayOfWeek = selectedDate.getDate() - subtractedDaysToGetFirstDate; 
     const firstDay = new Date(
@@ -411,5 +413,29 @@ export default class Time {
     dateTimeString = dateTimeString.replace(/\d{2}:/, segments.hour + ':');
 
     return dateTimeString;
+  }
+
+  getNextWeek(day: Date) {
+    const week: Date[] = [];
+
+    for (let i = 0; i < 7; i++) {
+      const newDate = new Date(day);
+      newDate.setDate(day.getDate() + i);
+      week.push(newDate);
+    }
+
+    return week;
+  }
+
+  getLastWeek(day: Date) {
+    const week: Date[] = [];
+
+    for (let i = 0; i < 7; i++) {
+      const newDate = new Date(day);
+      newDate.setDate(day.getDate() - i);
+      week.push(newDate);
+    }
+
+    return week;
   }
 }

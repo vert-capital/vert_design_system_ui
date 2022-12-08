@@ -1,5 +1,8 @@
 <template>
   <div class="week-carousel">
+    <chevron-left
+      class="week-carousel__chevron-left"
+      @click="onHandleChevronLeftWasClicked" />
     <div
       v-for="(day, dayIndex) in days"
       :key="dayIndex"
@@ -18,6 +21,9 @@
         {{ getDaysDate(day) }}
       </div>
     </div>
+    <chevron-right
+      class="week-carousel__chevron-right"
+      @click="onHandleChevronRightWasClicked" />
   </div>
 </template>
 
@@ -25,9 +31,12 @@
 import { defineComponent, PropType } from 'vue';
 import { IConfig, IDay } from '@/utils/types/calendar';
 import Time from '@/utils/helpers/Time';
-
+import ChevronLeft from '@/components/icons/ChevronLeft.vue';
+import ChevronRight from '@/components/icons/ChevronRight.vue';
 export default defineComponent({
   name: 'Weekcarousel',
+
+  components: { ChevronLeft, ChevronRight },
 
   props: {
     days: {
@@ -63,8 +72,15 @@ export default defineComponent({
       );
     },
     onHandleDayWasClicked(day: IDay) {
+      this.selectedDay = day.dateTimeString.substring(0, 10);
       this.$emit('day-was-clicked', day);
-    }
+    },
+    onHandleChevronLeftWasClicked() {
+      this.$emit('event-was-clicked', 'chevron-left');
+    },
+    onHandleChevronRightWasClicked() {
+      this.$emit('event-was-clicked', 'chevron-right');
+    },
   },
 });
 </script>
@@ -90,6 +106,10 @@ export default defineComponent({
     flex-flow: column;
     align-items: center;
     justify-content: flex-start;
+    :hover {
+      cursor: pointer;
+      background-color: $neutral-color-low-extra-light;
+    }
   }
 
   &__day-name {
@@ -103,6 +123,7 @@ export default defineComponent({
 
   &__date {
     font-size: 0.843rem;
+    padding: 3px;
     line-height: 1rem;
     margin-bottom: 4px;
     height: 1rem;
@@ -127,14 +148,14 @@ export default defineComponent({
     }
   }
 
-  &__events {
-    width: 100%;
-    flex: 1;
-    border-right: 1px dashed rgb(224 224 224);
+  &__chevron-left {
+    color: $neutral-color-low-medium;
+    cursor: pointer;
+  }
 
-    .week-carousel__day:first-child & {
-      border-left: 1px dashed rgb(224 224 224);
-    }
+  &__chevron-right {
+    color: $neutral-color-low-medium;
+    cursor: pointer;
   }
 }
 </style>
