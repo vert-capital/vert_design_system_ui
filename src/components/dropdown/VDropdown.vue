@@ -22,14 +22,17 @@
     </div>
     <div v-show="showOptions" class="v-dropdow__options">
       <ul>
-        <li v-for="(option, i) in options" :key="i">
+        <li
+          v-for="(option, i) in options"
+          :key="i"
+          :tabIndex="option.value == valueOption ? -1 : i"
+        >
           <input
             :id="name + '-' + option.value"
-            v-model="valueOption"
             name="option"
             :value="option.value"
             :type="setMultiple"
-            @change="selectChange()"
+            @change="selectChange(option.value)"
           />
           <label :for="name + '-' + option.value">{{ option.label }}</label>
         </li>
@@ -86,6 +89,13 @@ const setMultiple = computed((): string =>
   props.multiple ? "checkbox" : "radio"
 );
 
+watch(
+  () => props.modelValue,
+  (value) => {
+    valueOption.value = value;
+  }
+);
+
 const showValue: any = computed(() => {
   if (valueOption.value.length == 0) {
     return props.placeholder;
@@ -108,9 +118,9 @@ const showValue: any = computed(() => {
 const valueOption = ref(props.modelValue);
 const showOptions = ref(false);
 
-function selectChange(): void {
-  emit("onChange", valueOption.value);
-  emit("update:modelValue", valueOption.value);
+function selectChange(value: any): void {
+  emit("onChange", value);
+  emit("update:modelValue", value);
 }
 
 const setTypeStyle = computed((): string => {

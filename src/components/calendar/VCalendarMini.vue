@@ -8,7 +8,7 @@
       <div class="calendar-header">
         <div class="calendar-header__period">
           <v-dropdown
-            v-model="monthYearSelected"
+            :model-value="monthYearSelected"
             :options="months"
             type="2"
             size="lg"
@@ -70,10 +70,11 @@ const monthYearSelected: any = ref(
 const months = computed(() => {
   const months = [];
   const currentYear = new Date().getFullYear();
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < 20; i++) {
     for (let j = 0; j < 12; j++) {
+      const month = j <= 8 ? `0${j + 1}` : j + 1;
       months.push({
-        value: String(`${currentYear + i}-${j + 1}`),
+        value: String(`${currentYear + i}-${month}`),
         label: StringHelper.capitalizeFirstLetter(
           new Date(currentYear + i, j, 1).toLocaleString("default", {
             month: "long",
@@ -113,8 +114,21 @@ const onChangeMonth = (monthYear: string) => {
   };
 };
 
-function onChangePeriod(year: number, month: number) {
-  monthYearSelected.value = String(`${year}-${month}`);
+function onChangePeriod(value: string) {
+  if (!months.value.find((m) => m.value === value)) {
+    const year = Number(value.substring(0, 4));
+    const month = value.substring(5, 7);
+    months.value.push({
+      value: String(`${year}-${month}`),
+      label: StringHelper.capitalizeFirstLetter(
+        new Date(year, Number(month) - 1, 1).toLocaleString("default", {
+          month: "long",
+          year: "numeric",
+        })
+      ),
+    });
+  }
+  monthYearSelected.value = String(value);
 }
 
 onMounted(() => {

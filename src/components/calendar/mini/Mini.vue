@@ -37,7 +37,7 @@ const props = defineProps({
 
 const emits = defineEmits({
   "day-was-clicked": (__day: IDay) => true,
-  "change-period": (__year: number, __month: number) => true,
+  "change-period": (__value: string) => true,
 });
 
 const days = ref<IDay[]>([]);
@@ -54,7 +54,6 @@ const setDays = (day: Date) => {
       if (props.time.dateIsToday(day)) {
         getDateAndDayLongName(day, true);
       }
-
       const { month, year, date } =
         props.time.getAllVariablesFromDateTimeString(dateTimeString);
       if (
@@ -62,7 +61,7 @@ const setDays = (day: Date) => {
         (year !== initialYear.value &&
           (date == props.time.getNumberOfDaysInMonth(year, month) || date == 1))
       )
-        emits("change-period", year, month);
+        emits("change-period", dateTimeString.substring(0, 7));
       return { dayName, dateTimeString };
     });
   days.value = days_;
