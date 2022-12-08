@@ -1,51 +1,12 @@
-const __defProp = Object.defineProperty;
-const __defNormalProp = (obj, key, value) =>
-  key in obj
-    ? __defProp(obj, key, {
-        enumerable: true,
-        configurable: true,
-        writable: true,
-        value,
-      })
-    : (obj[key] = value);
-const __publicField = (obj, key, value) => {
+var __defProp = Object.defineProperty;
+var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+var __publicField = (obj, key, value) => {
   __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
   return value;
 };
-import {
-  defineComponent,
-  openBlock,
-  createElementBlock,
-  mergeProps,
-  createElementVNode,
-  createCommentVNode,
-  renderSlot,
-  useSlots,
-  ref,
-  Fragment,
-  renderList,
-  normalizeClass,
-  withModifiers,
-  toDisplayString,
-  normalizeProps,
-  createTextVNode,
-  watch,
-  computed,
-  unref,
-  withDirectives,
-  normalizeStyle,
-  vShow,
-  createBlock,
-  withCtx,
-  vModelDynamic,
-  createVNode,
-  resolveComponent,
-  onMounted,
-  Transition,
-  vModelText,
-} from "vue";
-const VButton_scss_vue_type_style_index_0_src_6e5341db_lang = "";
-const _export_sfc = (sfc, props) => {
+import { defineComponent, openBlock, createElementBlock, mergeProps, createElementVNode, createCommentVNode, renderSlot, useSlots, ref, Fragment, renderList, normalizeClass, withModifiers, toDisplayString, normalizeProps, createTextVNode, watch, computed, unref, withDirectives, normalizeStyle, vShow, resolveComponent, createVNode, onMounted, createBlock, withCtx, Transition, vModelText } from "vue";
+var VButton_scss_vue_type_style_index_0_src_6e5341db_lang = "";
+var _export_sfc = (sfc, props) => {
   const target = sfc.__vccOpts || sfc;
   for (const [key, val] of props) {
     target[key] = val;
@@ -57,25 +18,25 @@ const _sfc_main$j = defineComponent({
   props: {
     size: {
       type: String,
-      default: "md",
+      default: "md"
     },
     status: {
       type: String,
       default: "primary",
-      required: true,
+      required: true
     },
     icon: {
       type: String,
-      required: false,
+      required: false
     },
     disabled: {
       type: Boolean,
-      default: false,
+      default: false
     },
     style_type: {
       type: String,
-      default: "solid",
-    },
+      default: "solid"
+    }
   },
   computed: {
     setSizeClass() {
@@ -86,55 +47,28 @@ const _sfc_main$j = defineComponent({
     },
     setIcon() {
       return `/static/icons/${this.icon}.svg`;
-    },
-  },
+    }
+  }
 });
 const _hoisted_1$i = ["disabled"];
-const _hoisted_2$d = {
+const _hoisted_2$c = {
   key: 0,
-  class: "v-btn--img",
+  class: "v-btn--img"
 };
-const _hoisted_3$b = ["src"];
+const _hoisted_3$a = ["src"];
 function _sfc_render$a(_ctx, _cache, $props, $setup, $data, $options) {
-  return (
-    openBlock(),
-    createElementBlock(
-      "button",
-      mergeProps(
-        {
-          class: [_ctx.setSizeClass, _ctx.setStatus],
-          disabled: _ctx.disabled,
-          type: "button",
-        },
-        _ctx.$attrs
-      ),
-      [
-        _ctx.icon
-          ? (openBlock(),
-            createElementBlock("div", _hoisted_2$d, [
-              createElementVNode(
-                "img",
-                { src: _ctx.setIcon },
-                null,
-                8,
-                _hoisted_3$b
-              ),
-            ]))
-          : createCommentVNode("v-if", true),
-        renderSlot(_ctx.$slots, "default"),
-      ],
-      16,
-      _hoisted_1$i
-    )
-  );
+  return openBlock(), createElementBlock("button", mergeProps({
+    class: [_ctx.setSizeClass, _ctx.setStatus],
+    disabled: _ctx.disabled,
+    type: "button"
+  }, _ctx.$attrs), [
+    _ctx.icon ? (openBlock(), createElementBlock("div", _hoisted_2$c, [
+      createElementVNode("img", { src: _ctx.setIcon }, null, 8, _hoisted_3$a)
+    ])) : createCommentVNode("v-if", true),
+    renderSlot(_ctx.$slots, "default")
+  ], 16, _hoisted_1$i);
 }
-const VButton = /* @__PURE__ */ _export_sfc(_sfc_main$j, [
-  ["render", _sfc_render$a],
-  [
-    "__file",
-    "/home/debora/www/vert_design_system_ui/src/components/button/VButton.vue",
-  ],
-]);
+var VButton = /* @__PURE__ */ _export_sfc(_sfc_main$j, [["render", _sfc_render$a], ["__file", "/home/debora/www/vert_design_system_ui/src/components/button/VButton.vue"]]);
 function getItemValue(column, item) {
   if (column.includes(".")) {
     let content = "";
@@ -150,18 +84,18 @@ function generateColumnContent(column, item) {
   const content = getItemValue(column, item);
   return Array.isArray(content) ? content.join(",") : content;
 }
-const VTable_scss_vue_type_style_index_0_src_52ffde09_lang = "";
+var VTable_scss_vue_type_style_index_0_src_52ffde09_lang = "";
 const _sfc_main$i = defineComponent({
   name: "VTable",
   props: {
     data: {
       type: Array,
-      required: true,
+      required: true
     },
     headers: {
       type: Array,
-      required: true,
-    },
+      required: true
+    }
   },
   emits: ["click-row", "update-sort-field"],
   setup(props, { emit }) {
@@ -187,175 +121,101 @@ const _sfc_main$i = defineComponent({
       } else {
         clientSortOptions.value = {
           sortBy: newSortBy,
-          sortDesc: newSortType === "desc",
+          sortDesc: newSortType === "desc"
         };
       }
       emit("update-sort-field", {
         sortType: newSortType,
-        sortBy: newSortBy,
+        sortBy: newSortBy
       });
     };
     return {
       slots,
       clickRow,
       generateColumnContent,
-      updateSortField,
+      updateSortField
     };
-  },
+  }
 });
 const _hoisted_1$h = { class: "v-table" };
-const _hoisted_2$c = { class: "v-table__body-wrapper" };
-const _hoisted_3$a = { class: "responsive-table" };
-const _hoisted_4$6 = ["onClick"];
-const _hoisted_5$4 = ["onClick"];
-const _hoisted_6$4 = { class: "v-table__cell" };
+const _hoisted_2$b = { class: "v-table__body-wrapper" };
+const _hoisted_3$9 = { class: "responsive-table" };
+const _hoisted_4$7 = ["onClick"];
+const _hoisted_5$5 = ["onClick"];
 function _sfc_render$9(_ctx, _cache, $props, $setup, $data, $options) {
-  return (
-    openBlock(),
-    createElementBlock("div", _hoisted_1$h, [
-      createElementVNode("div", _hoisted_2$c, [
-        createElementVNode("table", _hoisted_3$a, [
-          createElementVNode("thead", null, [
-            createElementVNode("tr", null, [
-              (openBlock(true),
-              createElementBlock(
-                Fragment,
-                null,
-                renderList(_ctx.headers, (col) => {
-                  return (
-                    openBlock(),
-                    createElementBlock(
-                      "th",
-                      {
-                        class: normalizeClass([
-                          "v-table__cell",
-                          [
-                            {
-                              sortable: col.sortable,
-                              none: col.sortable && col.sortType === "none",
-                              desc: col.sortable && col.sortType === "desc",
-                              asc: col.sortable && col.sortType === "asc",
-                            },
-                          ],
-                        ]),
-                        onClick: withModifiers(
-                          ($event) =>
-                            col.sortable && col.sortType
-                              ? _ctx.updateSortField(col.prop, col.sortType)
-                              : null,
-                          ["stop"]
-                        ),
-                      },
-                      toDisplayString(col.label),
-                      11,
-                      _hoisted_4$6
-                    )
-                  );
-                }),
-                256
-              )),
-            ]),
-          ]),
-          createElementVNode("tbody", null, [
-            (openBlock(true),
-            createElementBlock(
-              Fragment,
-              null,
-              renderList(_ctx.data, (item, index) => {
-                return (
-                  openBlock(),
-                  createElementBlock(
-                    "tr",
-                    {
-                      key: index,
-                      class: "v-table__row",
-                      onClick: ($event) => _ctx.clickRow(item),
-                    },
-                    [
-                      (openBlock(true),
-                      createElementBlock(
-                        Fragment,
-                        null,
-                        renderList(_ctx.headers, (col) => {
-                          return (
-                            openBlock(),
-                            createElementBlock("td", _hoisted_6$4, [
-                              _ctx.slots[`item-${col.prop}`]
-                                ? renderSlot(
-                                    _ctx.$slots,
-                                    `item-${col.prop}`,
-                                    normalizeProps(mergeProps({ key: 0 }, item))
-                                  )
-                                : (openBlock(),
-                                  createElementBlock(
-                                    Fragment,
-                                    { key: 1 },
-                                    [
-                                      createTextVNode(
-                                        toDisplayString(
-                                          _ctx.generateColumnContent(
-                                            col.prop,
-                                            item
-                                          )
-                                        ),
-                                        1
-                                      ),
-                                    ],
-                                    64
-                                  )),
-                            ])
-                          );
-                        }),
-                        256
-                      )),
-                    ],
-                    8,
-                    _hoisted_5$4
-                  )
-                );
-              }),
-              128
-            )),
-          ]),
+  return openBlock(), createElementBlock("div", _hoisted_1$h, [
+    createElementVNode("div", _hoisted_2$b, [
+      createElementVNode("table", _hoisted_3$9, [
+        createElementVNode("thead", null, [
+          createElementVNode("tr", null, [
+            (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.headers, (col, index) => {
+              return openBlock(), createElementBlock("th", {
+                key: index,
+                class: normalizeClass(["v-table__cell", [
+                  {
+                    sortable: col.sortable,
+                    none: col.sortable && col.sortType === "none",
+                    desc: col.sortable && col.sortType === "desc",
+                    asc: col.sortable && col.sortType === "asc"
+                  }
+                ]]),
+                onClick: withModifiers(($event) => col.sortable && col.sortType ? _ctx.updateSortField(col.prop, col.sortType) : null, ["stop"])
+              }, toDisplayString(col.label), 11, _hoisted_4$7);
+            }), 128))
+          ])
         ]),
-      ]),
+        createElementVNode("tbody", null, [
+          (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.data, (item, index) => {
+            return openBlock(), createElementBlock("tr", {
+              key: index,
+              class: "v-table__row",
+              onClick: ($event) => _ctx.clickRow(item)
+            }, [
+              (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.headers, (col, i) => {
+                return openBlock(), createElementBlock("td", {
+                  key: i,
+                  class: "v-table__cell"
+                }, [
+                  _ctx.slots[`item-${col.prop}`] ? renderSlot(_ctx.$slots, `item-${col.prop}`, normalizeProps(mergeProps({ key: 0 }, item))) : (openBlock(), createElementBlock(Fragment, { key: 1 }, [
+                    createTextVNode(toDisplayString(_ctx.generateColumnContent(col.prop, item)), 1)
+                  ], 64))
+                ]);
+              }), 128))
+            ], 8, _hoisted_5$5);
+          }), 128))
+        ])
+      ])
     ])
-  );
+  ]);
 }
-const VTable = /* @__PURE__ */ _export_sfc(_sfc_main$i, [
-  ["render", _sfc_render$9],
-  [
-    "__file",
-    "/home/debora/www/vert_design_system_ui/src/components/table/VTable.vue",
-  ],
-]);
-const VSelect_scss_vue_type_style_index_0_src_4a2786ac_lang = "";
+var VTable = /* @__PURE__ */ _export_sfc(_sfc_main$i, [["render", _sfc_render$9], ["__file", "/home/debora/www/vert_design_system_ui/src/components/table/VTable.vue"]]);
+var VSelect_scss_vue_type_style_index_0_src_4a2786ac_lang = "";
 const _hoisted_1$g = { class: "v-select" };
-const _hoisted_2$b = {
+const _hoisted_2$a = {
   key: 0,
-  class: "v-select--label",
+  class: "v-select--label"
 };
-const _hoisted_3$9 = ["for"];
-const _hoisted_4$5 = { class: "v-selec--content" };
-const _hoisted_5$3 = ["name", "id", "required", "disabled"];
+const _hoisted_3$8 = ["for"];
+const _hoisted_4$6 = { class: "v-selec--content" };
+const _hoisted_5$4 = ["id", "name", "required", "disabled"];
 const _hoisted_6$3 = {
   key: 0,
-  value: "",
+  value: ""
 };
-const _hoisted_7$2 = ["value", "selected"];
+const _hoisted_7$3 = ["value", "selected"];
 const _sfc_main$h = defineComponent({
   __name: "VSelect",
   props: {
-    id: { type: String, required: false },
-    name: { type: String, required: false },
-    placeholder: { type: String, required: false },
-    label: { type: String, required: false },
+    id: { type: String, required: false, default: "select_id" },
+    name: { type: String, required: false, default: "select_name" },
+    placeholder: { type: String, required: false, default: "" },
+    label: { type: String, required: false, default: "" },
     options: { type: Array, required: true, default: () => [] },
     required: { type: Boolean, required: false },
     disable: { type: Boolean, required: false },
     size: { type: String, required: false, default: "lg" },
     modelValue: { type: [String, Number], required: false, default: "" },
-    borderNone: { type: Boolean, required: false, default: false },
+    borderNone: { type: Boolean, required: false, default: false }
   },
   emits: ["onChange", "update:modelValue"],
   setup(__props, { emit }) {
@@ -372,363 +232,220 @@ const _sfc_main$h = defineComponent({
       emit("update:modelValue", selected.value);
     }
     return (_ctx, _cache) => {
-      return (
-        openBlock(),
-        createElementBlock("div", _hoisted_1$g, [
-          __props.label
-            ? (openBlock(),
-              createElementBlock("div", _hoisted_2$b, [
-                createElementVNode(
-                  "label",
-                  { for: __props.id },
-                  toDisplayString(__props.label),
-                  9,
-                  _hoisted_3$9
-                ),
-              ]))
-            : createCommentVNode("v-if", true),
-          createElementVNode("div", _hoisted_4$5, [
-            createElementVNode(
-              "select",
-              {
-                class: normalizeClass([
-                  { "v-select--border": props.borderNone },
-                  `v-select--input v-select--size-${__props.size}`,
-                ]),
-                name: __props.name,
-                id: __props.id,
-                required: __props.required,
-                disabled: __props.disable,
-                onChange:
-                  _cache[0] || (_cache[0] = ($event) => selectChange($event)),
-              },
-              [
-                __props.placeholder
-                  ? (openBlock(),
-                    createElementBlock(
-                      "option",
-                      _hoisted_6$3,
-                      toDisplayString(__props.placeholder),
-                      1
-                    ))
-                  : createCommentVNode("v-if", true),
-                (openBlock(true),
-                createElementBlock(
-                  Fragment,
-                  null,
-                  renderList(__props.options, (option) => {
-                    return (
-                      openBlock(),
-                      createElementBlock(
-                        "option",
-                        {
-                          value: option.value,
-                          selected: option.value == selected.value,
-                          "aria-checked": "false",
-                        },
-                        toDisplayString(option.label),
-                        9,
-                        _hoisted_7$2
-                      )
-                    );
-                  }),
-                  256
-                )),
-              ],
-              42,
-              _hoisted_5$3
-            ),
-          ]),
+      return openBlock(), createElementBlock("div", _hoisted_1$g, [
+        __props.label ? (openBlock(), createElementBlock("div", _hoisted_2$a, [
+          createElementVNode("label", { for: __props.id }, toDisplayString(__props.label), 9, _hoisted_3$8)
+        ])) : createCommentVNode("v-if", true),
+        createElementVNode("div", _hoisted_4$6, [
+          createElementVNode("select", {
+            id: __props.id,
+            class: normalizeClass([
+              { "v-select--border": props.borderNone },
+              `v-select--input v-select--size-${__props.size}`
+            ]),
+            name: __props.name,
+            required: __props.required,
+            disabled: __props.disable,
+            onChange: _cache[0] || (_cache[0] = ($event) => selectChange($event))
+          }, [
+            __props.placeholder ? (openBlock(), createElementBlock("option", _hoisted_6$3, toDisplayString(__props.placeholder), 1)) : createCommentVNode("v-if", true),
+            (openBlock(true), createElementBlock(Fragment, null, renderList(__props.options, (option, index) => {
+              return openBlock(), createElementBlock("option", {
+                key: index,
+                value: option.value,
+                selected: option.value == selected.value,
+                "aria-checked": "false"
+              }, toDisplayString(option.label), 9, _hoisted_7$3);
+            }), 128))
+          ], 42, _hoisted_5$4)
         ])
-      );
+      ]);
     };
-  },
+  }
 });
-const VSelect = /* @__PURE__ */ _export_sfc(_sfc_main$h, [
-  [
-    "__file",
-    "/home/debora/www/vert_design_system_ui/src/components/form/select/VSelect.vue",
-  ],
-]);
-const _imports_0$1 =
-  "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTE5LDYuNDFMMTcuNTksNUwxMiwxMC41OUw2LjQxLDVMNSw2LjQxTDEwLjU5LDEyTDUsMTcuNTlMNi40MSwxOUwxMiwxMy40MUwxNy41OSwxOUwxOSwxNy41OUwxMy40MSwxMkwxOSw2LjQxWiIgLz48L3N2Zz4=";
-const VPopUp_scss_vue_type_style_index_0_src_12e74449_lang = "";
+var VSelect = /* @__PURE__ */ _export_sfc(_sfc_main$h, [["__file", "/home/debora/www/vert_design_system_ui/src/components/form/select/VSelect.vue"]]);
+var _imports_0$3 = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTE5LDYuNDFMMTcuNTksNUwxMiwxMC41OUw2LjQxLDVMNSw2LjQxTDEwLjU5LDEyTDUsMTcuNTlMNi40MSwxOUwxMiwxMy40MUwxNy41OSwxOUwxOSwxNy41OUwxMy40MSwxMkwxOSw2LjQxWiIgLz48L3N2Zz4=";
+var VPopUp_scss_vue_type_style_index_0_src_12e74449_lang = "";
 const _hoisted_1$f = { class: "v-popup" };
-const _hoisted_2$a = { class: "v-popup__content--head" };
-const _hoisted_3$8 = { class: "v-popup__content--head-title" };
-const _hoisted_4$4 = /* @__PURE__ */ createElementVNode(
-  "img",
-  { src: _imports_0$1 },
-  null,
-  -1
-);
-const _hoisted_5$2 = [_hoisted_4$4];
+const _hoisted_2$9 = { class: "v-popup__content--head" };
+const _hoisted_3$7 = { class: "v-popup__content--head-title" };
+const _hoisted_4$5 = /* @__PURE__ */ createElementVNode("img", { src: _imports_0$3 }, null, -1);
+const _hoisted_5$3 = [
+  _hoisted_4$5
+];
 const _hoisted_6$2 = { class: "v-popup__content--body" };
-const _hoisted_7$1 = { class: "v-popup__content--footer" };
-const _hoisted_8$1 = /* @__PURE__ */ createElementVNode(
-  "a",
-  {
-    href: "#",
-    target: "_blank",
-  },
-  "Ir para vis\xE3o completa",
-  -1
-);
+const _hoisted_7$2 = { class: "v-popup__content--footer" };
+const _hoisted_8$1 = /* @__PURE__ */ createElementVNode("a", {
+  href: "#",
+  target: "_blank"
+}, "Ir para vis\xE3o completa", -1);
 const _sfc_main$g = /* @__PURE__ */ defineComponent({
   __name: "VPopUp",
   props: {
     title: {
       type: String,
-      default: "",
+      default: ""
     },
     positionContent: {
       type: String,
-      default: "bottom center",
+      default: "bottom center"
     },
     widthContent: {
       type: String,
-      default: "25rem",
+      default: "25rem"
     },
     showIcon: {
       type: Boolean,
-      default: true,
+      default: true
     },
     showPopUp: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
   setup(__props) {
     const props = __props;
     const show = props.showIcon ? ref(false) : computed(() => props.showPopUp);
     return (_ctx, _cache) => {
-      return (
-        openBlock(),
-        createElementBlock("div", _hoisted_1$f, [
-          createElementVNode(
-            "div",
-            {
-              onClick:
-                _cache[0] ||
-                (_cache[0] = ($event) => (show.value = !unref(show))),
-              class: "v-popup--click",
-            },
-            [
-              renderSlot(_ctx.$slots, "event-area", {}, () => [
-                createTextVNode("INSERIR ICONE AQUI"),
-              ]),
-            ]
-          ),
-          withDirectives(
-            createElementVNode(
-              "div",
-              {
-                class: normalizeClass([
-                  "v-popup__content",
-                  __props.positionContent,
-                ]),
-                style: normalizeStyle(`min-width: ${__props.widthContent}`),
-              },
-              [
-                createElementVNode("div", _hoisted_2$a, [
-                  createElementVNode(
-                    "h3",
-                    _hoisted_3$8,
-                    toDisplayString(__props.title),
-                    1
-                  ),
-                  createElementVNode(
-                    "span",
-                    {
-                      class: "v-popup__content--head-close",
-                      onClick:
-                        _cache[1] ||
-                        (_cache[1] = ($event) => (show.value = !unref(show))),
-                    },
-                    _hoisted_5$2
-                  ),
-                ]),
-                createElementVNode("div", _hoisted_6$2, [
-                  renderSlot(_ctx.$slots, "popup-body"),
-                ]),
-                createElementVNode("div", _hoisted_7$1, [
-                  renderSlot(_ctx.$slots, "popup-footer", {}, () => [
-                    _hoisted_8$1,
-                  ]),
-                ]),
-              ],
-              6
-            ),
-            [[vShow, unref(show)]]
-          ),
+      return openBlock(), createElementBlock("div", _hoisted_1$f, [
+        createElementVNode("div", {
+          class: "v-popup--click",
+          onClick: _cache[0] || (_cache[0] = ($event) => show.value = !unref(show))
+        }, [
+          renderSlot(_ctx.$slots, "event-area", {}, () => [
+            createTextVNode("INSERIR ICONE AQUI")
+          ])
+        ]),
+        withDirectives(createElementVNode("div", {
+          class: normalizeClass(["v-popup__content", __props.positionContent]),
+          style: normalizeStyle(`min-width: ${__props.widthContent}`)
+        }, [
+          createElementVNode("div", _hoisted_2$9, [
+            createElementVNode("h3", _hoisted_3$7, toDisplayString(__props.title), 1),
+            createElementVNode("span", {
+              class: "v-popup__content--head-close",
+              onClick: _cache[1] || (_cache[1] = ($event) => show.value = !unref(show))
+            }, _hoisted_5$3)
+          ]),
+          createElementVNode("div", _hoisted_6$2, [
+            renderSlot(_ctx.$slots, "popup-body")
+          ]),
+          createElementVNode("div", _hoisted_7$2, [
+            renderSlot(_ctx.$slots, "popup-footer", {}, () => [
+              _hoisted_8$1
+            ])
+          ])
+        ], 6), [
+          [vShow, unref(show)]
         ])
-      );
+      ]);
     };
-  },
+  }
 });
-const VPopUp = /* @__PURE__ */ _export_sfc(_sfc_main$g, [
-  [
-    "__file",
-    "/home/debora/www/vert_design_system_ui/src/components/popUp/VPopUp.vue",
-  ],
-]);
-const VCard_scss_vue_type_style_index_0_src_28d3c952_lang = "";
+var VPopUp = /* @__PURE__ */ _export_sfc(_sfc_main$g, [["__file", "/home/debora/www/vert_design_system_ui/src/components/popUp/VPopUp.vue"]]);
+var VCard_scss_vue_type_style_index_0_src_28d3c952_lang = "";
 const _hoisted_1$e = { class: "v-section__header" };
-const _hoisted_2$9 = { class: "v-section__header--title" };
-const _hoisted_3$7 = { class: "v-section__body" };
+const _hoisted_2$8 = { class: "v-section__header--title" };
+const _hoisted_3$6 = { class: "v-section__body" };
 const _sfc_main$f = defineComponent({
   __name: "VCard",
   props: {
     title: { type: String, required: true, default: "Titulo" },
-    type: { type: String, required: true, default: "default" },
+    type: { type: String, required: true, default: "default" }
   },
   setup(__props) {
     const props = __props;
     const setType = computed(() => `card--${props.type}`);
     return (_ctx, _cache) => {
-      return (
-        openBlock(),
-        createElementBlock(
-          "div",
-          {
-            class: normalizeClass(["card", [unref(setType)]]),
-          },
-          [
-            createElementVNode("div", _hoisted_1$e, [
-              createElementVNode("div", _hoisted_2$9, [
-                createElementVNode("h3", null, toDisplayString(props.title), 1),
-              ]),
-              createElementVNode("div", null, [
-                renderSlot(_ctx.$slots, "buttons"),
-                renderSlot(_ctx.$slots, "input"),
-              ]),
-            ]),
-            createElementVNode("div", _hoisted_3$7, [
-              renderSlot(_ctx.$slots, "default"),
-            ]),
-          ],
-          2
-        )
-      );
+      return openBlock(), createElementBlock("div", {
+        class: normalizeClass(["card", [unref(setType)]])
+      }, [
+        createElementVNode("div", _hoisted_1$e, [
+          createElementVNode("div", _hoisted_2$8, [
+            createElementVNode("h3", null, toDisplayString(props.title), 1)
+          ]),
+          createElementVNode("div", null, [
+            renderSlot(_ctx.$slots, "buttons"),
+            renderSlot(_ctx.$slots, "input")
+          ])
+        ]),
+        createElementVNode("div", _hoisted_3$6, [
+          renderSlot(_ctx.$slots, "default")
+        ])
+      ], 2);
     };
-  },
+  }
 });
-const VCard = /* @__PURE__ */ _export_sfc(_sfc_main$f, [
-  [
-    "__file",
-    "/home/debora/www/vert_design_system_ui/src/components/card/VCard.vue",
-  ],
-]);
-const VTab_scss_vue_type_style_index_0_src_a3c685ae_lang = "";
+var VCard = /* @__PURE__ */ _export_sfc(_sfc_main$f, [["__file", "/home/debora/www/vert_design_system_ui/src/components/card/VCard.vue"]]);
+var VTab_scss_vue_type_style_index_0_src_a3c685ae_lang = "";
 const _sfc_main$e = defineComponent({
   name: "VTab",
   props: {
     eixo: {
       type: String,
-      default: "x",
+      default: "x"
     },
     borderBottom: {
       type: Boolean,
-      default: false,
-    },
-  },
+      default: false
+    }
+  }
 });
 const _hoisted_1$d = { class: "box" };
 function _sfc_render$8(_ctx, _cache, $props, $setup, $data, $options) {
-  return (
-    openBlock(),
-    createElementBlock("div", _hoisted_1$d, [
-      createElementVNode(
-        "div",
-        {
-          class: normalizeClass([
-            { "tab--border": _ctx.borderBottom },
-            `tab--${_ctx.eixo}`,
-          ]),
-        },
-        [renderSlot(_ctx.$slots, "header")],
-        2
-      ),
-      renderSlot(_ctx.$slots, "default"),
-    ])
-  );
+  return openBlock(), createElementBlock("div", _hoisted_1$d, [
+    createElementVNode("div", {
+      class: normalizeClass([{ "tab--border": _ctx.borderBottom }, `tab--${_ctx.eixo}`])
+    }, [
+      renderSlot(_ctx.$slots, "header")
+    ], 2),
+    renderSlot(_ctx.$slots, "default")
+  ]);
 }
-const VTab = /* @__PURE__ */ _export_sfc(_sfc_main$e, [
-  ["render", _sfc_render$8],
-  [
-    "__file",
-    "/home/debora/www/vert_design_system_ui/src/components/tab/VTab.vue",
-  ],
-]);
-const VTag_scss_vue_type_style_index_0_src_73d26849_lang = "";
+var VTab = /* @__PURE__ */ _export_sfc(_sfc_main$e, [["render", _sfc_render$8], ["__file", "/home/debora/www/vert_design_system_ui/src/components/tab/VTab.vue"]]);
+var VTag_scss_vue_type_style_index_0_src_73d26849_lang = "";
 const _sfc_main$d = defineComponent({
   name: "VTag",
   props: {
     status: {
       type: String,
-      default: "helper",
+      default: "helper"
     },
     type: {
       type: String,
-      default: "solid",
+      default: "solid"
     },
     icon: {
       type: String,
-      required: false,
+      required: false
     },
     square: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
   computed: {
     setIcon() {
       return `/static/icons/${this.icon}.svg`;
-    },
-  },
+    }
+  }
 });
 const _hoisted_1$c = {
   key: 0,
-  class: "v-tag--img",
+  class: "v-tag--img"
 };
-const _hoisted_2$8 = ["src"];
+const _hoisted_2$7 = ["src"];
 function _sfc_render$7(_ctx, _cache, $props, $setup, $data, $options) {
-  return (
-    openBlock(),
-    createElementBlock(
-      "div",
-      {
-        class: normalizeClass([
-          `v-tag__${_ctx.type}--${_ctx.status}`,
-          { "v-tag--square": _ctx.square },
-        ]),
-      },
-      [
-        _ctx.icon
-          ? (openBlock(),
-            createElementBlock("div", _hoisted_1$c, [
-              createElementVNode(
-                "img",
-                { src: _ctx.setIcon },
-                null,
-                8,
-                _hoisted_2$8
-              ),
-            ]))
-          : createCommentVNode("v-if", true),
-        renderSlot(_ctx.$slots, "default"),
-      ],
-      2
-    )
-  );
+  return openBlock(), createElementBlock("div", {
+    class: normalizeClass([`v-tag__${_ctx.type}--${_ctx.status}`, { "v-tag--square": _ctx.square }])
+  }, [
+    _ctx.icon ? (openBlock(), createElementBlock("div", _hoisted_1$c, [
+      createElementVNode("img", { src: _ctx.setIcon }, null, 8, _hoisted_2$7)
+    ])) : createCommentVNode("v-if", true),
+    renderSlot(_ctx.$slots, "default")
+  ], 2);
 }
-const VTag = /* @__PURE__ */ _export_sfc(_sfc_main$d, [
-  ["render", _sfc_render$7],
-  [
-    "__file",
-    "/home/debora/www/vert_design_system_ui/src/components/tag/VTag.vue",
-  ],
-]);
+var VTag = /* @__PURE__ */ _export_sfc(_sfc_main$d, [["render", _sfc_render$7], ["__file", "/home/debora/www/vert_design_system_ui/src/components/tag/VTag.vue"]]);
 class EDate extends Date {
   get fullYear() {
     return this.getFullYear();
@@ -752,47 +469,23 @@ class String$1 {
   }
 }
 class Time {
-  constructor(
-    firstDayOfWeek = "monday",
-    locale = null,
-    dayBoundaries = {
-      start: 0,
-      end: 2400,
-    }
-  ) {
+  constructor(firstDayOfWeek = "monday", locale = null, dayBoundaries = {
+    start: 0,
+    end: 2400
+  }) {
     __publicField(this, "FIRST_DAY_OF_WEEK");
     __publicField(this, "CALENDAR_LOCALE");
-    __publicField(this, "ALL_HOURS");
     __publicField(this, "DAY_START");
     __publicField(this, "DAY_END");
-    __publicField(this, "HOURS_PER_DAY", 24);
-    __publicField(this, "MS_PER_DAY");
     this.FIRST_DAY_OF_WEEK = firstDayOfWeek;
     this.CALENDAR_LOCALE = locale ? locale : "pt-BR";
-    this.ALL_HOURS = [
-      0, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1e3, 1100, 1200, 1300,
-      1400, 1500, 1600, 1700, 1800, 1900, 2e3, 2100, 2200, 2300, 2400,
-    ];
     this.DAY_START = dayBoundaries.start;
     this.DAY_END = dayBoundaries.end;
-    this.HOURS_PER_DAY = (() => {
-      const convertTimePointToHours = (timePoint) => {
-        if (timePoint === 0) return 0;
-        return timePoint / 100;
-      };
-      return (
-        convertTimePointToHours(this.DAY_END) -
-        convertTimePointToHours(this.DAY_START)
-      );
-    })();
-    this.MS_PER_DAY = 864e5;
   }
   getDatesBetweenTwoDates(start, end) {
-    for (
-      var arr = [], dt = new Date(start);
-      dt <= end;
-      dt.setDate(dt.getDate() + 1)
-    ) {
+    let arr = [];
+    let dt = new Date(start);
+    for (arr = [], dt = new Date(start); dt <= end; dt.setDate(dt.getDate() + 1)) {
       arr.push(new Date(dt.getFullYear(), dt.getMonth(), dt.getDate()));
     }
     return arr;
@@ -800,13 +493,12 @@ class Time {
   getCalendarWeekDateObjects(date = null) {
     const selectedDate = date ? date : new Date();
     let subtractedDaysToGetFirstDate;
-    if (this.FIRST_DAY_OF_WEEK === "sunday")
+    if (this.FIRST_DAY_OF_WEEK === "sunday") {
       subtractedDaysToGetFirstDate = selectedDate.getDay();
-    else
-      subtractedDaysToGetFirstDate =
-        selectedDate.getDay() === 0 ? 6 : selectedDate.getDay() - 1;
-    const dateOfFirstDayOfWeek =
-      selectedDate.getDate() - subtractedDaysToGetFirstDate;
+    } else {
+      subtractedDaysToGetFirstDate = selectedDate.getDay() === 0 ? 6 : selectedDate.getDay() - 1;
+    }
+    const dateOfFirstDayOfWeek = selectedDate.getDate() - subtractedDaysToGetFirstDate;
     const firstDay = new Date(
       selectedDate.getFullYear(),
       selectedDate.getMonth(),
@@ -823,9 +515,7 @@ class Time {
   }
   getCalendarMonthSplitInWeeks(yyyy, mm) {
     const month = [];
-    const selectedDate = ![typeof yyyy, typeof mm].includes("undefined")
-      ? new Date(yyyy, mm, 1)
-      : new Date();
+    const selectedDate = ![typeof yyyy, typeof mm].includes("undefined") ? new Date(yyyy, mm, 1) : new Date();
     const firstDateOfMonth = new Date(
       selectedDate.getFullYear(),
       selectedDate.getMonth(),
@@ -861,47 +551,16 @@ class Time {
     }
     return yearList;
   }
-  getHourAndMinutesFromTimePoints(timePoints) {
-    const time = timePoints.toString();
-    let hour = "0";
-    let minutes = "0";
-    if (time.length === 4) {
-      hour = time[0] + time[1];
-      minutes = time[2] + time[3];
-    } else if (time.length === 3) {
-      hour = time[0];
-      minutes = time[1] + time[2];
-    }
-    return {
-      hour: +hour,
-      minutes: +minutes,
-    };
-  }
-  getHourLocaleStringFromHourDigits(timePoints) {
-    const { hour, minutes } = this.getHourAndMinutesFromTimePoints(timePoints);
-    const hourLocaleString = new Date(
-      2100,
-      0,
-      1,
-      +hour,
-      +minutes,
-      0
-    ).toLocaleTimeString(this.CALENDAR_LOCALE, {
-      hour: "2-digit",
-    });
-    if (hourLocaleString[0] === "0") return hourLocaleString.substring(1);
-    return hourLocaleString;
-  }
   getLocalizedNameOfWeekday(date, weekdayNameLength = "short") {
     return String$1.capitalizeFirstLetter(
       date.toLocaleDateString(this.CALENDAR_LOCALE, {
-        weekday: weekdayNameLength,
+        weekday: weekdayNameLength
       })
     );
   }
   getLocalizedNameOfMonth(date, monthNameLength = "short") {
     return date.toLocaleDateString(this.CALENDAR_LOCALE, {
-      month: monthNameLength,
+      month: monthNameLength
     });
   }
   getLocalizedDateString(date) {
@@ -915,26 +574,10 @@ class Time {
     if (!timeIsStartOrEndOfDay) {
       const hour = date.getHours();
       const minutes = date.getMinutes();
-      return `${fullDate} ${hour >= 10 ? hour : "0" + hour}:${
-        minutes >= 10 ? minutes : "0" + minutes
-      }`;
+      return `${fullDate} ${hour >= 10 ? hour : "0" + hour}:${minutes >= 10 ? minutes : "0" + minutes}`;
     }
     const fullTime = timeIsStartOrEndOfDay === "start" ? "00:00" : "23:59";
     return `${fullDate} ${fullTime}`;
-  }
-  getLocalizedTime(dateTimeString) {
-    const h = dateTimeString.substring(11, 13);
-    const m = dateTimeString.substring(14, 16);
-    const d = new Date();
-    d.setHours(+h);
-    d.setMinutes(+m);
-    return d.toLocaleTimeString(this.CALENDAR_LOCALE, {
-      hour: "numeric",
-      minute: "numeric",
-    });
-  }
-  getLocalizedHour(date) {
-    return date.toLocaleTimeString(this.CALENDAR_LOCALE, { hour: "2-digit" });
   }
   getAllVariablesFromDateTimeString(dateTimeString) {
     return {
@@ -942,25 +585,21 @@ class Time {
       month: +dateTimeString.substring(5, 7) - 1,
       date: +dateTimeString.substring(8, 10),
       hour: +dateTimeString.substring(11, 13),
-      minutes: +dateTimeString.substring(14, 16),
+      minutes: +dateTimeString.substring(14, 16)
     };
   }
   dateIsToday(date) {
     const {
       fullYear: yearToday,
       month: monthToday,
-      date: dateToday,
+      date: dateToday
     } = new EDate();
     const {
       fullYear: dateYear,
       month: dateMonth,
-      date: dateDate,
+      date: dateDate
     } = new EDate(date);
-    return (
-      yearToday === dateYear &&
-      monthToday === dateMonth &&
-      dateToday === dateDate
-    );
+    return yearToday === dateYear && monthToday === dateMonth && dateToday === dateDate;
   }
   dateIsInWeek(dateToCheck, week) {
     const { date, month, fullYear } = new EDate(dateToCheck);
@@ -968,7 +607,8 @@ class Time {
       const dateIsSame = date === weekDay.getDate();
       const monthIsSame = month === weekDay.getMonth();
       const yearIsSame = fullYear === weekDay.getFullYear();
-      if (dateIsSame && monthIsSame && yearIsSame) return true;
+      if (dateIsSame && monthIsSame && yearIsSame)
+        return true;
     }
     return false;
   }
@@ -978,37 +618,16 @@ class Time {
     const dd = date.getDate();
     return `${yyyy}-${mm >= 10 ? mm : "0" + mm}-${dd >= 10 ? dd : "0" + dd}`;
   }
-  addMinutesToDateTimeString(minutes, dateTimeString) {
-    const {
-      year: oldYear,
-      month: oldMonth,
-      date: oldDate,
-      hour: oldHour,
-      minutes: oldMinutes,
-    } = this.getAllVariablesFromDateTimeString(dateTimeString);
-    const oldDateObject = new Date(
-      oldYear,
-      oldMonth,
-      oldDate,
-      oldHour,
-      oldMinutes
-    );
-    const newDateObject = new Date(oldDateObject.getTime() + minutes * 6e4);
-    return this.getDateTimeStringFromDate(newDateObject);
-  }
-  addDaysToDateTimeString(days, dateTimeString) {
-    return this.addMinutesToDateTimeString(days * 1440, dateTimeString);
-  }
   dateStringsHaveEqualDates(dateTimeString1, dateTimeString2) {
     const {
       year: year1,
       month: month1,
-      date: date1,
+      date: date1
     } = this.getAllVariablesFromDateTimeString(dateTimeString1);
     const {
       year: year2,
       month: month2,
-      date: date2,
+      date: date2
     } = this.getAllVariablesFromDateTimeString(dateTimeString2);
     return year1 === year2 && month1 === month2 && date1 === date2;
   }
@@ -1023,119 +642,237 @@ class Time {
       999
     );
   }
-  turnMinutesIntoPercentageOfHour(minutes) {
-    const oneMinutePercentage = 100 / 60;
-    const minutePoints = oneMinutePercentage * minutes;
-    if (minutePoints < 10) return "0" + minutePoints;
-    return minutePoints.toString();
+  getNextWeek(day) {
+    const week = [];
+    for (let i = 0; i < 7; i++) {
+      const newDate = new Date(day);
+      newDate.setDate(day.getDate() + i);
+      week.push(newDate);
+    }
+    return week;
   }
-  getPercentageOfDayFromDateTimeString(dateTimeString, dayStart, dayEnd) {
-    const pointsInDay = dayEnd - dayStart;
-    const hour = dateTimeString.substring(11, 13);
-    const minutes = dateTimeString.substring(14, 16);
-    const minutesPoints = this.turnMinutesIntoPercentageOfHour(+minutes);
-    const eventPoints = +(hour + minutesPoints);
-    const eventPointsIntoDay = eventPoints - dayStart;
-    return (eventPointsIntoDay / pointsInDay) * 100;
+  getLastWeek(day) {
+    const week = [];
+    for (let i = 0; i < 7; i++) {
+      const newDate = new Date(day);
+      newDate.setDate(day.getDate() - i);
+      week.push(newDate);
+    }
+    return week;
   }
-  setSegmentOfDateTimeString(dateTimeString, segments) {
-    if (segments.hour < 0 || segments.hour > 23)
-      throw new Error("Invalid hour");
-    segments.hour = String(
-      segments.hour < 10 ? "0" + segments.hour : segments.hour
-    );
-    dateTimeString = dateTimeString.replace(/\d{2}:/, segments.hour + ":");
-    return dateTimeString;
+  getNumberOfDaysInMonth(year, month) {
+    return new Date(year, month, 0).getDate();
   }
 }
-const languageKeys = {
-  week: {
-    "it-IT": "Settimana",
-    "en-US": "Week",
-    "de-DE": "Woche",
-    "sv-SE": "Vecka",
-    "zh-CN": "\u5468",
-    "pt-BR": "Semana",
-    "fr-FR": "Semaine",
-  },
-  month: {
-    "it-IT": "Mese",
-    "en-US": "Month",
-    "de-DE": "Monat",
-    "sv-SE": "M\xE5nad",
-    "zh-CN": "\u6708",
-    "pt-BR": "M\xEAs",
-    "fr-FR": "Mois",
-  },
-  day: {
-    "it-IT": "Giorno",
-    "en-US": "Day",
-    "de-DE": "Tag",
-    "sv-SE": "Dag",
-    "zh-CN": "\u65E5",
-    "pt-BR": "Dia",
-    "fr-FR": "Jour",
-  },
-  personalized: {
-    "it-IT": "Personalizzato",
-    "en-US": "Personalized",
-    "de-DE": "Personalisiert",
-    "sv-SE": "Personlig",
-    "zh-CN": "\u4E2A\u6027\u5316",
-    "pt-BR": "Personalizado",
-    "fr-FR": "Personnalis\xE9",
-  },
-  mini: {
-    "it-IT": "Mini",
-    "en-US": "Mini",
-    "de-DE": "Mini",
-    "sv-SE": "Mini",
-    "zh-CN": "\u8FF7\u4F60",
-    "pt-BR": "Mini",
-    "fr-FR": "Mini",
-  },
-  moreEvents: {
-    "it-IT": "+ altri eventi",
-    "en-US": "+ more events",
-    "de-DE": "+ weitere Ereignisse",
-    "sv-SE": "+ fler h\xE4ndelser",
-    "zh-CN": "\u5217\u51FA\u5176\u4ED6\u7ED3\u679C",
-    "pt-BR": "+ mais eventos",
-    "fr-FR": "+ d'autres \xE9v\xE9nements",
-  },
+var _imports_0$2 = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+CiAgIDxwYXRoIGZpbGw9IiNhYWEiIGQ9Ik0xNS40MSwxNi41OEwxMC44MywxMkwxNS40MSw3LjQxTDE0LDZMOCwxMkwxNCwxOEwxNS40MSwxNi41OFoiIC8+Cjwvc3ZnPg==";
+const _sfc_main$c = defineComponent({
+  name: "ChevronLeft"
+});
+const _hoisted_1$b = {
+  src: _imports_0$2,
+  width: "24"
 };
-const getLanguage = {
+function _sfc_render$6(_ctx, _cache, $props, $setup, $data, $options) {
+  return openBlock(), createElementBlock("img", _hoisted_1$b);
+}
+var ChevronLeft = /* @__PURE__ */ _export_sfc(_sfc_main$c, [["render", _sfc_render$6], ["__file", "/home/debora/www/vert_design_system_ui/src/components/icons/ChevronLeft.vue"]]);
+var _imports_0$1 = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+CiAgIDxwYXRoIGZpbGw9IiNhYWEiIGQ9Ik04LjU5LDE2LjU4TDEzLjE3LDEyTDguNTksNy40MUwxMCw2TDE2LDEyTDEwLDE4TDguNTksMTYuNThaIiAvPgo8L3N2Zz4=";
+const _sfc_main$b = defineComponent({
+  name: "ChevronRight"
+});
+const _hoisted_1$a = {
+  src: _imports_0$1,
+  width: "24"
+};
+function _sfc_render$5(_ctx, _cache, $props, $setup, $data, $options) {
+  return openBlock(), createElementBlock("img", _hoisted_1$a);
+}
+var ChevronRight = /* @__PURE__ */ _export_sfc(_sfc_main$b, [["render", _sfc_render$5], ["__file", "/home/debora/www/vert_design_system_ui/src/components/icons/ChevronRight.vue"]]);
+var WeekCarousel_vue_vue_type_style_index_0_scoped_true_lang = "";
+const _sfc_main$a = defineComponent({
+  name: "Weekcarousel",
+  components: { ChevronLeft, ChevronRight },
+  props: {
+    days: {
+      type: Array,
+      required: true
+    },
+    time: {
+      type: Object,
+      required: true
+    }
+  },
+  emits: ["event-was-clicked", "day-was-clicked"],
   data() {
     return {
-      languageKeys,
+      now: new Date(),
+      selectedDay: ""
     };
   },
   methods: {
-    getLanguage(languageKeys2, locale) {
-      if (locale.startsWith("de")) locale = "de-DE";
-      if (locale.startsWith("en")) locale = "en-US";
-      if (locale.startsWith("it")) locale = "it-IT";
-      if (locale.startsWith("sv")) locale = "sv-SE";
-      if (locale.startsWith("zh")) locale = "zh-CN";
-      if (locale.startsWith("pt")) locale = "pt-BR";
-      if (locale.startsWith("fr")) locale = "fr-FR";
-      return languageKeys2[locale]
-        ? languageKeys2[locale]
-        : languageKeys2["en-US"] || "";
+    getDaysDate(day) {
+      const { date } = this.time.getAllVariablesFromDateTimeString(
+        day.dateTimeString
+      );
+      return date;
     },
+    onHandleDayWasClicked(day) {
+      this.selectedDay = day.dateTimeString.substring(0, 10);
+      this.$emit("day-was-clicked", day);
+    },
+    onHandleChevronLeftWasClicked() {
+      this.$emit("event-was-clicked", "chevron-left");
+    },
+    onHandleChevronRightWasClicked() {
+      this.$emit("event-was-clicked", "chevron-right");
+    }
+  }
+});
+const _hoisted_1$9 = { class: "week-carousel" };
+const _hoisted_2$6 = ["onClick"];
+const _hoisted_3$5 = { class: "week-carousel__day-name" };
+const _hoisted_4$4 = { class: "week-carousel__date" };
+function _sfc_render$4(_ctx, _cache, $props, $setup, $data, $options) {
+  const _component_chevron_left = resolveComponent("chevron-left");
+  const _component_chevron_right = resolveComponent("chevron-right");
+  return openBlock(), createElementBlock("div", _hoisted_1$9, [
+    createVNode(_component_chevron_left, {
+      class: "week-carousel__chevron-left",
+      onClick: _ctx.onHandleChevronLeftWasClicked
+    }, null, 8, ["onClick"]),
+    (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.days, (day, dayIndex) => {
+      return openBlock(), createElementBlock("div", {
+        key: dayIndex,
+        class: normalizeClass(["week-carousel__day", [
+          {
+            "is-today": _ctx.time.getDateTimeStringFromDate(_ctx.now, "start") === day.dateTimeString
+          },
+          { "is-selected": day.dateTimeString.substring(0, 10) === _ctx.selectedDay }
+        ]]),
+        onClick: ($event) => _ctx.onHandleDayWasClicked(day)
+      }, [
+        createElementVNode("div", _hoisted_3$5, toDisplayString(day.dayName.substring(0, 3)), 1),
+        createElementVNode("div", _hoisted_4$4, toDisplayString(_ctx.getDaysDate(day)), 1)
+      ], 10, _hoisted_2$6);
+    }), 128)),
+    createVNode(_component_chevron_right, {
+      class: "week-carousel__chevron-right",
+      onClick: _ctx.onHandleChevronRightWasClicked
+    }, null, 8, ["onClick"])
+  ]);
+}
+var WeekCarousel = /* @__PURE__ */ _export_sfc(_sfc_main$a, [["render", _sfc_render$4], ["__scopeId", "data-v-5d140c4b"], ["__file", "/home/debora/www/vert_design_system_ui/src/components/calendar/mini/WeekCarousel.vue"]]);
+var Mini_vue_vue_type_style_index_0_scoped_true_lang = "";
+const _hoisted_1$8 = { class: "vcalendar-mini" };
+const _hoisted_2$5 = { class: "vcalendar-mini--week" };
+const _hoisted_3$4 = { class: "vcalendar-mini--day" };
+const _sfc_main$9 = /* @__PURE__ */ defineComponent({
+  __name: "Mini",
+  props: {
+    time: {
+      type: Object,
+      required: true
+    },
+    period: {
+      type: Object,
+      required: true
+    },
+    nDays: {
+      type: Number,
+      default: 7
+    }
   },
-};
-const VDropdown_scss_vue_type_style_index_0_src_12d7f8ce_lang = "";
-const _hoisted_1$b = { key: 0 };
-const _hoisted_2$7 = { key: 1 };
-const _hoisted_3$6 = ["for"];
+  emits: {
+    "day-was-clicked": (__day) => true,
+    "change-period": (__value) => true
+  },
+  setup(__props, { emit: emits }) {
+    const props = __props;
+    const days = ref([]);
+    const dayNameSelected = ref("");
+    const initialMonth = ref(null);
+    const initialYear = ref(null);
+    const setDays = (day) => {
+      const days_ = props.time.getCalendarWeekDateObjects(day).map((day2) => {
+        const dayName = props.time.getLocalizedNameOfWeekday(day2, "long");
+        const dateTimeString = props.time.getDateTimeStringFromDate(day2, "start");
+        if (props.time.dateIsToday(day2)) {
+          getDateAndDayLongName(day2, true);
+        }
+        const { month, year, date } = props.time.getAllVariablesFromDateTimeString(dateTimeString);
+        if (month !== initialMonth.value || year !== initialYear.value && (date == props.time.getNumberOfDaysInMonth(year, month) || date == 1))
+          emits("change-period", dateTimeString.substring(0, 7));
+        return { dayName, dateTimeString };
+      });
+      days.value = days_;
+    };
+    const changeWeekDays = (event) => {
+      if (event === "chevron-left") {
+        const firstDayOfWeek = new Date(days.value[0].dateTimeString);
+        firstDayOfWeek.setDate(firstDayOfWeek.getDate() - 7);
+        setDays(firstDayOfWeek);
+      } else if (event === "chevron-right") {
+        const lastDayOfWeek = new Date(
+          days.value[days.value.length - 1].dateTimeString
+        );
+        lastDayOfWeek.setDate(lastDayOfWeek.getDate() + 7);
+        setDays(lastDayOfWeek);
+      }
+    };
+    const setInitialEvents = () => {
+      setDays(props.period.start);
+      const { month, year } = props.time.getAllVariablesFromDateTimeString(
+        props.time.getDateTimeStringFromDate(props.period.start, "start")
+      );
+      initialMonth.value = month;
+      initialYear.value = year;
+    };
+    const getDateAndDayLongName = (day, isToday = false) => {
+      const { date } = props.time.getAllVariablesFromDateTimeString(
+        props.time.getDateTimeStringFromDate(day, "start")
+      );
+      dayNameSelected.value = (isToday ? "Hoje - " : "") + props.time.getLocalizedNameOfWeekday(day, "short") + ", " + date + " de " + String$1.capitalizeFirstLetter(
+        props.time.getLocalizedNameOfMonth(day, "short")
+      );
+      return dayNameSelected.value;
+    };
+    const handleDayWasClicked = (day) => {
+      const replate_date = day.dateTimeString.replace("-", ",");
+      const dayDate = new Date(replate_date);
+      day.dayName = getDateAndDayLongName(dayDate, props.time.dateIsToday(dayDate));
+      emits("day-was-clicked", day);
+    };
+    onMounted(() => {
+      setInitialEvents();
+    });
+    return (_ctx, _cache) => {
+      return openBlock(), createElementBlock("div", _hoisted_1$8, [
+        createElementVNode("div", _hoisted_2$5, [
+          createVNode(WeekCarousel, {
+            days: days.value,
+            time: __props.time,
+            onDayWasClicked: handleDayWasClicked,
+            onEventWasClicked: changeWeekDays
+          }, null, 8, ["days", "time"])
+        ]),
+        createElementVNode("div", _hoisted_3$4, toDisplayString(dayNameSelected.value), 1)
+      ]);
+    };
+  }
+});
+var Mini = /* @__PURE__ */ _export_sfc(_sfc_main$9, [["__scopeId", "data-v-7d7d84ae"], ["__file", "/home/debora/www/vert_design_system_ui/src/components/calendar/mini/Mini.vue"]]);
+var VDropdown_scss_vue_type_style_index_0_src_12d7f8ce_lang = "";
+const _hoisted_1$7 = { key: 0 };
+const _hoisted_2$4 = { key: 1 };
+const _hoisted_3$3 = ["for"];
 const _hoisted_4$3 = { class: "v-dropdow__options" };
-const _hoisted_5$1 = ["value", "id", "type"];
-const _hoisted_6$1 = ["for"];
-const _sfc_main$c = defineComponent({
+const _hoisted_5$2 = ["tabIndex"];
+const _hoisted_6$1 = ["id", "value", "type", "onChange"];
+const _hoisted_7$1 = ["for"];
+const _sfc_main$8 = defineComponent({
   __name: "VDropdown",
   props: {
-    id: { type: String, required: false },
+    id: { type: String, required: false, default: "exemplo" },
     name: { type: String, required: false, default: "exemplo" },
     placeholder: { type: String, required: false, default: "Selecione" },
     label: { type: String, required: false },
@@ -1146,12 +883,20 @@ const _sfc_main$c = defineComponent({
     modelValue: { type: null, required: false, default: [] },
     borderNone: { type: Boolean, required: false },
     multiple: { type: Boolean, required: false, default: false },
-    type: { type: String, required: false, default: "1" },
+    type: { type: String, required: false, default: "1" }
   },
   emits: ["onChange", "update:modelValue"],
   setup(__props, { emit }) {
     const props = __props;
-    const setMultiple = computed(() => (props.multiple ? "checkbox" : "radio"));
+    const setMultiple = computed(
+      () => props.multiple ? "checkbox" : "radio"
+    );
+    watch(
+      () => props.modelValue,
+      (value) => {
+        valueOption.value = value;
+      }
+    );
     const showValue = computed(() => {
       if (valueOption.value.length == 0) {
         return props.placeholder;
@@ -1172,9 +917,9 @@ const _sfc_main$c = defineComponent({
     });
     const valueOption = ref(props.modelValue);
     const showOptions = ref(false);
-    function selectChange() {
-      emit("onChange", valueOption.value);
-      emit("update:modelValue", valueOption.value);
+    function selectChange(value) {
+      emit("onChange", value);
+      emit("update:modelValue", value);
     }
     const setTypeStyle = computed(() => {
       if (props.type == "2") {
@@ -1183,643 +928,209 @@ const _sfc_main$c = defineComponent({
       return "";
     });
     return (_ctx, _cache) => {
-      return (
-        openBlock(),
-        createElementBlock(
-          Fragment,
-          null,
-          [
-            createElementVNode(
-              "div",
-              {
-                class: normalizeClass(["v-dropdow", unref(setTypeStyle)]),
-              },
-              [
-                createElementVNode(
-                  "div",
-                  {
-                    class: "v-dropdow__input",
-                    onClick:
-                      _cache[0] ||
-                      (_cache[0] = ($event) =>
-                        (showOptions.value = !showOptions.value)),
-                  },
-                  [
-                    !__props.multiple || unref(showValue) == __props.placeholder
-                      ? (openBlock(),
-                        createElementBlock(
-                          "span",
-                          _hoisted_1$b,
-                          toDisplayString(unref(showValue)),
-                          1
-                        ))
-                      : (openBlock(),
-                        createElementBlock("span", _hoisted_2$7, [
-                          (openBlock(true),
-                          createElementBlock(
-                            Fragment,
-                            null,
-                            renderList(unref(showValue), (selected, index) => {
-                              return (
-                                openBlock(),
-                                createBlock(
-                                  VTag,
-                                  {
-                                    status: "secondary",
-                                    square: "",
-                                    key: index,
-                                  },
-                                  {
-                                    default: withCtx(() => [
-                                      createTextVNode(
-                                        toDisplayString(selected.label) + " ",
-                                        1
-                                      ),
-                                      createElementVNode(
-                                        "label",
-                                        {
-                                          class: "icon--close",
-                                          for:
-                                            __props.name + "-" + selected.value,
-                                        },
-                                        null,
-                                        8,
-                                        _hoisted_3$6
-                                      ),
-                                    ]),
-                                    _: 2,
-                                  },
-                                  1024
-                                )
-                              );
-                            }),
-                            128
-                          )),
-                        ])),
-                    createElementVNode(
-                      "div",
-                      {
-                        class: normalizeClass([
-                          "v-dropdow__input--arrow",
-                          {
-                            "v-dropdow__input--arrow--open": showOptions.value,
-                          },
-                        ]),
-                      },
-                      null,
-                      2
-                    ),
-                  ]
-                ),
-                withDirectives(
-                  createElementVNode(
-                    "div",
-                    _hoisted_4$3,
-                    [
-                      createElementVNode("ul", null, [
-                        (openBlock(true),
-                        createElementBlock(
-                          Fragment,
-                          null,
-                          renderList(__props.options, (option) => {
-                            return (
-                              openBlock(),
-                              createElementBlock("li", null, [
-                                withDirectives(
-                                  createElementVNode(
-                                    "input",
-                                    {
-                                      "onUpdate:modelValue":
-                                        _cache[1] ||
-                                        (_cache[1] = ($event) =>
-                                          (valueOption.value = $event)),
-                                      name: "option",
-                                      value: option.value,
-                                      id: __props.name + "-" + option.value,
-                                      type: unref(setMultiple),
-                                      onChange:
-                                        _cache[2] ||
-                                        (_cache[2] = ($event) =>
-                                          selectChange()),
-                                    },
-                                    null,
-                                    40,
-                                    _hoisted_5$1
-                                  ),
-                                  [[vModelDynamic, valueOption.value]]
-                                ),
-                                createElementVNode(
-                                  "label",
-                                  {
-                                    for: __props.name + "-" + option.value,
-                                  },
-                                  toDisplayString(option.label),
-                                  9,
-                                  _hoisted_6$1
-                                ),
-                              ])
-                            );
-                          }),
-                          256
-                        )),
-                      ]),
-                    ],
-                    512
-                  ),
-                  [[vShow, showOptions.value]]
-                ),
-              ],
-              2
-            ),
-            withDirectives(
-              createElementVNode(
-                "div",
-                {
-                  class: "v-dropdow__fullscreen",
-                  onClick:
-                    _cache[3] ||
-                    (_cache[3] = ($event) =>
-                      (showOptions.value = !showOptions.value)),
-                },
-                null,
-                512
-              ),
-              [[vShow, showOptions.value]]
-            ),
-          ],
-          64
-        )
-      );
+      return openBlock(), createElementBlock(Fragment, null, [
+        createElementVNode("div", {
+          class: normalizeClass(["v-dropdow", unref(setTypeStyle)])
+        }, [
+          createElementVNode("div", {
+            class: "v-dropdow__input",
+            onClick: _cache[0] || (_cache[0] = ($event) => showOptions.value = !showOptions.value)
+          }, [
+            !__props.multiple || unref(showValue) == __props.placeholder ? (openBlock(), createElementBlock("span", _hoisted_1$7, toDisplayString(unref(showValue)), 1)) : (openBlock(), createElementBlock("span", _hoisted_2$4, [
+              (openBlock(true), createElementBlock(Fragment, null, renderList(unref(showValue), (selected, index) => {
+                return openBlock(), createBlock(VTag, {
+                  key: index,
+                  status: "secondary",
+                  square: ""
+                }, {
+                  default: withCtx(() => [
+                    createTextVNode(toDisplayString(selected.label) + " ", 1),
+                    createElementVNode("label", {
+                      class: "icon--close",
+                      for: __props.name + "-" + selected.value
+                    }, null, 8, _hoisted_3$3)
+                  ]),
+                  _: 2
+                }, 1024);
+              }), 128))
+            ])),
+            createElementVNode("div", {
+              class: normalizeClass(["v-dropdow__input--arrow", { "v-dropdow__input--arrow--open": showOptions.value }])
+            }, null, 2)
+          ]),
+          withDirectives(createElementVNode("div", _hoisted_4$3, [
+            createElementVNode("ul", null, [
+              (openBlock(true), createElementBlock(Fragment, null, renderList(__props.options, (option, i) => {
+                return openBlock(), createElementBlock("li", {
+                  key: i,
+                  tabIndex: option.value == valueOption.value ? -1 : i
+                }, [
+                  createElementVNode("input", {
+                    id: __props.name + "-" + option.value,
+                    name: "option",
+                    value: option.value,
+                    type: unref(setMultiple),
+                    onChange: ($event) => selectChange(option.value)
+                  }, null, 40, _hoisted_6$1),
+                  createElementVNode("label", {
+                    for: __props.name + "-" + option.value
+                  }, toDisplayString(option.label), 9, _hoisted_7$1)
+                ], 8, _hoisted_5$2);
+              }), 128))
+            ])
+          ], 512), [
+            [vShow, showOptions.value]
+          ])
+        ], 2),
+        withDirectives(createElementVNode("div", {
+          class: "v-dropdow__fullscreen",
+          onClick: _cache[1] || (_cache[1] = ($event) => showOptions.value = !showOptions.value)
+        }, null, 512), [
+          [vShow, showOptions.value]
+        ])
+      ], 64);
     };
-  },
+  }
 });
-const VDropdown = /* @__PURE__ */ _export_sfc(_sfc_main$c, [
-  [
-    "__file",
-    "/home/debora/www/vert_design_system_ui/src/components/dropdown/VDropdown.vue",
-  ],
-]);
-const VMonthYearSelect_vue_vue_type_style_index_0_scoped_true_lang = "";
-const _hoisted_1$a = { class: "vmonth-year" };
-const _sfc_main$b = /* @__PURE__ */ defineComponent({
-  __name: "VMonthYearSelect",
-  emits: ["updated"],
-  setup(__props, { emit }) {
+var VDropdown = /* @__PURE__ */ _export_sfc(_sfc_main$8, [["__file", "/home/debora/www/vert_design_system_ui/src/components/dropdown/VDropdown.vue"]]);
+var VCalendarMini_vue_vue_type_style_index_0_lang = "";
+const _hoisted_1$6 = { class: "calendar-root-wrapper" };
+const _hoisted_2$3 = { class: "calendar-root mode-is-mini" };
+const _hoisted_3$2 = {
+  key: 0,
+  class: "top-bar-loader"
+};
+const _hoisted_4$2 = { class: "calendar-header" };
+const _hoisted_5$1 = { class: "calendar-header__period" };
+const _sfc_main$7 = /* @__PURE__ */ defineComponent({
+  __name: "VCalendarMini",
+  props: {
+    events: {
+      type: Array,
+      default: () => []
+    },
+    selectedDate: {
+      type: Date,
+      default: new Date()
+    },
+    isLoading: {
+      type: Boolean,
+      default: false
+    }
+  },
+  emits: ["event-was-clicked", "day-was-clicked"],
+  setup(__props) {
+    const props = __props;
     const monthYearSelected = ref(
       String(`${new Date().getFullYear()}-${new Date().getMonth() + 1}`)
     );
     const months = computed(() => {
       const months2 = [];
       const currentYear = new Date().getFullYear();
-      for (let i = 0; i < 5; i++) {
+      for (let i = 0; i < 20; i++) {
         for (let j = 0; j < 12; j++) {
+          const month = j <= 8 ? `0${j + 1}` : j + 1;
           months2.push({
-            value: String(`${currentYear + i}-${j + 1}`),
+            value: String(`${currentYear + i}-${month}`),
             label: String$1.capitalizeFirstLetter(
               new Date(currentYear + i, j, 1).toLocaleString("default", {
                 month: "long",
-                year: "numeric",
+                year: "numeric"
               })
-            ),
+            )
           });
         }
       }
       return months2;
     });
+    const week = { nDays: 7 };
+    const time = new Time();
+    const period = ref({
+      start: new Date(),
+      end: new Date(),
+      selectedDate: props.selectedDate ? props.selectedDate : new Date()
+    });
+    function setPeriodOnMount() {
+      const currentWeek = time.getCalendarWeekDateObjects(
+        period.value.selectedDate
+      );
+      period.value.start = currentWeek[0];
+      period.value.end = currentWeek[6];
+    }
     const onChangeMonth = (monthYear) => {
       const [year, month] = monthYear.split("-");
       const date = new Date(parseInt(year), parseInt(month) - 1, 1);
-      const period = {
+      period.value = {
         start: date,
         end: new Date(date.getFullYear(), date.getMonth() + 1, 0),
-        selectedDate: date,
+        selectedDate: date
       };
-      emit("updated", period);
     };
-    return (_ctx, _cache) => {
-      return (
-        openBlock(),
-        createElementBlock("div", _hoisted_1$a, [
-          createVNode(
-            VDropdown,
-            {
-              options: unref(months),
-              type: "2",
-              modelValue: monthYearSelected.value,
-              "onUpdate:modelValue":
-                _cache[0] ||
-                (_cache[0] = ($event) => (monthYearSelected.value = $event)),
-              onOnChange: onChangeMonth,
-              size: "lg",
-            },
-            null,
-            8,
-            ["options", "modelValue"]
-          ),
-        ])
-      );
-    };
-  },
-});
-const VMonthYearPicker = /* @__PURE__ */ _export_sfc(_sfc_main$b, [
-  ["__scopeId", "data-v-59a07538"],
-  [
-    "__file",
-    "/home/debora/www/vert_design_system_ui/src/components/date/VMonthYearSelect.vue",
-  ],
-]);
-const VCalendarHeaderMini_vue_vue_type_style_index_0_scoped_true_lang = "";
-const _sfc_main$a = defineComponent({
-  name: "VCalendarHeaderMini",
-  components: {
-    VMonthYearPicker,
-  },
-  mixins: [getLanguage],
-  emits: ["updated-period"],
-  data() {
-    return {
-      currentPeriod: this.period,
-    };
-  },
-  methods: {
-    handlePeriodChange(period) {
-      this.currentPeriod = period;
-      this.$emit("updated-period", period);
-    },
-  },
-});
-const _hoisted_1$9 = { class: "calendar-header" };
-const _hoisted_2$6 = { class: "calendar-header__period" };
-function _sfc_render$6(_ctx, _cache, $props, $setup, $data, $options) {
-  const _component_VMonthYearPicker = resolveComponent("VMonthYearPicker");
-  return (
-    openBlock(),
-    createElementBlock("div", _hoisted_1$9, [
-      createElementVNode("div", _hoisted_2$6, [
-        createVNode(
-          _component_VMonthYearPicker,
-          {
-            ref: "periodSelect",
-            onUpdated: _ctx.handlePeriodChange,
-          },
-          null,
-          8,
-          ["onUpdated"]
-        ),
-      ]),
-    ])
-  );
-}
-const AppHeaderMini = /* @__PURE__ */ _export_sfc(_sfc_main$a, [
-  ["render", _sfc_render$6],
-  ["__scopeId", "data-v-16b59cd2"],
-  [
-    "__file",
-    "/home/debora/www/vert_design_system_ui/src/components/calendar/VCalendarHeaderMini.vue",
-  ],
-]);
-const WeekCarousel_vue_vue_type_style_index_0_scoped_true_lang = "";
-const _sfc_main$9 = defineComponent({
-  name: "Weekcarousel",
-  props: {
-    days: {
-      type: Array,
-      required: true,
-    },
-    time: {
-      type: Object,
-      required: true,
-    },
-  },
-  emits: ["event-was-clicked", "day-was-clicked"],
-  data() {
-    return {
-      now: new Date(),
-      selectedDay: "",
-    };
-  },
-  methods: {
-    getDaysDate(day) {
-      const { date } = this.time.getAllVariablesFromDateTimeString(
-        day.dateTimeString
-      );
-      return date;
-    },
-    isLastDayOfMonth(day) {
-      this.time.getAllVariablesFromDateTimeString(day.dateTimeString);
-    },
-    onHandleDayWasClicked(day) {
-      this.$emit("day-was-clicked", day);
-    },
-  },
-});
-const _hoisted_1$8 = { class: "week-carousel" };
-const _hoisted_2$5 = ["onClick"];
-const _hoisted_3$5 = { class: "week-carousel__day-name" };
-const _hoisted_4$2 = { class: "week-carousel__date" };
-function _sfc_render$5(_ctx, _cache, $props, $setup, $data, $options) {
-  return (
-    openBlock(),
-    createElementBlock("div", _hoisted_1$8, [
-      (openBlock(true),
-      createElementBlock(
-        Fragment,
-        null,
-        renderList(_ctx.days, (day, dayIndex) => {
-          return (
-            openBlock(),
-            createElementBlock(
-              "div",
-              {
-                key: dayIndex,
-                class: normalizeClass([
-                  "week-carousel__day",
-                  [
-                    {
-                      "is-today":
-                        _ctx.time.getDateTimeStringFromDate(
-                          _ctx.now,
-                          "start"
-                        ) === day.dateTimeString,
-                    },
-                    {
-                      "is-selected":
-                        day.dateTimeString.substring(0, 10) ===
-                        _ctx.selectedDay,
-                    },
-                  ],
-                ]),
-                onClick: ($event) => _ctx.onHandleDayWasClicked(day),
-              },
-              [
-                createElementVNode(
-                  "div",
-                  _hoisted_3$5,
-                  toDisplayString(day.dayName.substring(0, 3)),
-                  1
-                ),
-                createElementVNode(
-                  "div",
-                  _hoisted_4$2,
-                  toDisplayString(_ctx.getDaysDate(day)),
-                  1
-                ),
-              ],
-              10,
-              _hoisted_2$5
-            )
-          );
-        }),
-        128
-      )),
-    ])
-  );
-}
-const WeekCarousel = /* @__PURE__ */ _export_sfc(_sfc_main$9, [
-  ["render", _sfc_render$5],
-  ["__scopeId", "data-v-5d140c4b"],
-  [
-    "__file",
-    "/home/debora/www/vert_design_system_ui/src/components/calendar/mini/WeekCarousel.vue",
-  ],
-]);
-const Mini_vue_vue_type_style_index_0_scoped_true_lang = "";
-const _hoisted_1$7 = { class: "vcalendar-mini" };
-const _hoisted_2$4 = { class: "vcalendar-mini--week" };
-const _hoisted_3$4 = { class: "vcalendar-mini--day" };
-const _sfc_main$8 = /* @__PURE__ */ defineComponent({
-  __name: "Mini",
-  props: {
-    time: {
-      type: Object,
-      required: true,
-    },
-    period: {
-      type: Object,
-      required: true,
-    },
-    nDays: {
-      type: Number,
-      default: 7,
-    },
-  },
-  emits: {
-    "day-was-clicked": (day) => true,
-  },
-  setup(__props, { emit: emits }) {
-    const props = __props;
-    const days = ref([]);
-    const dayNameSelected = ref("");
-    const setDays = () => {
-      const days_ = props.time
-        .getCalendarWeekDateObjects(props.period.start)
-        .map((day) => {
-          const dayName = props.time.getLocalizedNameOfWeekday(day, "long");
-          const dateTimeString = props.time.getDateTimeStringFromDate(
-            day,
-            "start"
-          );
-          if (props.time.dateIsToday(day)) {
-            getDateAndDayLongName(day, true);
-          }
-          return { dayName, dateTimeString };
+    function onChangePeriod(value) {
+      if (!months.value.find((m) => m.value === value)) {
+        const year = Number(value.substring(0, 4));
+        const month = value.substring(5, 7);
+        months.value.push({
+          value: String(`${year}-${month}`),
+          label: String$1.capitalizeFirstLetter(
+            new Date(year, Number(month) - 1, 1).toLocaleString("default", {
+              month: "long",
+              year: "numeric"
+            })
+          )
         });
-      days.value = days_;
-    };
-    const setInitialEvents = () => {
-      setDays();
-    };
-    const getDateAndDayLongName = (day, isToday = false) => {
-      const { date } = props.time.getAllVariablesFromDateTimeString(
-        props.time.getDateTimeStringFromDate(day, "start")
-      );
-      dayNameSelected.value =
-        (isToday ? "Hoje - " : "") +
-        props.time.getLocalizedNameOfWeekday(day, "short") +
-        ", " +
-        date +
-        " de " +
-        String$1.capitalizeFirstLetter(
-          props.time.getLocalizedNameOfMonth(day, "short")
-        );
-      return dayNameSelected.value;
-    };
-    const handleDayWasClicked = (day) => {
-      const replate_date = day.dateTimeString.replace("-", ",");
-      const dayDate = new Date(replate_date);
-      day.dayName = getDateAndDayLongName(
-        dayDate,
-        props.time.dateIsToday(dayDate)
-      );
-      emits("day-was-clicked", day);
-    };
+      }
+      monthYearSelected.value = String(value);
+    }
     onMounted(() => {
-      setInitialEvents();
+      setPeriodOnMount();
     });
     return (_ctx, _cache) => {
-      return (
-        openBlock(),
-        createElementBlock("div", _hoisted_1$7, [
-          createElementVNode("div", _hoisted_2$4, [
-            createVNode(
-              WeekCarousel,
-              {
-                days: days.value,
-                time: __props.time,
-                onDayWasClicked: handleDayWasClicked,
-              },
-              null,
-              8,
-              ["days", "time"]
-            ),
-          ]),
-          createElementVNode(
-            "div",
-            _hoisted_3$4,
-            toDisplayString(dayNameSelected.value),
-            1
-          ),
-        ])
-      );
-    };
-  },
-});
-const Mini = /* @__PURE__ */ _export_sfc(_sfc_main$8, [
-  ["__scopeId", "data-v-7d7d84ae"],
-  [
-    "__file",
-    "/home/debora/www/vert_design_system_ui/src/components/calendar/mini/Mini.vue",
-  ],
-]);
-const VCalendarMini_vue_vue_type_style_index_0_lang = "";
-const _sfc_main$7 = defineComponent({
-  name: "VCalendarMini",
-  components: {
-    AppHeaderMini,
-    Mini,
-  },
-  props: {
-    events: {
-      type: Array,
-      default: () => [],
-    },
-    selectedDate: {
-      type: Date,
-      default: new Date(),
-    },
-    isLoading: {
-      type: Boolean,
-      default: false,
-    },
-  },
-  emits: ["event-was-clicked", "day-was-clicked"],
-  data() {
-    return {
-      wasInitialized: 0,
-      period: {
-        start: new Date(),
-        end: new Date(),
-        selectedDate: this.selectedDate ? this.selectedDate : new Date(),
-      },
-      week: {
-        nDays: 7,
-      },
-      mode: "mini",
-      time: new Time(),
-    };
-  },
-  mounted() {
-    this.setConfigOnMount();
-    this.setPeriodOnMount();
-  },
-  methods: {
-    setConfigOnMount() {
-      this.wasInitialized = 1;
-    },
-    setPeriodOnMount() {
-      const currentWeek = this.time.getCalendarWeekDateObjects(
-        this.period.selectedDate
-      );
-      this.period.start = currentWeek[0];
-      this.period.end = currentWeek[6];
-    },
-  },
-});
-const _hoisted_1$6 = { class: "calendar-root-wrapper" };
-const _hoisted_2$3 = { class: "calendar-root mode-is-mini" };
-const _hoisted_3$3 = {
-  key: 0,
-  class: "top-bar-loader",
-};
-function _sfc_render$4(_ctx, _cache, $props, $setup, $data, $options) {
-  const _component_AppHeaderMini = resolveComponent("AppHeaderMini");
-  const _component_Mini = resolveComponent("Mini");
-  return (
-    openBlock(),
-    createElementBlock("div", _hoisted_1$6, [
-      createElementVNode("div", _hoisted_2$3, [
-        createVNode(
-          Transition,
-          { name: "loading" },
-          {
+      return openBlock(), createElementBlock("div", _hoisted_1$6, [
+        createElementVNode("div", _hoisted_2$3, [
+          createVNode(Transition, { name: "loading" }, {
             default: withCtx(() => [
-              _ctx.isLoading
-                ? (openBlock(), createElementBlock("div", _hoisted_3$3))
-                : createCommentVNode("v-if", true),
+              __props.isLoading ? (openBlock(), createElementBlock("div", _hoisted_3$2)) : createCommentVNode("v-if", true)
             ]),
-            _: 1,
-          }
-        ),
-        (openBlock(),
-        createBlock(_component_AppHeaderMini, {
-          key: _ctx.wasInitialized + _ctx.mode + "-header",
-        })),
-        (openBlock(),
-        createBlock(
-          _component_Mini,
-          {
-            key: _ctx.period.start.getTime() + _ctx.period.end.getTime(),
-            time: _ctx.time,
-            period: _ctx.period,
-            "n-days": _ctx.week.nDays,
-            onDayWasClicked:
-              _cache[0] ||
-              (_cache[0] = ($event) => _ctx.$emit("day-was-clicked", $event)),
-          },
-          null,
-          8,
-          ["time", "period", "n-days"]
-        )),
-      ]),
-    ])
-  );
-}
-const VCalendarMini = /* @__PURE__ */ _export_sfc(_sfc_main$7, [
-  ["render", _sfc_render$4],
-  [
-    "__file",
-    "/home/debora/www/vert_design_system_ui/src/components/calendar/VCalendarMini.vue",
-  ],
-]);
-const _imports_0 =
-  "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+CiAgIDxwYXRoIGZpbGw9IiMwMDAwMDAiIGQ9Ik03LDEwSDEyVjE1SDdNMTksMTlINVY4SDE5TTE5LDNIMThWMUgxNlYzSDhWMUg2VjNINUMzLjg5LDMgMywzLjkgMyw1VjE5QTIsMiAwIDAsMCA1LDIxSDE5QTIsMiAwIDAsMCAyMSwxOVY1QTIsMiAwIDAsMCAxOSwzWiIgLz4KPC9zdmc+";
+            _: 1
+          }),
+          createElementVNode("div", _hoisted_4$2, [
+            createElementVNode("div", _hoisted_5$1, [
+              createVNode(VDropdown, {
+                "model-value": monthYearSelected.value,
+                options: unref(months),
+                type: "2",
+                size: "lg",
+                onOnChange: onChangeMonth
+              }, null, 8, ["model-value", "options"])
+            ])
+          ]),
+          (openBlock(), createBlock(Mini, {
+            key: period.value.start.getTime() + period.value.end.getTime(),
+            time: unref(time),
+            period: period.value,
+            "n-days": week.nDays,
+            onDayWasClicked: _cache[0] || (_cache[0] = ($event) => _ctx.$emit("day-was-clicked", $event)),
+            onChangePeriod
+          }, null, 8, ["time", "period", "n-days"]))
+        ])
+      ]);
+    };
+  }
+});
+var VCalendarMini = /* @__PURE__ */ _export_sfc(_sfc_main$7, [["__file", "/home/debora/www/vert_design_system_ui/src/components/calendar/VCalendarMini.vue"]]);
+var _imports_0 = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+CiAgIDxwYXRoIGZpbGw9IiNhYWEiIGQ9Ik03LDEwSDEyVjE1SDdNMTksMTlINVY4SDE5TTE5LDNIMThWMUgxNlYzSDhWMUg2VjNINUMzLjg5LDMgMywzLjkgMyw1VjE5QTIsMiAwIDAsMCA1LDIxSDE5QTIsMiAwIDAsMCAyMSwxOVY1QTIsMiAwIDAsMCAxOSwzWiIgLz4KPC9zdmc+";
 const _sfc_main$6 = defineComponent({
-  name: "CalendarDay",
+  name: "CalendarDay"
 });
 const _hoisted_1$5 = {
   src: _imports_0,
-  width: "24",
+  width: "24"
 };
 function _sfc_render$3(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("img", _hoisted_1$5);
 }
-const IconCalendar = /* @__PURE__ */ _export_sfc(_sfc_main$6, [
-  ["render", _sfc_render$3],
-  [
-    "__file",
-    "/home/debora/www/vert_design_system_ui/src/components/icons/CalendarDay.vue",
-  ],
-]);
+var IconCalendar = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["render", _sfc_render$3], ["__file", "/home/debora/www/vert_design_system_ui/src/components/icons/CalendarDay.vue"]]);
 /*!
  * perfect-scrollbar v1.5.3
  * Copyright 2021 Hyunje Jun, MDBootstrap and Contributors
@@ -1829,8 +1140,8 @@ function get(element) {
   return getComputedStyle(element);
 }
 function set(element, obj) {
-  for (const key in obj) {
-    let val = obj[key];
+  for (var key in obj) {
+    var val = obj[key];
     if (typeof val === "number") {
       val = val + "px";
     }
@@ -1839,16 +1150,11 @@ function set(element, obj) {
   return element;
 }
 function div(className) {
-  const div2 = document.createElement("div");
+  var div2 = document.createElement("div");
   div2.className = className;
   return div2;
 }
-const elMatches =
-  typeof Element !== "undefined" &&
-  (Element.prototype.matches ||
-    Element.prototype.webkitMatchesSelector ||
-    Element.prototype.mozMatchesSelector ||
-    Element.prototype.msMatchesSelector);
+var elMatches = typeof Element !== "undefined" && (Element.prototype.matches || Element.prototype.webkitMatchesSelector || Element.prototype.mozMatchesSelector || Element.prototype.msMatchesSelector);
 function matches(element, query) {
   if (!elMatches) {
     throw new Error("No element matching method supported");
@@ -1865,37 +1171,40 @@ function remove(element) {
   }
 }
 function queryChildren(element, selector) {
-  return Array.prototype.filter.call(element.children, function (child) {
-    return matches(child, selector);
-  });
+  return Array.prototype.filter.call(
+    element.children,
+    function(child) {
+      return matches(child, selector);
+    }
+  );
 }
-const cls = {
+var cls = {
   main: "ps",
   rtl: "ps__rtl",
   element: {
-    thumb: function (x) {
+    thumb: function(x) {
       return "ps__thumb-" + x;
     },
-    rail: function (x) {
+    rail: function(x) {
       return "ps__rail-" + x;
     },
-    consuming: "ps__child--consume",
+    consuming: "ps__child--consume"
   },
   state: {
     focus: "ps--focus",
     clicking: "ps--clicking",
-    active: function (x) {
+    active: function(x) {
       return "ps--active-" + x;
     },
-    scrolling: function (x) {
+    scrolling: function(x) {
       return "ps--scrolling-" + x;
-    },
-  },
+    }
+  }
 };
-const scrollingClassTimeout = { x: null, y: null };
+var scrollingClassTimeout = { x: null, y: null };
 function addScrollingClass(i, x) {
-  const classList = i.element.classList;
-  const className = cls.state.scrolling(x);
+  var classList = i.element.classList;
+  var className = cls.state.scrolling(x);
   if (classList.contains(className)) {
     clearTimeout(scrollingClassTimeout[x]);
   } else {
@@ -1903,19 +1212,22 @@ function addScrollingClass(i, x) {
   }
 }
 function removeScrollingClass(i, x) {
-  scrollingClassTimeout[x] = setTimeout(function () {
-    return i.isAlive && i.element.classList.remove(cls.state.scrolling(x));
-  }, i.settings.scrollingThreshold);
+  scrollingClassTimeout[x] = setTimeout(
+    function() {
+      return i.isAlive && i.element.classList.remove(cls.state.scrolling(x));
+    },
+    i.settings.scrollingThreshold
+  );
 }
 function setScrollingClassInstantly(i, x) {
   addScrollingClass(i, x);
   removeScrollingClass(i, x);
 }
-const EventElement = function EventElement2(element) {
+var EventElement = function EventElement2(element) {
   this.element = element;
   this.handlers = {};
 };
-const prototypeAccessors = { isEmpty: { configurable: true } };
+var prototypeAccessors = { isEmpty: { configurable: true } };
 EventElement.prototype.bind = function bind(eventName, handler) {
   if (typeof this.handlers[eventName] === "undefined") {
     this.handlers[eventName] = [];
@@ -1924,10 +1236,8 @@ EventElement.prototype.bind = function bind(eventName, handler) {
   this.element.addEventListener(eventName, handler, false);
 };
 EventElement.prototype.unbind = function unbind(eventName, target) {
-  const this$1$1 = this;
-  this.handlers[eventName] = this.handlers[eventName].filter(function (
-    handler
-  ) {
+  var this$1$1 = this;
+  this.handlers[eventName] = this.handlers[eventName].filter(function(handler) {
     if (target && handler !== target) {
       return true;
     }
@@ -1936,22 +1246,24 @@ EventElement.prototype.unbind = function unbind(eventName, target) {
   });
 };
 EventElement.prototype.unbindAll = function unbindAll() {
-  for (const name in this.handlers) {
+  for (var name in this.handlers) {
     this.unbind(name);
   }
 };
-prototypeAccessors.isEmpty.get = function () {
-  const this$1$1 = this;
-  return Object.keys(this.handlers).every(function (key) {
-    return this$1$1.handlers[key].length === 0;
-  });
+prototypeAccessors.isEmpty.get = function() {
+  var this$1$1 = this;
+  return Object.keys(this.handlers).every(
+    function(key) {
+      return this$1$1.handlers[key].length === 0;
+    }
+  );
 };
 Object.defineProperties(EventElement.prototype, prototypeAccessors);
-const EventManager = function EventManager2() {
+var EventManager = function EventManager2() {
   this.eventElements = [];
 };
 EventManager.prototype.eventElement = function eventElement(element) {
-  let ee = this.eventElements.filter(function (ee2) {
+  var ee = this.eventElements.filter(function(ee2) {
     return ee2.element === element;
   })[0];
   if (!ee) {
@@ -1964,21 +1276,21 @@ EventManager.prototype.bind = function bind2(element, eventName, handler) {
   this.eventElement(element).bind(eventName, handler);
 };
 EventManager.prototype.unbind = function unbind2(element, eventName, handler) {
-  const ee = this.eventElement(element);
+  var ee = this.eventElement(element);
   ee.unbind(eventName, handler);
   if (ee.isEmpty) {
     this.eventElements.splice(this.eventElements.indexOf(ee), 1);
   }
 };
 EventManager.prototype.unbindAll = function unbindAll2() {
-  this.eventElements.forEach(function (e) {
+  this.eventElements.forEach(function(e) {
     return e.unbindAll();
   });
   this.eventElements = [];
 };
 EventManager.prototype.once = function once(element, eventName, handler) {
-  const ee = this.eventElement(element);
-  var onceHandler = function (evt) {
+  var ee = this.eventElement(element);
+  var onceHandler = function(evt) {
     ee.unbind(eventName, onceHandler);
     handler(evt);
   };
@@ -1988,21 +1300,17 @@ function createEvent(name) {
   if (typeof window.CustomEvent === "function") {
     return new CustomEvent(name);
   } else {
-    const evt = document.createEvent("CustomEvent");
+    var evt = document.createEvent("CustomEvent");
     evt.initCustomEvent(name, false, false, void 0);
     return evt;
   }
 }
-function processScrollDiff(
-  i,
-  axis,
-  diff,
-  useScrollingClass,
-  forceFireReachEvent
-) {
-  if (useScrollingClass === void 0) useScrollingClass = true;
-  if (forceFireReachEvent === void 0) forceFireReachEvent = false;
-  let fields;
+function processScrollDiff(i, axis, diff, useScrollingClass, forceFireReachEvent) {
+  if (useScrollingClass === void 0)
+    useScrollingClass = true;
+  if (forceFireReachEvent === void 0)
+    forceFireReachEvent = false;
+  var fields;
   if (axis === "top") {
     fields = [
       "contentHeight",
@@ -2010,7 +1318,7 @@ function processScrollDiff(
       "scrollTop",
       "y",
       "up",
-      "down",
+      "down"
     ];
   } else if (axis === "left") {
     fields = [
@@ -2019,29 +1327,25 @@ function processScrollDiff(
       "scrollLeft",
       "x",
       "left",
-      "right",
+      "right"
     ];
   } else {
     throw new Error("A proper axis should be provided");
   }
   processScrollDiff$1(i, diff, fields, useScrollingClass, forceFireReachEvent);
 }
-function processScrollDiff$1(
-  i,
-  diff,
-  ref2,
-  useScrollingClass,
-  forceFireReachEvent
-) {
-  const contentHeight = ref2[0];
-  const containerHeight = ref2[1];
-  const scrollTop = ref2[2];
-  const y = ref2[3];
-  const up = ref2[4];
-  const down = ref2[5];
-  if (useScrollingClass === void 0) useScrollingClass = true;
-  if (forceFireReachEvent === void 0) forceFireReachEvent = false;
-  const element = i.element;
+function processScrollDiff$1(i, diff, ref2, useScrollingClass, forceFireReachEvent) {
+  var contentHeight = ref2[0];
+  var containerHeight = ref2[1];
+  var scrollTop = ref2[2];
+  var y = ref2[3];
+  var up = ref2[4];
+  var down = ref2[5];
+  if (useScrollingClass === void 0)
+    useScrollingClass = true;
+  if (forceFireReachEvent === void 0)
+    forceFireReachEvent = false;
+  var element = i.element;
   i.reach[y] = null;
   if (element[scrollTop] < 1) {
     i.reach[y] = "start";
@@ -2068,92 +1372,66 @@ function toInt(x) {
   return parseInt(x, 10) || 0;
 }
 function isEditable(el) {
-  return (
-    matches(el, "input,[contenteditable]") ||
-    matches(el, "select,[contenteditable]") ||
-    matches(el, "textarea,[contenteditable]") ||
-    matches(el, "button,[contenteditable]")
-  );
+  return matches(el, "input,[contenteditable]") || matches(el, "select,[contenteditable]") || matches(el, "textarea,[contenteditable]") || matches(el, "button,[contenteditable]");
 }
 function outerWidth(element) {
-  const styles = get(element);
-  return (
-    toInt(styles.width) +
-    toInt(styles.paddingLeft) +
-    toInt(styles.paddingRight) +
-    toInt(styles.borderLeftWidth) +
-    toInt(styles.borderRightWidth)
-  );
+  var styles = get(element);
+  return toInt(styles.width) + toInt(styles.paddingLeft) + toInt(styles.paddingRight) + toInt(styles.borderLeftWidth) + toInt(styles.borderRightWidth);
 }
-const env = {
-  isWebKit:
-    typeof document !== "undefined" &&
-    "WebkitAppearance" in document.documentElement.style,
-  supportsTouch:
-    typeof window !== "undefined" &&
-    ("ontouchstart" in window ||
-      ("maxTouchPoints" in window.navigator &&
-        window.navigator.maxTouchPoints > 0) ||
-      (window.DocumentTouch && document instanceof window.DocumentTouch)),
-  supportsIePointer:
-    typeof navigator !== "undefined" && navigator.msMaxTouchPoints,
-  isChrome:
-    typeof navigator !== "undefined" &&
-    /Chrome/i.test(navigator && navigator.userAgent),
+var env = {
+  isWebKit: typeof document !== "undefined" && "WebkitAppearance" in document.documentElement.style,
+  supportsTouch: typeof window !== "undefined" && ("ontouchstart" in window || "maxTouchPoints" in window.navigator && window.navigator.maxTouchPoints > 0 || window.DocumentTouch && document instanceof window.DocumentTouch),
+  supportsIePointer: typeof navigator !== "undefined" && navigator.msMaxTouchPoints,
+  isChrome: typeof navigator !== "undefined" && /Chrome/i.test(navigator && navigator.userAgent)
 };
 function updateGeometry(i) {
-  const element = i.element;
-  const roundedScrollTop = Math.floor(element.scrollTop);
-  const rect = element.getBoundingClientRect();
+  var element = i.element;
+  var roundedScrollTop = Math.floor(element.scrollTop);
+  var rect = element.getBoundingClientRect();
   i.containerWidth = Math.round(rect.width);
   i.containerHeight = Math.round(rect.height);
   i.contentWidth = element.scrollWidth;
   i.contentHeight = element.scrollHeight;
   if (!element.contains(i.scrollbarXRail)) {
-    queryChildren(element, cls.element.rail("x")).forEach(function (el) {
-      return remove(el);
-    });
+    queryChildren(element, cls.element.rail("x")).forEach(
+      function(el) {
+        return remove(el);
+      }
+    );
     element.appendChild(i.scrollbarXRail);
   }
   if (!element.contains(i.scrollbarYRail)) {
-    queryChildren(element, cls.element.rail("y")).forEach(function (el) {
-      return remove(el);
-    });
+    queryChildren(element, cls.element.rail("y")).forEach(
+      function(el) {
+        return remove(el);
+      }
+    );
     element.appendChild(i.scrollbarYRail);
   }
-  if (
-    !i.settings.suppressScrollX &&
-    i.containerWidth + i.settings.scrollXMarginOffset < i.contentWidth
-  ) {
+  if (!i.settings.suppressScrollX && i.containerWidth + i.settings.scrollXMarginOffset < i.contentWidth) {
     i.scrollbarXActive = true;
     i.railXWidth = i.containerWidth - i.railXMarginWidth;
     i.railXRatio = i.containerWidth / i.railXWidth;
     i.scrollbarXWidth = getThumbSize(
       i,
-      toInt((i.railXWidth * i.containerWidth) / i.contentWidth)
+      toInt(i.railXWidth * i.containerWidth / i.contentWidth)
     );
     i.scrollbarXLeft = toInt(
-      ((i.negativeScrollAdjustment + element.scrollLeft) *
-        (i.railXWidth - i.scrollbarXWidth)) /
-        (i.contentWidth - i.containerWidth)
+      (i.negativeScrollAdjustment + element.scrollLeft) * (i.railXWidth - i.scrollbarXWidth) / (i.contentWidth - i.containerWidth)
     );
   } else {
     i.scrollbarXActive = false;
   }
-  if (
-    !i.settings.suppressScrollY &&
-    i.containerHeight + i.settings.scrollYMarginOffset < i.contentHeight
-  ) {
+  if (!i.settings.suppressScrollY && i.containerHeight + i.settings.scrollYMarginOffset < i.contentHeight) {
     i.scrollbarYActive = true;
     i.railYHeight = i.containerHeight - i.railYMarginHeight;
     i.railYRatio = i.containerHeight / i.railYHeight;
     i.scrollbarYHeight = getThumbSize(
       i,
-      toInt((i.railYHeight * i.containerHeight) / i.contentHeight)
+      toInt(i.railYHeight * i.containerHeight / i.contentHeight)
     );
     i.scrollbarYTop = toInt(
-      (roundedScrollTop * (i.railYHeight - i.scrollbarYHeight)) /
-        (i.contentHeight - i.containerHeight)
+      roundedScrollTop * (i.railYHeight - i.scrollbarYHeight) / (i.contentHeight - i.containerHeight)
     );
   } else {
     i.scrollbarYActive = false;
@@ -2192,14 +1470,10 @@ function getThumbSize(i, thumbSize) {
   return thumbSize;
 }
 function updateCss(element, i) {
-  const xRailOffset = { width: i.railXWidth };
-  const roundedScrollTop = Math.floor(element.scrollTop);
+  var xRailOffset = { width: i.railXWidth };
+  var roundedScrollTop = Math.floor(element.scrollTop);
   if (i.isRtl) {
-    xRailOffset.left =
-      i.negativeScrollAdjustment +
-      element.scrollLeft +
-      i.containerWidth -
-      i.contentWidth;
+    xRailOffset.left = i.negativeScrollAdjustment + element.scrollLeft + i.containerWidth - i.contentWidth;
   } else {
     xRailOffset.left = element.scrollLeft;
   }
@@ -2209,27 +1483,16 @@ function updateCss(element, i) {
     xRailOffset.top = i.scrollbarXTop + roundedScrollTop;
   }
   set(i.scrollbarXRail, xRailOffset);
-  const yRailOffset = { top: roundedScrollTop, height: i.railYHeight };
+  var yRailOffset = { top: roundedScrollTop, height: i.railYHeight };
   if (i.isScrollbarYUsingRight) {
     if (i.isRtl) {
-      yRailOffset.right =
-        i.contentWidth -
-        (i.negativeScrollAdjustment + element.scrollLeft) -
-        i.scrollbarYRight -
-        i.scrollbarYOuterWidth -
-        9;
+      yRailOffset.right = i.contentWidth - (i.negativeScrollAdjustment + element.scrollLeft) - i.scrollbarYRight - i.scrollbarYOuterWidth - 9;
     } else {
       yRailOffset.right = i.scrollbarYRight - element.scrollLeft;
     }
   } else {
     if (i.isRtl) {
-      yRailOffset.left =
-        i.negativeScrollAdjustment +
-        element.scrollLeft +
-        i.containerWidth * 2 -
-        i.contentWidth -
-        i.scrollbarYLeft -
-        i.scrollbarYOuterWidth;
+      yRailOffset.left = i.negativeScrollAdjustment + element.scrollLeft + i.containerWidth * 2 - i.contentWidth - i.scrollbarYLeft - i.scrollbarYOuterWidth;
     } else {
       yRailOffset.left = i.scrollbarYLeft + element.scrollLeft;
     }
@@ -2237,37 +1500,31 @@ function updateCss(element, i) {
   set(i.scrollbarYRail, yRailOffset);
   set(i.scrollbarX, {
     left: i.scrollbarXLeft,
-    width: i.scrollbarXWidth - i.railBorderXWidth,
+    width: i.scrollbarXWidth - i.railBorderXWidth
   });
   set(i.scrollbarY, {
     top: i.scrollbarYTop,
-    height: i.scrollbarYHeight - i.railBorderYWidth,
+    height: i.scrollbarYHeight - i.railBorderYWidth
   });
 }
 function clickRail(i) {
   i.element;
-  i.event.bind(i.scrollbarY, "mousedown", function (e) {
+  i.event.bind(i.scrollbarY, "mousedown", function(e) {
     return e.stopPropagation();
   });
-  i.event.bind(i.scrollbarYRail, "mousedown", function (e) {
-    const positionTop =
-      e.pageY -
-      window.pageYOffset -
-      i.scrollbarYRail.getBoundingClientRect().top;
-    const direction = positionTop > i.scrollbarYTop ? 1 : -1;
+  i.event.bind(i.scrollbarYRail, "mousedown", function(e) {
+    var positionTop = e.pageY - window.pageYOffset - i.scrollbarYRail.getBoundingClientRect().top;
+    var direction = positionTop > i.scrollbarYTop ? 1 : -1;
     i.element.scrollTop += direction * i.containerHeight;
     updateGeometry(i);
     e.stopPropagation();
   });
-  i.event.bind(i.scrollbarX, "mousedown", function (e) {
+  i.event.bind(i.scrollbarX, "mousedown", function(e) {
     return e.stopPropagation();
   });
-  i.event.bind(i.scrollbarXRail, "mousedown", function (e) {
-    const positionLeft =
-      e.pageX -
-      window.pageXOffset -
-      i.scrollbarXRail.getBoundingClientRect().left;
-    const direction = positionLeft > i.scrollbarXLeft ? 1 : -1;
+  i.event.bind(i.scrollbarXRail, "mousedown", function(e) {
+    var positionLeft = e.pageX - window.pageXOffset - i.scrollbarXRail.getBoundingClientRect().left;
+    var direction = positionLeft > i.scrollbarXLeft ? 1 : -1;
     i.element.scrollLeft += direction * i.containerWidth;
     updateGeometry(i);
     e.stopPropagation();
@@ -2283,7 +1540,7 @@ function dragThumb(i) {
     "scrollbarXWidth",
     "scrollLeft",
     "x",
-    "scrollbarXRail",
+    "scrollbarXRail"
   ]);
   bindMouseScrollHandler(i, [
     "containerHeight",
@@ -2294,29 +1551,28 @@ function dragThumb(i) {
     "scrollbarYHeight",
     "scrollTop",
     "y",
-    "scrollbarYRail",
+    "scrollbarYRail"
   ]);
 }
 function bindMouseScrollHandler(i, ref2) {
-  const containerHeight = ref2[0];
-  const contentHeight = ref2[1];
-  const pageY = ref2[2];
-  const railYHeight = ref2[3];
-  const scrollbarY = ref2[4];
-  const scrollbarYHeight = ref2[5];
-  const scrollTop = ref2[6];
-  const y = ref2[7];
-  const scrollbarYRail = ref2[8];
-  const element = i.element;
-  let startingScrollTop = null;
-  let startingMousePageY = null;
-  let scrollBy = null;
+  var containerHeight = ref2[0];
+  var contentHeight = ref2[1];
+  var pageY = ref2[2];
+  var railYHeight = ref2[3];
+  var scrollbarY = ref2[4];
+  var scrollbarYHeight = ref2[5];
+  var scrollTop = ref2[6];
+  var y = ref2[7];
+  var scrollbarYRail = ref2[8];
+  var element = i.element;
+  var startingScrollTop = null;
+  var startingMousePageY = null;
+  var scrollBy = null;
   function mouseMoveHandler(e) {
     if (e.touches && e.touches[0]) {
       e[pageY] = e.touches[0].pageY;
     }
-    element[scrollTop] =
-      startingScrollTop + scrollBy * (e[pageY] - startingMousePageY);
+    element[scrollTop] = startingScrollTop + scrollBy * (e[pageY] - startingMousePageY);
     addScrollingClass(i, y);
     updateGeometry(i);
     e.stopPropagation();
@@ -2335,9 +1591,7 @@ function bindMouseScrollHandler(i, ref2) {
       e[pageY] = e.touches[0].pageY;
     }
     startingMousePageY = e[pageY];
-    scrollBy =
-      (i[contentHeight] - i[containerHeight]) /
-      (i[railYHeight] - i[scrollbarYHeight]);
+    scrollBy = (i[contentHeight] - i[containerHeight]) / (i[railYHeight] - i[scrollbarYHeight]);
     if (!touchMode) {
       i.event.bind(i.ownerDocument, "mousemove", mouseMoveHandler);
       i.event.once(i.ownerDocument, "mouseup", mouseUpHandler);
@@ -2348,61 +1602,50 @@ function bindMouseScrollHandler(i, ref2) {
     i[scrollbarYRail].classList.add(cls.state.clicking);
     e.stopPropagation();
   }
-  i.event.bind(i[scrollbarY], "mousedown", function (e) {
+  i.event.bind(i[scrollbarY], "mousedown", function(e) {
     bindMoves(e);
   });
-  i.event.bind(i[scrollbarY], "touchstart", function (e) {
+  i.event.bind(i[scrollbarY], "touchstart", function(e) {
     bindMoves(e, true);
   });
 }
 function keyboard(i) {
-  const element = i.element;
-  const elementHovered = function () {
+  var element = i.element;
+  var elementHovered = function() {
     return matches(element, ":hover");
   };
-  const scrollbarFocused = function () {
+  var scrollbarFocused = function() {
     return matches(i.scrollbarX, ":focus") || matches(i.scrollbarY, ":focus");
   };
   function shouldPreventDefault(deltaX, deltaY) {
-    const scrollTop = Math.floor(element.scrollTop);
+    var scrollTop = Math.floor(element.scrollTop);
     if (deltaX === 0) {
       if (!i.scrollbarYActive) {
         return false;
       }
-      if (
-        (scrollTop === 0 && deltaY > 0) ||
-        (scrollTop >= i.contentHeight - i.containerHeight && deltaY < 0)
-      ) {
+      if (scrollTop === 0 && deltaY > 0 || scrollTop >= i.contentHeight - i.containerHeight && deltaY < 0) {
         return !i.settings.wheelPropagation;
       }
     }
-    const scrollLeft = element.scrollLeft;
+    var scrollLeft = element.scrollLeft;
     if (deltaY === 0) {
       if (!i.scrollbarXActive) {
         return false;
       }
-      if (
-        (scrollLeft === 0 && deltaX < 0) ||
-        (scrollLeft >= i.contentWidth - i.containerWidth && deltaX > 0)
-      ) {
+      if (scrollLeft === 0 && deltaX < 0 || scrollLeft >= i.contentWidth - i.containerWidth && deltaX > 0) {
         return !i.settings.wheelPropagation;
       }
     }
     return true;
   }
-  i.event.bind(i.ownerDocument, "keydown", function (e) {
-    if (
-      (e.isDefaultPrevented && e.isDefaultPrevented()) ||
-      e.defaultPrevented
-    ) {
+  i.event.bind(i.ownerDocument, "keydown", function(e) {
+    if (e.isDefaultPrevented && e.isDefaultPrevented() || e.defaultPrevented) {
       return;
     }
     if (!elementHovered() && !scrollbarFocused()) {
       return;
     }
-    let activeElement = document.activeElement
-      ? document.activeElement
-      : i.ownerDocument.activeElement;
+    var activeElement = document.activeElement ? document.activeElement : i.ownerDocument.activeElement;
     if (activeElement) {
       if (activeElement.tagName === "IFRAME") {
         activeElement = activeElement.contentDocument.activeElement;
@@ -2415,8 +1658,8 @@ function keyboard(i) {
         return;
       }
     }
-    let deltaX = 0;
-    let deltaY = 0;
+    var deltaX = 0;
+    var deltaY = 0;
     switch (e.which) {
       case 37:
         if (e.metaKey) {
@@ -2491,16 +1734,14 @@ function keyboard(i) {
   });
 }
 function wheel(i) {
-  const element = i.element;
+  var element = i.element;
   function shouldPreventDefault(deltaX, deltaY) {
-    const roundedScrollTop = Math.floor(element.scrollTop);
-    const isTop = element.scrollTop === 0;
-    const isBottom =
-      roundedScrollTop + element.offsetHeight === element.scrollHeight;
-    const isLeft = element.scrollLeft === 0;
-    const isRight =
-      element.scrollLeft + element.offsetWidth === element.scrollWidth;
-    let hitsBound;
+    var roundedScrollTop = Math.floor(element.scrollTop);
+    var isTop = element.scrollTop === 0;
+    var isBottom = roundedScrollTop + element.offsetHeight === element.scrollHeight;
+    var isLeft = element.scrollLeft === 0;
+    var isRight = element.scrollLeft + element.offsetWidth === element.scrollWidth;
+    var hitsBound;
     if (Math.abs(deltaY) > Math.abs(deltaX)) {
       hitsBound = isTop || isBottom;
     } else {
@@ -2509,10 +1750,10 @@ function wheel(i) {
     return hitsBound ? !i.settings.wheelPropagation : true;
   }
   function getDeltaFromEvent(e) {
-    let deltaX = e.deltaX;
-    let deltaY = -1 * e.deltaY;
+    var deltaX = e.deltaX;
+    var deltaY = -1 * e.deltaY;
     if (typeof deltaX === "undefined" || typeof deltaY === "undefined") {
-      deltaX = (-1 * e.wheelDeltaX) / 6;
+      deltaX = -1 * e.wheelDeltaX / 6;
       deltaY = e.wheelDeltaY / 6;
     }
     if (e.deltaMode && e.deltaMode === 1) {
@@ -2535,30 +1776,24 @@ function wheel(i) {
     if (!element.contains(target)) {
       return false;
     }
-    let cursor = target;
+    var cursor = target;
     while (cursor && cursor !== element) {
       if (cursor.classList.contains(cls.element.consuming)) {
         return true;
       }
-      const style = get(cursor);
+      var style = get(cursor);
       if (deltaY && style.overflowY.match(/(scroll|auto)/)) {
-        const maxScrollTop = cursor.scrollHeight - cursor.clientHeight;
+        var maxScrollTop = cursor.scrollHeight - cursor.clientHeight;
         if (maxScrollTop > 0) {
-          if (
-            (cursor.scrollTop > 0 && deltaY < 0) ||
-            (cursor.scrollTop < maxScrollTop && deltaY > 0)
-          ) {
+          if (cursor.scrollTop > 0 && deltaY < 0 || cursor.scrollTop < maxScrollTop && deltaY > 0) {
             return true;
           }
         }
       }
       if (deltaX && style.overflowX.match(/(scroll|auto)/)) {
-        const maxScrollLeft = cursor.scrollWidth - cursor.clientWidth;
+        var maxScrollLeft = cursor.scrollWidth - cursor.clientWidth;
         if (maxScrollLeft > 0) {
-          if (
-            (cursor.scrollLeft > 0 && deltaX < 0) ||
-            (cursor.scrollLeft < maxScrollLeft && deltaX > 0)
-          ) {
+          if (cursor.scrollLeft > 0 && deltaX < 0 || cursor.scrollLeft < maxScrollLeft && deltaX > 0) {
             return true;
           }
         }
@@ -2568,13 +1803,13 @@ function wheel(i) {
     return false;
   }
   function mousewheelHandler(e) {
-    const ref2 = getDeltaFromEvent(e);
-    const deltaX = ref2[0];
-    const deltaY = ref2[1];
+    var ref2 = getDeltaFromEvent(e);
+    var deltaX = ref2[0];
+    var deltaY = ref2[1];
     if (shouldBeConsumedByChild(e.target, deltaX, deltaY)) {
       return;
     }
-    let shouldPrevent = false;
+    var shouldPrevent = false;
     if (!i.settings.useBothWheelAxes) {
       element.scrollTop -= deltaY * i.settings.wheelSpeed;
       element.scrollLeft += deltaX * i.settings.wheelSpeed;
@@ -2610,24 +1845,18 @@ function touch(i) {
   if (!env.supportsTouch && !env.supportsIePointer) {
     return;
   }
-  const element = i.element;
+  var element = i.element;
   function shouldPrevent(deltaX, deltaY) {
-    const scrollTop = Math.floor(element.scrollTop);
-    const scrollLeft = element.scrollLeft;
-    const magnitudeX = Math.abs(deltaX);
-    const magnitudeY = Math.abs(deltaY);
+    var scrollTop = Math.floor(element.scrollTop);
+    var scrollLeft = element.scrollLeft;
+    var magnitudeX = Math.abs(deltaX);
+    var magnitudeY = Math.abs(deltaY);
     if (magnitudeY > magnitudeX) {
-      if (
-        (deltaY < 0 && scrollTop === i.contentHeight - i.containerHeight) ||
-        (deltaY > 0 && scrollTop === 0)
-      ) {
+      if (deltaY < 0 && scrollTop === i.contentHeight - i.containerHeight || deltaY > 0 && scrollTop === 0) {
         return window.scrollY === 0 && deltaY > 0 && env.isChrome;
       }
     } else if (magnitudeX > magnitudeY) {
-      if (
-        (deltaX < 0 && scrollLeft === i.contentWidth - i.containerWidth) ||
-        (deltaX > 0 && scrollLeft === 0)
-      ) {
+      if (deltaX < 0 && scrollLeft === i.contentWidth - i.containerWidth || deltaX > 0 && scrollLeft === 0) {
         return true;
       }
     }
@@ -2638,10 +1867,10 @@ function touch(i) {
     element.scrollLeft -= differenceX;
     updateGeometry(i);
   }
-  let startOffset = {};
-  let startTime = 0;
-  const speed = {};
-  let easingLoop = null;
+  var startOffset = {};
+  var startTime = 0;
+  var speed = {};
+  var easingLoop = null;
   function getTouch(e) {
     if (e.targetTouches) {
       return e.targetTouches[0];
@@ -2656,11 +1885,7 @@ function touch(i) {
     if (e.targetTouches && e.targetTouches.length === 1) {
       return true;
     }
-    if (
-      e.pointerType &&
-      e.pointerType !== "mouse" &&
-      e.pointerType !== e.MSPOINTER_TYPE_MOUSE
-    ) {
+    if (e.pointerType && e.pointerType !== "mouse" && e.pointerType !== e.MSPOINTER_TYPE_MOUSE) {
       return true;
     }
     return false;
@@ -2669,7 +1894,7 @@ function touch(i) {
     if (!shouldHandle(e)) {
       return;
     }
-    const touch2 = getTouch(e);
+    var touch2 = getTouch(e);
     startOffset.pageX = touch2.pageX;
     startOffset.pageY = touch2.pageY;
     startTime = new Date().getTime();
@@ -2681,30 +1906,24 @@ function touch(i) {
     if (!element.contains(target)) {
       return false;
     }
-    let cursor = target;
+    var cursor = target;
     while (cursor && cursor !== element) {
       if (cursor.classList.contains(cls.element.consuming)) {
         return true;
       }
-      const style = get(cursor);
+      var style = get(cursor);
       if (deltaY && style.overflowY.match(/(scroll|auto)/)) {
-        const maxScrollTop = cursor.scrollHeight - cursor.clientHeight;
+        var maxScrollTop = cursor.scrollHeight - cursor.clientHeight;
         if (maxScrollTop > 0) {
-          if (
-            (cursor.scrollTop > 0 && deltaY < 0) ||
-            (cursor.scrollTop < maxScrollTop && deltaY > 0)
-          ) {
+          if (cursor.scrollTop > 0 && deltaY < 0 || cursor.scrollTop < maxScrollTop && deltaY > 0) {
             return true;
           }
         }
       }
       if (deltaX && style.overflowX.match(/(scroll|auto)/)) {
-        const maxScrollLeft = cursor.scrollWidth - cursor.clientWidth;
+        var maxScrollLeft = cursor.scrollWidth - cursor.clientWidth;
         if (maxScrollLeft > 0) {
-          if (
-            (cursor.scrollLeft > 0 && deltaX < 0) ||
-            (cursor.scrollLeft < maxScrollLeft && deltaX > 0)
-          ) {
+          if (cursor.scrollLeft > 0 && deltaX < 0 || cursor.scrollLeft < maxScrollLeft && deltaX > 0) {
             return true;
           }
         }
@@ -2715,17 +1934,17 @@ function touch(i) {
   }
   function touchMove(e) {
     if (shouldHandle(e)) {
-      const touch2 = getTouch(e);
-      const currentOffset = { pageX: touch2.pageX, pageY: touch2.pageY };
-      const differenceX = currentOffset.pageX - startOffset.pageX;
-      const differenceY = currentOffset.pageY - startOffset.pageY;
+      var touch2 = getTouch(e);
+      var currentOffset = { pageX: touch2.pageX, pageY: touch2.pageY };
+      var differenceX = currentOffset.pageX - startOffset.pageX;
+      var differenceY = currentOffset.pageY - startOffset.pageY;
       if (shouldBeConsumedByChild(e.target, differenceX, differenceY)) {
         return;
       }
       applyTouchMove(differenceX, differenceY);
       startOffset = currentOffset;
-      const currentTime = new Date().getTime();
-      const timeGap = currentTime - startTime;
+      var currentTime = new Date().getTime();
+      var timeGap = currentTime - startTime;
       if (timeGap > 0) {
         speed.x = differenceX / timeGap;
         speed.y = differenceY / timeGap;
@@ -2739,7 +1958,7 @@ function touch(i) {
   function touchEnd() {
     if (i.settings.swipeEasing) {
       clearInterval(easingLoop);
-      easingLoop = setInterval(function () {
+      easingLoop = setInterval(function() {
         if (i.isInitialized) {
           clearInterval(easingLoop);
           return;
@@ -2778,7 +1997,7 @@ function touch(i) {
     }
   }
 }
-const defaultSettings = function () {
+var defaultSettings = function() {
   return {
     handlers: ["click-rail", "drag-thumb", "keyboard", "wheel", "touch"],
     maxScrollbarLength: null,
@@ -2791,19 +2010,20 @@ const defaultSettings = function () {
     swipeEasing: true,
     useBothWheelAxes: false,
     wheelPropagation: true,
-    wheelSpeed: 1,
+    wheelSpeed: 1
   };
 };
-const handlers = {
+var handlers = {
   "click-rail": clickRail,
   "drag-thumb": dragThumb,
   keyboard,
   wheel,
-  touch,
+  touch
 };
-const PerfectScrollbar = function PerfectScrollbar2(element, userSettings) {
-  const this$1$1 = this;
-  if (userSettings === void 0) userSettings = {};
+var PerfectScrollbar = function PerfectScrollbar2(element, userSettings) {
+  var this$1$1 = this;
+  if (userSettings === void 0)
+    userSettings = {};
   if (typeof element === "string") {
     element = document.querySelector(element);
   }
@@ -2813,34 +2033,32 @@ const PerfectScrollbar = function PerfectScrollbar2(element, userSettings) {
   this.element = element;
   element.classList.add(cls.main);
   this.settings = defaultSettings();
-  for (const key in userSettings) {
+  for (var key in userSettings) {
     this.settings[key] = userSettings[key];
   }
   this.containerWidth = null;
   this.containerHeight = null;
   this.contentWidth = null;
   this.contentHeight = null;
-  const focus = function () {
+  var focus = function() {
     return element.classList.add(cls.state.focus);
   };
-  const blur = function () {
+  var blur = function() {
     return element.classList.remove(cls.state.focus);
   };
   this.isRtl = get(element).direction === "rtl";
   if (this.isRtl === true) {
     element.classList.add(cls.rtl);
   }
-  this.isNegativeScroll = (function () {
-    const originalScrollLeft = element.scrollLeft;
-    let result = null;
+  this.isNegativeScroll = function() {
+    var originalScrollLeft = element.scrollLeft;
+    var result = null;
     element.scrollLeft = -1;
     result = element.scrollLeft < 0;
     element.scrollLeft = originalScrollLeft;
     return result;
-  })();
-  this.negativeScrollAdjustment = this.isNegativeScroll
-    ? element.scrollWidth - element.clientWidth
-    : 0;
+  }();
+  this.negativeScrollAdjustment = this.isNegativeScroll ? element.scrollWidth - element.clientWidth : 0;
   this.event = new EventManager();
   this.ownerDocument = element.ownerDocument || document;
   this.scrollbarXRail = div(cls.element.rail("x"));
@@ -2853,7 +2071,7 @@ const PerfectScrollbar = function PerfectScrollbar2(element, userSettings) {
   this.scrollbarXActive = null;
   this.scrollbarXWidth = null;
   this.scrollbarXLeft = null;
-  const railXStyle = get(this.scrollbarXRail);
+  var railXStyle = get(this.scrollbarXRail);
   this.scrollbarXBottom = parseInt(railXStyle.bottom, 10);
   if (isNaN(this.scrollbarXBottom)) {
     this.isScrollbarXUsingBottom = false;
@@ -2861,11 +2079,9 @@ const PerfectScrollbar = function PerfectScrollbar2(element, userSettings) {
   } else {
     this.isScrollbarXUsingBottom = true;
   }
-  this.railBorderXWidth =
-    toInt(railXStyle.borderLeftWidth) + toInt(railXStyle.borderRightWidth);
+  this.railBorderXWidth = toInt(railXStyle.borderLeftWidth) + toInt(railXStyle.borderRightWidth);
   set(this.scrollbarXRail, { display: "block" });
-  this.railXMarginWidth =
-    toInt(railXStyle.marginLeft) + toInt(railXStyle.marginRight);
+  this.railXMarginWidth = toInt(railXStyle.marginLeft) + toInt(railXStyle.marginRight);
   set(this.scrollbarXRail, { display: "" });
   this.railXWidth = null;
   this.railXRatio = null;
@@ -2879,7 +2095,7 @@ const PerfectScrollbar = function PerfectScrollbar2(element, userSettings) {
   this.scrollbarYActive = null;
   this.scrollbarYHeight = null;
   this.scrollbarYTop = null;
-  const railYStyle = get(this.scrollbarYRail);
+  var railYStyle = get(this.scrollbarYRail);
   this.scrollbarYRight = parseInt(railYStyle.right, 10);
   if (isNaN(this.scrollbarYRight)) {
     this.isScrollbarYUsingRight = false;
@@ -2888,35 +2104,23 @@ const PerfectScrollbar = function PerfectScrollbar2(element, userSettings) {
     this.isScrollbarYUsingRight = true;
   }
   this.scrollbarYOuterWidth = this.isRtl ? outerWidth(this.scrollbarY) : null;
-  this.railBorderYWidth =
-    toInt(railYStyle.borderTopWidth) + toInt(railYStyle.borderBottomWidth);
+  this.railBorderYWidth = toInt(railYStyle.borderTopWidth) + toInt(railYStyle.borderBottomWidth);
   set(this.scrollbarYRail, { display: "block" });
-  this.railYMarginHeight =
-    toInt(railYStyle.marginTop) + toInt(railYStyle.marginBottom);
+  this.railYMarginHeight = toInt(railYStyle.marginTop) + toInt(railYStyle.marginBottom);
   set(this.scrollbarYRail, { display: "" });
   this.railYHeight = null;
   this.railYRatio = null;
   this.reach = {
-    x:
-      element.scrollLeft <= 0
-        ? "start"
-        : element.scrollLeft >= this.contentWidth - this.containerWidth
-        ? "end"
-        : null,
-    y:
-      element.scrollTop <= 0
-        ? "start"
-        : element.scrollTop >= this.contentHeight - this.containerHeight
-        ? "end"
-        : null,
+    x: element.scrollLeft <= 0 ? "start" : element.scrollLeft >= this.contentWidth - this.containerWidth ? "end" : null,
+    y: element.scrollTop <= 0 ? "start" : element.scrollTop >= this.contentHeight - this.containerHeight ? "end" : null
   };
   this.isAlive = true;
-  this.settings.handlers.forEach(function (handlerName) {
+  this.settings.handlers.forEach(function(handlerName) {
     return handlers[handlerName](this$1$1);
   });
   this.lastScrollTop = Math.floor(element.scrollTop);
   this.lastScrollLeft = element.scrollLeft;
-  this.event.bind(this.element, "scroll", function (e) {
+  this.event.bind(this.element, "scroll", function(e) {
     return this$1$1.onScroll(e);
   });
   updateGeometry(this);
@@ -2925,17 +2129,11 @@ PerfectScrollbar.prototype.update = function update() {
   if (!this.isAlive) {
     return;
   }
-  this.negativeScrollAdjustment = this.isNegativeScroll
-    ? this.element.scrollWidth - this.element.clientWidth
-    : 0;
+  this.negativeScrollAdjustment = this.isNegativeScroll ? this.element.scrollWidth - this.element.clientWidth : 0;
   set(this.scrollbarXRail, { display: "block" });
   set(this.scrollbarYRail, { display: "block" });
-  this.railXMarginWidth =
-    toInt(get(this.scrollbarXRail).marginLeft) +
-    toInt(get(this.scrollbarXRail).marginRight);
-  this.railYMarginHeight =
-    toInt(get(this.scrollbarYRail).marginTop) +
-    toInt(get(this.scrollbarYRail).marginBottom);
+  this.railXMarginWidth = toInt(get(this.scrollbarXRail).marginLeft) + toInt(get(this.scrollbarXRail).marginRight);
+  this.railYMarginHeight = toInt(get(this.scrollbarYRail).marginTop) + toInt(get(this.scrollbarYRail).marginBottom);
   set(this.scrollbarXRail, { display: "none" });
   set(this.scrollbarYRail, { display: "none" });
   updateGeometry(this);
@@ -2976,12 +2174,9 @@ PerfectScrollbar.prototype.destroy = function destroy() {
   this.isAlive = false;
 };
 PerfectScrollbar.prototype.removePsClasses = function removePsClasses() {
-  this.element.className = this.element.className
-    .split(" ")
-    .filter(function (name) {
-      return !name.match(/^ps([-_].+|)$/);
-    })
-    .join(" ");
+  this.element.className = this.element.className.split(" ").filter(function(name) {
+    return !name.match(/^ps([-_].+|)$/);
+  }).join(" ");
 };
 const DATE_TIME_PATTERN = /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}$/;
 const DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
@@ -2993,7 +2188,7 @@ const ITENS_COLOR = {
   orange: "#F4A053",
   purple: "#885DE2",
   blue: "#8CB3FF",
-  black: "#171919",
+  black: "#171919"
 };
 const APPLICATIONS_NAME = {
   1: "Obriga\xE7\xF5es",
@@ -3003,7 +2198,7 @@ const APPLICATIONS_NAME = {
   5: "Atualiza\xE7\xE3o de status dos patrim\xF4nios",
   6: "Marcos dos patrim\xF4nios",
   7: "Vencimento das s\xE9ries",
-  8: "Status das s\xE9ries",
+  8: "Status das s\xE9ries"
 };
 const APPLICATIONS_COLORS = {
   1: { color: "#3DA5A5", disabled: "#77C0C0", hover: "#2B7373" },
@@ -3013,7 +2208,7 @@ const APPLICATIONS_COLORS = {
   5: { color: "#F4A053", disabled: "#F4CFA3", hover: "#C17A2B" },
   6: { color: "#A5AF80", disabled: "#C0C9A5", hover: "#737B4F" },
   7: { color: "#E6CF42", disabled: "#E6E0A5", hover: "#B3A12B" },
-  8: { color: "#171919", disabled: "#4F4F4F", hover: "#000000" },
+  8: { color: "#171919", disabled: "#4F4F4F", hover: "#000000" }
 };
 const APPLICATIONS_REFERENCE_NAME = {
   1: "obligations",
@@ -3023,23 +2218,17 @@ const APPLICATIONS_REFERENCE_NAME = {
   5: "patrimony_status",
   6: "patrimony",
   7: "series_expiration",
-  8: "series_status",
+  8: "series_status"
 };
-const constants = /* @__PURE__ */ Object.freeze(
-  /* @__PURE__ */ Object.defineProperty(
-    {
-      __proto__: null,
-      DATE_TIME_PATTERN,
-      DATE_PATTERN,
-      ITENS_COLOR,
-      APPLICATIONS_NAME,
-      APPLICATIONS_COLORS,
-      APPLICATIONS_REFERENCE_NAME,
-    },
-    Symbol.toStringTag,
-    { value: "Module" }
-  )
-);
+var constants = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+  __proto__: null,
+  DATE_TIME_PATTERN,
+  DATE_PATTERN,
+  ITENS_COLOR,
+  APPLICATIONS_NAME,
+  APPLICATIONS_COLORS,
+  APPLICATIONS_REFERENCE_NAME
+}, Symbol.toStringTag, { value: "Module" }));
 class EventShow {
   constructor(data) {
     __publicField(this, "id");
@@ -3061,11 +2250,9 @@ class EventShow {
     this.emission = data == null ? void 0 : data.emission;
     this.time = (data == null ? void 0 : data.time) || {
       start: this.timeHelper.getDateTimeStringFromDate(new Date()),
-      end: this.timeHelper.getDateTimeStringFromDate(new Date()),
+      end: this.timeHelper.getDateTimeStringFromDate(new Date())
     };
-    this.event_data =
-      (data == null ? void 0 : data.event_data) ||
-      this.timeHelper.getDateStringFromDate(new Date());
+    this.event_data = (data == null ? void 0 : data.event_data) || this.timeHelper.getDateStringFromDate(new Date());
     this.data = data ? data.data : {};
     this.responsable = data == null ? void 0 : data.responsable;
   }
@@ -3092,39 +2279,41 @@ class EventShow {
     return subtitle;
   }
 }
-const VEventCard_scss_vue_type_style_index_0_src_67fe39ee_lang = "";
+var VEventCard_scss_vue_type_style_index_0_src_67fe39ee_lang = "";
 const _hoisted_1$4 = { class: "event-card" };
 const _hoisted_2$2 = { class: "break-ellipsis break-ellipsis--three_line" };
-const _hoisted_3$2 = { class: "break-ellipsis break-ellipsis--one_line" };
+const _hoisted_3$1 = { class: "break-ellipsis break-ellipsis--one_line" };
 const _hoisted_4$1 = {
   key: 1,
-  class: "break-ellipsis break-ellipsis--one_line",
+  class: "break-ellipsis break-ellipsis--one_line"
 };
 const _sfc_main$5 = defineComponent({
   __name: "VEventCard",
   props: {
     title: {
       type: String,
-      default: "T\xEDtulo do evento",
+      default: "T\xEDtulo do evento"
     },
     subtitle: {
       type: String,
-      default: "",
+      default: ""
     },
     responsable: {
       type: String,
+      default: ""
     },
     size: {
       type: String,
-      default: "default",
+      default: "default"
     },
     aplication: {
       type: String,
-      default: "obligation",
+      default: "obligation"
     },
     status: {
       type: String,
-    },
+      default: "pending"
+    }
   },
   setup(__props) {
     const props = __props;
@@ -3132,120 +2321,65 @@ const _sfc_main$5 = defineComponent({
       () => `event-status--${props.aplication}`
     );
     return (_ctx, _cache) => {
-      return (
-        openBlock(),
-        createElementBlock("div", _hoisted_1$4, [
-          createElementVNode(
-            "div",
-            {
-              class: normalizeClass([
-                "event-status",
-                unref(setAplicationClass),
-              ]),
-            },
-            [
-              createElementVNode(
-                "div",
-                {
-                  class: normalizeClass([
-                    "event-body",
-                    `event-body--${__props.size}`,
-                  ]),
-                },
-                [
-                  __props.size !== "small"
-                    ? renderSlot(_ctx.$slots, "tag", { key: 0 })
-                    : createCommentVNode("v-if", true),
-                  createElementVNode(
-                    "h4",
-                    _hoisted_2$2,
-                    toDisplayString(__props.title),
-                    1
-                  ),
-                  createElementVNode(
-                    "p",
-                    _hoisted_3$2,
-                    toDisplayString(__props.subtitle),
-                    1
-                  ),
-                  __props.size !== "small" && __props.responsable
-                    ? (openBlock(),
-                      createElementBlock(
-                        "p",
-                        _hoisted_4$1,
-                        toDisplayString(__props.responsable),
-                        1
-                      ))
-                    : createCommentVNode("v-if", true),
-                ],
-                2
-              ),
-            ],
-            2
-          ),
-        ])
-      );
+      return openBlock(), createElementBlock("div", _hoisted_1$4, [
+        createElementVNode("div", {
+          class: normalizeClass(["event-status", unref(setAplicationClass)])
+        }, [
+          createElementVNode("div", {
+            class: normalizeClass(["event-body", `event-body--${__props.size}`])
+          }, [
+            __props.size !== "small" ? renderSlot(_ctx.$slots, "tag", { key: 0 }) : createCommentVNode("v-if", true),
+            createElementVNode("h4", _hoisted_2$2, toDisplayString(__props.title), 1),
+            createElementVNode("p", _hoisted_3$1, toDisplayString(__props.subtitle), 1),
+            __props.size !== "small" && __props.responsable ? (openBlock(), createElementBlock("p", _hoisted_4$1, toDisplayString(__props.responsable), 1)) : createCommentVNode("v-if", true)
+          ], 2)
+        ], 2)
+      ]);
     };
-  },
+  }
 });
-const VEventCard = /* @__PURE__ */ _export_sfc(_sfc_main$5, [
-  [
-    "__file",
-    "/home/debora/www/vert_design_system_ui/src/components/eventCard/VEventCard.vue",
-  ],
-]);
+var VEventCard = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["__file", "/home/debora/www/vert_design_system_ui/src/components/eventCard/VEventCard.vue"]]);
 const _sfc_main$4 = /* @__PURE__ */ defineComponent({
   __name: "Event",
   props: {
     event: {
       type: Object,
-      required: true,
-    },
+      required: true
+    }
   },
   setup(__props) {
     const props = __props;
     const eventShow = new EventShow(props.event);
     return (_ctx, _cache) => {
-      return (
-        openBlock(),
-        createBlock(
-          VEventCard,
-          {
-            title: __props.event.title,
-            aplication: unref(eventShow).getApplicationsReferenceName(),
-            subtitle: unref(eventShow).getSubtitle(),
-            responsable: __props.event.responsable,
-          },
-          null,
-          8,
-          ["title", "aplication", "subtitle", "responsable"]
-        )
-      );
+      return openBlock(), createBlock(VEventCard, {
+        title: __props.event.title,
+        aplication: unref(eventShow).getApplicationsReferenceName(),
+        subtitle: unref(eventShow).getSubtitle(),
+        responsable: __props.event.responsable
+      }, null, 8, ["title", "aplication", "subtitle", "responsable"]);
     };
-  },
+  }
 });
-const Event = /* @__PURE__ */ _export_sfc(_sfc_main$4, [
-  [
-    "__file",
-    "/home/debora/www/vert_design_system_ui/src/components/calendar/mini/Event.vue",
-  ],
-]);
-const VCalendarButton_vue_vue_type_style_index_0_lang = "";
+var Event = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["__file", "/home/debora/www/vert_design_system_ui/src/components/calendar/mini/Event.vue"]]);
+var VCalendarButton_vue_vue_type_style_index_0_lang = "";
 const _hoisted_1$3 = { class: "search-events" };
 const _hoisted_2$1 = {
   id: "container-list",
-  class: "list-events",
+  class: "list-events"
 };
-const _hoisted_3$1 = { class: "list-events__item" };
 const _sfc_main$3 = /* @__PURE__ */ defineComponent({
   __name: "VCalendarButton",
   props: {
     events: {
       type: Array,
-      default: () => [],
-    },
+      default: () => []
+    }
   },
-  emits: ["search-event", "event-was-clicked", "day-was-clicked"],
+  emits: [
+    "search-event",
+    "event-was-clicked",
+    "day-was-clicked"
+  ],
   setup(__props, { emit: emits }) {
     const props = __props;
     const calendarSelectedDate = ref(new Date());
@@ -3254,11 +2388,8 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
       calendarSelectedDate.value = date;
       const dateTimeString = payload.dateTimeString.substring(0, 10);
       eventsOfDay.value = eventsDataProperty.value.filter((event) => {
-        let _a;
-        const eventIsInDay =
-          ((_a = event == null ? void 0 : event.time) == null
-            ? void 0
-            : _a.start.substring(0, 10)) === dateTimeString;
+        var _a;
+        const eventIsInDay = ((_a = event == null ? void 0 : event.time) == null ? void 0 : _a.start.substring(0, 10)) === dateTimeString;
         return eventIsInDay;
       });
       emits("day-was-clicked", payload);
@@ -3274,7 +2405,7 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
     function initScrollbar() {
       scrollbar.value = new PerfectScrollbar(".list-events", {
         wheelSpeed: 0.5,
-        wheelPropagation: true,
+        wheelPropagation: true
       });
     }
     onMounted(() => {
@@ -3288,15 +2419,10 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
       (newVal, oldVal) => {
         if (JSON.stringify(newVal) !== JSON.stringify(oldVal)) {
           eventsDataProperty.value = props.events;
-          const dateTimeString = calendarSelectedDate.value
-            .toISOString()
-            .substring(0, 10);
+          const dateTimeString = calendarSelectedDate.value.toISOString().substring(0, 10);
           eventsOfDay.value = eventsDataProperty.value.filter((event) => {
-            let _a;
-            const eventIsInDay =
-              ((_a = event == null ? void 0 : event.time) == null
-                ? void 0
-                : _a.start.substring(0, 10)) === dateTimeString;
+            var _a;
+            const eventIsInDay = ((_a = event == null ? void 0 : event.time) == null ? void 0 : _a.start.substring(0, 10)) === dateTimeString;
             return eventIsInDay;
           });
           eventRenderingKey.value = eventRenderingKey.value + 1;
@@ -3305,88 +2431,52 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
       { deep: true, immediate: true }
     );
     return (_ctx, _cache) => {
-      return (
-        openBlock(),
-        createBlock(
-          unref(VPopUp),
-          { "position-content": "center center" },
-          {
-            "event-area": withCtx(() => [createVNode(IconCalendar)]),
-            "popup-body": withCtx(() => [
-              createVNode(
-                unref(VCalendarMini),
-                {
-                  events: __props.events,
-                  "selected-date": calendarSelectedDate.value,
-                  onDayWasClicked: onHandleDayClicked,
-                },
-                null,
-                8,
-                ["events", "selected-date"]
-              ),
-              createElementVNode("div", _hoisted_1$3, [
-                withDirectives(
-                  createElementVNode(
-                    "input",
-                    {
-                      "onUpdate:modelValue":
-                        _cache[0] ||
-                        (_cache[0] = ($event) => (search.value = $event)),
-                      placeholder: "Search",
-                      onInput: searchEvent,
-                    },
-                    null,
-                    544
-                  ),
-                  [[vModelText, search.value]]
-                ),
-              ]),
-              createElementVNode("div", _hoisted_2$1, [
-                (openBlock(true),
-                createElementBlock(
-                  Fragment,
-                  null,
-                  renderList(eventsOfDay.value, (event) => {
-                    return (
-                      openBlock(),
-                      createElementBlock("div", _hoisted_3$1, [
-                        createVNode(
-                          Event,
-                          {
-                            event,
-                            onClick: ($event) => onHandleEventClicked(event),
-                          },
-                          null,
-                          8,
-                          ["event", "onClick"]
-                        ),
-                      ])
-                    );
-                  }),
-                  256
-                )),
-              ]),
-            ]),
-            _: 1,
-          }
-        )
-      );
+      return openBlock(), createBlock(unref(VPopUp), { "position-content": "center center" }, {
+        "event-area": withCtx(() => [
+          createVNode(IconCalendar)
+        ]),
+        "popup-body": withCtx(() => [
+          createVNode(unref(VCalendarMini), {
+            events: __props.events,
+            "selected-date": calendarSelectedDate.value,
+            onDayWasClicked: onHandleDayClicked
+          }, null, 8, ["events", "selected-date"]),
+          createElementVNode("div", _hoisted_1$3, [
+            withDirectives(createElementVNode("input", {
+              "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => search.value = $event),
+              placeholder: "Search",
+              onInput: searchEvent
+            }, null, 544), [
+              [vModelText, search.value]
+            ])
+          ]),
+          createElementVNode("div", _hoisted_2$1, [
+            (openBlock(true), createElementBlock(Fragment, null, renderList(eventsOfDay.value, (event, index) => {
+              return openBlock(), createElementBlock("div", {
+                key: index,
+                class: "list-events__item"
+              }, [
+                createVNode(Event, {
+                  event,
+                  onClick: ($event) => onHandleEventClicked(event)
+                }, null, 8, ["event", "onClick"])
+              ]);
+            }), 128))
+          ])
+        ]),
+        _: 1
+      });
     };
-  },
+  }
 });
-const VCalendarButton = /* @__PURE__ */ _export_sfc(_sfc_main$3, [
-  [
-    "__file",
-    "/home/debora/www/vert_design_system_ui/src/components/calendar/VCalendarButton.vue",
-  ],
-]);
+var VCalendarButton = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["__file", "/home/debora/www/vert_design_system_ui/src/components/calendar/VCalendarButton.vue"]]);
 const defaultOptions = {
   page: 1,
   pageSize: 5,
   numItems: 0,
-  numButtons: 5,
+  numButtons: 5
 };
-const usePaginator = (userOptions) => {
+var usePaginator = (userOptions) => {
   const options = { ...defaultOptions, ...userOptions };
   const _page = ref(options.page);
   const pageSize = ref(options.pageSize);
@@ -3398,7 +2488,7 @@ const usePaginator = (userOptions) => {
       if (val > 0 && val <= numPages.value) {
         _page.value = val;
       }
-    },
+    }
   });
   const numPages = computed(() => Math.ceil(numItems.value / pageSize.value));
   watch([pageSize, numItems], () => {
@@ -3414,7 +2504,8 @@ const usePaginator = (userOptions) => {
   const hasPrev = computed(() => page.value > 1);
   const hasNext = computed(() => page.value < numPages.value);
   const goPrev = () => {
-    if (hasPrev.value) [page.value--];
+    if (hasPrev.value)
+      [page.value--];
     return page.value;
   };
   const goNext = () => {
@@ -3451,17 +2542,14 @@ const usePaginator = (userOptions) => {
     goNext,
     goStart,
     goEnd,
-    buttons,
+    buttons
   };
 };
 function fullButtons(page, numPages) {
-  return consecutiveSlots(1, page)
-    .concat({ page, active: true, ellipsis: false })
-    .concat(consecutiveSlots(page + 1, numPages + 1));
+  return consecutiveSlots(1, page).concat({ page, active: true, ellipsis: false }).concat(consecutiveSlots(page + 1, numPages + 1));
 }
 function partialButtons(page, numPages, numButtons) {
-  let slotsLeft = 0,
-    slotsRight = 0;
+  let slotsLeft = 0, slotsRight = 0;
   const halvedButtons = Math.floor(numButtons / 2);
   if (page <= halvedButtons) {
     slotsLeft = page - 1;
@@ -3488,9 +2576,7 @@ function partialButtons(page, numPages, numButtons) {
     if (pagesPrev % 2 === 0) {
       ellipsisPage++;
     }
-    list = consecutiveSlots(1, ellipsis)
-      .concat({ page: ellipsisPage, active: false, ellipsis: true })
-      .concat(consecutiveSlots(page - remaining, page));
+    list = consecutiveSlots(1, ellipsis).concat({ page: ellipsisPage, active: false, ellipsis: true }).concat(consecutiveSlots(page - remaining, page));
   }
   list.push({ page, active: true, ellipsis: false });
   if (pagesNext <= slotsRight) {
@@ -3499,10 +2585,7 @@ function partialButtons(page, numPages, numButtons) {
     const ellipsis = slotsRight === 2 ? 1 : Math.floor(slotsRight / 2) + 1;
     const remaining = slotsRight - ellipsis;
     const ellipsisPage = page + Math.ceil(pagesNext / 2);
-    list = list
-      .concat(consecutiveSlots(page + 1, page + ellipsis))
-      .concat({ page: ellipsisPage, active: false, ellipsis: true })
-      .concat(consecutiveSlots(numPages - remaining + 1, numPages + 1));
+    list = list.concat(consecutiveSlots(page + 1, page + ellipsis)).concat({ page: ellipsisPage, active: false, ellipsis: true }).concat(consecutiveSlots(numPages - remaining + 1, numPages + 1));
   }
   return list;
 }
@@ -3513,53 +2596,53 @@ function consecutiveSlots(startIdx, endIdx) {
   }
   return result;
 }
-const VPagination_scss_vue_type_style_index_0_src_3245b22b_lang = "";
-const VPagination_scss_vue_type_style_index_1_src_3245b22b_lang = "";
+var VPagination_scss_vue_type_style_index_0_src_3245b22b_lang = "";
+var VPagination_scss_vue_type_style_index_1_src_3245b22b_lang = "";
 const _sfc_main$2 = defineComponent({
   name: "VPagination",
   components: { VSelect },
   props: {
     count: {
       type: Number,
-      default: 0,
+      default: 0
     },
     currentPage: {
       type: Number,
-      default: 1,
+      default: 1
     },
     sizeDefault: {
       type: Number,
-      default: 5,
+      default: 5
     },
     sizeOptions: {
       type: Array,
       default: () => [
         {
           value: "5",
-          label: "5 items",
+          label: "5 items"
         },
         {
           value: "10",
-          label: "10 items",
+          label: "10 items"
         },
         {
           value: "30",
-          label: "30 items",
+          label: "30 items"
         },
         {
           value: "50",
-          label: "50 items",
+          label: "50 items"
         },
         {
           value: "100",
-          label: "100 items",
-        },
-      ],
+          label: "100 items"
+        }
+      ]
     },
     qtdeButtonsPaginate: {
       type: Number,
-      default: 8,
-    },
+      default: 8
+    }
   },
   emits: ["onChangePagination"],
   setup(props, { emit }) {
@@ -3572,10 +2655,10 @@ const _sfc_main$2 = defineComponent({
       goNext,
       buttons,
       numPages,
-      numItems,
+      numItems
     } = usePaginator({
       pageSize: props.sizeDefault,
-      numButtons: props.qtdeButtonsPaginate,
+      numButtons: props.qtdeButtonsPaginate
     });
     watch(
       () => props.count,
@@ -3594,9 +2677,9 @@ const _sfc_main$2 = defineComponent({
       goNext,
       buttons,
       page,
-      numPages,
+      numPages
     };
-  },
+  }
 });
 const _hoisted_1$2 = { class: "box--pagination" };
 const _hoisted_2 = { class: "box--pagination-count" };
@@ -3604,186 +2687,102 @@ const _hoisted_3 = { class: "box--pagination-pages" };
 const _hoisted_4 = { class: "box--pagination-pages-size" };
 const _hoisted_5 = { class: "box--pagination-pages-itens" };
 const _hoisted_6 = { class: "pagination" };
-const _hoisted_7 = /* @__PURE__ */ createElementVNode(
-  "a",
-  { class: "pagination_li--item" },
-  null,
-  -1
-);
-const _hoisted_8 = [_hoisted_7];
+const _hoisted_7 = /* @__PURE__ */ createElementVNode("a", { class: "pagination_li--item" }, null, -1);
+const _hoisted_8 = [
+  _hoisted_7
+];
 const _hoisted_9 = ["onClick"];
-const _hoisted_10 = /* @__PURE__ */ createElementVNode(
-  "a",
-  { class: "pagination_li--item" },
-  null,
-  -1
-);
-const _hoisted_11 = [_hoisted_10];
+const _hoisted_10 = /* @__PURE__ */ createElementVNode("a", { class: "pagination_li--item" }, null, -1);
+const _hoisted_11 = [
+  _hoisted_10
+];
 function _sfc_render$2(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_v_select = resolveComponent("v-select");
-  return (
-    openBlock(),
-    createElementBlock("div", _hoisted_1$2, [
-      createElementVNode(
-        "div",
-        _hoisted_2,
-        toDisplayString(_ctx.count) + " items ",
-        1
-      ),
-      createElementVNode("div", _hoisted_3, [
-        createElementVNode("div", _hoisted_4, [
-          createVNode(
-            _component_v_select,
-            {
-              id: "select_page_size",
-              name: "select_page_size",
-              options: _ctx.sizeOptions,
-              size: "sm",
-              modelValue: _ctx.pageSize,
-              "onUpdate:modelValue":
-                _cache[0] || (_cache[0] = ($event) => (_ctx.pageSize = $event)),
-            },
-            null,
-            8,
-            ["options", "modelValue"]
-          ),
-        ]),
-        createElementVNode("div", _hoisted_5, [
-          createElementVNode("ol", _hoisted_6, [
-            createElementVNode(
-              "li",
-              {
-                class: normalizeClass([
-                  "pagination_li",
-                  !_ctx.hasPrev && "disabled",
-                ]),
-                onClick:
-                  _cache[1] ||
-                  (_cache[1] = (...args) =>
-                    _ctx.goPrev && _ctx.goPrev(...args)),
-              },
-              _hoisted_8,
-              2
-            ),
-            (openBlock(true),
-            createElementBlock(
-              Fragment,
-              null,
-              renderList(_ctx.buttons, (button, idx) => {
-                return (
-                  openBlock(),
-                  createElementBlock(
-                    "li",
-                    {
-                      class: "pagination_li",
-                      key: idx,
-                      onClick: ($event) => (_ctx.page = button.page),
-                    },
-                    [
-                      createElementVNode(
-                        "a",
-                        {
-                          class: normalizeClass([
-                            "pagination_li--item",
-                            { active: button.active },
-                          ]),
-                        },
-                        toDisplayString(button.ellipsis ? "..." : button.page),
-                        3
-                      ),
-                    ],
-                    8,
-                    _hoisted_9
-                  )
-                );
-              }),
-              128
-            )),
-            createElementVNode(
-              "li",
-              {
-                class: normalizeClass([
-                  "pagination_li",
-                  !_ctx.hasNext && "disabled",
-                ]),
-                onClick:
-                  _cache[2] ||
-                  (_cache[2] = (...args) =>
-                    _ctx.goNext && _ctx.goNext(...args)),
-              },
-              _hoisted_11,
-              2
-            ),
-          ]),
-        ]),
+  return openBlock(), createElementBlock("div", _hoisted_1$2, [
+    createElementVNode("div", _hoisted_2, toDisplayString(_ctx.count) + " items", 1),
+    createElementVNode("div", _hoisted_3, [
+      createElementVNode("div", _hoisted_4, [
+        createVNode(_component_v_select, {
+          id: "select_page_size",
+          modelValue: _ctx.pageSize,
+          "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => _ctx.pageSize = $event),
+          name: "select_page_size",
+          options: _ctx.sizeOptions,
+          size: "sm"
+        }, null, 8, ["modelValue", "options"])
       ]),
+      createElementVNode("div", _hoisted_5, [
+        createElementVNode("ol", _hoisted_6, [
+          createElementVNode("li", {
+            class: normalizeClass(["pagination_li", !_ctx.hasPrev && "disabled"]),
+            onClick: _cache[1] || (_cache[1] = (...args) => _ctx.goPrev && _ctx.goPrev(...args))
+          }, _hoisted_8, 2),
+          (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.buttons, (button, idx) => {
+            return openBlock(), createElementBlock("li", {
+              key: idx,
+              class: "pagination_li",
+              onClick: ($event) => _ctx.page = button.page
+            }, [
+              createElementVNode("a", {
+                class: normalizeClass(["pagination_li--item", { active: button.active }])
+              }, toDisplayString(button.ellipsis ? "..." : button.page), 3)
+            ], 8, _hoisted_9);
+          }), 128)),
+          createElementVNode("li", {
+            class: normalizeClass(["pagination_li", !_ctx.hasNext && "disabled"]),
+            onClick: _cache[2] || (_cache[2] = (...args) => _ctx.goNext && _ctx.goNext(...args))
+          }, _hoisted_11, 2)
+        ])
+      ])
     ])
-  );
+  ]);
 }
-const VPagination = /* @__PURE__ */ _export_sfc(_sfc_main$2, [
-  ["render", _sfc_render$2],
-  [
-    "__file",
-    "/home/debora/www/vert_design_system_ui/src/components/pagination/VPagination.vue",
-  ],
-]);
+var VPagination = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["render", _sfc_render$2], ["__file", "/home/debora/www/vert_design_system_ui/src/components/pagination/VPagination.vue"]]);
 const _sfc_main$1 = defineComponent({
   name: "VTabContent",
   props: {
     eixo: {
       type: String,
-      default: "x",
+      default: "x"
     },
     contentId: {
       type: String,
-      required: true,
-    },
-  },
+      required: true
+    }
+  }
 });
 const _hoisted_1$1 = ["id", "data-tab-content-type"];
 function _sfc_render$1(_ctx, _cache, $props, $setup, $data, $options) {
-  return (
-    openBlock(),
-    createElementBlock(
-      "div",
-      {
-        id: _ctx.contentId,
-        class: "tab--content",
-        "data-tab-content-type": _ctx.eixo,
-      },
-      [renderSlot(_ctx.$slots, "default")],
-      8,
-      _hoisted_1$1
-    )
-  );
+  return openBlock(), createElementBlock("div", {
+    id: _ctx.contentId,
+    class: "tab--content",
+    "data-tab-content-type": _ctx.eixo
+  }, [
+    renderSlot(_ctx.$slots, "default")
+  ], 8, _hoisted_1$1);
 }
-const VTabContent = /* @__PURE__ */ _export_sfc(_sfc_main$1, [
-  ["render", _sfc_render$1],
-  [
-    "__file",
-    "/home/debora/www/vert_design_system_ui/src/components/tab/VTabContent.vue",
-  ],
-]);
+var VTabContent = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["render", _sfc_render$1], ["__file", "/home/debora/www/vert_design_system_ui/src/components/tab/VTabContent.vue"]]);
 const _sfc_main = defineComponent({
   name: "VTabContent",
   props: {
     actived: {
       type: Boolean,
-      default: false,
+      default: false
     },
     eixo: {
       type: String,
-      default: "x",
+      default: "x"
     },
     tabTo: {
       type: String,
-      required: true,
-    },
+      required: true
+    }
   },
   methods: {
     activeTab(event) {
       const tabHead = event.path[1].children;
-      for (const item of tabHead) item.classList.remove("active");
+      for (const item of tabHead)
+        item.classList.remove("active");
       event.target.classList.add("active");
       this.showContentTab(
         event == null ? void 0 : event.target.dataset.tabTo,
@@ -3793,52 +2792,25 @@ const _sfc_main = defineComponent({
     showContentTab(contentId, typeTab) {
       const tabContents = document.getElementsByClassName("tab--content");
       for (const item of tabContents) {
-        if (typeTab == item.dataset.tabContentType) item.style.display = "none";
+        if (typeTab == item.dataset.tabContentType)
+          item.style.display = "none";
         if (contentId == item.getAttribute("id")) {
           item.style.display = "block";
         }
       }
-    },
-  },
+    }
+  }
 });
 const _hoisted_1 = ["data-tab-type", "data-tab-to"];
 function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (
-    openBlock(),
-    createElementBlock(
-      "button",
-      {
-        class: normalizeClass({ active: _ctx.actived }),
-        onClick: _cache[0] || (_cache[0] = ($event) => _ctx.activeTab($event)),
-        "data-tab-type": _ctx.eixo,
-        "data-tab-to": _ctx.tabTo,
-      },
-      [renderSlot(_ctx.$slots, "default")],
-      10,
-      _hoisted_1
-    )
-  );
+  return openBlock(), createElementBlock("button", {
+    class: normalizeClass({ active: _ctx.actived }),
+    "data-tab-type": _ctx.eixo,
+    "data-tab-to": _ctx.tabTo,
+    onClick: _cache[0] || (_cache[0] = ($event) => _ctx.activeTab($event))
+  }, [
+    renderSlot(_ctx.$slots, "default")
+  ], 10, _hoisted_1);
 }
-const VTabHeader = /* @__PURE__ */ _export_sfc(_sfc_main, [
-  ["render", _sfc_render],
-  [
-    "__file",
-    "/home/debora/www/vert_design_system_ui/src/components/tab/VTabHeader.vue",
-  ],
-]);
-export {
-  VButton,
-  VCalendarButton,
-  VCalendarMini,
-  VCard,
-  VEventCard,
-  VPagination,
-  VPopUp,
-  VSelect,
-  VTab,
-  VTabContent,
-  VTabHeader,
-  VTable,
-  VTag,
-  constants,
-};
+var VTabHeader = /* @__PURE__ */ _export_sfc(_sfc_main, [["render", _sfc_render], ["__file", "/home/debora/www/vert_design_system_ui/src/components/tab/VTabHeader.vue"]]);
+export { VButton, VCalendarButton, VCalendarMini, VCard, VEventCard, VPagination, VPopUp, VSelect, VTab, VTabContent, VTabHeader, VTable, VTag, constants };

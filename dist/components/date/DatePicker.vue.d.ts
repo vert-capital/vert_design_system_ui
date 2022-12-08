@@ -1,53 +1,46 @@
 import { PropType } from "vue";
-import Time, {
-  calendarMonthType,
-  calendarWeekType,
-  calendarYearMonths,
-} from "@/utils/helpers/Time";
+import Time, { calendarMonthType, calendarWeekType, calendarYearMonths } from "@/utils/helpers/Time";
 import { modeType } from "@/utils/types/calendar";
 interface disableDates {
-  before: Date;
-  after: Date;
+    before: Date;
+    after: Date;
 }
 interface IPeriod {
-  start: Date;
-  end: Date;
-  selectedDate: Date;
+    start: Date;
+    end: Date;
+    selectedDate: Date;
 }
-declare const _default: import("vue").DefineComponent<
-  {
+declare const _default: import("vue").DefineComponent<{
     mode: {
-      type: StringConstructor;
-      validator: (value: modeType) => boolean;
-      default: string;
+        type: StringConstructor;
+        validator: (value: modeType) => boolean;
+        default: string;
     };
     timeProp: {
-      type: PropType<Time>;
-      default: null;
+        type: PropType<Time>;
+        default: null;
     };
     periodProp: {
-      type: PropType<IPeriod>;
-      default: null;
+        type: PropType<IPeriod>;
+        default: null;
     };
     firstDayOfWeek: {
-      type: PropType<"sunday" | "monday">;
-      default: string;
+        type: PropType<"sunday" | "monday">;
+        default: string;
     };
     defaultDate: {
-      type: DateConstructor;
-      default: Date;
+        type: DateConstructor;
+        default: Date;
     };
     locale: {
-      type: StringConstructor;
-      default: string;
+        type: StringConstructor;
+        default: string;
     };
     disableDates: {
-      type: PropType<disableDates>;
-      default: null;
+        type: PropType<disableDates>;
+        default: null;
     };
-  },
-  unknown,
-  {
+}, unknown, {
     periodText: string;
     weekPickerDates: calendarMonthType;
     monthPickerDates: calendarYearMonths;
@@ -58,11 +51,9 @@ declare const _default: import("vue").DefineComponent<
     weekDays: calendarWeekType;
     time: Time;
     period: IPeriod;
-  },
-  {
+}, {
     isStandAloneComponent(): "" | "sunday" | "monday";
-  },
-  {
+}, {
     setMonthDaysInWeekPicker(month?: number, year?: number): void;
     togglePeriodSelector(): void;
     setWeek(date: Date, isOnMountHook?: boolean): void;
@@ -75,50 +66,39 @@ declare const _default: import("vue").DefineComponent<
     hideDatePicker(): void;
     hydrateDatePicker(isOnMountHook?: boolean): void;
     checkIfDateIsDisabled(date: Date): boolean;
-  },
-  import("vue").ComponentOptionsMixin,
-  import("vue").ComponentOptionsMixin,
-  "updated"[],
-  "updated",
-  import("vue").VNodeProps &
-    import("vue").AllowedComponentProps &
-    import("vue").ComponentCustomProps,
-  Readonly<
-    import("vue").ExtractPropTypes<{
-      mode: {
+}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, "updated"[], "updated", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
+    mode: {
         type: StringConstructor;
         validator: (value: modeType) => boolean;
         default: string;
-      };
-      timeProp: {
+    };
+    timeProp: {
         type: PropType<Time>;
         default: null;
-      };
-      periodProp: {
+    };
+    periodProp: {
         type: PropType<IPeriod>;
         default: null;
-      };
-      firstDayOfWeek: {
+    };
+    firstDayOfWeek: {
         type: PropType<"sunday" | "monday">;
         default: string;
-      };
-      defaultDate: {
+    };
+    defaultDate: {
         type: DateConstructor;
         default: Date;
-      };
-      locale: {
+    };
+    locale: {
         type: StringConstructor;
         default: string;
-      };
-      disableDates: {
+    };
+    disableDates: {
         type: PropType<disableDates>;
         default: null;
-      };
-    }>
-  > & {
+    };
+}>> & {
     onUpdated?: ((...args: any[]) => any) | undefined;
-  },
-  {
+}, {
     mode: string;
     timeProp: Time;
     periodProp: IPeriod;
@@ -126,6 +106,5 @@ declare const _default: import("vue").DefineComponent<
     defaultDate: Date;
     locale: string;
     disableDates: disableDates;
-  }
->;
+}>;
 export default _default;
