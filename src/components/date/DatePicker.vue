@@ -20,13 +20,13 @@
       @mouseleave="hideDatePicker"
     >
       <div class="date-picker__week-picker-navigation">
-        <IconChevronLeft @click="toggleDatePickerPeriod('previous')"/>
+        <IconChevronLeft @click="toggleDatePickerPeriod('previous')" />
         <span class="date-picker__toggle-mode" @click="toggleDatePickerMode">
           <template v-if="datePickerMode === 'month'">
             {{
               datePickerCurrentDate.toLocaleString(getLocale(), {
-                month: 'long',
-                year: 'numeric',
+                month: "long",
+                year: "numeric",
               })
             }}
           </template>
@@ -34,12 +34,12 @@
           <template v-else-if="datePickerMode === 'year'">
             {{
               new Date(datePickerCurrentDate).toLocaleString(getLocale(), {
-                year: 'numeric',
+                year: "numeric",
               })
             }}
           </template>
         </span>
-        <IconChevronRight @click="toggleDatePickerPeriod('next')"/>
+        <IconChevronRight @click="toggleDatePickerPeriod('next')" />
       </div>
 
       <div
@@ -47,7 +47,7 @@
         class="date-picker__day-names week"
       >
         <span v-for="day in weekDays" :key="day.getDate()">
-          {{ time.getLocalizedNameOfWeekday(day, 'short') }}
+          {{ time.getLocalizedNameOfWeekday(day, "short") }}
         </span>
       </div>
 
@@ -75,7 +75,7 @@
           }"
           @click="!checkIfDateIsDisabled(day) ? setWeek(day) : null"
         >
-          {{ day ? day.getDate() : '' }}
+          {{ day ? day.getDate() : "" }}
         </span>
       </div>
 
@@ -86,23 +86,23 @@
           class="has-month"
           @click="setMonth(date)"
         >
-          {{ new Date(date).toLocaleString(getLocale(), { month: 'long' }) }}
+          {{ new Date(date).toLocaleString(getLocale(), { month: "long" }) }}
         </span>
       </div>
     </div>
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, PropType } from 'vue';
-import IconCalendarDay from '@/components/icons/CalendarDay.vue';
-import IconChevronLeft from '@/components/icons/ChevronLeft.vue';
-import IconChevronRight from '@/components/icons/ChevronRight.vue';
+import { defineComponent, PropType } from "vue";
+import IconCalendarDay from "@/components/icons/CalendarDay.vue";
+import IconChevronLeft from "@/components/icons/ChevronLeft.vue";
+import IconChevronRight from "@/components/icons/ChevronRight.vue";
 import Time, {
   calendarMonthType,
   calendarWeekType,
   calendarYearMonths,
-} from '@/utils/helpers/Time';
-import { modeType } from '@/utils/types/calendar';
+} from "@/utils/helpers/Time";
+import { modeType } from "@/utils/types/calendar";
 
 interface disableDates {
   before: Date;
@@ -116,7 +116,7 @@ interface IPeriod {
 }
 
 export default defineComponent({
-  name: 'DatePicker',
+  name: "DatePicker",
 
   components: {
     IconCalendarDay,
@@ -127,8 +127,9 @@ export default defineComponent({
   props: {
     mode: {
       type: String,
-      validator: (value: modeType) => ['month', 'week', 'day', 'personalized', 'mini'].includes(value),
-      default: 'week',
+      validator: (value: modeType) =>
+        ["month", "week", "day", "personalized", "mini"].includes(value),
+      default: "week",
     },
     timeProp: {
       type: Object as PropType<Time>,
@@ -139,8 +140,8 @@ export default defineComponent({
       default: null,
     },
     firstDayOfWeek: {
-      type: String as PropType<'sunday' | 'monday'>,
-      default: '',
+      type: String as PropType<"sunday" | "monday">,
+      default: "",
     },
     defaultDate: {
       type: Date,
@@ -148,7 +149,7 @@ export default defineComponent({
     },
     locale: {
       type: String,
-      default: '',
+      default: "",
     },
     disableDates: {
       type: Object as PropType<disableDates>,
@@ -156,18 +157,18 @@ export default defineComponent({
     },
   },
 
-  emits: ['updated'],
+  emits: ["updated"],
 
   data() {
     return {
-      periodText: '',
+      periodText: "",
       weekPickerDates: [] as calendarMonthType,
       monthPickerDates: [] as calendarYearMonths,
       showDatePicker: !!(this.locale && this.firstDayOfWeek) as boolean,
       datePickerCurrentDate:
         this.periodProp?.selectedDate || this.defaultDate || new Date(),
       selectedDate: this.periodProp?.selectedDate || new Date(),
-      datePickerMode: 'month' as 'month' | 'year',
+      datePickerMode: "month" as "month" | "year",
       weekDays: [] as calendarWeekType,
       time: this.timeProp
         ? this.timeProp
@@ -231,12 +232,12 @@ export default defineComponent({
       const end = currentWeek[6];
 
       switch (this.mode) {
-        case 'week':
+        case "week":
           this.periodText = `${this.time.getLocalizedDateString(
             start
           )} - ${this.time.getLocalizedDateString(end)}`;
           break;
-        case 'month':
+        case "month":
           this.periodText = this.time.getLocalizedNameOfMonth(date);
           break;
         default:
@@ -251,14 +252,14 @@ export default defineComponent({
     setMonth(date: Date) {
       this.datePickerCurrentDate = date;
       this.setMonthDaysInWeekPicker(date.getMonth(), date.getFullYear());
-      this.datePickerMode = 'month';
+      this.datePickerMode = "month";
       this.showDatePicker = true;
     },
 
     emitChange(start: Date, end: Date) {
       this.selectedDate = this.datePickerCurrentDate;
 
-      if (this.mode === 'month') {
+      if (this.mode === "month") {
         const month = this.time.getCalendarMonthSplitInWeeks(
           this.selectedDate.getFullYear(),
           this.selectedDate.getMonth()
@@ -266,13 +267,13 @@ export default defineComponent({
         start = month[0][0];
         const lastWeek = month[month.length - 1];
         end = lastWeek[lastWeek.length - 1];
-      } else if (this.mode === 'day') {
+      } else if (this.mode === "day") {
         start = this.selectedDate;
         end = this.selectedDate;
       }
 
       if (!this.isStandAloneComponent) {
-        this.$emit('updated', {
+        this.$emit("updated", {
           start: new Date(
             start.getFullYear(),
             start.getMonth(),
@@ -285,7 +286,7 @@ export default defineComponent({
           selectedDate: this.datePickerCurrentDate,
         });
       } else {
-        this.$emit('updated', {
+        this.$emit("updated", {
           year: this.datePickerCurrentDate.getFullYear(),
           month: this.datePickerCurrentDate.getMonth(),
           date: this.datePickerCurrentDate.getDate(),
@@ -293,13 +294,13 @@ export default defineComponent({
       }
     },
 
-    toggleDatePickerPeriod(direction: 'previous' | 'next') {
+    toggleDatePickerPeriod(direction: "previous" | "next") {
       const currentDate = new Date(this.datePickerCurrentDate);
 
-      if (this.datePickerMode === 'month') {
+      if (this.datePickerMode === "month") {
         const dateToSet = new Date(
           currentDate.getFullYear(),
-          direction === 'previous'
+          direction === "previous"
             ? currentDate.getMonth() - 1
             : currentDate.getMonth() + 1,
           1
@@ -311,7 +312,7 @@ export default defineComponent({
         this.datePickerCurrentDate = dateToSet;
       } else {
         this.monthPickerDates = this.time.getCalendarYearMonths(
-          direction === 'previous'
+          direction === "previous"
             ? currentDate.getFullYear() - 1
             : currentDate.getFullYear() + 1
         );
@@ -320,21 +321,21 @@ export default defineComponent({
     },
 
     toggleDatePickerMode() {
-      if (this.datePickerMode === 'month') {
+      if (this.datePickerMode === "month") {
         this.monthPickerDates = this.time.getCalendarYearMonths(
           this.datePickerCurrentDate.getFullYear()
         );
 
-        return (this.datePickerMode = 'year');
+        return (this.datePickerMode = "year");
       }
 
-      if (this.datePickerMode === 'year') {
+      if (this.datePickerMode === "year") {
         this.weekPickerDates = this.time.getCalendarMonthSplitInWeeks(
           this.datePickerCurrentDate.getFullYear(),
           this.datePickerCurrentDate.getMonth()
         );
 
-        return (this.datePickerMode = 'month');
+        return (this.datePickerMode = "month");
       }
     },
 
@@ -342,18 +343,18 @@ export default defineComponent({
       return this.time.CALENDAR_LOCALE;
     },
 
-    goToPeriod(direction: 'next' | 'previous') {
+    goToPeriod(direction: "next" | "previous") {
       let newDate;
       let newDatePayload;
 
-      if (this.mode === 'week') {
+      if (this.mode === "week") {
         const week = this.time.getCalendarWeekDateObjects(
           this.datePickerCurrentDate
         );
         newDate = new Date(week[0]);
         newDatePayload =
-          direction === 'next' ? newDate.getDate() + 7 : newDate.getDate() - 7;
-      } else if (this.mode === 'month') {
+          direction === "next" ? newDate.getDate() + 7 : newDate.getDate() - 7;
+      } else if (this.mode === "month") {
         newDate = new Date(this.datePickerCurrentDate);
         const nDaysNextMonth = new Date(
           this.datePickerCurrentDate.getFullYear(),
@@ -367,14 +368,14 @@ export default defineComponent({
         ).getDate();
 
         newDatePayload =
-          direction === 'next'
+          direction === "next"
             ? newDate.getDate() + nDaysNextMonth
             : newDate.getDate() - nDaysPreviousMonth;
       } else {
         // day
         newDate = new Date(this.datePickerCurrentDate);
         newDatePayload =
-          direction === 'next' ? newDate.getDate() + 1 : newDate.getDate() - 1;
+          direction === "next" ? newDate.getDate() + 1 : newDate.getDate() - 1;
       }
 
       newDate.setDate(newDatePayload);
@@ -405,7 +406,6 @@ export default defineComponent({
 </script>
 
 <style scoped lang="scss">
-
 .date-picker {
   position: relative;
   width: fit-content;

@@ -11,38 +11,41 @@
       ></v-calendar-mini>
 
       <div class="search-events">
-        <input
-          v-model="search"
-          placeholder="Search"
-          @input="searchEvent"
-        />
+        <input v-model="search" placeholder="Search" @input="searchEvent" />
       </div>
 
       <div id="container-list" class="list-events">
-          <div class="list-events__item" v-for="event in eventsOfDay">
-            <Event :event="event" @click="onHandleEventClicked(event)" ></Event>
-          </div>
+        <div
+          v-for="(event, index) in eventsOfDay"
+          :key="index"
+          class="list-events__item"
+        >
+          <Event :event="event" @click="onHandleEventClicked(event)"></Event>
+        </div>
       </div>
     </template>
   </v-pop-up>
 </template>
 <script lang="ts" setup>
-import { VPopUp, VCalendarMini } from '@/components';
-import IconCalendar from '@/components/icons/CalendarDay.vue';
-import { IEvent } from '@/utils/types/calendar';
-import { onMounted, PropType, ref, watch } from 'vue';
-import PerfectScrollbar from 'perfect-scrollbar';
-import Event from '@/components/calendar/mini/Event.vue';
+import { VPopUp, VCalendarMini } from "@/components";
+import IconCalendar from "@/components/icons/CalendarDay.vue";
+import { IEvent } from "@/utils/types/calendar";
+import { onMounted, PropType, ref, watch } from "vue";
+import PerfectScrollbar from "perfect-scrollbar";
+import Event from "@/components/calendar/mini/Event.vue";
 
 const props = defineProps({
   events: {
     type: Array as PropType<IEvent[]>,
     default: () => [],
   },
-})
+});
 
-const emits = defineEmits(['search-event', 'event-was-clicked', 'day-was-clicked']);
-
+const emits = defineEmits([
+  "search-event",
+  "event-was-clicked",
+  "day-was-clicked",
+]);
 
 const calendarSelectedDate = ref(new Date());
 
@@ -55,23 +58,22 @@ function onHandleDayClicked(payload: any) {
     const eventIsInDay = event?.time?.start.substring(0, 10) === dateTimeString;
     return eventIsInDay;
   });
-  emits('day-was-clicked', payload)
+  emits("day-was-clicked", payload);
 }
 
-const search = ref('');
+const search = ref("");
 function searchEvent() {
-  emits('search-event', search.value);
+  emits("search-event", search.value);
 }
-
 
 function onHandleEventClicked(event: any) {
-  emits('event-was-clicked', event);
+  emits("event-was-clicked", event);
 }
 
 const scrollbar = ref<any | null>(null);
 
 function initScrollbar() {
-  scrollbar.value = new PerfectScrollbar('.list-events', {
+  scrollbar.value = new PerfectScrollbar(".list-events", {
     wheelSpeed: 0.5,
     wheelPropagation: true,
   });
@@ -90,21 +92,22 @@ watch(
   (newVal, oldVal) => {
     if (JSON.stringify(newVal) !== JSON.stringify(oldVal)) {
       eventsDataProperty.value = props.events;
-      const dateTimeString = calendarSelectedDate.value.toISOString().substring(0, 10);
+      const dateTimeString = calendarSelectedDate.value
+        .toISOString()
+        .substring(0, 10);
       eventsOfDay.value = eventsDataProperty.value.filter((event: IEvent) => {
-        const eventIsInDay = event?.time?.start.substring(0, 10) === dateTimeString;
+        const eventIsInDay =
+          event?.time?.start.substring(0, 10) === dateTimeString;
         return eventIsInDay;
       });
       eventRenderingKey.value = eventRenderingKey.value + 1;
     }
   },
   { deep: true, immediate: true }
-)
-
+);
 </script>
 
 <style lang="scss">
-
 .v-popup__content.center {
   left: auto;
 }

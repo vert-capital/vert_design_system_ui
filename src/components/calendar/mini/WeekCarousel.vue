@@ -2,15 +2,19 @@
   <div class="week-carousel">
     <chevron-left
       class="week-carousel__chevron-left"
-      @click="onHandleChevronLeftWasClicked" />
+      @click="onHandleChevronLeftWasClicked"
+    />
     <div
       v-for="(day, dayIndex) in days"
       :key="dayIndex"
       class="week-carousel__day"
-      :class="[{
-        'is-today':
-          time.getDateTimeStringFromDate(now, 'start') === day.dateTimeString,
-      }, {'is-selected':day.dateTimeString.substring(0, 10) === selectedDay}]"
+      :class="[
+        {
+          'is-today':
+            time.getDateTimeStringFromDate(now, 'start') === day.dateTimeString,
+        },
+        { 'is-selected': day.dateTimeString.substring(0, 10) === selectedDay },
+      ]"
       @click="onHandleDayWasClicked(day)"
     >
       <div class="week-carousel__day-name">
@@ -23,18 +27,19 @@
     </div>
     <chevron-right
       class="week-carousel__chevron-right"
-      @click="onHandleChevronRightWasClicked" />
+      @click="onHandleChevronRightWasClicked"
+    />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue';
-import { IConfig, IDay } from '@/utils/types/calendar';
-import Time from '@/utils/helpers/Time';
-import ChevronLeft from '@/components/icons/ChevronLeft.vue';
-import ChevronRight from '@/components/icons/ChevronRight.vue';
+import { defineComponent, PropType } from "vue";
+import { IDay } from "@/utils/types/calendar";
+import Time from "@/utils/helpers/Time";
+import ChevronLeft from "@/components/icons/ChevronLeft.vue";
+import ChevronRight from "@/components/icons/ChevronRight.vue";
 export default defineComponent({
-  name: 'Weekcarousel',
+  name: "Weekcarousel",
 
   components: { ChevronLeft, ChevronRight },
 
@@ -46,15 +51,15 @@ export default defineComponent({
     time: {
       type: Object as PropType<Time>,
       required: true,
-    }
+    },
   },
 
-  emits: ['event-was-clicked', 'day-was-clicked'],
+  emits: ["event-was-clicked", "day-was-clicked"],
 
   data() {
     return {
       now: new Date(),
-      selectedDay: '',
+      selectedDay: "",
     };
   },
 
@@ -66,20 +71,15 @@ export default defineComponent({
 
       return date;
     },
-    isLastDayOfMonth(day: IDay) {
-      const { month, year } = this.time.getAllVariablesFromDateTimeString(
-        day.dateTimeString
-      );
-    },
     onHandleDayWasClicked(day: IDay) {
       this.selectedDay = day.dateTimeString.substring(0, 10);
-      this.$emit('day-was-clicked', day);
+      this.$emit("day-was-clicked", day);
     },
     onHandleChevronLeftWasClicked() {
-      this.$emit('event-was-clicked', 'chevron-left');
+      this.$emit("event-was-clicked", "chevron-left");
     },
     onHandleChevronRightWasClicked() {
-      this.$emit('event-was-clicked', 'chevron-right');
+      this.$emit("event-was-clicked", "chevron-right");
     },
   },
 });
@@ -132,7 +132,7 @@ export default defineComponent({
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #4A4A4A;
+    color: #4a4a4a;
     :hover {
       cursor: pointer;
       background-color: $neutral-color-low-extra-light;
