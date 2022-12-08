@@ -1,9 +1,16 @@
-import { applicationReference, applicationsNumber, IEvent } from "../types/calendar";
+import {
+  applicationReference,
+  applicationsNumber,
+  IEvent,
+} from "../types/calendar";
 import Time from "./Time";
-import { APPLICATIONS_COLORS, APPLICATIONS_NAME, APPLICATIONS_REFERENCE_NAME } from "../constants";
+import {
+  APPLICATIONS_COLORS,
+  APPLICATIONS_NAME,
+  APPLICATIONS_REFERENCE_NAME,
+} from "../constants";
 
 export class EventShow implements IEvent {
-
   public id?: string | number;
   public title?: string;
   public application: applicationsNumber;
@@ -12,7 +19,7 @@ export class EventShow implements IEvent {
   public emission?: number;
   public time: { start: string; end: string };
   public event_data: string;
-  public data?: {};
+  public data?: any;
   public responsable?: string | undefined;
 
   public timeHelper = new Time();
@@ -24,12 +31,15 @@ export class EventShow implements IEvent {
     this.patrimony = data?.patrimony;
     this.series = data?.series;
     this.emission = data?.emission;
-    this.time = data?.time || { start: this.timeHelper.getDateTimeStringFromDate(new Date()), end: this.timeHelper.getDateTimeStringFromDate(new Date()) };
-    this.event_data = data?.event_data || this.timeHelper.getDateStringFromDate(new Date());
+    this.time = data?.time || {
+      start: this.timeHelper.getDateTimeStringFromDate(new Date()),
+      end: this.timeHelper.getDateTimeStringFromDate(new Date()),
+    };
+    this.event_data =
+      data?.event_data || this.timeHelper.getDateStringFromDate(new Date());
     this.data = data ? data.data : {};
     this.responsable = data?.responsable;
   }
-
 
   getApplicationName(): typeof APPLICATIONS_NAME[keyof typeof APPLICATIONS_NAME] {
     return APPLICATIONS_NAME[this.application];
@@ -40,11 +50,13 @@ export class EventShow implements IEvent {
   }
 
   getApplicationsReferenceName(): applicationReference {
-    return APPLICATIONS_REFERENCE_NAME[this.application] as applicationReference;
+    return APPLICATIONS_REFERENCE_NAME[
+      this.application
+    ] as applicationReference;
   }
 
   getSubtitle(): string {
-    let subtitle = '';
+    let subtitle = "";
     if (this.patrimony) {
       subtitle += `Patrimônio: ${this.patrimony}`;
     }
@@ -56,5 +68,4 @@ export class EventShow implements IEvent {
     }
     return subtitle;
   }
-
 }

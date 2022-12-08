@@ -6,8 +6,8 @@
         <h4 class="break-ellipsis break-ellipsis--three_line">{{ title }}</h4>
         <p class="break-ellipsis break-ellipsis--one_line">{{ subtitle }}</p>
         <p
-          class="break-ellipsis break-ellipsis--one_line"
           v-if="size !== 'small' && responsable"
+          class="break-ellipsis break-ellipsis--one_line"
         >
           {{ responsable }}
         </p>
@@ -29,32 +29,32 @@ export interface Props {
   status: string;
 }
 
-const props = defineProps(
-  {
-    title: {
-      type: String,
-      default: 'Título do evento'
-    },
-    subtitle: {
-      type: String,
-      default: ''
-    },
-    responsable: {
-      type: String
-    },
-    size: {
-      type: String,
-      default: 'default'
-    },
-    aplication: {
-      type: String as PropType<applicationReference>,
-      default: 'obligation'
-    },
-    status: {
-      type: String,
-    }
-  }
-)
+const props = defineProps({
+  title: {
+    type: String,
+    default: "Título do evento",
+  },
+  subtitle: {
+    type: String,
+    default: "",
+  },
+  responsable: {
+    type: String,
+    default: "",
+  },
+  size: {
+    type: String,
+    default: "default",
+  },
+  aplication: {
+    type: String as PropType<applicationReference>,
+    default: "obligation",
+  },
+  status: {
+    type: String,
+    default: "pending",
+  },
+});
 
 const setAplicationClass = computed(
   (): string => `event-status--${props.aplication}`

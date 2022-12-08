@@ -5,7 +5,12 @@
         {{ showValue }}
       </span>
       <span v-else>
-        <v-tag v-for="(selected, index) in showValue" status="secondary" square :key="index">
+        <v-tag
+          v-for="(selected, index) in showValue"
+          :key="index"
+          status="secondary"
+          square
+        >
           {{ selected.label }}
           <label class="icon--close" :for="name + '-' + selected.value"></label>
         </v-tag>
@@ -15,14 +20,14 @@
         :class="{ 'v-dropdow__input--arrow--open': showOptions }"
       ></div>
     </div>
-    <div class="v-dropdow__options" v-show="showOptions">
+    <div v-show="showOptions" class="v-dropdow__options">
       <ul>
-        <li v-for="option in options">
+        <li v-for="(option, i) in options" :key="i">
           <input
+            :id="name + '-' + option.value"
             v-model="valueOption"
             name="option"
             :value="option.value"
-            :id="name + '-' + option.value"
             :type="setMultiple"
             @change="selectChange()"
           />
@@ -32,8 +37,8 @@
     </div>
   </div>
   <div
-    class="v-dropdow__fullscreen"
     v-show="showOptions"
+    class="v-dropdow__fullscreen"
     @click="showOptions = !showOptions"
   ></div>
 </template>
@@ -69,6 +74,7 @@ const props = withDefaults(defineProps<Props>(), {
   modelValue: [],
   type: "1",
   name: "exemplo",
+  id: "exemplo",
 });
 
 const emit = defineEmits<{
@@ -90,7 +96,7 @@ const showValue: any = computed(() => {
     );
     return option?.label;
   } else {
-    let options: any[] = [];
+    const options: any[] = [];
     valueOption.value.forEach((item: number) => {
       const find = props.options.find((element) => element.value == item);
       options.push(find);

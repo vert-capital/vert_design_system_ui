@@ -1,20 +1,20 @@
-import { resolve } from 'path'
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
+import { resolve } from "path";
+import { defineConfig } from "vite";
+import vue from "@vitejs/plugin-vue";
 
 export default defineConfig(({ mode }) => {
-  const isProd = mode === 'prod'
-  const isDev = mode === 'dev'
-  const isTest = mode === 'test'
+  const isProd = mode === "prod";
+  const isDev = mode === "dev";
+  const isTest = mode === "test";
 
-  let build = {}
+  let build = {};
   if (isProd) {
     build = {
       lib: {
-        entry: resolve(__dirname, 'src/index.ts'),
-        name: 'design-system',
-        fileName: 'index',
-        formats: ['es', 'cjs', 'umd'],
+        entry: resolve(__dirname, "src/index.ts"),
+        name: "design-system",
+        fileName: "index",
+        formats: ["es", "cjs", "umd"],
       },
       rollupOptions: {
         /**
@@ -22,10 +22,7 @@ export default defineConfig(({ mode }) => {
          * make sure to externalize deps that shouldn't be bundled
          * into your library
          */
-        external: [
-          'vue',
-          'vue-demi',
-        ],
+        external: ["vue", "vue-demi"],
         output: {
           /**
            * DESC:
@@ -33,48 +30,41 @@ export default defineConfig(({ mode }) => {
            * for externalized deps
            */
           globals: {
-            'vue': 'Vue',
-            'vue-demi': 'VueDemi',
+            vue: "Vue",
+            "vue-demi": "VueDemi",
           },
         },
       },
-    }
+    };
   }
 
-  let optimizeDeps = {}
+  let optimizeDeps = {};
   if (isDev) {
     /**
      * DESC:
      * dependency pre-bundling
      */
     optimizeDeps = {
-      exclude: ['vue-demi'],
-    }
+      exclude: ["vue-demi"],
+    };
   }
 
-  let test = {}
+  let test = {};
   if (isTest) {
     /**
      * DESC:
      * vitest config
      */
     test = {
-      include: ['test/**/*.test.ts'],
-      environment: 'happy-dom',
+      include: ["test/**/*.test.ts"],
+      environment: "happy-dom",
       deps: {
-        inline: [
-          '@vue',
-          'vue-demi',
-        ],
+        inline: ["@vue", "vue-demi"],
       },
       coverage: {
-        reporter: [
-          'text',
-          'text-summary',
-          'lcov',
-        ],
+        reporter: ["text", "text-summary", "lcov"],
       },
-    }
+    };
   }
 
   return {
@@ -90,16 +80,16 @@ export default defineConfig(({ mode }) => {
     resolve: {
       alias: [
         {
-          find: '@',
-          replacement: resolve(__dirname, './src'),
+          find: "@",
+          replacement: resolve(__dirname, "./src"),
         },
         {
-          find: '~',
-          replacement: resolve(__dirname, './node_modules'),
+          find: "~",
+          replacement: resolve(__dirname, "./node_modules"),
         },
         {
-          find: '@icons',
-          replacement: resolve(__dirname, './static/icons'),
+          find: "@icons",
+          replacement: resolve(__dirname, "./static/icons"),
         },
       ],
     },
@@ -108,9 +98,9 @@ export default defineConfig(({ mode }) => {
         scss: {
           additionalData: `
               @import "./src/assets/main.scss";
-            `
-        }
-      }
-    }
-  }
-})
+            `,
+        },
+      },
+    },
+  };
+});

@@ -1,11 +1,11 @@
-export type Item = Record<string, any>
+export type Item = Record<string, any>;
 
 export function getItemValue(column: string, item: Item) {
-  if (column.includes('.')) {
-    let content: any = '';
-    const keysArr = column.split('.');
+  if (column.includes(".")) {
+    let content: any = "";
+    const keysArr = column.split(".");
     keysArr.forEach((key, index) => {
-      content = (index === 0 ? item[key] : content[key]);
+      content = index === 0 ? item[key] : content[key];
     });
     return content;
   }
@@ -14,5 +14,5 @@ export function getItemValue(column: string, item: Item) {
 
 export function generateColumnContent(column: string, item: Item) {
   const content = getItemValue(column, item);
-  return Array.isArray(content) ? content.join(',') : content;
+  return Array.isArray(content) ? content.join(",") : content;
 }

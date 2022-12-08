@@ -1,19 +1,18 @@
-import { IDayStarEndControl } from '@/utils/types/calendar';
-import EDate from './EDate';
-import StringHelper
-  from './String';
+import { IDayStarEndControl } from "@/utils/types/calendar";
+import EDate from "./EDate";
+import StringHelper from "./String";
 export type calendarWeekType = Date[];
 export type calendarMonthType = calendarWeekType[];
 export type calendarYearMonths = Date[];
 
 export default class Time {
-  FIRST_DAY_OF_WEEK: 'sunday' | 'monday';
+  FIRST_DAY_OF_WEEK: "sunday" | "monday";
   CALENDAR_LOCALE: string;
   DAY_START: number;
   DAY_END: number;
 
   constructor(
-    firstDayOfWeek: 'sunday' | 'monday' = 'monday',
+    firstDayOfWeek: "sunday" | "monday" = "monday",
     locale: string | null = null,
     dayBoundaries: { start: IDayStarEndControl; end: IDayStarEndControl } = {
       start: 0,
@@ -21,14 +20,16 @@ export default class Time {
     }
   ) {
     this.FIRST_DAY_OF_WEEK = firstDayOfWeek;
-    this.CALENDAR_LOCALE = locale ? locale : 'pt-BR';
+    this.CALENDAR_LOCALE = locale ? locale : "pt-BR";
     this.DAY_START = dayBoundaries.start;
     this.DAY_END = dayBoundaries.end;
   }
 
   getDatesBetweenTwoDates(start: Date, end: Date) {
+    let arr = [];
+    let dt = new Date(start);
     for (
-      var arr = [], dt = new Date(start);
+      arr = [], dt = new Date(start);
       dt <= end;
       dt.setDate(dt.getDate() + 1)
     ) {
@@ -42,15 +43,15 @@ export default class Time {
     const selectedDate = date ? date : new Date();
 
     let subtractedDaysToGetFirstDate;
-    if (this.FIRST_DAY_OF_WEEK === 'sunday'){
+    if (this.FIRST_DAY_OF_WEEK === "sunday") {
       subtractedDaysToGetFirstDate = selectedDate.getDay();
-      }
-    else {
+    } else {
       subtractedDaysToGetFirstDate =
         selectedDate.getDay() === 0 ? 6 : selectedDate.getDay() - 1;
     }
 
-    const dateOfFirstDayOfWeek = selectedDate.getDate() - subtractedDaysToGetFirstDate; 
+    const dateOfFirstDayOfWeek =
+      selectedDate.getDate() - subtractedDaysToGetFirstDate;
     const firstDay = new Date(
       selectedDate.getFullYear(),
       selectedDate.getMonth(),
@@ -75,7 +76,7 @@ export default class Time {
    * */
   getCalendarMonthSplitInWeeks(yyyy: number, mm: number): calendarMonthType {
     const month: calendarMonthType = [];
-    const selectedDate = ![typeof yyyy, typeof mm].includes('undefined')
+    const selectedDate = ![typeof yyyy, typeof mm].includes("undefined")
       ? new Date(yyyy, mm, 1)
       : new Date();
 
@@ -125,16 +126,18 @@ export default class Time {
 
   getLocalizedNameOfWeekday(
     date: Date,
-    weekdayNameLength: 'long' | 'short' = 'short'
+    weekdayNameLength: "long" | "short" = "short"
   ): string {
-    return StringHelper.capitalizeFirstLetter(date.toLocaleDateString(this.CALENDAR_LOCALE, {
-      weekday: weekdayNameLength,
-    }));
+    return StringHelper.capitalizeFirstLetter(
+      date.toLocaleDateString(this.CALENDAR_LOCALE, {
+        weekday: weekdayNameLength,
+      })
+    );
   }
 
   getLocalizedNameOfMonth(
     date: Date,
-    monthNameLength: 'long' | 'short' = 'short'
+    monthNameLength: "long" | "short" = "short"
   ): string {
     return date.toLocaleDateString(this.CALENDAR_LOCALE, {
       month: monthNameLength,
@@ -147,23 +150,23 @@ export default class Time {
 
   getDateTimeStringFromDate(
     date: Date,
-    timeIsStartOrEndOfDay?: 'start' | 'end'
+    timeIsStartOrEndOfDay?: "start" | "end"
   ): string {
     const y = date.getFullYear();
     const m = date.getMonth() + 1;
     const d = date.getDate();
-    const fullDate = `${y}-${m >= 10 ? m : '0' + m}-${d >= 10 ? d : '0' + d}`;
+    const fullDate = `${y}-${m >= 10 ? m : "0" + m}-${d >= 10 ? d : "0" + d}`;
 
     if (!timeIsStartOrEndOfDay) {
       const hour = date.getHours();
       const minutes = date.getMinutes();
 
-      return `${fullDate} ${hour >= 10 ? hour : '0' + hour}:${
-        minutes >= 10 ? minutes : '0' + minutes
+      return `${fullDate} ${hour >= 10 ? hour : "0" + hour}:${
+        minutes >= 10 ? minutes : "0" + minutes
       }`;
     }
 
-    const fullTime = timeIsStartOrEndOfDay === 'start' ? '00:00' : '23:59';
+    const fullTime = timeIsStartOrEndOfDay === "start" ? "00:00" : "23:59";
 
     return `${fullDate} ${fullTime}`;
   }
@@ -216,7 +219,7 @@ export default class Time {
     const mm = date.getMonth() + 1;
     const dd = date.getDate();
 
-    return `${yyyy}-${mm >= 10 ? mm : '0' + mm}-${dd >= 10 ? dd : '0' + dd}`;
+    return `${yyyy}-${mm >= 10 ? mm : "0" + mm}-${dd >= 10 ? dd : "0" + dd}`;
   }
 
   dateStringsHaveEqualDates(dateTimeString1: string, dateTimeString2: string) {
@@ -268,5 +271,9 @@ export default class Time {
     }
 
     return week;
+  }
+
+  getNumberOfDaysInMonth(year: number, month: number) {
+    return new Date(year, month, 0).getDate();
   }
 }

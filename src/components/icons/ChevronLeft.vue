@@ -1,5 +1,5 @@
 <template>
-  <img src="../../../static/icons/chevron-left.svg" width="24"/>
+  <img src="../../../static/icons/chevron-left.svg" width="24" />
 </template>
 <script lang="ts">
 import { defineComponent } from "vue";

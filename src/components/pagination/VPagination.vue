@@ -1,24 +1,42 @@
 <template>
   <div class="box--pagination">
-    <div class="box--pagination-count">
-      {{ count }} items
-    </div>
+    <div class="box--pagination-count">{{ count }} items</div>
 
     <div class="box--pagination-pages">
       <div class="box--pagination-pages-size">
-        <v-select id="select_page_size" name="select_page_size" :options="sizeOptions" size="sm" v-model="pageSize">
+        <v-select
+          id="select_page_size"
+          v-model="pageSize"
+          name="select_page_size"
+          :options="sizeOptions"
+          size="sm"
+        >
         </v-select>
       </div>
       <div class="box--pagination-pages-itens">
         <ol class="pagination">
-          <li class="pagination_li" :class="!hasPrev && 'disabled'" @click="goPrev">
+          <li
+            class="pagination_li"
+            :class="!hasPrev && 'disabled'"
+            @click="goPrev"
+          >
             <a class="pagination_li--item"></a>
           </li>
-          <li class="pagination_li" v-for="(button, idx) in buttons" :key="idx" @click="page = button.page">
-            <a class="pagination_li--item" :class="{ 'active': button.active }">{{ button.ellipsis ? '...' : button.page
+          <li
+            v-for="(button, idx) in buttons"
+            :key="idx"
+            class="pagination_li"
+            @click="page = button.page"
+          >
+            <a class="pagination_li--item" :class="{ active: button.active }">{{
+              button.ellipsis ? "..." : button.page
             }}</a>
           </li>
-          <li class="pagination_li" :class="!hasNext && 'disabled'" @click="goNext">
+          <li
+            class="pagination_li"
+            :class="!hasNext && 'disabled'"
+            @click="goNext"
+          >
             <a class="pagination_li--item"></a>
           </li>
         </ol>
@@ -29,8 +47,8 @@
 
 <script lang="ts">
 import { defineComponent, watch, PropType } from "vue";
-import { VSelect } from '@/components/index'
-import usePaginator from './usePagination'
+import { VSelect } from "@/components/index";
+import usePaginator from "./usePagination";
 import { ISelectOptions } from "../form/select/VSelect.vue";
 
 export default defineComponent({
@@ -81,171 +99,46 @@ export default defineComponent({
   },
   emits: ["onChangePagination"],
   setup(props, { emit }) {
-
-    const { page, pageSize, hasPrev, hasNext, goPrev, goNext, buttons, numPages, numItems } = usePaginator({
+    const {
+      page,
+      pageSize,
+      hasPrev,
+      hasNext,
+      goPrev,
+      goNext,
+      buttons,
+      numPages,
+      numItems,
+    } = usePaginator({
       pageSize: props.sizeDefault,
       numButtons: props.qtdeButtonsPaginate,
-    })
-
-    watch(() => props.count, (count) => {
-      numItems.value = count;
     });
 
+    watch(
+      () => props.count,
+      (count) => {
+        numItems.value = count;
+      }
+    );
+
     watch([page, pageSize], ([newPage, newPageSize]) => {
-      emit('onChangePagination', { page: newPage, page_size: newPageSize });
-    })
+      emit("onChangePagination", { page: newPage, page_size: newPageSize });
+    });
 
-    return { hasPrev, hasNext, pageSize, goPrev, goNext, buttons, page, numPages };
-  }
+    return {
+      hasPrev,
+      hasNext,
+      pageSize,
+      goPrev,
+      goNext,
+      buttons,
+      page,
+      numPages,
+    };
+  },
 });
-
 </script>
 
-<style src="./VPagination.scss" lang="scss">
-</style>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<style src="./VPagination.scss" lang="scss"></style>
 
 <style lang="scss" src="./VPagination.scss" />
