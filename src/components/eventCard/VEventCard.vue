@@ -4,9 +4,14 @@
       <div class="event-body" :class="`event-body--${size}`">
         <slot v-if="size !== 'small'" name="tag"></slot>
         <h4 class="break-ellipsis break-ellipsis--three_line">{{ title }}</h4>
-        <p class="break-ellipsis break-ellipsis--one_line">{{ subtitle }}</p>
         <p
-          v-if="size !== 'small' && responsable"
+          v-if="subtitle != ''"
+          class="break-ellipsis break-ellipsis--one_line"
+        >
+          {{ subtitle }}
+        </p>
+        <p
+          v-if="size !== 'small' && responsable != ''"
           class="break-ellipsis break-ellipsis--one_line"
         >
           {{ responsable }}

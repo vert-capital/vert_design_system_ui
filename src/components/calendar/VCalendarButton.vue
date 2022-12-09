@@ -1,5 +1,5 @@
 <template>
-  <v-pop-up position-content="center center">
+  <v-pop-up position-content="center center" title="Calendário de eventos">
     <template #event-area>
       <icon-calendar />
     </template>
@@ -15,14 +15,23 @@
       </div>
 
       <div id="container-list" class="list-events">
-        <div
-          v-for="(event, index) in eventsOfDay"
-          :key="index"
-          class="list-events__item"
-        >
-          <Event :event="event" @click="onHandleEventClicked(event)"></Event>
+        <div v-if="eventsOfDay.length > 0">
+          <div
+            v-for="(event, index) in eventsOfDay"
+            :key="index"
+            class="list-events__item"
+          >
+            <Event :event="event" @click="onHandleEventClicked(event)"></Event>
+          </div>
+        </div>
+
+        <div v-else class="list-events__empty">
+          <p>Nenhum evento encontrado</p>
         </div>
       </div>
+    </template>
+    <template #popup-footer>
+      <a class="a-link">Ir para versão completa</a>
     </template>
   </v-pop-up>
 </template>
@@ -134,6 +143,17 @@ watch(
     margin-bottom: 0.5rem;
     cursor: pointer;
   }
+  &__empty {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    p {
+      font-size: 0.875rem;
+      color: #ccc;
+    }
+  }
 }
 
 #container-list {
@@ -157,5 +177,14 @@ watch(
       margin-bottom: 0;
     }
   }
+}
+
+.a-link {
+  color: $color-primary-pure;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  line-height: 1rem;
+  margin-left: 22%;
 }
 </style>

@@ -1,7 +1,9 @@
 <template>
   <div class="v-popup">
-    <div class="v-popup--click" @click="show = !show">
-      <slot name="event-area">INSERIR ICONE AQUI</slot>
+    <div class="v-popup--click">
+      <a @click="show = !show"
+        ><slot name="event-area">INSERIR ICONE AQUI</slot></a
+      >
     </div>
     <div
       v-show="show"

@@ -136,6 +136,7 @@ onMounted(() => {
     font-weight: 700;
     font-size: 1rem;
     padding-top: 0.8rem;
+    color: $neutral-color-low-pure;
   }
 }
 </style>

@@ -3,7 +3,7 @@
   font-family: "Lato", sans-serif;
   width: fit-content;
 
-  &__content{
+  &__content {
     @extend %shadow-level-2;
     position: absolute;
     box-sizing: border-box;
@@ -11,42 +11,52 @@
     padding: 1.5rem;
     border-radius: .5rem;
     background-color: $neutral-color-hight-pure;
+
     &.bottom {
       top: auto;
     }
+
     &.center {
       left: 0;
       right: 0;
     }
-    &--head{
+
+    &--head {
       position: relative;
-      &-title{
+
+      &-title {
         font-size: 1rem;
         font-weight: 700;
       }
-      &-close{
+
+      &-close {
         position: absolute;
         cursor: pointer;
         right: 0;
-        top: -.5rem;
+        top: -1.5rem;
         padding: .5rem;
         transition: ease-in-out .5s opacity;
         opacity: .4;
-        &:hover{
+
+        &:hover {
           opacity: .2;
         }
+
         img {
           width: 15px;
           height: 15px;
         }
       }
     }
-    &--body{}
-    &--footer{
+
+    &--body {}
+
+    &--footer {
       padding-top: 1.75rem;
     }
   }
-  &--click{
+
+  &--click {
     cursor: pointer;
   }
 }

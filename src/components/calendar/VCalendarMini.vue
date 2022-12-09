@@ -231,6 +231,7 @@ onMounted(() => {
     align-items: center;
     gap: 20px;
     width: 60%;
+    color: $neutral-color-low-pure;
   }
 
   &__period-name {
