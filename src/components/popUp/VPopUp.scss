@@ -58,5 +58,10 @@
 
   &--click {
     cursor: pointer;
+
+    :hover {
+      opacity: .5;
+      background-color: transparent;
+    }
   }
 }

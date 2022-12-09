@@ -11,7 +11,8 @@
       ></v-calendar-mini>
 
       <div class="search-events">
-        <input v-model="search" placeholder="Search" @input="searchEvent" />
+        <input v-model="search" placeholder="Buscar" @input="searchEvent" />
+        <search-icon class="search-events__icon" @click="searchEvent" />
       </div>
 
       <div id="container-list" class="list-events">
@@ -42,6 +43,7 @@ import { IEvent } from "@/utils/types/calendar";
 import { onMounted, PropType, ref, watch } from "vue";
 import PerfectScrollbar from "perfect-scrollbar";
 import Event from "@/components/calendar/mini/Event.vue";
+import SearchIcon from "@/components/icons/Search.vue";
 
 const props = defineProps({
   events: {
@@ -128,11 +130,21 @@ watch(
   height: 100%;
   min-height: 0px;
   display: flex;
+
   input {
     width: 100%;
     padding: 0.5rem;
     border: 1px solid #ccc;
-    border-radius: 0.25rem;
+    border-right: none;
+    border-radius: 0.25rem 0 0 0.25rem;
+  }
+
+  .search-events__icon {
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-left: none;
+    border-radius: 0 0.25rem 0.25rem 0;
+    padding-right: 0.25rem;
   }
 }
 

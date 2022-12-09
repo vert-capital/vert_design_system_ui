@@ -219,6 +219,9 @@ onMounted(() => {
   justify-content: space-between;
   padding: 0;
   border-radius: 2px;
+  cursor: default;
+  color: $neutral-color-low-pure;
+  font-size: 0.843rem;
 
   @include screen-size-m {
     justify-content: space-between;
@@ -232,6 +235,7 @@ onMounted(() => {
     gap: 20px;
     width: 60%;
     color: $neutral-color-low-pure;
+    padding-bottom: 0.4rem;
   }
 
   &__period-name {
