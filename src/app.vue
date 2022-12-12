@@ -240,6 +240,19 @@
     repudiandae, nesciunt adipisci vel harum iste, ullam rerum corporis tempora.
     Laborum, excepturi!
   </v-card>
+  <div class="item--checkbox">
+    <input
+      type="checkbox"
+      name="teste"
+      id="teste-234"
+      value="3"
+      v-model="checkbox"
+    />
+    <label for="teste-234">TESTE</label>
+  </div>
+
+  <br />
+  {{ checkbox }}
 </template>
 
 <script lang="ts">
@@ -277,6 +290,78 @@ export default defineComponent({
     VEventCard,
     VMultiselect,
   },
+
+  data() {
+    return {
+      typeTab: "x",
+      testeSelect: "",
+      dropDownExemplo: [],
+      dropDownExemplo2: [],
+      checkbox: [],
+      events: [
+        {
+          id: 1,
+          title: "Obrigações",
+          application: 1,
+          time: { start: "2022-12-06 08:00", end: "2022-12-06 09:00" },
+          event_data: "2022-12-06",
+          responsable: "Caio Arruda",
+          emission: 1,
+        },
+        {
+          id: 2,
+          title: "Pagamento de Juros",
+          application: 2,
+          time: { start: "2022-12-06 08:00", end: "2022-12-06 09:00" },
+          event_data: "2022-12-06",
+          responsable: "Márcio",
+        },
+        {
+          id: 3,
+          title: "Pagamento de Juros A",
+          application: 3,
+          time: { start: "2022-12-06 08:00", end: "2022-12-06 09:00" },
+          event_data: "2022-12-06",
+          responsable: "Maria das Dores",
+        },
+        {
+          id: 4,
+          title: "Pagamento de Juros B",
+          application: 4,
+          time: { start: "2022-12-06 08:00", end: "2022-12-06 09:00" },
+          event_data: "2022-12-06",
+          responsable: "João das Neves",
+        },
+        {
+          id: 5,
+          title: "Pagamento de Juros C",
+          application: 5,
+          time: { start: "2022-12-06 08:00", end: "2022-12-06 09:00" },
+          event_data: "2022-12-06",
+          responsable: "João das Couves",
+        },
+        {
+          id: 6,
+          title: "Pagamento de Juros D",
+          application: 6,
+          time: { start: "2022-12-06 08:00", end: "2022-12-06 09:00" },
+          event_data: "2022-12-06",
+          responsable: "João das Flores",
+        },
+        {
+          id: 8,
+          title: "Pagamento de Juros E",
+          application: 7,
+          time: { start: "2022-12-06 08:00", end: "2022-12-06 09:00" },
+          event_data: "2022-12-06",
+          responsable: "José das Couves",
+        },
+      ] as IEvent[],
+
+      isLoading: false,
+    };
+  },
+
   setup() {
     const pokemons = ref({ count: 0, next: "", previous: "", results: [] });
 
@@ -390,76 +475,6 @@ export default defineComponent({
       aplication,
       onHandleSearch,
       onHandleEventClicked,
-    };
-  },
-
-  data() {
-    return {
-      typeTab: "x",
-      testeSelect: "",
-      dropDownExemplo: [],
-      dropDownExemplo2: [],
-      events: [
-        {
-          id: 1,
-          title: "Obrigações",
-          application: 1,
-          time: { start: "2022-12-06 08:00", end: "2022-12-06 09:00" },
-          event_data: "2022-12-06",
-          responsable: "Caio Arruda",
-          emission: 1,
-        },
-        {
-          id: 2,
-          title: "Pagamento de Juros",
-          application: 2,
-          time: { start: "2022-12-06 08:00", end: "2022-12-06 09:00" },
-          event_data: "2022-12-06",
-          responsable: "Márcio",
-        },
-        {
-          id: 3,
-          title: "Pagamento de Juros A",
-          application: 3,
-          time: { start: "2022-12-06 08:00", end: "2022-12-06 09:00" },
-          event_data: "2022-12-06",
-          responsable: "Maria das Dores",
-        },
-        {
-          id: 4,
-          title: "Pagamento de Juros B",
-          application: 4,
-          time: { start: "2022-12-06 08:00", end: "2022-12-06 09:00" },
-          event_data: "2022-12-06",
-          responsable: "João das Neves",
-        },
-        {
-          id: 5,
-          title: "Pagamento de Juros C",
-          application: 5,
-          time: { start: "2022-12-06 08:00", end: "2022-12-06 09:00" },
-          event_data: "2022-12-06",
-          responsable: "João das Couves",
-        },
-        {
-          id: 6,
-          title: "Pagamento de Juros D",
-          application: 6,
-          time: { start: "2022-12-06 08:00", end: "2022-12-06 09:00" },
-          event_data: "2022-12-06",
-          responsable: "João das Flores",
-        },
-        {
-          id: 8,
-          title: "Pagamento de Juros E",
-          application: 7,
-          time: { start: "2022-12-06 08:00", end: "2022-12-06 09:00" },
-          event_data: "2022-12-06",
-          responsable: "José das Couves",
-        },
-      ] as IEvent[],
-
-      isLoading: false,
     };
   },
 });

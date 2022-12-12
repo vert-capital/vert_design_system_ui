@@ -137,3 +137,46 @@
     }
   }
 }
+
+.item--checkbox {
+  display: flex;
+  align-items: center;
+  input {
+  appearance: none;
+  position: relative;
+  height: 20px;
+  width: 20px;
+  transition: all 0.15s ease-out;
+  background: transparent;
+  border: 1px solid $neutral-color-low-medium;
+  border-radius: $border-radius-xs;
+  cursor: pointer;
+  display: inline-block;
+  margin-right: 0.5rem;
+  &:hover {
+    background: $neutral-color-low-extra-light;
+  }
+  &:checked {
+    border-color: $feedback-color-default-pure;
+    background: $feedback-color-default-pure;
+  }
+  &:checked::before {
+    content: '';
+    border: solid $neutral-color-hight-pure;
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
+    left: 6px;
+    top: 1px;
+    width: 4px;
+    height: 10px;
+    position: absolute;
+  }
+
+  }
+  label {
+    font-size: $font-size-xxxs;
+    color: $neutral-color-low-pure;
+    line-height: 1rem;
+    font-family: "Lato-Bold", sans-serif;
+  }
+}
