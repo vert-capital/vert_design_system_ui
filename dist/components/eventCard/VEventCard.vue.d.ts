@@ -19,6 +19,7 @@ declare const _default: import("vue").DefineComponent<{
     };
     responsable: {
         type: StringConstructor;
+        default: string;
     };
     size: {
         type: StringConstructor;
@@ -30,6 +31,7 @@ declare const _default: import("vue").DefineComponent<{
     };
     status: {
         type: StringConstructor;
+        default: string;
     };
 }, () => void, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
     title: {
@@ -42,6 +44,7 @@ declare const _default: import("vue").DefineComponent<{
     };
     responsable: {
         type: StringConstructor;
+        default: string;
     };
     size: {
         type: StringConstructor;
@@ -53,10 +56,13 @@ declare const _default: import("vue").DefineComponent<{
     };
     status: {
         type: StringConstructor;
+        default: string;
     };
 }>>, {
     size: string;
+    status: string;
     title: string;
+    responsable: string;
     subtitle: string;
     aplication: applicationReference;
 }>;

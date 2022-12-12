@@ -1,13 +1,13 @@
-import { PropType } from 'vue';
-import { generateColumnContent } from '../../utils';
+import { PropType } from "vue";
+import { generateColumnContent } from "../../utils";
 export interface IHeader {
     label: string;
     personalizaded?: boolean;
     sortable?: boolean;
     prop: string;
-    sortType?: 'none' | 'desc' | 'asc';
+    sortType?: "none" | "desc" | "asc";
 }
-export declare type SortType = 'asc' | 'desc';
+export declare type SortType = "asc" | "desc";
 declare const _default: import("vue").DefineComponent<{
     data: {
         type: ArrayConstructor;
@@ -23,7 +23,7 @@ declare const _default: import("vue").DefineComponent<{
     }>;
     clickRow: (item: any) => void;
     generateColumnContent: typeof generateColumnContent;
-    updateSortField: (newSortBy: string, oldSortType: SortType | 'none') => void;
+    updateSortField: (newSortBy: string, oldSortType: SortType | "none") => void;
 }, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, ("click-row" | "update-sort-field")[], "click-row" | "update-sort-field", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
     data: {
         type: ArrayConstructor;

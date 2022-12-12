@@ -10,7 +10,7 @@
         { label: 'Nome', prop: 'name', sortable: true, sortType: 'asc' },
         { prop: 'url', label: 'Link', personalizaded: true },
       ]"
-      @clickRow="clickRowTable"
+      @click-row="clickRowTable"
     >
       <template #item-url="{ url }"
         ><a :href="url" target="_blank">{{ url }}</a></template
@@ -18,9 +18,9 @@
     </v-table>
     <v-pagination
       :count="pagination.count"
-      :currentPage="pagination.page"
+      :current-page="pagination.page"
       :size="pagination.size"
-      @onChangePagination="onChangePagination"
+      @on-change-pagination="onChangePagination"
     >
     </v-pagination>
     <hr />
@@ -48,7 +48,7 @@
       >
     </div>
     <br />
-    <VPopUp title="Calendário de eventos" positionContent="bottom center">
+    <VPopUp title="Calendário de eventos" position-content="bottom center">
       <template #popup-body>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis
@@ -70,16 +70,16 @@
     <br />
     <v-tab :eixo="typeTab" border-bottom>
       <template #header>
-        <v-tab-header tabTo="tab1" :eixo="typeTab" actived
+        <v-tab-header tab-to="tab1" :eixo="typeTab" actived
           >Exemplo 1</v-tab-header
         >
-        <v-tab-header tabTo="tab2" :eixo="typeTab">
+        <v-tab-header tab-to="tab2" :eixo="typeTab">
           <v-tag icon="alert" status="secondary" square>2</v-tag>
           Exemplo 2
         </v-tab-header>
       </template>
       <div>
-        <v-tab-content :eixo="typeTab" contentId="tab1">
+        <v-tab-content :eixo="typeTab" content-id="tab1">
           <h2>Le po pul</h2>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio
@@ -88,7 +88,7 @@
             maxime, ea dolorem eveniet consequuntur rerum!
           </p>
         </v-tab-content>
-        <v-tab-content :eixo="typeTab" contentId="tab2">
+        <v-tab-content :eixo="typeTab" content-id="tab2">
           <h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h2>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo sint
@@ -105,11 +105,11 @@
     <br />
     <div>
       <v-select
-        borderNone
         id="app_select"
+        v-model="testeSelect"
+        border-none
         name="select_app"
         :options="selectOptions"
-        v-model="testeSelect"
       >
       </v-select>
     </div>
@@ -164,16 +164,16 @@
     </div>
     <br />
     <v-dropdown
-      :options="selectOptions"
       v-model="dropDownExemplo"
+      :options="selectOptions"
       name="teste1"
       multiple
     ></v-dropdown>
     <div style="width: 200px">
       <v-dropdown
+        v-model="dropDownExemplo2"
         name="teste2"
         :options="selectOptions"
-        v-model="dropDownExemplo2"
         type="2"
       ></v-dropdown>
     </div>
@@ -252,7 +252,6 @@ import VTabContent from "./components/tab/VTabContent.vue";
 import VTabHeader from "./components/tab/VTabHeader.vue";
 import VSelect from "./components/form/select/VSelect.vue";
 import VTag from "./components/tag/VTag.vue";
-import VCalendarMini from "./components/calendar/VCalendarMini.vue";
 import type { IEvent } from "./utils/types/calendar";
 import VPopUp from "./components/popUp/VPopUp.vue";
 import VCard from "./components/card/VCard.vue";
@@ -272,84 +271,12 @@ export default defineComponent({
     VPagination,
     VSelect,
     VTag,
-    VCalendarMini,
     VPopUp,
     VCard,
     VDropdown,
     VCalendarButton,
     VEventCard,
   },
-
-  data() {
-    return {
-      typeTab: "x",
-      testeSelect: "",
-      dropDownExemplo: [],
-      dropDownExemplo2: [],
-      events: [
-        {
-          id: 1,
-          title: "Obrigações",
-          application: 1,
-          time: { start: "2022-12-06 08:00", end: "2022-12-06 09:00" },
-          event_data: "2022-12-06",
-          responsable: "Caio Arruda",
-          emission: 1,
-        },
-        {
-          id: 2,
-          title: "Pagamento de Juros",
-          application: 2,
-          time: { start: "2022-12-06 08:00", end: "2022-12-06 09:00" },
-          event_data: "2022-12-06",
-          responsable: "Márcio",
-        },
-        {
-          id: 3,
-          title: "Pagamento de Juros A",
-          application: 3,
-          time: { start: "2022-12-06 08:00", end: "2022-12-06 09:00" },
-          event_data: "2022-12-06",
-          responsable: "Maria das Dores",
-        },
-        {
-          id: 4,
-          title: "Pagamento de Juros B",
-          application: 4,
-          time: { start: "2022-12-06 08:00", end: "2022-12-06 09:00" },
-          event_data: "2022-12-06",
-          responsable: "João das Neves",
-        },
-        {
-          id: 5,
-          title: "Pagamento de Juros C",
-          application: 5,
-          time: { start: "2022-12-06 08:00", end: "2022-12-06 09:00" },
-          event_data: "2022-12-06",
-          responsable: "João das Couves",
-        },
-        {
-          id: 6,
-          title: "Pagamento de Juros D",
-          application: 6,
-          time: { start: "2022-12-06 08:00", end: "2022-12-06 09:00" },
-          event_data: "2022-12-06",
-          responsable: "João das Flores",
-        },
-        {
-          id: 8,
-          title: "Pagamento de Juros E",
-          application: 7,
-          time: { start: "2022-12-06 08:00", end: "2022-12-06 09:00" },
-          event_data: "2022-12-06",
-          responsable: "José das Couves",
-        },
-      ] as IEvent[],
-
-      isLoading: false,
-    };
-  },
-
   setup() {
     const pokemons = ref({ count: 0, next: "", previous: "", results: [] });
 
@@ -463,6 +390,76 @@ export default defineComponent({
       aplication,
       onHandleSearch,
       onHandleEventClicked,
+    };
+  },
+
+  data() {
+    return {
+      typeTab: "x",
+      testeSelect: "",
+      dropDownExemplo: [],
+      dropDownExemplo2: [],
+      events: [
+        {
+          id: 1,
+          title: "Obrigações",
+          application: 1,
+          time: { start: "2022-12-06 08:00", end: "2022-12-06 09:00" },
+          event_data: "2022-12-06",
+          responsable: "Caio Arruda",
+          emission: 1,
+        },
+        {
+          id: 2,
+          title: "Pagamento de Juros",
+          application: 2,
+          time: { start: "2022-12-06 08:00", end: "2022-12-06 09:00" },
+          event_data: "2022-12-06",
+          responsable: "Márcio",
+        },
+        {
+          id: 3,
+          title: "Pagamento de Juros A",
+          application: 3,
+          time: { start: "2022-12-06 08:00", end: "2022-12-06 09:00" },
+          event_data: "2022-12-06",
+          responsable: "Maria das Dores",
+        },
+        {
+          id: 4,
+          title: "Pagamento de Juros B",
+          application: 4,
+          time: { start: "2022-12-06 08:00", end: "2022-12-06 09:00" },
+          event_data: "2022-12-06",
+          responsable: "João das Neves",
+        },
+        {
+          id: 5,
+          title: "Pagamento de Juros C",
+          application: 5,
+          time: { start: "2022-12-06 08:00", end: "2022-12-06 09:00" },
+          event_data: "2022-12-06",
+          responsable: "João das Couves",
+        },
+        {
+          id: 6,
+          title: "Pagamento de Juros D",
+          application: 6,
+          time: { start: "2022-12-06 08:00", end: "2022-12-06 09:00" },
+          event_data: "2022-12-06",
+          responsable: "João das Flores",
+        },
+        {
+          id: 8,
+          title: "Pagamento de Juros E",
+          application: 7,
+          time: { start: "2022-12-06 08:00", end: "2022-12-06 09:00" },
+          event_data: "2022-12-06",
+          responsable: "José das Couves",
+        },
+      ] as IEvent[],
+
+      isLoading: false,
     };
   },
 });

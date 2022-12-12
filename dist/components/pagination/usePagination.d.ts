@@ -1,4 +1,4 @@
-import type { Ref, ComputedRef } from 'vue';
+import type { Ref, ComputedRef } from "vue";
 declare type MaybeRef<T> = T | Ref<T>;
 export interface IOptions {
     page?: MaybeRef<number>;

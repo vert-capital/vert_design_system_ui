@@ -1,12 +1,14 @@
 <template>
   <div class="v-popup">
-    <div @click="show = !show" class="v-popup--click">
-      <slot name="event-area">INSERIR ICONE AQUI</slot>
+    <div class="v-popup--click">
+      <a @click="show = !show"
+        ><slot name="event-area">INSERIR ICONE AQUI</slot></a
+      >
     </div>
     <div
+      v-show="show"
       class="v-popup__content"
       :class="positionContent"
-      v-show="show"
       :style="`min-width: ${widthContent}`"
     >
       <div class="v-popup__content--head">
@@ -53,7 +55,6 @@ const props = defineProps({
 });
 
 const show = props.showIcon ? ref(false) : computed(() => props.showPopUp);
-
 </script>
 
 <style src="./VPopUp.scss" lang="scss"></style>

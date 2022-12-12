@@ -4,7 +4,7 @@ var __publicField = (obj, key, value) => {
   __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
   return value;
 };
-import { defineComponent, openBlock, createElementBlock, mergeProps, createElementVNode, createCommentVNode, renderSlot, useSlots, ref, Fragment, renderList, normalizeClass, withModifiers, toDisplayString, normalizeProps, createTextVNode, watch, computed, unref, withDirectives, normalizeStyle, vShow, createBlock, withCtx, vModelDynamic, createVNode, resolveComponent, onMounted, Transition, vModelText } from "vue";
+import { defineComponent, openBlock, createElementBlock, mergeProps, createElementVNode, createCommentVNode, renderSlot, useSlots, ref, Fragment, renderList, normalizeClass, withModifiers, toDisplayString, normalizeProps, createTextVNode, watch, computed, unref, withDirectives, normalizeStyle, vShow, resolveComponent, createVNode, onMounted, createBlock, withCtx, Transition, vModelText } from "vue";
 var VButton_scss_vue_type_style_index_0_src_6e5341db_lang = "";
 var _export_sfc = (sfc, props) => {
   const target = sfc.__vccOpts || sfc;
@@ -13,7 +13,7 @@ var _export_sfc = (sfc, props) => {
   }
   return target;
 };
-const _sfc_main$j = defineComponent({
+const _sfc_main$k = defineComponent({
   name: "VButton",
   props: {
     size: {
@@ -27,7 +27,7 @@ const _sfc_main$j = defineComponent({
     },
     icon: {
       type: String,
-      required: false
+      default: ""
     },
     disabled: {
       type: Boolean,
@@ -50,25 +50,25 @@ const _sfc_main$j = defineComponent({
     }
   }
 });
-const _hoisted_1$i = ["disabled"];
-const _hoisted_2$d = {
+const _hoisted_1$j = ["disabled"];
+const _hoisted_2$c = {
   key: 0,
   class: "v-btn--img"
 };
 const _hoisted_3$b = ["src"];
-function _sfc_render$a(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$b(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("button", mergeProps({
     class: [_ctx.setSizeClass, _ctx.setStatus],
     disabled: _ctx.disabled,
     type: "button"
   }, _ctx.$attrs), [
-    _ctx.icon ? (openBlock(), createElementBlock("div", _hoisted_2$d, [
+    _ctx.icon != "" ? (openBlock(), createElementBlock("div", _hoisted_2$c, [
       createElementVNode("img", { src: _ctx.setIcon }, null, 8, _hoisted_3$b)
     ])) : createCommentVNode("v-if", true),
     renderSlot(_ctx.$slots, "default")
-  ], 16, _hoisted_1$i);
+  ], 16, _hoisted_1$j);
 }
-var VButton = /* @__PURE__ */ _export_sfc(_sfc_main$j, [["render", _sfc_render$a], ["__file", "/home/debora/www/vert_design_system_ui/src/components/button/VButton.vue"]]);
+var VButton = /* @__PURE__ */ _export_sfc(_sfc_main$k, [["render", _sfc_render$b], ["__file", "/home/debora/www/vert_design_system_ui/src/components/button/VButton.vue"]]);
 function getItemValue(column, item) {
   if (column.includes(".")) {
     let content = "";
@@ -85,7 +85,7 @@ function generateColumnContent(column, item) {
   return Array.isArray(content) ? content.join(",") : content;
 }
 var VTable_scss_vue_type_style_index_0_src_52ffde09_lang = "";
-const _sfc_main$i = defineComponent({
+const _sfc_main$j = defineComponent({
   name: "VTable",
   props: {
     data: {
@@ -137,29 +137,31 @@ const _sfc_main$i = defineComponent({
     };
   }
 });
-const _hoisted_1$h = { class: "v-table" };
-const _hoisted_2$c = { class: "v-table__body-wrapper" };
+const _hoisted_1$i = { class: "v-table" };
+const _hoisted_2$b = { class: "v-table__body-wrapper" };
 const _hoisted_3$a = { class: "responsive-table" };
-const _hoisted_4$6 = ["onClick"];
-const _hoisted_5$4 = ["onClick"];
-const _hoisted_6$4 = { class: "v-table__cell" };
-function _sfc_render$9(_ctx, _cache, $props, $setup, $data, $options) {
-  return openBlock(), createElementBlock("div", _hoisted_1$h, [
-    createElementVNode("div", _hoisted_2$c, [
+const _hoisted_4$8 = ["onClick"];
+const _hoisted_5$6 = ["onClick"];
+function _sfc_render$a(_ctx, _cache, $props, $setup, $data, $options) {
+  return openBlock(), createElementBlock("div", _hoisted_1$i, [
+    createElementVNode("div", _hoisted_2$b, [
       createElementVNode("table", _hoisted_3$a, [
         createElementVNode("thead", null, [
           createElementVNode("tr", null, [
-            (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.headers, (col) => {
+            (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.headers, (col, index) => {
               return openBlock(), createElementBlock("th", {
-                class: normalizeClass(["v-table__cell", [{
-                  "sortable": col.sortable,
-                  "none": col.sortable && col.sortType === "none",
-                  "desc": col.sortable && col.sortType === "desc",
-                  "asc": col.sortable && col.sortType === "asc"
-                }]]),
+                key: index,
+                class: normalizeClass(["v-table__cell", [
+                  {
+                    sortable: col.sortable,
+                    none: col.sortable && col.sortType === "none",
+                    desc: col.sortable && col.sortType === "desc",
+                    asc: col.sortable && col.sortType === "asc"
+                  }
+                ]]),
                 onClick: withModifiers(($event) => col.sortable && col.sortType ? _ctx.updateSortField(col.prop, col.sortType) : null, ["stop"])
-              }, toDisplayString(col.label), 11, _hoisted_4$6);
-            }), 256))
+              }, toDisplayString(col.label), 11, _hoisted_4$8);
+            }), 128))
           ])
         ]),
         createElementVNode("tbody", null, [
@@ -169,42 +171,45 @@ function _sfc_render$9(_ctx, _cache, $props, $setup, $data, $options) {
               class: "v-table__row",
               onClick: ($event) => _ctx.clickRow(item)
             }, [
-              (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.headers, (col) => {
-                return openBlock(), createElementBlock("td", _hoisted_6$4, [
+              (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.headers, (col, i) => {
+                return openBlock(), createElementBlock("td", {
+                  key: i,
+                  class: "v-table__cell"
+                }, [
                   _ctx.slots[`item-${col.prop}`] ? renderSlot(_ctx.$slots, `item-${col.prop}`, normalizeProps(mergeProps({ key: 0 }, item))) : (openBlock(), createElementBlock(Fragment, { key: 1 }, [
                     createTextVNode(toDisplayString(_ctx.generateColumnContent(col.prop, item)), 1)
                   ], 64))
                 ]);
-              }), 256))
-            ], 8, _hoisted_5$4);
+              }), 128))
+            ], 8, _hoisted_5$6);
           }), 128))
         ])
       ])
     ])
   ]);
 }
-var VTable = /* @__PURE__ */ _export_sfc(_sfc_main$i, [["render", _sfc_render$9], ["__file", "/home/debora/www/vert_design_system_ui/src/components/table/VTable.vue"]]);
+var VTable = /* @__PURE__ */ _export_sfc(_sfc_main$j, [["render", _sfc_render$a], ["__file", "/home/debora/www/vert_design_system_ui/src/components/table/VTable.vue"]]);
 var VSelect_scss_vue_type_style_index_0_src_4a2786ac_lang = "";
-const _hoisted_1$g = { class: "v-select" };
-const _hoisted_2$b = {
+const _hoisted_1$h = { class: "v-select" };
+const _hoisted_2$a = {
   key: 0,
   class: "v-select--label"
 };
 const _hoisted_3$9 = ["for"];
-const _hoisted_4$5 = { class: "v-selec--content" };
-const _hoisted_5$3 = ["name", "id", "required", "disabled"];
-const _hoisted_6$3 = {
+const _hoisted_4$7 = { class: "v-selec--content" };
+const _hoisted_5$5 = ["id", "name", "required", "disabled"];
+const _hoisted_6$4 = {
   key: 0,
   value: ""
 };
-const _hoisted_7$2 = ["value", "selected"];
-const _sfc_main$h = defineComponent({
+const _hoisted_7$4 = ["value", "selected"];
+const _sfc_main$i = defineComponent({
   __name: "VSelect",
   props: {
-    id: { type: String, required: false },
-    name: { type: String, required: false },
-    placeholder: { type: String, required: false },
-    label: { type: String, required: false },
+    id: { type: String, required: false, default: "select_id" },
+    name: { type: String, required: false, default: "select_name" },
+    placeholder: { type: String, required: false, default: "" },
+    label: { type: String, required: false, default: "" },
     options: { type: Array, required: true, default: () => [] },
     required: { type: Boolean, required: false },
     disable: { type: Boolean, required: false },
@@ -227,53 +232,55 @@ const _sfc_main$h = defineComponent({
       emit("update:modelValue", selected.value);
     }
     return (_ctx, _cache) => {
-      return openBlock(), createElementBlock("div", _hoisted_1$g, [
-        __props.label ? (openBlock(), createElementBlock("div", _hoisted_2$b, [
+      return openBlock(), createElementBlock("div", _hoisted_1$h, [
+        __props.label ? (openBlock(), createElementBlock("div", _hoisted_2$a, [
           createElementVNode("label", { for: __props.id }, toDisplayString(__props.label), 9, _hoisted_3$9)
         ])) : createCommentVNode("v-if", true),
-        createElementVNode("div", _hoisted_4$5, [
+        createElementVNode("div", _hoisted_4$7, [
           createElementVNode("select", {
+            id: __props.id,
             class: normalizeClass([
               { "v-select--border": props.borderNone },
               `v-select--input v-select--size-${__props.size}`
             ]),
             name: __props.name,
-            id: __props.id,
             required: __props.required,
             disabled: __props.disable,
             onChange: _cache[0] || (_cache[0] = ($event) => selectChange($event))
           }, [
-            __props.placeholder ? (openBlock(), createElementBlock("option", _hoisted_6$3, toDisplayString(__props.placeholder), 1)) : createCommentVNode("v-if", true),
-            (openBlock(true), createElementBlock(Fragment, null, renderList(__props.options, (option) => {
+            __props.placeholder ? (openBlock(), createElementBlock("option", _hoisted_6$4, toDisplayString(__props.placeholder), 1)) : createCommentVNode("v-if", true),
+            (openBlock(true), createElementBlock(Fragment, null, renderList(__props.options, (option, index) => {
               return openBlock(), createElementBlock("option", {
+                key: index,
                 value: option.value,
                 selected: option.value == selected.value,
                 "aria-checked": "false"
-              }, toDisplayString(option.label), 9, _hoisted_7$2);
-            }), 256))
-          ], 42, _hoisted_5$3)
+              }, toDisplayString(option.label), 9, _hoisted_7$4);
+            }), 128))
+          ], 42, _hoisted_5$5)
         ])
       ]);
     };
   }
 });
-var VSelect = /* @__PURE__ */ _export_sfc(_sfc_main$h, [["__file", "/home/debora/www/vert_design_system_ui/src/components/form/select/VSelect.vue"]]);
-var _imports_0$1 = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTE5LDYuNDFMMTcuNTksNUwxMiwxMC41OUw2LjQxLDVMNSw2LjQxTDEwLjU5LDEyTDUsMTcuNTlMNi40MSwxOUwxMiwxMy40MUwxNy41OSwxOUwxOSwxNy41OUwxMy40MSwxMkwxOSw2LjQxWiIgLz48L3N2Zz4=";
+var VSelect = /* @__PURE__ */ _export_sfc(_sfc_main$i, [["__file", "/home/debora/www/vert_design_system_ui/src/components/form/select/VSelect.vue"]]);
+var _imports_0$4 = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTE5LDYuNDFMMTcuNTksNUwxMiwxMC41OUw2LjQxLDVMNSw2LjQxTDEwLjU5LDEyTDUsMTcuNTlMNi40MSwxOUwxMiwxMy40MUwxNy41OSwxOUwxOSwxNy41OUwxMy40MSwxMkwxOSw2LjQxWiIgLz48L3N2Zz4=";
 var VPopUp_scss_vue_type_style_index_0_src_12e74449_lang = "";
-const _hoisted_1$f = { class: "v-popup" };
-const _hoisted_2$a = { class: "v-popup__content--head" };
-const _hoisted_3$8 = { class: "v-popup__content--head-title" };
-const _hoisted_4$4 = /* @__PURE__ */ createElementVNode("img", { src: _imports_0$1 }, null, -1);
-const _hoisted_5$2 = [
-  _hoisted_4$4
+const _hoisted_1$g = { class: "v-popup" };
+const _hoisted_2$9 = { class: "v-popup--click" };
+const _hoisted_3$8 = { class: "v-popup__content--head" };
+const _hoisted_4$6 = { class: "v-popup__content--head-title" };
+const _hoisted_5$4 = /* @__PURE__ */ createElementVNode("img", { src: _imports_0$4 }, null, -1);
+const _hoisted_6$3 = [
+  _hoisted_5$4
 ];
-const _hoisted_6$2 = { class: "v-popup__content--body" };
-const _hoisted_7$1 = { class: "v-popup__content--footer" };
-const _hoisted_8$1 = /* @__PURE__ */ createElementVNode("a", {
+const _hoisted_7$3 = { class: "v-popup__content--body" };
+const _hoisted_8$1 = { class: "v-popup__content--footer" };
+const _hoisted_9$1 = /* @__PURE__ */ createElementVNode("a", {
   href: "#",
   target: "_blank"
 }, "Ir para vis\xE3o completa", -1);
-const _sfc_main$g = /* @__PURE__ */ defineComponent({
+const _sfc_main$h = /* @__PURE__ */ defineComponent({
   __name: "VPopUp",
   props: {
     title: {
@@ -301,32 +308,33 @@ const _sfc_main$g = /* @__PURE__ */ defineComponent({
     const props = __props;
     const show = props.showIcon ? ref(false) : computed(() => props.showPopUp);
     return (_ctx, _cache) => {
-      return openBlock(), createElementBlock("div", _hoisted_1$f, [
-        createElementVNode("div", {
-          onClick: _cache[0] || (_cache[0] = ($event) => show.value = !unref(show)),
-          class: "v-popup--click"
-        }, [
-          renderSlot(_ctx.$slots, "event-area", {}, () => [
-            createTextVNode("INSERIR ICONE AQUI")
+      return openBlock(), createElementBlock("div", _hoisted_1$g, [
+        createElementVNode("div", _hoisted_2$9, [
+          createElementVNode("a", {
+            onClick: _cache[0] || (_cache[0] = ($event) => show.value = !unref(show))
+          }, [
+            renderSlot(_ctx.$slots, "event-area", {}, () => [
+              createTextVNode("INSERIR ICONE AQUI")
+            ])
           ])
         ]),
         withDirectives(createElementVNode("div", {
           class: normalizeClass(["v-popup__content", __props.positionContent]),
           style: normalizeStyle(`min-width: ${__props.widthContent}`)
         }, [
-          createElementVNode("div", _hoisted_2$a, [
-            createElementVNode("h3", _hoisted_3$8, toDisplayString(__props.title), 1),
+          createElementVNode("div", _hoisted_3$8, [
+            createElementVNode("h3", _hoisted_4$6, toDisplayString(__props.title), 1),
             createElementVNode("span", {
               class: "v-popup__content--head-close",
               onClick: _cache[1] || (_cache[1] = ($event) => show.value = !unref(show))
-            }, _hoisted_5$2)
+            }, _hoisted_6$3)
           ]),
-          createElementVNode("div", _hoisted_6$2, [
+          createElementVNode("div", _hoisted_7$3, [
             renderSlot(_ctx.$slots, "popup-body")
           ]),
-          createElementVNode("div", _hoisted_7$1, [
+          createElementVNode("div", _hoisted_8$1, [
             renderSlot(_ctx.$slots, "popup-footer", {}, () => [
-              _hoisted_8$1
+              _hoisted_9$1
             ])
           ])
         ], 6), [
@@ -336,12 +344,12 @@ const _sfc_main$g = /* @__PURE__ */ defineComponent({
     };
   }
 });
-var VPopUp = /* @__PURE__ */ _export_sfc(_sfc_main$g, [["__file", "/home/debora/www/vert_design_system_ui/src/components/popUp/VPopUp.vue"]]);
+var VPopUp = /* @__PURE__ */ _export_sfc(_sfc_main$h, [["__file", "/home/debora/www/vert_design_system_ui/src/components/popUp/VPopUp.vue"]]);
 var VCard_scss_vue_type_style_index_0_src_28d3c952_lang = "";
-const _hoisted_1$e = { class: "v-section__header" };
-const _hoisted_2$9 = { class: "v-section__header--title" };
+const _hoisted_1$f = { class: "v-section__header" };
+const _hoisted_2$8 = { class: "v-section__header--title" };
 const _hoisted_3$7 = { class: "v-section__body" };
-const _sfc_main$f = defineComponent({
+const _sfc_main$g = defineComponent({
   __name: "VCard",
   props: {
     title: { type: String, required: true, default: "Titulo" },
@@ -354,8 +362,8 @@ const _sfc_main$f = defineComponent({
       return openBlock(), createElementBlock("div", {
         class: normalizeClass(["card", [unref(setType)]])
       }, [
-        createElementVNode("div", _hoisted_1$e, [
-          createElementVNode("div", _hoisted_2$9, [
+        createElementVNode("div", _hoisted_1$f, [
+          createElementVNode("div", _hoisted_2$8, [
             createElementVNode("h3", null, toDisplayString(props.title), 1)
           ]),
           createElementVNode("div", null, [
@@ -370,9 +378,9 @@ const _sfc_main$f = defineComponent({
     };
   }
 });
-var VCard = /* @__PURE__ */ _export_sfc(_sfc_main$f, [["__file", "/home/debora/www/vert_design_system_ui/src/components/card/VCard.vue"]]);
+var VCard = /* @__PURE__ */ _export_sfc(_sfc_main$g, [["__file", "/home/debora/www/vert_design_system_ui/src/components/card/VCard.vue"]]);
 var VTab_scss_vue_type_style_index_0_src_a3c685ae_lang = "";
-const _sfc_main$e = defineComponent({
+const _sfc_main$f = defineComponent({
   name: "VTab",
   props: {
     eixo: {
@@ -385,9 +393,9 @@ const _sfc_main$e = defineComponent({
     }
   }
 });
-const _hoisted_1$d = { class: "box" };
-function _sfc_render$8(_ctx, _cache, $props, $setup, $data, $options) {
-  return openBlock(), createElementBlock("div", _hoisted_1$d, [
+const _hoisted_1$e = { class: "box" };
+function _sfc_render$9(_ctx, _cache, $props, $setup, $data, $options) {
+  return openBlock(), createElementBlock("div", _hoisted_1$e, [
     createElementVNode("div", {
       class: normalizeClass([{ "tab--border": _ctx.borderBottom }, `tab--${_ctx.eixo}`])
     }, [
@@ -396,9 +404,9 @@ function _sfc_render$8(_ctx, _cache, $props, $setup, $data, $options) {
     renderSlot(_ctx.$slots, "default")
   ]);
 }
-var VTab = /* @__PURE__ */ _export_sfc(_sfc_main$e, [["render", _sfc_render$8], ["__file", "/home/debora/www/vert_design_system_ui/src/components/tab/VTab.vue"]]);
+var VTab = /* @__PURE__ */ _export_sfc(_sfc_main$f, [["render", _sfc_render$9], ["__file", "/home/debora/www/vert_design_system_ui/src/components/tab/VTab.vue"]]);
 var VTag_scss_vue_type_style_index_0_src_73d26849_lang = "";
-const _sfc_main$d = defineComponent({
+const _sfc_main$e = defineComponent({
   name: "VTag",
   props: {
     status: {
@@ -424,22 +432,22 @@ const _sfc_main$d = defineComponent({
     }
   }
 });
-const _hoisted_1$c = {
+const _hoisted_1$d = {
   key: 0,
   class: "v-tag--img"
 };
-const _hoisted_2$8 = ["src"];
-function _sfc_render$7(_ctx, _cache, $props, $setup, $data, $options) {
+const _hoisted_2$7 = ["src"];
+function _sfc_render$8(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("div", {
     class: normalizeClass([`v-tag__${_ctx.type}--${_ctx.status}`, { "v-tag--square": _ctx.square }])
   }, [
-    _ctx.icon ? (openBlock(), createElementBlock("div", _hoisted_1$c, [
-      createElementVNode("img", { src: _ctx.setIcon }, null, 8, _hoisted_2$8)
+    _ctx.icon ? (openBlock(), createElementBlock("div", _hoisted_1$d, [
+      createElementVNode("img", { src: _ctx.setIcon }, null, 8, _hoisted_2$7)
     ])) : createCommentVNode("v-if", true),
     renderSlot(_ctx.$slots, "default")
   ], 2);
 }
-var VTag = /* @__PURE__ */ _export_sfc(_sfc_main$d, [["render", _sfc_render$7], ["__file", "/home/debora/www/vert_design_system_ui/src/components/tag/VTag.vue"]]);
+var VTag = /* @__PURE__ */ _export_sfc(_sfc_main$e, [["render", _sfc_render$8], ["__file", "/home/debora/www/vert_design_system_ui/src/components/tag/VTag.vue"]]);
 class EDate extends Date {
   get fullYear() {
     return this.getFullYear();
@@ -469,54 +477,17 @@ class Time {
   }) {
     __publicField(this, "FIRST_DAY_OF_WEEK");
     __publicField(this, "CALENDAR_LOCALE");
-    __publicField(this, "ALL_HOURS");
     __publicField(this, "DAY_START");
     __publicField(this, "DAY_END");
-    __publicField(this, "HOURS_PER_DAY", 24);
-    __publicField(this, "MS_PER_DAY");
     this.FIRST_DAY_OF_WEEK = firstDayOfWeek;
     this.CALENDAR_LOCALE = locale ? locale : "pt-BR";
-    this.ALL_HOURS = [
-      0,
-      100,
-      200,
-      300,
-      400,
-      500,
-      600,
-      700,
-      800,
-      900,
-      1e3,
-      1100,
-      1200,
-      1300,
-      1400,
-      1500,
-      1600,
-      1700,
-      1800,
-      1900,
-      2e3,
-      2100,
-      2200,
-      2300,
-      2400
-    ];
     this.DAY_START = dayBoundaries.start;
     this.DAY_END = dayBoundaries.end;
-    this.HOURS_PER_DAY = (() => {
-      const convertTimePointToHours = (timePoint) => {
-        if (timePoint === 0)
-          return 0;
-        return timePoint / 100;
-      };
-      return convertTimePointToHours(this.DAY_END) - convertTimePointToHours(this.DAY_START);
-    })();
-    this.MS_PER_DAY = 864e5;
   }
   getDatesBetweenTwoDates(start, end) {
-    for (var arr = [], dt = new Date(start); dt <= end; dt.setDate(dt.getDate() + 1)) {
+    let arr = [];
+    let dt = new Date(start);
+    for (arr = [], dt = new Date(start); dt <= end; dt.setDate(dt.getDate() + 1)) {
       arr.push(new Date(dt.getFullYear(), dt.getMonth(), dt.getDate()));
     }
     return arr;
@@ -524,10 +495,11 @@ class Time {
   getCalendarWeekDateObjects(date = null) {
     const selectedDate = date ? date : new Date();
     let subtractedDaysToGetFirstDate;
-    if (this.FIRST_DAY_OF_WEEK === "sunday")
+    if (this.FIRST_DAY_OF_WEEK === "sunday") {
       subtractedDaysToGetFirstDate = selectedDate.getDay();
-    else
+    } else {
       subtractedDaysToGetFirstDate = selectedDate.getDay() === 0 ? 6 : selectedDate.getDay() - 1;
+    }
     const dateOfFirstDayOfWeek = selectedDate.getDate() - subtractedDaysToGetFirstDate;
     const firstDay = new Date(
       selectedDate.getFullYear(),
@@ -581,42 +553,12 @@ class Time {
     }
     return yearList;
   }
-  getHourAndMinutesFromTimePoints(timePoints) {
-    const time = timePoints.toString();
-    let hour = "0";
-    let minutes = "0";
-    if (time.length === 4) {
-      hour = time[0] + time[1];
-      minutes = time[2] + time[3];
-    } else if (time.length === 3) {
-      hour = time[0];
-      minutes = time[1] + time[2];
-    }
-    return {
-      hour: +hour,
-      minutes: +minutes
-    };
-  }
-  getHourLocaleStringFromHourDigits(timePoints) {
-    const { hour, minutes } = this.getHourAndMinutesFromTimePoints(timePoints);
-    const hourLocaleString = new Date(
-      2100,
-      0,
-      1,
-      +hour,
-      +minutes,
-      0
-    ).toLocaleTimeString(this.CALENDAR_LOCALE, {
-      hour: "2-digit"
-    });
-    if (hourLocaleString[0] === "0")
-      return hourLocaleString.substring(1);
-    return hourLocaleString;
-  }
   getLocalizedNameOfWeekday(date, weekdayNameLength = "short") {
-    return String$1.capitalizeFirstLetter(date.toLocaleDateString(this.CALENDAR_LOCALE, {
-      weekday: weekdayNameLength
-    }));
+    return String$1.capitalizeFirstLetter(
+      date.toLocaleDateString(this.CALENDAR_LOCALE, {
+        weekday: weekdayNameLength
+      })
+    );
   }
   getLocalizedNameOfMonth(date, monthNameLength = "short") {
     return date.toLocaleDateString(this.CALENDAR_LOCALE, {
@@ -638,20 +580,6 @@ class Time {
     }
     const fullTime = timeIsStartOrEndOfDay === "start" ? "00:00" : "23:59";
     return `${fullDate} ${fullTime}`;
-  }
-  getLocalizedTime(dateTimeString) {
-    const h = dateTimeString.substring(11, 13);
-    const m = dateTimeString.substring(14, 16);
-    const d = new Date();
-    d.setHours(+h);
-    d.setMinutes(+m);
-    return d.toLocaleTimeString(this.CALENDAR_LOCALE, {
-      hour: "numeric",
-      minute: "numeric"
-    });
-  }
-  getLocalizedHour(date) {
-    return date.toLocaleTimeString(this.CALENDAR_LOCALE, { hour: "2-digit" });
   }
   getAllVariablesFromDateTimeString(dateTimeString) {
     return {
@@ -692,27 +620,6 @@ class Time {
     const dd = date.getDate();
     return `${yyyy}-${mm >= 10 ? mm : "0" + mm}-${dd >= 10 ? dd : "0" + dd}`;
   }
-  addMinutesToDateTimeString(minutes, dateTimeString) {
-    const {
-      year: oldYear,
-      month: oldMonth,
-      date: oldDate,
-      hour: oldHour,
-      minutes: oldMinutes
-    } = this.getAllVariablesFromDateTimeString(dateTimeString);
-    const oldDateObject = new Date(
-      oldYear,
-      oldMonth,
-      oldDate,
-      oldHour,
-      oldMinutes
-    );
-    const newDateObject = new Date(oldDateObject.getTime() + minutes * 6e4);
-    return this.getDateTimeStringFromDate(newDateObject);
-  }
-  addDaysToDateTimeString(days, dateTimeString) {
-    return this.addMinutesToDateTimeString(days * 1440, dateTimeString);
-  }
   dateStringsHaveEqualDates(dateTimeString1, dateTimeString2) {
     const {
       year: year1,
@@ -737,321 +644,56 @@ class Time {
       999
     );
   }
-  turnMinutesIntoPercentageOfHour(minutes) {
-    const oneMinutePercentage = 100 / 60;
-    const minutePoints = oneMinutePercentage * minutes;
-    if (minutePoints < 10)
-      return "0" + minutePoints;
-    return minutePoints.toString();
+  getNextWeek(day) {
+    const week = [];
+    for (let i = 0; i < 7; i++) {
+      const newDate = new Date(day);
+      newDate.setDate(day.getDate() + i);
+      week.push(newDate);
+    }
+    return week;
   }
-  getPercentageOfDayFromDateTimeString(dateTimeString, dayStart, dayEnd) {
-    const pointsInDay = dayEnd - dayStart;
-    const hour = dateTimeString.substring(11, 13);
-    const minutes = dateTimeString.substring(14, 16);
-    const minutesPoints = this.turnMinutesIntoPercentageOfHour(+minutes);
-    const eventPoints = +(hour + minutesPoints);
-    const eventPointsIntoDay = eventPoints - dayStart;
-    return eventPointsIntoDay / pointsInDay * 100;
+  getLastWeek(day) {
+    const week = [];
+    for (let i = 0; i < 7; i++) {
+      const newDate = new Date(day);
+      newDate.setDate(day.getDate() - i);
+      week.push(newDate);
+    }
+    return week;
   }
-  setSegmentOfDateTimeString(dateTimeString, segments) {
-    if (segments.hour < 0 || segments.hour > 23)
-      throw new Error("Invalid hour");
-    segments.hour = String(
-      segments.hour < 10 ? "0" + segments.hour : segments.hour
-    );
-    dateTimeString = dateTimeString.replace(/\d{2}:/, segments.hour + ":");
-    return dateTimeString;
+  getNumberOfDaysInMonth(year, month) {
+    return new Date(year, month, 0).getDate();
   }
 }
-const languageKeys = {
-  week: {
-    "it-IT": "Settimana",
-    "en-US": "Week",
-    "de-DE": "Woche",
-    "sv-SE": "Vecka",
-    "zh-CN": "\u5468",
-    "pt-BR": "Semana",
-    "fr-FR": "Semaine"
-  },
-  month: {
-    "it-IT": "Mese",
-    "en-US": "Month",
-    "de-DE": "Monat",
-    "sv-SE": "M\xE5nad",
-    "zh-CN": "\u6708",
-    "pt-BR": "M\xEAs",
-    "fr-FR": "Mois"
-  },
-  day: {
-    "it-IT": "Giorno",
-    "en-US": "Day",
-    "de-DE": "Tag",
-    "sv-SE": "Dag",
-    "zh-CN": "\u65E5",
-    "pt-BR": "Dia",
-    "fr-FR": "Jour"
-  },
-  personalized: {
-    "it-IT": "Personalizzato",
-    "en-US": "Personalized",
-    "de-DE": "Personalisiert",
-    "sv-SE": "Personlig",
-    "zh-CN": "\u4E2A\u6027\u5316",
-    "pt-BR": "Personalizado",
-    "fr-FR": "Personnalis\xE9"
-  },
-  mini: {
-    "it-IT": "Mini",
-    "en-US": "Mini",
-    "de-DE": "Mini",
-    "sv-SE": "Mini",
-    "zh-CN": "\u8FF7\u4F60",
-    "pt-BR": "Mini",
-    "fr-FR": "Mini"
-  },
-  moreEvents: {
-    "it-IT": "+ altri eventi",
-    "en-US": "+ more events",
-    "de-DE": "+ weitere Ereignisse",
-    "sv-SE": "+ fler h\xE4ndelser",
-    "zh-CN": "\u5217\u51FA\u5176\u4ED6\u7ED3\u679C",
-    "pt-BR": "+ mais eventos",
-    "fr-FR": "+ d'autres \xE9v\xE9nements"
-  }
+var _imports_0$3 = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+CiAgIDxwYXRoIGZpbGw9IiNhYWEiIGQ9Ik0xNS40MSwxNi41OEwxMC44MywxMkwxNS40MSw3LjQxTDE0LDZMOCwxMkwxNCwxOEwxNS40MSwxNi41OFoiIC8+Cjwvc3ZnPg==";
+const _sfc_main$d = defineComponent({
+  name: "ChevronLeft"
+});
+const _hoisted_1$c = {
+  src: _imports_0$3,
+  width: "24"
 };
-var getLanguage = {
-  data() {
-    return {
-      languageKeys
-    };
-  },
-  methods: {
-    getLanguage(languageKeys2, locale) {
-      if (locale.startsWith("de"))
-        locale = "de-DE";
-      if (locale.startsWith("en"))
-        locale = "en-US";
-      if (locale.startsWith("it"))
-        locale = "it-IT";
-      if (locale.startsWith("sv"))
-        locale = "sv-SE";
-      if (locale.startsWith("zh"))
-        locale = "zh-CN";
-      if (locale.startsWith("pt"))
-        locale = "pt-BR";
-      if (locale.startsWith("fr"))
-        locale = "fr-FR";
-      return languageKeys2[locale] ? languageKeys2[locale] : languageKeys2["en-US"] || "";
-    }
-  }
-};
-var VDropdown_scss_vue_type_style_index_0_src_12d7f8ce_lang = "";
-const _hoisted_1$b = { key: 0 };
-const _hoisted_2$7 = { key: 1 };
-const _hoisted_3$6 = ["for"];
-const _hoisted_4$3 = { class: "v-dropdow__options" };
-const _hoisted_5$1 = ["value", "id", "type"];
-const _hoisted_6$1 = ["for"];
+function _sfc_render$7(_ctx, _cache, $props, $setup, $data, $options) {
+  return openBlock(), createElementBlock("img", _hoisted_1$c);
+}
+var ChevronLeft = /* @__PURE__ */ _export_sfc(_sfc_main$d, [["render", _sfc_render$7], ["__file", "/home/debora/www/vert_design_system_ui/src/components/icons/ChevronLeft.vue"]]);
+var _imports_0$2 = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+CiAgIDxwYXRoIGZpbGw9IiNhYWEiIGQ9Ik04LjU5LDE2LjU4TDEzLjE3LDEyTDguNTksNy40MUwxMCw2TDE2LDEyTDEwLDE4TDguNTksMTYuNThaIiAvPgo8L3N2Zz4=";
 const _sfc_main$c = defineComponent({
-  __name: "VDropdown",
-  props: {
-    id: { type: String, required: false },
-    name: { type: String, required: false, default: "exemplo" },
-    placeholder: { type: String, required: false, default: "Selecione" },
-    label: { type: String, required: false },
-    options: { type: Array, required: true, default: () => [] },
-    required: { type: Boolean, required: false },
-    disable: { type: Boolean, required: false },
-    size: { type: String, required: false },
-    modelValue: { type: null, required: false, default: [] },
-    borderNone: { type: Boolean, required: false },
-    multiple: { type: Boolean, required: false, default: false },
-    type: { type: String, required: false, default: "1" }
-  },
-  emits: ["onChange", "update:modelValue"],
-  setup(__props, { emit }) {
-    const props = __props;
-    const setMultiple = computed(
-      () => props.multiple ? "checkbox" : "radio"
-    );
-    const showValue = computed(() => {
-      if (valueOption.value.length == 0) {
-        return props.placeholder;
-      }
-      if (!props.multiple) {
-        const option = props.options.find(
-          (element) => element.value == valueOption.value
-        );
-        return option == null ? void 0 : option.label;
-      } else {
-        let options = [];
-        valueOption.value.forEach((item) => {
-          const find = props.options.find((element) => element.value == item);
-          options.push(find);
-        });
-        return options;
-      }
-    });
-    const valueOption = ref(props.modelValue);
-    const showOptions = ref(false);
-    function selectChange() {
-      emit("onChange", valueOption.value);
-      emit("update:modelValue", valueOption.value);
-    }
-    const setTypeStyle = computed(() => {
-      if (props.type == "2") {
-        return "v-dropdow__style--2";
-      }
-      return "";
-    });
-    return (_ctx, _cache) => {
-      return openBlock(), createElementBlock(Fragment, null, [
-        createElementVNode("div", {
-          class: normalizeClass(["v-dropdow", unref(setTypeStyle)])
-        }, [
-          createElementVNode("div", {
-            class: "v-dropdow__input",
-            onClick: _cache[0] || (_cache[0] = ($event) => showOptions.value = !showOptions.value)
-          }, [
-            !__props.multiple || unref(showValue) == __props.placeholder ? (openBlock(), createElementBlock("span", _hoisted_1$b, toDisplayString(unref(showValue)), 1)) : (openBlock(), createElementBlock("span", _hoisted_2$7, [
-              (openBlock(true), createElementBlock(Fragment, null, renderList(unref(showValue), (selected, index) => {
-                return openBlock(), createBlock(VTag, {
-                  status: "secondary",
-                  square: "",
-                  key: index
-                }, {
-                  default: withCtx(() => [
-                    createTextVNode(toDisplayString(selected.label) + " ", 1),
-                    createElementVNode("label", {
-                      class: "icon--close",
-                      for: __props.name + "-" + selected.value
-                    }, null, 8, _hoisted_3$6)
-                  ]),
-                  _: 2
-                }, 1024);
-              }), 128))
-            ])),
-            createElementVNode("div", {
-              class: normalizeClass(["v-dropdow__input--arrow", { "v-dropdow__input--arrow--open": showOptions.value }])
-            }, null, 2)
-          ]),
-          withDirectives(createElementVNode("div", _hoisted_4$3, [
-            createElementVNode("ul", null, [
-              (openBlock(true), createElementBlock(Fragment, null, renderList(__props.options, (option) => {
-                return openBlock(), createElementBlock("li", null, [
-                  withDirectives(createElementVNode("input", {
-                    "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => valueOption.value = $event),
-                    name: "option",
-                    value: option.value,
-                    id: __props.name + "-" + option.value,
-                    type: unref(setMultiple),
-                    onChange: _cache[2] || (_cache[2] = ($event) => selectChange())
-                  }, null, 40, _hoisted_5$1), [
-                    [vModelDynamic, valueOption.value]
-                  ]),
-                  createElementVNode("label", {
-                    for: __props.name + "-" + option.value
-                  }, toDisplayString(option.label), 9, _hoisted_6$1)
-                ]);
-              }), 256))
-            ])
-          ], 512), [
-            [vShow, showOptions.value]
-          ])
-        ], 2),
-        withDirectives(createElementVNode("div", {
-          class: "v-dropdow__fullscreen",
-          onClick: _cache[3] || (_cache[3] = ($event) => showOptions.value = !showOptions.value)
-        }, null, 512), [
-          [vShow, showOptions.value]
-        ])
-      ], 64);
-    };
-  }
+  name: "ChevronRight"
 });
-var VDropdown = /* @__PURE__ */ _export_sfc(_sfc_main$c, [["__file", "/home/debora/www/vert_design_system_ui/src/components/dropdown/VDropdown.vue"]]);
-var VMonthYearSelect_vue_vue_type_style_index_0_scoped_true_lang = "";
-const _hoisted_1$a = { class: "vmonth-year" };
-const _sfc_main$b = /* @__PURE__ */ defineComponent({
-  __name: "VMonthYearSelect",
-  emits: ["updated"],
-  setup(__props, { emit }) {
-    const monthYearSelected = ref(String(`${new Date().getFullYear()}-${new Date().getMonth() + 1}`));
-    const months = computed(() => {
-      const months2 = [];
-      const currentYear = new Date().getFullYear();
-      for (let i = 0; i < 5; i++) {
-        for (let j = 0; j < 12; j++) {
-          months2.push({
-            value: String(`${currentYear + i}-${j + 1}`),
-            label: String$1.capitalizeFirstLetter(new Date(currentYear + i, j, 1).toLocaleString("default", { month: "long", year: "numeric" }))
-          });
-        }
-      }
-      return months2;
-    });
-    const onChangeMonth = (monthYear) => {
-      const [year, month] = monthYear.split("-");
-      const date = new Date(parseInt(year), parseInt(month) - 1, 1);
-      const period = {
-        start: date,
-        end: new Date(date.getFullYear(), date.getMonth() + 1, 0),
-        selectedDate: date
-      };
-      emit("updated", period);
-    };
-    return (_ctx, _cache) => {
-      return openBlock(), createElementBlock("div", _hoisted_1$a, [
-        createVNode(VDropdown, {
-          options: unref(months),
-          type: "2",
-          modelValue: monthYearSelected.value,
-          "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => monthYearSelected.value = $event),
-          onOnChange: onChangeMonth,
-          size: "lg"
-        }, null, 8, ["options", "modelValue"])
-      ]);
-    };
-  }
-});
-var VMonthYearPicker = /* @__PURE__ */ _export_sfc(_sfc_main$b, [["__scopeId", "data-v-59a07538"], ["__file", "/home/debora/www/vert_design_system_ui/src/components/date/VMonthYearSelect.vue"]]);
-var VCalendarHeaderMini_vue_vue_type_style_index_0_scoped_true_lang = "";
-const _sfc_main$a = defineComponent({
-  name: "VCalendarHeaderMini",
-  components: {
-    VMonthYearPicker
-  },
-  mixins: [getLanguage],
-  emits: ["updated-period"],
-  data() {
-    return {
-      currentPeriod: this.period
-    };
-  },
-  methods: {
-    handlePeriodChange(period) {
-      this.currentPeriod = period;
-      this.$emit("updated-period", period);
-    }
-  }
-});
-const _hoisted_1$9 = { class: "calendar-header" };
-const _hoisted_2$6 = { class: "calendar-header__period" };
+const _hoisted_1$b = {
+  src: _imports_0$2,
+  width: "24"
+};
 function _sfc_render$6(_ctx, _cache, $props, $setup, $data, $options) {
-  const _component_VMonthYearPicker = resolveComponent("VMonthYearPicker");
-  return openBlock(), createElementBlock("div", _hoisted_1$9, [
-    createElementVNode("div", _hoisted_2$6, [
-      createVNode(_component_VMonthYearPicker, {
-        ref: "periodSelect",
-        onUpdated: _ctx.handlePeriodChange
-      }, null, 8, ["onUpdated"])
-    ])
-  ]);
+  return openBlock(), createElementBlock("img", _hoisted_1$b);
 }
-var AppHeaderMini = /* @__PURE__ */ _export_sfc(_sfc_main$a, [["render", _sfc_render$6], ["__scopeId", "data-v-16b59cd2"], ["__file", "/home/debora/www/vert_design_system_ui/src/components/calendar/VCalendarHeaderMini.vue"]]);
+var ChevronRight = /* @__PURE__ */ _export_sfc(_sfc_main$c, [["render", _sfc_render$6], ["__file", "/home/debora/www/vert_design_system_ui/src/components/icons/ChevronRight.vue"]]);
 var WeekCarousel_vue_vue_type_style_index_0_scoped_true_lang = "";
-const _sfc_main$9 = defineComponent({
+const _sfc_main$b = defineComponent({
   name: "Weekcarousel",
+  components: { ChevronLeft, ChevronRight },
   props: {
     days: {
       type: Array,
@@ -1076,42 +718,57 @@ const _sfc_main$9 = defineComponent({
       );
       return date;
     },
-    isLastDayOfMonth(day) {
-      this.time.getAllVariablesFromDateTimeString(
-        day.dateTimeString
-      );
-    },
     onHandleDayWasClicked(day) {
+      this.selectedDay = day.dateTimeString.substring(0, 10);
       this.$emit("day-was-clicked", day);
+    },
+    onHandleChevronLeftWasClicked() {
+      this.$emit("event-was-clicked", "chevron-left");
+    },
+    onHandleChevronRightWasClicked() {
+      this.$emit("event-was-clicked", "chevron-right");
     }
   }
 });
-const _hoisted_1$8 = { class: "week-carousel" };
-const _hoisted_2$5 = ["onClick"];
-const _hoisted_3$5 = { class: "week-carousel__day-name" };
-const _hoisted_4$2 = { class: "week-carousel__date" };
+const _hoisted_1$a = { class: "week-carousel" };
+const _hoisted_2$6 = ["onClick"];
+const _hoisted_3$6 = { class: "week-carousel__day-name" };
+const _hoisted_4$5 = { class: "week-carousel__date" };
 function _sfc_render$5(_ctx, _cache, $props, $setup, $data, $options) {
-  return openBlock(), createElementBlock("div", _hoisted_1$8, [
+  const _component_chevron_left = resolveComponent("chevron-left");
+  const _component_chevron_right = resolveComponent("chevron-right");
+  return openBlock(), createElementBlock("div", _hoisted_1$a, [
+    createVNode(_component_chevron_left, {
+      class: "week-carousel__chevron-left",
+      onClick: _ctx.onHandleChevronLeftWasClicked
+    }, null, 8, ["onClick"]),
     (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.days, (day, dayIndex) => {
       return openBlock(), createElementBlock("div", {
         key: dayIndex,
-        class: normalizeClass(["week-carousel__day", [{
-          "is-today": _ctx.time.getDateTimeStringFromDate(_ctx.now, "start") === day.dateTimeString
-        }, { "is-selected": day.dateTimeString.substring(0, 10) === _ctx.selectedDay }]]),
+        class: normalizeClass(["week-carousel__day", [
+          {
+            "is-today": _ctx.time.getDateTimeStringFromDate(_ctx.now, "start") === day.dateTimeString
+          },
+          { "is-selected": day.dateTimeString.substring(0, 10) === _ctx.selectedDay }
+        ]]),
         onClick: ($event) => _ctx.onHandleDayWasClicked(day)
       }, [
-        createElementVNode("div", _hoisted_3$5, toDisplayString(day.dayName.substring(0, 3)), 1),
-        createElementVNode("div", _hoisted_4$2, toDisplayString(_ctx.getDaysDate(day)), 1)
-      ], 10, _hoisted_2$5);
-    }), 128))
+        createElementVNode("div", _hoisted_3$6, toDisplayString(day.dayName.substring(0, 3)), 1),
+        createElementVNode("div", _hoisted_4$5, toDisplayString(_ctx.getDaysDate(day)), 1)
+      ], 10, _hoisted_2$6);
+    }), 128)),
+    createVNode(_component_chevron_right, {
+      class: "week-carousel__chevron-right",
+      onClick: _ctx.onHandleChevronRightWasClicked
+    }, null, 8, ["onClick"])
   ]);
 }
-var WeekCarousel = /* @__PURE__ */ _export_sfc(_sfc_main$9, [["render", _sfc_render$5], ["__scopeId", "data-v-5d140c4b"], ["__file", "/home/debora/www/vert_design_system_ui/src/components/calendar/mini/WeekCarousel.vue"]]);
+var WeekCarousel = /* @__PURE__ */ _export_sfc(_sfc_main$b, [["render", _sfc_render$5], ["__scopeId", "data-v-5d140c4b"], ["__file", "/home/debora/www/vert_design_system_ui/src/components/calendar/mini/WeekCarousel.vue"]]);
 var Mini_vue_vue_type_style_index_0_scoped_true_lang = "";
-const _hoisted_1$7 = { class: "vcalendar-mini" };
-const _hoisted_2$4 = { class: "vcalendar-mini--week" };
-const _hoisted_3$4 = { class: "vcalendar-mini--day" };
-const _sfc_main$8 = /* @__PURE__ */ defineComponent({
+const _hoisted_1$9 = { class: "vcalendar-mini" };
+const _hoisted_2$5 = { class: "vcalendar-mini--week" };
+const _hoisted_3$5 = { class: "vcalendar-mini--day" };
+const _sfc_main$a = /* @__PURE__ */ defineComponent({
   __name: "Mini",
   props: {
     time: {
@@ -1128,29 +785,57 @@ const _sfc_main$8 = /* @__PURE__ */ defineComponent({
     }
   },
   emits: {
-    "day-was-clicked": (day) => true
+    "day-was-clicked": (__day) => true,
+    "change-period": (__value) => true
   },
   setup(__props, { emit: emits }) {
     const props = __props;
     const days = ref([]);
     const dayNameSelected = ref("");
-    const setDays = () => {
-      const days_ = props.time.getCalendarWeekDateObjects(props.period.start).map((day) => {
-        const dayName = props.time.getLocalizedNameOfWeekday(day, "long");
-        const dateTimeString = props.time.getDateTimeStringFromDate(day, "start");
-        if (props.time.dateIsToday(day)) {
-          getDateAndDayLongName(day, true);
+    const initialMonth = ref(null);
+    const initialYear = ref(null);
+    const setDays = (day) => {
+      const days_ = props.time.getCalendarWeekDateObjects(day).map((day2) => {
+        const dayName = props.time.getLocalizedNameOfWeekday(day2, "long");
+        const dateTimeString = props.time.getDateTimeStringFromDate(day2, "start");
+        if (props.time.dateIsToday(day2)) {
+          getDateAndDayLongName(day2, true);
         }
+        const { month, year, date } = props.time.getAllVariablesFromDateTimeString(dateTimeString);
+        if (month !== initialMonth.value || year !== initialYear.value && (date == props.time.getNumberOfDaysInMonth(year, month) || date == 1))
+          emits("change-period", dateTimeString.substring(0, 7));
         return { dayName, dateTimeString };
       });
       days.value = days_;
     };
+    const changeWeekDays = (event) => {
+      if (event === "chevron-left") {
+        const firstDayOfWeek = new Date(days.value[0].dateTimeString);
+        firstDayOfWeek.setDate(firstDayOfWeek.getDate() - 7);
+        setDays(firstDayOfWeek);
+      } else if (event === "chevron-right") {
+        const lastDayOfWeek = new Date(
+          days.value[days.value.length - 1].dateTimeString
+        );
+        lastDayOfWeek.setDate(lastDayOfWeek.getDate() + 7);
+        setDays(lastDayOfWeek);
+      }
+    };
     const setInitialEvents = () => {
-      setDays();
+      setDays(props.period.start);
+      const { month, year } = props.time.getAllVariablesFromDateTimeString(
+        props.time.getDateTimeStringFromDate(props.period.start, "start")
+      );
+      initialMonth.value = month;
+      initialYear.value = year;
     };
     const getDateAndDayLongName = (day, isToday = false) => {
-      const { date } = props.time.getAllVariablesFromDateTimeString(props.time.getDateTimeStringFromDate(day, "start"));
-      dayNameSelected.value = (isToday ? "Hoje - " : "") + props.time.getLocalizedNameOfWeekday(day, "short") + ", " + date + " de " + String$1.capitalizeFirstLetter(props.time.getLocalizedNameOfMonth(day, "short"));
+      const { date } = props.time.getAllVariablesFromDateTimeString(
+        props.time.getDateTimeStringFromDate(day, "start")
+      );
+      dayNameSelected.value = (isToday ? "Hoje - " : "") + props.time.getLocalizedNameOfWeekday(day, "short") + ", " + date + " de " + String$1.capitalizeFirstLetter(
+        props.time.getLocalizedNameOfMonth(day, "short")
+      );
       return dayNameSelected.value;
     };
     const handleDayWasClicked = (day) => {
@@ -1163,27 +848,164 @@ const _sfc_main$8 = /* @__PURE__ */ defineComponent({
       setInitialEvents();
     });
     return (_ctx, _cache) => {
-      return openBlock(), createElementBlock("div", _hoisted_1$7, [
-        createElementVNode("div", _hoisted_2$4, [
+      return openBlock(), createElementBlock("div", _hoisted_1$9, [
+        createElementVNode("div", _hoisted_2$5, [
           createVNode(WeekCarousel, {
             days: days.value,
             time: __props.time,
-            onDayWasClicked: handleDayWasClicked
+            onDayWasClicked: handleDayWasClicked,
+            onEventWasClicked: changeWeekDays
           }, null, 8, ["days", "time"])
         ]),
-        createElementVNode("div", _hoisted_3$4, toDisplayString(dayNameSelected.value), 1)
+        createElementVNode("div", _hoisted_3$5, toDisplayString(dayNameSelected.value), 1)
       ]);
     };
   }
 });
-var Mini = /* @__PURE__ */ _export_sfc(_sfc_main$8, [["__scopeId", "data-v-7d7d84ae"], ["__file", "/home/debora/www/vert_design_system_ui/src/components/calendar/mini/Mini.vue"]]);
-var VCalendarMini_vue_vue_type_style_index_0_lang = "";
-const _sfc_main$7 = defineComponent({
-  name: "VCalendarMini",
-  components: {
-    AppHeaderMini,
-    Mini
+var Mini = /* @__PURE__ */ _export_sfc(_sfc_main$a, [["__scopeId", "data-v-7d7d84ae"], ["__file", "/home/debora/www/vert_design_system_ui/src/components/calendar/mini/Mini.vue"]]);
+var VDropdown_scss_vue_type_style_index_0_src_12d7f8ce_lang = "";
+const _hoisted_1$8 = { key: 0 };
+const _hoisted_2$4 = { key: 1 };
+const _hoisted_3$4 = ["for"];
+const _hoisted_4$4 = { class: "v-dropdow__options" };
+const _hoisted_5$3 = ["tabIndex"];
+const _hoisted_6$2 = ["id", "value", "type", "onChange"];
+const _hoisted_7$2 = ["for"];
+const _sfc_main$9 = defineComponent({
+  __name: "VDropdown",
+  props: {
+    id: { type: String, required: false, default: "exemplo" },
+    name: { type: String, required: false, default: "exemplo" },
+    placeholder: { type: String, required: false, default: "Selecione" },
+    label: { type: String, required: false },
+    options: { type: Array, required: true, default: () => [] },
+    required: { type: Boolean, required: false },
+    disable: { type: Boolean, required: false },
+    size: { type: String, required: false },
+    modelValue: { type: null, required: false, default: [] },
+    borderNone: { type: Boolean, required: false },
+    multiple: { type: Boolean, required: false, default: false },
+    type: { type: String, required: false, default: "1" }
   },
+  emits: ["onChange", "update:modelValue"],
+  setup(__props, { emit }) {
+    const props = __props;
+    const setMultiple = computed(
+      () => props.multiple ? "checkbox" : "radio"
+    );
+    watch(
+      () => props.modelValue,
+      (value) => {
+        valueOption.value = value;
+      }
+    );
+    const showValue = computed(() => {
+      if (valueOption.value.length == 0) {
+        return props.placeholder;
+      }
+      if (!props.multiple) {
+        const option = props.options.find(
+          (element) => element.value == valueOption.value
+        );
+        return option == null ? void 0 : option.label;
+      } else {
+        const options = [];
+        valueOption.value.forEach((item) => {
+          const find = props.options.find((element) => element.value == item);
+          options.push(find);
+        });
+        return options;
+      }
+    });
+    const valueOption = ref(props.modelValue);
+    const showOptions = ref(false);
+    function selectChange(value) {
+      emit("onChange", value);
+      emit("update:modelValue", value);
+    }
+    const setTypeStyle = computed(() => {
+      if (props.type == "2") {
+        return "v-dropdow__style--2";
+      }
+      return "";
+    });
+    return (_ctx, _cache) => {
+      return openBlock(), createElementBlock(Fragment, null, [
+        createElementVNode("div", {
+          class: normalizeClass(["v-dropdow", unref(setTypeStyle)])
+        }, [
+          createElementVNode("div", {
+            class: "v-dropdow__input",
+            onClick: _cache[0] || (_cache[0] = ($event) => showOptions.value = !showOptions.value)
+          }, [
+            !__props.multiple || unref(showValue) == __props.placeholder ? (openBlock(), createElementBlock("span", _hoisted_1$8, toDisplayString(unref(showValue)), 1)) : (openBlock(), createElementBlock("span", _hoisted_2$4, [
+              (openBlock(true), createElementBlock(Fragment, null, renderList(unref(showValue), (selected, index) => {
+                return openBlock(), createBlock(VTag, {
+                  key: index,
+                  status: "secondary",
+                  square: ""
+                }, {
+                  default: withCtx(() => [
+                    createTextVNode(toDisplayString(selected.label) + " ", 1),
+                    createElementVNode("label", {
+                      class: "icon--close",
+                      for: __props.name + "-" + selected.value
+                    }, null, 8, _hoisted_3$4)
+                  ]),
+                  _: 2
+                }, 1024);
+              }), 128))
+            ])),
+            createElementVNode("div", {
+              class: normalizeClass(["v-dropdow__input--arrow", { "v-dropdow__input--arrow--open": showOptions.value }])
+            }, null, 2)
+          ]),
+          withDirectives(createElementVNode("div", _hoisted_4$4, [
+            createElementVNode("ul", null, [
+              (openBlock(true), createElementBlock(Fragment, null, renderList(__props.options, (option, i) => {
+                return openBlock(), createElementBlock("li", {
+                  key: i,
+                  tabIndex: option.value == valueOption.value ? -1 : i
+                }, [
+                  createElementVNode("input", {
+                    id: __props.name + "-" + option.value,
+                    name: "option",
+                    value: option.value,
+                    type: unref(setMultiple),
+                    onChange: ($event) => selectChange(option.value)
+                  }, null, 40, _hoisted_6$2),
+                  createElementVNode("label", {
+                    for: __props.name + "-" + option.value
+                  }, toDisplayString(option.label), 9, _hoisted_7$2)
+                ], 8, _hoisted_5$3);
+              }), 128))
+            ])
+          ], 512), [
+            [vShow, showOptions.value]
+          ])
+        ], 2),
+        withDirectives(createElementVNode("div", {
+          class: "v-dropdow__fullscreen",
+          onClick: _cache[1] || (_cache[1] = ($event) => showOptions.value = !showOptions.value)
+        }, null, 512), [
+          [vShow, showOptions.value]
+        ])
+      ], 64);
+    };
+  }
+});
+var VDropdown = /* @__PURE__ */ _export_sfc(_sfc_main$9, [["__file", "/home/debora/www/vert_design_system_ui/src/components/dropdown/VDropdown.vue"]]);
+var VCalendarMini_vue_vue_type_style_index_0_lang = "";
+const _hoisted_1$7 = { class: "calendar-root-wrapper" };
+const _hoisted_2$3 = { class: "calendar-root mode-is-mini" };
+const _hoisted_3$3 = {
+  key: 0,
+  class: "top-bar-loader"
+};
+const _hoisted_4$3 = { class: "calendar-header" };
+const _hoisted_5$2 = { class: "calendar-header__period" };
+const _sfc_main$8 = /* @__PURE__ */ defineComponent({
+  __name: "VCalendarMini",
   props: {
     events: {
       type: Array,
@@ -1198,85 +1020,119 @@ const _sfc_main$7 = defineComponent({
       default: false
     }
   },
-  emits: [
-    "event-was-clicked",
-    "day-was-clicked"
-  ],
-  data() {
-    return {
-      wasInitialized: 0,
-      period: {
-        start: new Date(),
-        end: new Date(),
-        selectedDate: this.selectedDate ? this.selectedDate : new Date()
-      },
-      week: {
-        nDays: 7
-      },
-      mode: "mini",
-      time: new Time()
-    };
-  },
-  mounted() {
-    this.setConfigOnMount();
-    this.setPeriodOnMount();
-  },
-  methods: {
-    setConfigOnMount() {
-      this.wasInitialized = 1;
-    },
-    setPeriodOnMount() {
-      const currentWeek = this.time.getCalendarWeekDateObjects(
-        this.period.selectedDate
+  emits: ["event-was-clicked", "day-was-clicked"],
+  setup(__props) {
+    const props = __props;
+    const monthYearSelected = ref(
+      String(`${new Date().getFullYear()}-${new Date().getMonth() + 1}`)
+    );
+    const months = computed(() => {
+      const months2 = [];
+      const currentYear = new Date().getFullYear();
+      for (let i = 0; i < 20; i++) {
+        for (let j = 0; j < 12; j++) {
+          const month = j <= 8 ? `0${j + 1}` : j + 1;
+          months2.push({
+            value: String(`${currentYear + i}-${month}`),
+            label: String$1.capitalizeFirstLetter(
+              new Date(currentYear + i, j, 1).toLocaleString("default", {
+                month: "long",
+                year: "numeric"
+              })
+            )
+          });
+        }
+      }
+      return months2;
+    });
+    const week = { nDays: 7 };
+    const time = new Time();
+    const period = ref({
+      start: new Date(),
+      end: new Date(),
+      selectedDate: props.selectedDate ? props.selectedDate : new Date()
+    });
+    function setPeriodOnMount() {
+      const currentWeek = time.getCalendarWeekDateObjects(
+        period.value.selectedDate
       );
-      this.period.start = currentWeek[0];
-      this.period.end = currentWeek[6];
+      period.value.start = currentWeek[0];
+      period.value.end = currentWeek[6];
     }
+    const onChangeMonth = (monthYear) => {
+      const [year, month] = monthYear.split("-");
+      const date = new Date(parseInt(year), parseInt(month) - 1, 1);
+      period.value = {
+        start: date,
+        end: new Date(date.getFullYear(), date.getMonth() + 1, 0),
+        selectedDate: date
+      };
+    };
+    function onChangePeriod(value) {
+      if (!months.value.find((m) => m.value === value)) {
+        const year = Number(value.substring(0, 4));
+        const month = value.substring(5, 7);
+        months.value.push({
+          value: String(`${year}-${month}`),
+          label: String$1.capitalizeFirstLetter(
+            new Date(year, Number(month) - 1, 1).toLocaleString("default", {
+              month: "long",
+              year: "numeric"
+            })
+          )
+        });
+      }
+      monthYearSelected.value = String(value);
+    }
+    onMounted(() => {
+      setPeriodOnMount();
+    });
+    return (_ctx, _cache) => {
+      return openBlock(), createElementBlock("div", _hoisted_1$7, [
+        createElementVNode("div", _hoisted_2$3, [
+          createVNode(Transition, { name: "loading" }, {
+            default: withCtx(() => [
+              __props.isLoading ? (openBlock(), createElementBlock("div", _hoisted_3$3)) : createCommentVNode("v-if", true)
+            ]),
+            _: 1
+          }),
+          createElementVNode("div", _hoisted_4$3, [
+            createElementVNode("div", _hoisted_5$2, [
+              createVNode(VDropdown, {
+                "model-value": monthYearSelected.value,
+                options: unref(months),
+                type: "2",
+                size: "lg",
+                onOnChange: onChangeMonth
+              }, null, 8, ["model-value", "options"])
+            ])
+          ]),
+          (openBlock(), createBlock(Mini, {
+            key: period.value.start.getTime() + period.value.end.getTime(),
+            time: unref(time),
+            period: period.value,
+            "n-days": week.nDays,
+            onDayWasClicked: _cache[0] || (_cache[0] = ($event) => _ctx.$emit("day-was-clicked", $event)),
+            onChangePeriod
+          }, null, 8, ["time", "period", "n-days"]))
+        ])
+      ]);
+    };
   }
 });
-const _hoisted_1$6 = { class: "calendar-root-wrapper" };
-const _hoisted_2$3 = { class: "calendar-root mode-is-mini" };
-const _hoisted_3$3 = {
-  key: 0,
-  class: "top-bar-loader"
-};
-function _sfc_render$4(_ctx, _cache, $props, $setup, $data, $options) {
-  const _component_AppHeaderMini = resolveComponent("AppHeaderMini");
-  const _component_Mini = resolveComponent("Mini");
-  return openBlock(), createElementBlock("div", _hoisted_1$6, [
-    createElementVNode("div", _hoisted_2$3, [
-      createVNode(Transition, { name: "loading" }, {
-        default: withCtx(() => [
-          _ctx.isLoading ? (openBlock(), createElementBlock("div", _hoisted_3$3)) : createCommentVNode("v-if", true)
-        ]),
-        _: 1
-      }),
-      (openBlock(), createBlock(_component_AppHeaderMini, {
-        key: _ctx.wasInitialized + _ctx.mode + "-header"
-      })),
-      (openBlock(), createBlock(_component_Mini, {
-        key: _ctx.period.start.getTime() + _ctx.period.end.getTime(),
-        time: _ctx.time,
-        period: _ctx.period,
-        "n-days": _ctx.week.nDays,
-        onDayWasClicked: _cache[0] || (_cache[0] = ($event) => _ctx.$emit("day-was-clicked", $event))
-      }, null, 8, ["time", "period", "n-days"]))
-    ])
-  ]);
-}
-var VCalendarMini = /* @__PURE__ */ _export_sfc(_sfc_main$7, [["render", _sfc_render$4], ["__file", "/home/debora/www/vert_design_system_ui/src/components/calendar/VCalendarMini.vue"]]);
-var _imports_0 = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+CiAgIDxwYXRoIGZpbGw9IiMwMDAwMDAiIGQ9Ik03LDEwSDEyVjE1SDdNMTksMTlINVY4SDE5TTE5LDNIMThWMUgxNlYzSDhWMUg2VjNINUMzLjg5LDMgMywzLjkgMyw1VjE5QTIsMiAwIDAsMCA1LDIxSDE5QTIsMiAwIDAsMCAyMSwxOVY1QTIsMiAwIDAsMCAxOSwzWiIgLz4KPC9zdmc+";
-const _sfc_main$6 = defineComponent({
+var VCalendarMini = /* @__PURE__ */ _export_sfc(_sfc_main$8, [["__file", "/home/debora/www/vert_design_system_ui/src/components/calendar/VCalendarMini.vue"]]);
+var _imports_0$1 = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+CiAgIDxwYXRoIGZpbGw9IiNhYWEiIGQ9Ik03LDEwSDEyVjE1SDdNMTksMTlINVY4SDE5TTE5LDNIMThWMUgxNlYzSDhWMUg2VjNINUMzLjg5LDMgMywzLjkgMyw1VjE5QTIsMiAwIDAsMCA1LDIxSDE5QTIsMiAwIDAsMCAyMSwxOVY1QTIsMiAwIDAsMCAxOSwzWiIgLz4KPC9zdmc+";
+const _sfc_main$7 = defineComponent({
   name: "CalendarDay"
 });
-const _hoisted_1$5 = {
-  src: _imports_0,
+const _hoisted_1$6 = {
+  src: _imports_0$1,
   width: "24"
 };
-function _sfc_render$3(_ctx, _cache, $props, $setup, $data, $options) {
-  return openBlock(), createElementBlock("img", _hoisted_1$5);
+function _sfc_render$4(_ctx, _cache, $props, $setup, $data, $options) {
+  return openBlock(), createElementBlock("img", _hoisted_1$6);
 }
-var IconCalendar = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["render", _sfc_render$3], ["__file", "/home/debora/www/vert_design_system_ui/src/components/icons/CalendarDay.vue"]]);
+var IconCalendar = /* @__PURE__ */ _export_sfc(_sfc_main$7, [["render", _sfc_render$4], ["__file", "/home/debora/www/vert_design_system_ui/src/components/icons/CalendarDay.vue"]]);
 /*!
  * perfect-scrollbar v1.5.3
  * Copyright 2021 Hyunje Jun, MDBootstrap and Contributors
@@ -2394,7 +2250,10 @@ class EventShow {
     this.patrimony = data == null ? void 0 : data.patrimony;
     this.series = data == null ? void 0 : data.series;
     this.emission = data == null ? void 0 : data.emission;
-    this.time = (data == null ? void 0 : data.time) || { start: this.timeHelper.getDateTimeStringFromDate(new Date()), end: this.timeHelper.getDateTimeStringFromDate(new Date()) };
+    this.time = (data == null ? void 0 : data.time) || {
+      start: this.timeHelper.getDateTimeStringFromDate(new Date()),
+      end: this.timeHelper.getDateTimeStringFromDate(new Date())
+    };
     this.event_data = (data == null ? void 0 : data.event_data) || this.timeHelper.getDateStringFromDate(new Date());
     this.data = data ? data.data : {};
     this.responsable = data == null ? void 0 : data.responsable;
@@ -2423,14 +2282,17 @@ class EventShow {
   }
 }
 var VEventCard_scss_vue_type_style_index_0_src_67fe39ee_lang = "";
-const _hoisted_1$4 = { class: "event-card" };
+const _hoisted_1$5 = { class: "event-card" };
 const _hoisted_2$2 = { class: "break-ellipsis break-ellipsis--three_line" };
-const _hoisted_3$2 = { class: "break-ellipsis break-ellipsis--one_line" };
-const _hoisted_4$1 = {
+const _hoisted_3$2 = {
   key: 1,
   class: "break-ellipsis break-ellipsis--one_line"
 };
-const _sfc_main$5 = defineComponent({
+const _hoisted_4$2 = {
+  key: 2,
+  class: "break-ellipsis break-ellipsis--one_line"
+};
+const _sfc_main$6 = defineComponent({
   __name: "VEventCard",
   props: {
     title: {
@@ -2442,7 +2304,8 @@ const _sfc_main$5 = defineComponent({
       default: ""
     },
     responsable: {
-      type: String
+      type: String,
+      default: ""
     },
     size: {
       type: String,
@@ -2453,7 +2316,8 @@ const _sfc_main$5 = defineComponent({
       default: "obligation"
     },
     status: {
-      type: String
+      type: String,
+      default: "pending"
     }
   },
   setup(__props) {
@@ -2462,7 +2326,7 @@ const _sfc_main$5 = defineComponent({
       () => `event-status--${props.aplication}`
     );
     return (_ctx, _cache) => {
-      return openBlock(), createElementBlock("div", _hoisted_1$4, [
+      return openBlock(), createElementBlock("div", _hoisted_1$5, [
         createElementVNode("div", {
           class: normalizeClass(["event-status", unref(setAplicationClass)])
         }, [
@@ -2471,16 +2335,16 @@ const _sfc_main$5 = defineComponent({
           }, [
             __props.size !== "small" ? renderSlot(_ctx.$slots, "tag", { key: 0 }) : createCommentVNode("v-if", true),
             createElementVNode("h4", _hoisted_2$2, toDisplayString(__props.title), 1),
-            createElementVNode("p", _hoisted_3$2, toDisplayString(__props.subtitle), 1),
-            __props.size !== "small" && __props.responsable ? (openBlock(), createElementBlock("p", _hoisted_4$1, toDisplayString(__props.responsable), 1)) : createCommentVNode("v-if", true)
+            __props.subtitle != "" ? (openBlock(), createElementBlock("p", _hoisted_3$2, toDisplayString(__props.subtitle), 1)) : createCommentVNode("v-if", true),
+            __props.size !== "small" && __props.responsable != "" ? (openBlock(), createElementBlock("p", _hoisted_4$2, toDisplayString(__props.responsable), 1)) : createCommentVNode("v-if", true)
           ], 2)
         ], 2)
       ]);
     };
   }
 });
-var VEventCard = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["__file", "/home/debora/www/vert_design_system_ui/src/components/eventCard/VEventCard.vue"]]);
-const _sfc_main$4 = /* @__PURE__ */ defineComponent({
+var VEventCard = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["__file", "/home/debora/www/vert_design_system_ui/src/components/eventCard/VEventCard.vue"]]);
+const _sfc_main$5 = /* @__PURE__ */ defineComponent({
   __name: "Event",
   props: {
     event: {
@@ -2501,14 +2365,33 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-var Event = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["__file", "/home/debora/www/vert_design_system_ui/src/components/calendar/mini/Event.vue"]]);
+var Event = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["__file", "/home/debora/www/vert_design_system_ui/src/components/calendar/mini/Event.vue"]]);
+var _imports_0 = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+CiAgIDxwYXRoIGZpbGw9IiNjY2NjY2MiIGQ9Ik05LjUsM0E2LjUsNi41IDAgMCwxIDE2LDkuNUMxNiwxMS4xMSAxNS40MSwxMi41OSAxNC40NCwxMy43M0wxNC43MSwxNEgxNS41TDIwLjUsMTlMMTksMjAuNUwxNCwxNS41VjE0LjcxTDEzLjczLDE0LjQ0QzEyLjU5LDE1LjQxIDExLjExLDE2IDkuNSwxNkE2LjUsNi41IDAgMCwxIDMsOS41QTYuNSw2LjUgMCAwLDEgOS41LDNNOS41LDVDNyw1IDUsNyA1LDkuNUM1LDEyIDcsMTQgOS41LDE0QzEyLDE0IDE0LDEyIDE0LDkuNUMxNCw3IDEyLDUgOS41LDVaIiAvPgo8L3N2Zz4=";
+const _sfc_main$4 = {};
+const _hoisted_1$4 = {
+  src: _imports_0,
+  width: "24"
+};
+function _sfc_render$3(_ctx, _cache) {
+  return openBlock(), createElementBlock("img", _hoisted_1$4);
+}
+var SearchIcon = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["render", _sfc_render$3], ["__file", "/home/debora/www/vert_design_system_ui/src/components/icons/Search.vue"]]);
 var VCalendarButton_vue_vue_type_style_index_0_lang = "";
 const _hoisted_1$3 = { class: "search-events" };
 const _hoisted_2$1 = {
   id: "container-list",
   class: "list-events"
 };
-const _hoisted_3$1 = { class: "list-events__item" };
+const _hoisted_3$1 = { key: 0 };
+const _hoisted_4$1 = {
+  key: 1,
+  class: "list-events__empty"
+};
+const _hoisted_5$1 = /* @__PURE__ */ createElementVNode("p", null, "Nenhum evento encontrado", -1);
+const _hoisted_6$1 = [
+  _hoisted_5$1
+];
+const _hoisted_7$1 = /* @__PURE__ */ createElementVNode("a", { class: "a-link" }, "Ir para vers\xE3o completa", -1);
 const _sfc_main$3 = /* @__PURE__ */ defineComponent({
   __name: "VCalendarButton",
   props: {
@@ -2517,7 +2400,11 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
       default: () => []
     }
   },
-  emits: ["search-event", "event-was-clicked", "day-was-clicked"],
+  emits: [
+    "search-event",
+    "event-was-clicked",
+    "day-was-clicked"
+  ],
   setup(__props, { emit: emits }) {
     const props = __props;
     const calendarSelectedDate = ref(new Date());
@@ -2569,7 +2456,10 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
       { deep: true, immediate: true }
     );
     return (_ctx, _cache) => {
-      return openBlock(), createBlock(unref(VPopUp), { "position-content": "center center" }, {
+      return openBlock(), createBlock(unref(VPopUp), {
+        "position-content": "center center",
+        title: "Calend\xE1rio de eventos"
+      }, {
         "event-area": withCtx(() => [
           createVNode(IconCalendar)
         ]),
@@ -2582,22 +2472,34 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
           createElementVNode("div", _hoisted_1$3, [
             withDirectives(createElementVNode("input", {
               "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => search.value = $event),
-              placeholder: "Search",
+              placeholder: "Buscar",
               onInput: searchEvent
             }, null, 544), [
               [vModelText, search.value]
-            ])
+            ]),
+            createVNode(SearchIcon, {
+              class: "search-events__icon",
+              onClick: searchEvent
+            })
           ]),
           createElementVNode("div", _hoisted_2$1, [
-            (openBlock(true), createElementBlock(Fragment, null, renderList(eventsOfDay.value, (event) => {
-              return openBlock(), createElementBlock("div", _hoisted_3$1, [
-                createVNode(Event, {
-                  event,
-                  onClick: ($event) => onHandleEventClicked(event)
-                }, null, 8, ["event", "onClick"])
-              ]);
-            }), 256))
+            eventsOfDay.value.length > 0 ? (openBlock(), createElementBlock("div", _hoisted_3$1, [
+              (openBlock(true), createElementBlock(Fragment, null, renderList(eventsOfDay.value, (event, index) => {
+                return openBlock(), createElementBlock("div", {
+                  key: index,
+                  class: "list-events__item"
+                }, [
+                  createVNode(Event, {
+                    event,
+                    onClick: ($event) => onHandleEventClicked(event)
+                  }, null, 8, ["event", "onClick"])
+                ]);
+              }), 128))
+            ])) : (openBlock(), createElementBlock("div", _hoisted_4$1, _hoisted_6$1))
           ])
+        ]),
+        "popup-footer": withCtx(() => [
+          _hoisted_7$1
         ]),
         _: 1
       });
@@ -2640,9 +2542,7 @@ var usePaginator = (userOptions) => {
   const hasNext = computed(() => page.value < numPages.value);
   const goPrev = () => {
     if (hasPrev.value)
-      [
-        page.value--
-      ];
+      [page.value--];
     return page.value;
   };
   const goNext = () => {
@@ -2783,17 +2683,39 @@ const _sfc_main$2 = defineComponent({
   },
   emits: ["onChangePagination"],
   setup(props, { emit }) {
-    const { page, pageSize, hasPrev, hasNext, goPrev, goNext, buttons, numPages, numItems } = usePaginator({
+    const {
+      page,
+      pageSize,
+      hasPrev,
+      hasNext,
+      goPrev,
+      goNext,
+      buttons,
+      numPages,
+      numItems
+    } = usePaginator({
       pageSize: props.sizeDefault,
       numButtons: props.qtdeButtonsPaginate
     });
-    watch(() => props.count, (count) => {
-      numItems.value = count;
-    });
+    watch(
+      () => props.count,
+      (count) => {
+        numItems.value = count;
+      }
+    );
     watch([page, pageSize], ([newPage, newPageSize]) => {
       emit("onChangePagination", { page: newPage, page_size: newPageSize });
     });
-    return { hasPrev, hasNext, pageSize, goPrev, goNext, buttons, page, numPages };
+    return {
+      hasPrev,
+      hasNext,
+      pageSize,
+      goPrev,
+      goNext,
+      buttons,
+      page,
+      numPages
+    };
   }
 });
 const _hoisted_1$2 = { class: "box--pagination" };
@@ -2814,17 +2736,17 @@ const _hoisted_11 = [
 function _sfc_render$2(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_v_select = resolveComponent("v-select");
   return openBlock(), createElementBlock("div", _hoisted_1$2, [
-    createElementVNode("div", _hoisted_2, toDisplayString(_ctx.count) + " items ", 1),
+    createElementVNode("div", _hoisted_2, toDisplayString(_ctx.count) + " items", 1),
     createElementVNode("div", _hoisted_3, [
       createElementVNode("div", _hoisted_4, [
         createVNode(_component_v_select, {
           id: "select_page_size",
+          modelValue: _ctx.pageSize,
+          "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => _ctx.pageSize = $event),
           name: "select_page_size",
           options: _ctx.sizeOptions,
-          size: "sm",
-          modelValue: _ctx.pageSize,
-          "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => _ctx.pageSize = $event)
-        }, null, 8, ["options", "modelValue"])
+          size: "sm"
+        }, null, 8, ["modelValue", "options"])
       ]),
       createElementVNode("div", _hoisted_5, [
         createElementVNode("ol", _hoisted_6, [
@@ -2834,12 +2756,12 @@ function _sfc_render$2(_ctx, _cache, $props, $setup, $data, $options) {
           }, _hoisted_8, 2),
           (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.buttons, (button, idx) => {
             return openBlock(), createElementBlock("li", {
-              class: "pagination_li",
               key: idx,
+              class: "pagination_li",
               onClick: ($event) => _ctx.page = button.page
             }, [
               createElementVNode("a", {
-                class: normalizeClass(["pagination_li--item", { "active": button.active }])
+                class: normalizeClass(["pagination_li--item", { active: button.active }])
               }, toDisplayString(button.ellipsis ? "..." : button.page), 3)
             ], 8, _hoisted_9);
           }), 128)),
@@ -2896,7 +2818,7 @@ const _sfc_main = defineComponent({
   methods: {
     activeTab(event) {
       const tabHead = event.path[1].children;
-      for (let item of tabHead)
+      for (const item of tabHead)
         item.classList.remove("active");
       event.target.classList.add("active");
       this.showContentTab(
@@ -2906,7 +2828,7 @@ const _sfc_main = defineComponent({
     },
     showContentTab(contentId, typeTab) {
       const tabContents = document.getElementsByClassName("tab--content");
-      for (let item of tabContents) {
+      for (const item of tabContents) {
         if (typeTab == item.dataset.tabContentType)
           item.style.display = "none";
         if (contentId == item.getAttribute("id")) {
@@ -2920,9 +2842,9 @@ const _hoisted_1 = ["data-tab-type", "data-tab-to"];
 function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("button", {
     class: normalizeClass({ active: _ctx.actived }),
-    onClick: _cache[0] || (_cache[0] = ($event) => _ctx.activeTab($event)),
     "data-tab-type": _ctx.eixo,
-    "data-tab-to": _ctx.tabTo
+    "data-tab-to": _ctx.tabTo,
+    onClick: _cache[0] || (_cache[0] = ($event) => _ctx.activeTab($event))
   }, [
     renderSlot(_ctx.$slots, "default")
   ], 10, _hoisted_1);

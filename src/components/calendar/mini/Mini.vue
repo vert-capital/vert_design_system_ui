@@ -5,19 +5,20 @@
         :days="days"
         :time="time"
         @day-was-clicked="handleDayWasClicked"
+        @event-was-clicked="changeWeekDays"
       />
     </div>
     <div class="vcalendar-mini--day">
-      {{dayNameSelected}}
+      {{ dayNameSelected }}
     </div>
-</div>
+  </div>
 </template>
 <script lang="ts" setup>
-import { onMounted, PropType, ref } from 'vue';
-import { IPeriod, IDay } from '@/utils/types/calendar';
-import Time from '@/utils/helpers/Time';
-import WeekCarousel from './WeekCarousel.vue';
-import StringHelper from '@/utils/helpers/String';
+import { onMounted, PropType, ref } from "vue";
+import { IPeriod, IDay } from "@/utils/types/calendar";
+import Time from "@/utils/helpers/Time";
+import WeekCarousel from "./WeekCarousel.vue";
+import StringHelper from "@/utils/helpers/String";
 
 const props = defineProps({
   time: {
@@ -35,47 +36,83 @@ const props = defineProps({
 });
 
 const emits = defineEmits({
-  'day-was-clicked': (day: IDay) => true,
+  "day-was-clicked": (__day: IDay) => true,
+  "change-period": (__value: string) => true,
 });
 
-
 const days = ref<IDay[]>([]);
-const dayNameSelected = ref('');
+const dayNameSelected = ref("");
+const initialMonth = ref<number | null>(null);
+const initialYear = ref<number | null>(null);
 
-const setDays = () => {
-  const days_: IDay[] = props.time.getCalendarWeekDateObjects(props.period.start).
-    map((day: Date) => {
-      const dayName = props.time.getLocalizedNameOfWeekday(day, 'long');
-      const dateTimeString = props.time.getDateTimeStringFromDate(day, 'start');
+const setDays = (day: Date) => {
+  const days_: IDay[] = props.time
+    .getCalendarWeekDateObjects(day)
+    .map((day: Date) => {
+      const dayName = props.time.getLocalizedNameOfWeekday(day, "long");
+      const dateTimeString = props.time.getDateTimeStringFromDate(day, "start");
       if (props.time.dateIsToday(day)) {
         getDateAndDayLongName(day, true);
       }
+      const { month, year, date } =
+        props.time.getAllVariablesFromDateTimeString(dateTimeString);
+      if (
+        month !== initialMonth.value ||
+        (year !== initialYear.value &&
+          (date == props.time.getNumberOfDaysInMonth(year, month) || date == 1))
+      )
+        emits("change-period", dateTimeString.substring(0, 7));
       return { dayName, dateTimeString };
     });
-
   days.value = days_;
-}
+};
+
+const changeWeekDays = (event: string) => {
+  if (event === "chevron-left") {
+    const firstDayOfWeek = new Date(days.value[0].dateTimeString);
+    firstDayOfWeek.setDate(firstDayOfWeek.getDate() - 7);
+    setDays(firstDayOfWeek);
+  } else if (event === "chevron-right") {
+    const lastDayOfWeek = new Date(
+      days.value[days.value.length - 1].dateTimeString
+    );
+    lastDayOfWeek.setDate(lastDayOfWeek.getDate() + 7);
+    setDays(lastDayOfWeek);
+  }
+};
 
 const setInitialEvents = () => {
-  setDays();
-}
+  setDays(props.period.start);
+  const { month, year } = props.time.getAllVariablesFromDateTimeString(
+    props.time.getDateTimeStringFromDate(props.period.start, "start")
+  );
+  initialMonth.value = month;
+  initialYear.value = year;
+};
 
 const getDateAndDayLongName = (day: Date, isToday = false) => {
-  const { date } = props.time.getAllVariablesFromDateTimeString(props.time.getDateTimeStringFromDate(day, 'start'));
-  dayNameSelected.value = (isToday ? 'Hoje - ' : '') + props.time.getLocalizedNameOfWeekday(day, 'short')
-    + ', '
-    + date
-    + ' de '
-    + StringHelper.capitalizeFirstLetter(props.time.getLocalizedNameOfMonth(day, 'short'));
+  const { date } = props.time.getAllVariablesFromDateTimeString(
+    props.time.getDateTimeStringFromDate(day, "start")
+  );
+  dayNameSelected.value =
+    (isToday ? "Hoje - " : "") +
+    props.time.getLocalizedNameOfWeekday(day, "short") +
+    ", " +
+    date +
+    " de " +
+    StringHelper.capitalizeFirstLetter(
+      props.time.getLocalizedNameOfMonth(day, "short")
+    );
+
   return dayNameSelected.value;
-}
+};
 
 const handleDayWasClicked = (day: IDay) => {
-  const replate_date = day.dateTimeString.replace('-',',');
+  const replate_date = day.dateTimeString.replace("-", ",");
   const dayDate = new Date(replate_date);
   day.dayName = getDateAndDayLongName(dayDate, props.time.dateIsToday(dayDate));
-  emits('day-was-clicked', day);
-}
+  emits("day-was-clicked", day);
+};
 
 onMounted(() => {
   setInitialEvents();
@@ -92,13 +129,14 @@ onMounted(() => {
     flex-direction: column;
     flex: 1;
     overflow: hidden;
-    border-bottom: 1px solid #E0E0E0;
+    border-bottom: 1px solid #e0e0e0;
   }
 
   &--day {
     font-weight: 700;
     font-size: 1rem;
     padding-top: 0.8rem;
+    color: $neutral-color-low-pure;
   }
 }
 </style>

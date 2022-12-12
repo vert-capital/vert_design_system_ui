@@ -5,7 +5,7 @@
     type="button"
     v-bind="$attrs"
   >
-    <div v-if="icon" class="v-btn--img">
+    <div v-if="icon != ''" class="v-btn--img">
       <img :src="setIcon" />
     </div>
     <slot />
@@ -29,8 +29,8 @@ export default defineComponent({
     },
     icon: {
       type: String,
-      required: false,
-    },
+      default: "",
+    } ,
     disabled: {
       type: Boolean,
       default: false,

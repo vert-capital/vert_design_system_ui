@@ -1,6 +1,6 @@
-import { PropType } from 'vue';
-import Time, { calendarMonthType, calendarWeekType, calendarYearMonths } from '@/utils/helpers/Time';
-import { modeType } from '@/utils/types/calendar';
+import { PropType } from "vue";
+import Time, { calendarMonthType, calendarWeekType, calendarYearMonths } from "@/utils/helpers/Time";
+import { modeType } from "@/utils/types/calendar";
 interface disableDates {
     before: Date;
     after: Date;
@@ -59,10 +59,10 @@ declare const _default: import("vue").DefineComponent<{
     setWeek(date: Date, isOnMountHook?: boolean): void;
     setMonth(date: Date): void;
     emitChange(start: Date, end: Date): void;
-    toggleDatePickerPeriod(direction: 'previous' | 'next'): void;
+    toggleDatePickerPeriod(direction: "previous" | "next"): void;
     toggleDatePickerMode(): "month" | "year" | undefined;
     getLocale(): string;
-    goToPeriod(direction: 'next' | 'previous'): void;
+    goToPeriod(direction: "next" | "previous"): void;
     hideDatePicker(): void;
     hydrateDatePicker(isOnMountHook?: boolean): void;
     checkIfDateIsDisabled(date: Date): boolean;

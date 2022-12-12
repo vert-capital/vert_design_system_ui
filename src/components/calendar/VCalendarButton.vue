@@ -1,5 +1,5 @@
 <template>
-  <v-pop-up position-content="center center">
+  <v-pop-up position-content="center center" title="Calendário de eventos">
     <template #event-area>
       <icon-calendar />
     </template>
@@ -11,38 +11,52 @@
       ></v-calendar-mini>
 
       <div class="search-events">
-        <input
-          v-model="search"
-          placeholder="Search"
-          @input="searchEvent"
-        />
+        <input v-model="search" placeholder="Buscar" @input="searchEvent" />
+        <search-icon class="search-events__icon" @click="searchEvent" />
       </div>
 
       <div id="container-list" class="list-events">
-          <div class="list-events__item" v-for="event in eventsOfDay">
-            <Event :event="event" @click="onHandleEventClicked(event)" ></Event>
+        <div v-if="eventsOfDay.length > 0">
+          <div
+            v-for="(event, index) in eventsOfDay"
+            :key="index"
+            class="list-events__item"
+          >
+            <Event :event="event" @click="onHandleEventClicked(event)"></Event>
           </div>
+        </div>
+
+        <div v-else class="list-events__empty">
+          <p>Nenhum evento encontrado</p>
+        </div>
       </div>
+    </template>
+    <template #popup-footer>
+      <a class="a-link">Ir para versão completa</a>
     </template>
   </v-pop-up>
 </template>
 <script lang="ts" setup>
-import { VPopUp, VCalendarMini } from '@/components';
-import IconCalendar from '@/components/icons/CalendarDay.vue';
-import { IEvent } from '@/utils/types/calendar';
-import { onMounted, PropType, ref, watch } from 'vue';
-import PerfectScrollbar from 'perfect-scrollbar';
-import Event from '@/components/calendar/mini/Event.vue';
+import { VPopUp, VCalendarMini } from "@/components";
+import IconCalendar from "@/components/icons/CalendarDay.vue";
+import { IEvent } from "@/utils/types/calendar";
+import { onMounted, PropType, ref, watch } from "vue";
+import PerfectScrollbar from "perfect-scrollbar";
+import Event from "@/components/calendar/mini/Event.vue";
+import SearchIcon from "@/components/icons/Search.vue";
 
 const props = defineProps({
   events: {
     type: Array as PropType<IEvent[]>,
     default: () => [],
   },
-})
+});
 
-const emits = defineEmits(['search-event', 'event-was-clicked', 'day-was-clicked']);
-
+const emits = defineEmits([
+  "search-event",
+  "event-was-clicked",
+  "day-was-clicked",
+]);
 
 const calendarSelectedDate = ref(new Date());
 
@@ -55,23 +69,22 @@ function onHandleDayClicked(payload: any) {
     const eventIsInDay = event?.time?.start.substring(0, 10) === dateTimeString;
     return eventIsInDay;
   });
-  emits('day-was-clicked', payload)
+  emits("day-was-clicked", payload);
 }
 
-const search = ref('');
+const search = ref("");
 function searchEvent() {
-  emits('search-event', search.value);
+  emits("search-event", search.value);
 }
-
 
 function onHandleEventClicked(event: any) {
-  emits('event-was-clicked', event);
+  emits("event-was-clicked", event);
 }
 
 const scrollbar = ref<any | null>(null);
 
 function initScrollbar() {
-  scrollbar.value = new PerfectScrollbar('.list-events', {
+  scrollbar.value = new PerfectScrollbar(".list-events", {
     wheelSpeed: 0.5,
     wheelPropagation: true,
   });
@@ -90,21 +103,22 @@ watch(
   (newVal, oldVal) => {
     if (JSON.stringify(newVal) !== JSON.stringify(oldVal)) {
       eventsDataProperty.value = props.events;
-      const dateTimeString = calendarSelectedDate.value.toISOString().substring(0, 10);
+      const dateTimeString = calendarSelectedDate.value
+        .toISOString()
+        .substring(0, 10);
       eventsOfDay.value = eventsDataProperty.value.filter((event: IEvent) => {
-        const eventIsInDay = event?.time?.start.substring(0, 10) === dateTimeString;
+        const eventIsInDay =
+          event?.time?.start.substring(0, 10) === dateTimeString;
         return eventIsInDay;
       });
       eventRenderingKey.value = eventRenderingKey.value + 1;
     }
   },
   { deep: true, immediate: true }
-)
-
+);
 </script>
 
 <style lang="scss">
-
 .v-popup__content.center {
   left: auto;
 }
@@ -116,11 +130,21 @@ watch(
   height: 100%;
   min-height: 0px;
   display: flex;
+
   input {
     width: 100%;
     padding: 0.5rem;
     border: 1px solid #ccc;
-    border-radius: 0.25rem;
+    border-right: none;
+    border-radius: 0.25rem 0 0 0.25rem;
+  }
+
+  .search-events__icon {
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-left: none;
+    border-radius: 0 0.25rem 0.25rem 0;
+    padding-right: 0.25rem;
   }
 }
 
@@ -130,6 +154,17 @@ watch(
     width: 100%;
     margin-bottom: 0.5rem;
     cursor: pointer;
+  }
+  &__empty {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    p {
+      font-size: 0.875rem;
+      color: #ccc;
+    }
   }
 }
 
@@ -154,5 +189,14 @@ watch(
       margin-bottom: 0;
     }
   }
+}
+
+.a-link {
+  color: $color-primary-pure;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  line-height: 1rem;
+  margin-left: 22%;
 }
 </style>

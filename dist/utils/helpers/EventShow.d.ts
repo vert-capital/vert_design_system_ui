@@ -13,7 +13,7 @@ export declare class EventShow implements IEvent {
         end: string;
     };
     event_data: string;
-    data?: {};
+    data?: any;
     responsable?: string | undefined;
     timeHelper: Time;
     constructor(data: IEvent);

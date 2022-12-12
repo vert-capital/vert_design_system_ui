@@ -1,23 +1,24 @@
 <template>
   <div class="v-select">
-    <div class="v-select--label" v-if="label">
+    <div v-if="label" class="v-select--label">
       <label :for="id">{{ label }}</label>
     </div>
     <div class="v-selec--content">
       <select
+        :id="id"
         :class="[
           { 'v-select--border': props.borderNone },
           `v-select--input v-select--size-${size}`,
         ]"
         :name="name"
-        :id="id"
         :required="required"
         :disabled="disable"
         @change="selectChange($event)"
       >
-        <option value="" v-if="placeholder">{{ placeholder }}</option>
+        <option v-if="placeholder" value="">{{ placeholder }}</option>
         <option
-          v-for="option in options"
+          v-for="(option, index) in options"
+          :key="index"
           :value="option.value"
           :selected="option.value == selected"
           aria-checked="false"
@@ -28,7 +29,6 @@
     </div>
   </div>
 </template>
-<style src="./VSelect.scss" lang="scss"></style>
 <script lang="ts" setup>
 import { watch, ref } from "vue";
 
@@ -51,6 +51,10 @@ export interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
+  id: "select_id",
+  name: "select_name",
+  placeholder: "",
+  label: "",
   size: "lg",
   borderNone: false,
   options: () => [],
@@ -76,3 +80,4 @@ function selectChange(event: any): void {
   emit("update:modelValue", selected.value);
 }
 </script>
+<style src="./VSelect.scss" lang="scss"></style>

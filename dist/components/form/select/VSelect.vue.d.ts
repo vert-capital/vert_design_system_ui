@@ -17,15 +17,23 @@ export interface Props {
 declare const _default: import("vue").DefineComponent<{
     id: {
         type: import("vue").PropType<string>;
+    } & {
+        default: string;
     };
     name: {
         type: import("vue").PropType<string>;
+    } & {
+        default: string;
     };
     placeholder: {
         type: import("vue").PropType<string>;
+    } & {
+        default: string;
     };
     label: {
         type: import("vue").PropType<string>;
+    } & {
+        default: string;
     };
     options: {
         type: import("vue").PropType<ISelectOptions[]>;
@@ -61,15 +69,23 @@ declare const _default: import("vue").DefineComponent<{
 }, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
     id: {
         type: import("vue").PropType<string>;
+    } & {
+        default: string;
     };
     name: {
         type: import("vue").PropType<string>;
+    } & {
+        default: string;
     };
     placeholder: {
         type: import("vue").PropType<string>;
+    } & {
+        default: string;
     };
     label: {
         type: import("vue").PropType<string>;
+    } & {
+        default: string;
     };
     options: {
         type: import("vue").PropType<ISelectOptions[]>;
@@ -102,7 +118,11 @@ declare const _default: import("vue").DefineComponent<{
     onOnChange?: ((selected: any) => any) | undefined;
     "onUpdate:modelValue"?: ((selected: any) => any) | undefined;
 }, {
+    name: string;
     size: string;
+    id: string;
+    placeholder: string;
+    label: string;
     options: ISelectOptions[];
     modelValue: string | number;
     borderNone: boolean;

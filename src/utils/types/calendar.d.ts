@@ -1,8 +1,14 @@
-import type { APPLICATIONS_NAME } from "../constants";
-
 export type applicationsNumber = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
 
-export type applicationReference = 'obligations' | 'payment_events' | 'integrations' | 'subscriptions' | 'patrimony_status' | 'patrimony' | 'series_expiration' | 'series_status';
+export type applicationReference =
+  | "obligations"
+  | "payment_events"
+  | "integrations"
+  | "subscriptions"
+  | "patrimony_status"
+  | "patrimony"
+  | "series_expiration"
+  | "series_status";
 export interface IDay {
   dayName: string;
   dateTimeString: string;
@@ -12,7 +18,7 @@ export interface IDay {
 
 export type eventId = string | number;
 
-export type modeType = 'month' | 'week' | 'day' | 'personalized' | 'mini';
+export type modeType = "month" | "week" | "day" | "personalized" | "mini";
 
 export interface IEvent {
   id?: eventId;
@@ -21,15 +27,15 @@ export interface IEvent {
   patrimony?: number;
   series?: number;
   emission?: number;
-  time?: { start: string; end: string }; 
+  time?: { start: string; end: string };
   event_data: string;
-  data?: {},
+  data?: any;
   responsable?: string;
 }
 
 export interface IEventsFullDay {
   date: Date;
-  [key: string]: IEvent|any|string;
+  [key: string]: IEvent | any | string;
 }
 
 export type IEventsWeek = IEventsFullDay[];
@@ -86,7 +92,7 @@ export interface IConfig {
   locale?: string;
   week?: {
     nDays?: 5 | 7;
-    startsOn?: 'sunday' | 'monday';
+    startsOn?: "sunday" | "monday";
     scrollToHour?: number;
   };
   style?: {
@@ -94,7 +100,7 @@ export interface IConfig {
     colorSchemes?: colorSchemes;
   };
   defaultMode?: modeType;
-  disableModes?: ('week' | 'month')[];
+  disableModes?: ("week" | "month")[];
   isSilent?: boolean;
   dayIntervals?: dayIntervalsType;
   eventDialog?: {
@@ -102,8 +108,8 @@ export interface IConfig {
     isCustom?: boolean;
   };
   dayBoundaries?: {
-    start: number; 
-    end: number; 
+    start: number;
+    end: number;
   };
   showCurrentTime?: boolean;
 }

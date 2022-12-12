@@ -13,7 +13,7 @@ declare const _default: import("vue").DefineComponent<{
     };
 }, unknown, unknown, {}, {
     activeTab(event: any): void;
-    showContentTab(contentId: String, typeTab: String): void;
+    showContentTab(contentId: string, typeTab: string): void;
 }, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
     actived: {
         type: BooleanConstructor;

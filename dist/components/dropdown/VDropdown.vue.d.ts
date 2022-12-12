@@ -19,6 +19,8 @@ export interface Props {
 declare const _default: import("vue").DefineComponent<{
     id: {
         type: import("vue").PropType<string>;
+    } & {
+        default: string;
     };
     name: {
         type: import("vue").PropType<string>;
@@ -73,6 +75,8 @@ declare const _default: import("vue").DefineComponent<{
 }, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
     id: {
         type: import("vue").PropType<string>;
+    } & {
+        default: string;
     };
     name: {
         type: import("vue").PropType<string>;
@@ -126,6 +130,7 @@ declare const _default: import("vue").DefineComponent<{
 }, {
     name: string;
     type: string;
+    id: string;
     placeholder: string;
     options: ISelectOptions[];
     modelValue: any;

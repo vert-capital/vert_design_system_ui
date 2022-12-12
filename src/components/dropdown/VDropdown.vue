@@ -5,7 +5,12 @@
         {{ showValue }}
       </span>
       <span v-else>
-        <v-tag v-for="(selected, index) in showValue" status="secondary" square :key="index">
+        <v-tag
+          v-for="(selected, index) in showValue"
+          :key="index"
+          status="secondary"
+          square
+        >
           {{ selected.label }}
           <label class="icon--close" :for="name + '-' + selected.value"></label>
         </v-tag>
@@ -15,16 +20,19 @@
         :class="{ 'v-dropdow__input--arrow--open': showOptions }"
       ></div>
     </div>
-    <div class="v-dropdow__options" v-show="showOptions">
+    <div v-show="showOptions" class="v-dropdow__options">
       <ul>
-        <li v-for="option in options">
+        <li
+          v-for="(option, i) in options"
+          :key="i"
+          :tabIndex="option.value == valueOption ? -1 : i"
+        >
           <input
-            v-model="valueOption"
+            :id="name + '-' + option.value"
             name="option"
             :value="option.value"
-            :id="name + '-' + option.value"
             :type="setMultiple"
-            @change="selectChange()"
+            @change="selectChange(option.value)"
           />
           <label :for="name + '-' + option.value">{{ option.label }}</label>
         </li>
@@ -32,8 +40,8 @@
     </div>
   </div>
   <div
-    class="v-dropdow__fullscreen"
     v-show="showOptions"
+    class="v-dropdow__fullscreen"
     @click="showOptions = !showOptions"
   ></div>
 </template>
@@ -69,6 +77,7 @@ const props = withDefaults(defineProps<Props>(), {
   modelValue: [],
   type: "1",
   name: "exemplo",
+  id: "exemplo",
 });
 
 const emit = defineEmits<{
@@ -78,6 +87,13 @@ const emit = defineEmits<{
 
 const setMultiple = computed((): string =>
   props.multiple ? "checkbox" : "radio"
+);
+
+watch(
+  () => props.modelValue,
+  (value) => {
+    valueOption.value = value;
+  }
 );
 
 const showValue: any = computed(() => {
@@ -90,7 +106,7 @@ const showValue: any = computed(() => {
     );
     return option?.label;
   } else {
-    let options: any[] = [];
+    const options: any[] = [];
     valueOption.value.forEach((item: number) => {
       const find = props.options.find((element) => element.value == item);
       options.push(find);
@@ -102,9 +118,9 @@ const showValue: any = computed(() => {
 const valueOption = ref(props.modelValue);
 const showOptions = ref(false);
 
-function selectChange(): void {
-  emit("onChange", valueOption.value);
-  emit("update:modelValue", valueOption.value);
+function selectChange(value: any): void {
+  emit("onChange", value);
+  emit("update:modelValue", value);
 }
 
 const setTypeStyle = computed((): string => {

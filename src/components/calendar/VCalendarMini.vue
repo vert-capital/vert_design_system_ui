@@ -1,102 +1,142 @@
 <template>
   <div class="calendar-root-wrapper">
-    <div
-      class="calendar-root mode-is-mini"
-    >
+    <div class="calendar-root mode-is-mini">
       <Transition name="loading">
         <div v-if="isLoading" class="top-bar-loader" />
       </Transition>
 
-      <AppHeaderMini 
-        :key="wasInitialized + mode + '-header'"
-      />
-
+      <div class="calendar-header">
+        <div class="calendar-header__period">
+          <v-dropdown
+            :model-value="monthYearSelected"
+            :options="months"
+            type="2"
+            size="lg"
+            @on-change="onChangeMonth"
+          />
+        </div>
+      </div>
       <Mini
         :key="period.start.getTime() + period.end.getTime()"
         :time="time"
         :period="period"
         :n-days="week.nDays"
         @day-was-clicked="$emit('day-was-clicked', $event)"
+        @change-period="onChangePeriod"
       >
       </Mini>
     </div>
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, PropType } from 'vue';
-import { IEvent } from '@/utils/types/calendar';
-import Time from '@/utils/helpers/Time';
-import AppHeaderMini from '@/components/calendar/VCalendarHeaderMini.vue';
-import Mini from '@/components/calendar/mini/Mini.vue';
+<script lang="ts" setup>
+import { computed, onMounted, PropType, ref } from "vue";
+import { IEvent } from "@/utils/types/calendar";
+import Time from "@/utils/helpers/Time";
+import Mini from "@/components/calendar/mini/Mini.vue";
+import VDropdown from "@/components/dropdown/VDropdown.vue";
+import StringHelper from "@/utils/helpers/String";
 
-export default defineComponent({
-  name: 'VCalendarMini',
+interface IPeriod {
+  start: Date;
+  end: Date;
+  selectedDate: Date;
+}
 
-  components: {
-    AppHeaderMini,
-    Mini
-},
-
-  props: {
-    events: {
-      type: Array as PropType<IEvent[]>,
-      default: () => [],
-    },
-    selectedDate: {
-      type: Date,
-      default: new Date(),
-    },
-    isLoading: {
-      type: Boolean,
-      default: false,
-    },
+const props = defineProps({
+  events: {
+    type: Array as PropType<IEvent[]>,
+    default: () => [],
   },
-
-  emits: [
-    'event-was-clicked',
-    'day-was-clicked',
-  ],
-
-  data() {
-    return {
-      wasInitialized: 0,
-      period: {
-        start: new Date(),
-        end: new Date(),
-        selectedDate: this.selectedDate ? this.selectedDate : new Date(),
-      },
-      week: {
-        nDays: 7,
-      },
-      mode: 'mini',
-      time: new Time() as Time | any,
-    };
+  selectedDate: {
+    type: Date,
+    default: new Date(),
   },
-
-  mounted() {
-    this.setConfigOnMount();
-    this.setPeriodOnMount();
+  isLoading: {
+    type: Boolean,
+    default: false,
   },
+});
 
-  methods: {
-    setConfigOnMount() {
-      this.wasInitialized = 1;
-    },
+defineEmits<{
+  (e: "event-was-clicked", event: any): void;
+  (e: "day-was-clicked", event: any): void;
+}>();
 
-    setPeriodOnMount() {
-        const currentWeek = this.time.getCalendarWeekDateObjects(
-          this.period.selectedDate
-        );
-        this.period.start = currentWeek[0];
-        this.period.end = currentWeek[6];
+const monthYearSelected: any = ref(
+  String(`${new Date().getFullYear()}-${new Date().getMonth() + 1}`)
+);
+
+const months = computed(() => {
+  const months = [];
+  const currentYear = new Date().getFullYear();
+  for (let i = 0; i < 20; i++) {
+    for (let j = 0; j < 12; j++) {
+      const month = j <= 8 ? `0${j + 1}` : j + 1;
+      months.push({
+        value: String(`${currentYear + i}-${month}`),
+        label: StringHelper.capitalizeFirstLetter(
+          new Date(currentYear + i, j, 1).toLocaleString("default", {
+            month: "long",
+            year: "numeric",
+          })
+        ),
+      });
     }
-  },
+  }
+  return months;
+});
+
+const week = { nDays: 7 };
+const time = new Time() as Time | any;
+
+const period = ref<IPeriod>({
+  start: new Date(),
+  end: new Date(),
+  selectedDate: props.selectedDate ? props.selectedDate : new Date(),
+});
+
+function setPeriodOnMount() {
+  const currentWeek = time.getCalendarWeekDateObjects(
+    period.value.selectedDate
+  );
+  period.value.start = currentWeek[0];
+  period.value.end = currentWeek[6];
+}
+
+const onChangeMonth = (monthYear: string) => {
+  const [year, month] = monthYear.split("-");
+  const date = new Date(parseInt(year), parseInt(month) - 1, 1);
+  period.value = {
+    start: date,
+    end: new Date(date.getFullYear(), date.getMonth() + 1, 0),
+    selectedDate: date,
+  };
+};
+
+function onChangePeriod(value: string) {
+  if (!months.value.find((m) => m.value === value)) {
+    const year = Number(value.substring(0, 4));
+    const month = value.substring(5, 7);
+    months.value.push({
+      value: String(`${year}-${month}`),
+      label: StringHelper.capitalizeFirstLetter(
+        new Date(year, Number(month) - 1, 1).toLocaleString("default", {
+          month: "long",
+          year: "numeric",
+        })
+      ),
+    });
+  }
+  monthYearSelected.value = String(value);
+}
+
+onMounted(() => {
+  setPeriodOnMount();
 });
 </script>
 
 <style lang="scss">
-
 .calendar-root-wrapper {
   width: 100%;
   max-width: 100vw;
@@ -128,7 +168,7 @@ export default defineComponent({
     }
 
     .top-bar-loader:before {
-      content: '';
+      content: "";
       height: 4px;
       width: calc(100% - 4px);
       position: absolute;
@@ -168,6 +208,43 @@ export default defineComponent({
     .loading-leave-to,
     .loading-enter-from {
       background-color: rgba(255, 255, 255, 0);
+    }
+  }
+}
+
+.calendar-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0;
+  border-radius: 2px;
+  cursor: default;
+  color: $neutral-color-low-pure;
+  font-size: 0.843rem;
+
+  @include screen-size-m {
+    justify-content: space-between;
+    grid-gap: 10px;
+  }
+
+  &__period {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 20px;
+    width: 60%;
+    color: $neutral-color-low-pure;
+    padding-bottom: 0.4rem;
+  }
+
+  &__period-name {
+    font-size: "Lato, sans-serif ";
+    text-align: center;
+
+    @include screen-size-m {
+      margin-bottom: 0;
+      text-align: left;
     }
   }
 }
