@@ -163,18 +163,16 @@
       <v-tag status="secondary" square>Tag secondary</v-tag>
     </div>
     <br />
-    <v-dropdown
+    <v-multiselect
       v-model="dropDownExemplo"
       :options="selectOptions"
       name="teste1"
-      multiple
-    ></v-dropdown>
+    ></v-multiselect>
     <div style="width: 200px">
       <v-dropdown
         v-model="dropDownExemplo2"
         name="teste2"
         :options="selectOptions"
-        type="2"
       ></v-dropdown>
     </div>
   </div>
@@ -258,6 +256,7 @@ import VCard from "./components/card/VCard.vue";
 import VDropdown from "./components/dropdown/VDropdown.vue";
 import VCalendarButton from "./components/calendar/VCalendarButton.vue";
 import VEventCard from "./components/eventCard/VEventCard.vue";
+import VMultiselect from "./components/form/multiselect/VMultiselect.vue";
 
 export default defineComponent({
   name: "App",
@@ -276,6 +275,7 @@ export default defineComponent({
     VDropdown,
     VCalendarButton,
     VEventCard,
+    VMultiselect,
   },
   setup() {
     const pokemons = ref({ count: 0, next: "", previous: "", results: [] });

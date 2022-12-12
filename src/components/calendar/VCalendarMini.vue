@@ -10,7 +10,6 @@
           <v-dropdown
             :model-value="monthYearSelected"
             :options="months"
-            type="2"
             size="lg"
             @on-change="onChangeMonth"
           />

@@ -1,5 +1,9 @@
 <template>
-  <v-pop-up position-content="center center" title="Calendário de eventos">
+  <v-pop-up
+    position-content="center center"
+    title="Calendário de eventos"
+    width-content="23rem"
+  >
     <template #event-area>
       <icon-calendar />
     </template>
@@ -22,7 +26,7 @@
             :key="index"
             class="list-events__item"
           >
-            <Event :event="event" @click="onHandleEventClicked(event)"></Event>
+            <event :event="event" @click="onHandleEventClicked(event)"></event>
           </div>
         </div>
 
@@ -39,7 +43,7 @@
 <script lang="ts" setup>
 import { VPopUp, VCalendarMini } from "@/components";
 import IconCalendar from "@/components/icons/CalendarDay.vue";
-import { IEvent } from "@/utils/types/calendar";
+import type { IEvent } from "@/utils/types/calendar";
 import { onMounted, PropType, ref, watch } from "vue";
 import PerfectScrollbar from "perfect-scrollbar";
 import Event from "@/components/calendar/mini/Event.vue";

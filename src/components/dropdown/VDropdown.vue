@@ -1,19 +1,8 @@
 <template>
   <div class="v-dropdow" :class="setTypeStyle">
     <div class="v-dropdow__input" @click="showOptions = !showOptions">
-      <span v-if="!multiple || showValue == placeholder">
+      <span>
         {{ showValue }}
-      </span>
-      <span v-else>
-        <v-tag
-          v-for="(selected, index) in showValue"
-          :key="index"
-          status="secondary"
-          square
-        >
-          {{ selected.label }}
-          <label class="icon--close" :for="name + '-' + selected.value"></label>
-        </v-tag>
       </span>
       <div
         class="v-dropdow__input--arrow"
@@ -31,7 +20,7 @@
             :id="name + '-' + option.value"
             name="option"
             :value="option.value"
-            :type="setMultiple"
+            type="radio"
             @change="selectChange(option.value)"
           />
           <label :for="name + '-' + option.value">{{ option.label }}</label>
@@ -48,7 +37,6 @@
 
 <script lang="ts" setup>
 import { ref, computed, watch } from "vue";
-import VTag from "../tag/VTag.vue";
 
 export interface ISelectOptions {
   value: any;
@@ -66,16 +54,12 @@ export interface Props {
   size?: string;
   modelValue?: any;
   borderNone?: boolean;
-  multiple?: boolean;
-  type?: string;
 }
 
 const props = withDefaults(defineProps<Props>(), {
   options: () => [],
-  multiple: false,
   placeholder: "Selecione",
   modelValue: [],
-  type: "1",
   name: "exemplo",
   id: "exemplo",
 });
@@ -84,10 +68,6 @@ const emit = defineEmits<{
   (e: "onChange", valueOption: any): void;
   (e: "update:modelValue", valueOption: any): void;
 }>();
-
-const setMultiple = computed((): string =>
-  props.multiple ? "checkbox" : "radio"
-);
 
 watch(
   () => props.modelValue,
@@ -100,19 +80,10 @@ const showValue: any = computed(() => {
   if (valueOption.value.length == 0) {
     return props.placeholder;
   }
-  if (!props.multiple) {
-    const option = props.options.find(
-      (element) => element.value == valueOption.value
-    );
-    return option?.label;
-  } else {
-    const options: any[] = [];
-    valueOption.value.forEach((item: number) => {
-      const find = props.options.find((element) => element.value == item);
-      options.push(find);
-    });
-    return options;
-  }
+  const option = props.options.find(
+    (element) => element.value == valueOption.value
+  );
+  return option?.label;
 });
 
 const valueOption = ref(props.modelValue);
@@ -124,12 +95,8 @@ function selectChange(value: any): void {
 }
 
 const setTypeStyle = computed((): string => {
-  if (props.type == "2") {
-    return "v-dropdow__style--2";
-  }
-  return "";
+  return "v-dropdow__style--2";
 });
-// https://codepen.io/elmahdim/pen/nmWyzE
 </script>
 
 <style src="./VDropdown.scss" lang="scss"></style>
