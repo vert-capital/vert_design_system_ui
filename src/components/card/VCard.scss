@@ -1,6 +1,5 @@
 .card {
   // font-family: $font-family-base;
-  border-radius: $border-radius-md;
   background-color: $neutral-color-hight-pure;
   &.card-shadow {
     padding: 24px;
@@ -31,6 +30,17 @@
   }
   &--shadow {
     box-shadow: 0 2px 8px 2px rgba(0, 0, 0, 0.08);
+  }
+  &__border{
+    &--sm{
+      border-radius: $border-radius-xs;
+    }
+    &--md{
+      border-radius: $border-radius-sm;
+    }
+    &--lg{
+      border-radius: $border-radius-md;
+    }
   }
 }
 

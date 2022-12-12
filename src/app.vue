@@ -235,6 +235,13 @@
       </template>
     </v-event-card>
   </div>
+  <br />
+  <v-card type="shadow">
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa modi
+    voluptatibus quam consequatur, quae perspiciatis debitis quas molestias
+    repudiandae, nesciunt adipisci vel harum iste, ullam rerum corporis tempora.
+    Laborum, excepturi!
+  </v-card>
 </template>
 
 <script lang="ts">
@@ -270,7 +277,6 @@ export default defineComponent({
     VCalendarButton,
     VEventCard,
   },
-
   setup() {
     const pokemons = ref({ count: 0, next: "", previous: "", results: [] });
 

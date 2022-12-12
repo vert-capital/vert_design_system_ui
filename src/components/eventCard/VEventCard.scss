@@ -8,12 +8,15 @@
 
   p {
     margin: 0px;
+    font-size: $font-size-xxxs;
+    line-height: 1rem;
   }
 
   h4 {
     margin: 0px;
     font-weight: $weight-bold;
-    font-size: $font-size-xs;
+    font-size: $font-size-xxxs;
+    line-height: 1rem;
   }
 
   .event-status {
