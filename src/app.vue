@@ -243,8 +243,6 @@
     Laborum, excepturi!
   </v-card>
   <div class="item--checkbox">
-    <v-checkbox-group :options="selectOptions" v-model="checkbox" name="teste">
-    </v-checkbox-group>
     <input
       type="checkbox"
       name="teste"
@@ -273,7 +271,6 @@ import VCard from "./components/card/VCard.vue";
 import VDropdown from "./components/dropdown/VDropdown.vue";
 import VCalendarButton from "./components/calendar/VCalendarButton.vue";
 import VEventCard from "./components/eventCard/VEventCard.vue";
-// import VCheckboxGroup from "./components/form/checkbox/VCheckboxGroup.vue";
 
 export default defineComponent({
   name: "App",
@@ -292,7 +289,6 @@ export default defineComponent({
     VDropdown,
     VCalendarButton,
     VEventCard,
-    // VCheckboxGroup,
   },
 
   data() {
