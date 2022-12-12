@@ -1,4 +1,4 @@
-import { IEvent } from "@/utils/types/calendar";
+import type { IEvent } from "@/utils/types/calendar";
 import { PropType } from "vue";
 declare const _default: import("vue").DefineComponent<{
     events: {

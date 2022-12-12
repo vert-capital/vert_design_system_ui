@@ -13,8 +13,6 @@ export interface Props {
     size?: string;
     modelValue?: any;
     borderNone?: boolean;
-    multiple?: boolean;
-    type?: string;
 }
 declare const _default: import("vue").DefineComponent<{
     id: {
@@ -57,16 +55,6 @@ declare const _default: import("vue").DefineComponent<{
     };
     borderNone: {
         type: import("vue").PropType<boolean>;
-    };
-    multiple: {
-        type: import("vue").PropType<boolean>;
-    } & {
-        default: boolean;
-    };
-    type: {
-        type: import("vue").PropType<string>;
-    } & {
-        default: string;
     };
 }, () => void, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
     onChange: (valueOption: any) => void;
@@ -114,26 +102,14 @@ declare const _default: import("vue").DefineComponent<{
     borderNone: {
         type: import("vue").PropType<boolean>;
     };
-    multiple: {
-        type: import("vue").PropType<boolean>;
-    } & {
-        default: boolean;
-    };
-    type: {
-        type: import("vue").PropType<string>;
-    } & {
-        default: string;
-    };
 }>> & {
     onOnChange?: ((valueOption: any) => any) | undefined;
     "onUpdate:modelValue"?: ((valueOption: any) => any) | undefined;
 }, {
     name: string;
-    type: string;
     id: string;
     placeholder: string;
     options: ISelectOptions[];
     modelValue: any;
-    multiple: boolean;
 }>;
 export default _default;

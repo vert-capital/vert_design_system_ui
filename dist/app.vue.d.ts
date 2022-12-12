@@ -89,6 +89,7 @@ declare const _default: import("vue").DefineComponent<{}, {
     testeSelect: string;
     dropDownExemplo: never[];
     dropDownExemplo2: never[];
+    checkbox: never[];
     events: IEvent[];
     isLoading: boolean;
 }, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{}>>, {}>;
