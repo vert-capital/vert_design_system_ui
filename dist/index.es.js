@@ -977,10 +977,6 @@ const _hoisted_5$2 = { class: "calendar-header__period" };
 const _sfc_main$8 = /* @__PURE__ */ defineComponent({
   __name: "VCalendarMini",
   props: {
-    events: {
-      type: Array,
-      default: () => []
-    },
     selectedDate: {
       type: Date,
       default: new Date()
@@ -2149,107 +2145,6 @@ PerfectScrollbar.prototype.removePsClasses = function removePsClasses() {
     return !name.match(/^ps([-_].+|)$/);
   }).join(" ");
 };
-const DATE_TIME_PATTERN = /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}$/;
-const DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
-const ITENS_COLOR = {
-  yellow: "#E6CF42",
-  primary: "#00747A",
-  green: "#41d394",
-  red: "#F07363",
-  orange: "#F4A053",
-  purple: "#885DE2",
-  blue: "#8CB3FF",
-  black: "#171919"
-};
-const APPLICATIONS_NAME = {
-  1: "Obriga\xE7\xF5es",
-  2: "Eventos de pagamentos",
-  3: "Integraliza\xE7\xF5es",
-  4: "Subscri\xE7\xF5es",
-  5: "Atualiza\xE7\xE3o de status dos patrim\xF4nios",
-  6: "Marcos dos patrim\xF4nios",
-  7: "Vencimento das s\xE9ries",
-  8: "Status das s\xE9ries"
-};
-const APPLICATIONS_COLORS = {
-  1: { color: "#3DA5A5", disabled: "#77C0C0", hover: "#2B7373" },
-  2: { color: "#F28E83", disabled: "#F2B5B0", hover: "#C15A4F" },
-  3: { color: "#3B634E", disabled: "#6E8C7C", hover: "#2B3F3A" },
-  4: { color: "#86381D", disabled: "#B36A4D", hover: "#5A2412" },
-  5: { color: "#F4A053", disabled: "#F4CFA3", hover: "#C17A2B" },
-  6: { color: "#A5AF80", disabled: "#C0C9A5", hover: "#737B4F" },
-  7: { color: "#E6CF42", disabled: "#E6E0A5", hover: "#B3A12B" },
-  8: { color: "#171919", disabled: "#4F4F4F", hover: "#000000" }
-};
-const APPLICATIONS_REFERENCE_NAME = {
-  1: "obligations",
-  2: "payment_events",
-  3: "integrations",
-  4: "subscriptions",
-  5: "patrimony_status",
-  6: "patrimony",
-  7: "series_expiration",
-  8: "series_status"
-};
-var constants = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
-  __proto__: null,
-  DATE_TIME_PATTERN,
-  DATE_PATTERN,
-  ITENS_COLOR,
-  APPLICATIONS_NAME,
-  APPLICATIONS_COLORS,
-  APPLICATIONS_REFERENCE_NAME
-}, Symbol.toStringTag, { value: "Module" }));
-class EventShow {
-  constructor(data) {
-    __publicField(this, "id");
-    __publicField(this, "title");
-    __publicField(this, "application");
-    __publicField(this, "patrimony");
-    __publicField(this, "series");
-    __publicField(this, "emission");
-    __publicField(this, "time");
-    __publicField(this, "event_data");
-    __publicField(this, "data");
-    __publicField(this, "responsable");
-    __publicField(this, "timeHelper", new Time());
-    this.id = data == null ? void 0 : data.id;
-    this.title = data == null ? void 0 : data.title;
-    this.application = (data == null ? void 0 : data.application) || 1;
-    this.patrimony = data == null ? void 0 : data.patrimony;
-    this.series = data == null ? void 0 : data.series;
-    this.emission = data == null ? void 0 : data.emission;
-    this.time = (data == null ? void 0 : data.time) || {
-      start: this.timeHelper.getDateTimeStringFromDate(new Date()),
-      end: this.timeHelper.getDateTimeStringFromDate(new Date())
-    };
-    this.event_data = (data == null ? void 0 : data.event_data) || this.timeHelper.getDateStringFromDate(new Date());
-    this.data = data ? data.data : {};
-    this.responsable = data == null ? void 0 : data.responsable;
-  }
-  getApplicationName() {
-    return APPLICATIONS_NAME[this.application];
-  }
-  getApplicationColors() {
-    return APPLICATIONS_COLORS[this.application];
-  }
-  getApplicationsReferenceName() {
-    return APPLICATIONS_REFERENCE_NAME[this.application];
-  }
-  getSubtitle() {
-    let subtitle = "";
-    if (this.patrimony) {
-      subtitle += `Patrim\xF4nio: ${this.patrimony}`;
-    }
-    if (this.series) {
-      subtitle += ` S\xE9rie: ${this.series}`;
-    }
-    if (this.emission) {
-      subtitle += ` Emiss\xE3o: ${this.emission}`;
-    }
-    return subtitle;
-  }
-}
 var VEventCard_scss_vue_type_style_index_0_src_67fe39ee_lang = "";
 const _hoisted_1$5 = { class: "event-card" };
 const _hoisted_2$2 = { class: "break-ellipsis break-ellipsis--three_line" };
@@ -2280,9 +2175,9 @@ const _sfc_main$6 = defineComponent({
       type: String,
       default: "default"
     },
-    aplication: {
+    eventType: {
       type: String,
-      default: "obligation"
+      default: "obrigacoes"
     },
     status: {
       type: String,
@@ -2291,13 +2186,13 @@ const _sfc_main$6 = defineComponent({
   },
   setup(__props) {
     const props = __props;
-    const setAplicationClass = computed(
-      () => `event-status--${props.aplication}`
+    const setEventTypeClass = computed(
+      () => `event-status--${props.eventType}`
     );
     return (_ctx, _cache) => {
       return openBlock(), createElementBlock("div", _hoisted_1$5, [
         createElementVNode("div", {
-          class: normalizeClass(["event-status", unref(setAplicationClass)])
+          class: normalizeClass(["event-status", unref(setEventTypeClass)])
         }, [
           createElementVNode("div", {
             class: normalizeClass(["event-body", `event-body--${__props.size}`])
@@ -2322,15 +2217,13 @@ const _sfc_main$5 = /* @__PURE__ */ defineComponent({
     }
   },
   setup(__props) {
-    const props = __props;
-    const eventShow = new EventShow(props.event);
     return (_ctx, _cache) => {
       return openBlock(), createBlock(VEventCard, {
         title: __props.event.title,
-        aplication: unref(eventShow).getApplicationsReferenceName(),
-        subtitle: unref(eventShow).getSubtitle(),
+        "event-type": __props.event.event_type,
+        subtitle: __props.event.subtitle,
         responsable: __props.event.responsable
-      }, null, 8, ["title", "aplication", "subtitle", "responsable"]);
+      }, null, 8, ["title", "event-type", "subtitle", "responsable"]);
     };
   }
 });
@@ -2382,8 +2275,7 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
       calendarSelectedDate.value = date;
       const dateTimeString = payload.dateTimeString.substring(0, 10);
       eventsOfDay.value = eventsDataProperty.value.filter((event) => {
-        var _a;
-        const eventIsInDay = ((_a = event == null ? void 0 : event.time) == null ? void 0 : _a.start.substring(0, 10)) === dateTimeString;
+        const eventIsInDay = (event == null ? void 0 : event.event_data) === dateTimeString;
         return eventIsInDay;
       });
       emits("day-was-clicked", payload);
@@ -2415,8 +2307,7 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
           eventsDataProperty.value = props.events;
           const dateTimeString = calendarSelectedDate.value.toISOString().substring(0, 10);
           eventsOfDay.value = eventsDataProperty.value.filter((event) => {
-            var _a;
-            const eventIsInDay = ((_a = event == null ? void 0 : event.time) == null ? void 0 : _a.start.substring(0, 10)) === dateTimeString;
+            const eventIsInDay = (event == null ? void 0 : event.event_data) === dateTimeString;
             return eventIsInDay;
           });
           eventRenderingKey.value = eventRenderingKey.value + 1;
@@ -2435,10 +2326,9 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
         ]),
         "popup-body": withCtx(() => [
           createVNode(unref(VCalendarMini), {
-            events: __props.events,
             "selected-date": calendarSelectedDate.value,
             onDayWasClicked: onHandleDayClicked
-          }, null, 8, ["events", "selected-date"]),
+          }, null, 8, ["selected-date"]),
           createElementVNode("div", _hoisted_1$3, [
             withDirectives(createElementVNode("input", {
               "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => search.value = $event),
@@ -2820,4 +2710,55 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
   ], 10, _hoisted_1);
 }
 var VTabHeader = /* @__PURE__ */ _export_sfc(_sfc_main, [["render", _sfc_render], ["__file", "/home/debora/Documentos/www/vert_design_system_ui/src/components/tab/VTabHeader.vue"]]);
+const DATE_TIME_PATTERN = /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}$/;
+const DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
+const ITENS_COLOR = {
+  yellow: "#E6CF42",
+  primary: "#00747A",
+  green: "#41d394",
+  red: "#F07363",
+  orange: "#F4A053",
+  purple: "#885DE2",
+  blue: "#8CB3FF",
+  black: "#171919"
+};
+const APPLICATIONS_NAME = {
+  1: "Obriga\xE7\xF5es",
+  2: "Eventos de pagamentos",
+  3: "Integraliza\xE7\xF5es",
+  4: "Subscri\xE7\xF5es",
+  5: "Atualiza\xE7\xE3o de status dos patrim\xF4nios",
+  6: "Marcos dos patrim\xF4nios",
+  7: "Vencimento das s\xE9ries",
+  8: "Status das s\xE9ries"
+};
+const APPLICATIONS_COLORS = {
+  1: { color: "#3DA5A5", disabled: "#77C0C0", hover: "#2B7373" },
+  2: { color: "#F28E83", disabled: "#F2B5B0", hover: "#C15A4F" },
+  3: { color: "#3B634E", disabled: "#6E8C7C", hover: "#2B3F3A" },
+  4: { color: "#86381D", disabled: "#B36A4D", hover: "#5A2412" },
+  5: { color: "#F4A053", disabled: "#F4CFA3", hover: "#C17A2B" },
+  6: { color: "#A5AF80", disabled: "#C0C9A5", hover: "#737B4F" },
+  7: { color: "#E6CF42", disabled: "#E6E0A5", hover: "#B3A12B" },
+  8: { color: "#171919", disabled: "#4F4F4F", hover: "#000000" }
+};
+const APPLICATIONS_REFERENCE_NAME = {
+  1: "obligations",
+  2: "payment_events",
+  3: "integrations",
+  4: "subscriptions",
+  5: "patrimony_status",
+  6: "patrimony",
+  7: "series_expiration",
+  8: "series_status"
+};
+var constants = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+  __proto__: null,
+  DATE_TIME_PATTERN,
+  DATE_PATTERN,
+  ITENS_COLOR,
+  APPLICATIONS_NAME,
+  APPLICATIONS_COLORS,
+  APPLICATIONS_REFERENCE_NAME
+}, Symbol.toStringTag, { value: "Module" }));
 export { VButton, VCalendarButton, VCalendarMini, VCard, VEventCard, VPagination, VPopUp, VSelect, VTab, VTabContent, VTabHeader, VTable, VTag, constants };

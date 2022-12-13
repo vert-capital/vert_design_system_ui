@@ -1,11 +1,11 @@
 import { PropType } from "vue";
-import { applicationReference } from "@/utils/types/calendar";
+import { eventsTypes } from "@/utils/types/calendar";
 export interface Props {
     title: string;
     subtitle: string;
     responsable: string;
     size: string;
-    aplication: applicationReference;
+    aplication: eventsTypes;
     status: string;
 }
 declare const _default: import("vue").DefineComponent<{
@@ -25,8 +25,8 @@ declare const _default: import("vue").DefineComponent<{
         type: StringConstructor;
         default: string;
     };
-    aplication: {
-        type: PropType<applicationReference>;
+    eventType: {
+        type: PropType<eventsTypes>;
         default: string;
     };
     status: {
@@ -50,8 +50,8 @@ declare const _default: import("vue").DefineComponent<{
         type: StringConstructor;
         default: string;
     };
-    aplication: {
-        type: PropType<applicationReference>;
+    eventType: {
+        type: PropType<eventsTypes>;
         default: string;
     };
     status: {
@@ -62,8 +62,8 @@ declare const _default: import("vue").DefineComponent<{
     size: string;
     status: string;
     title: string;
-    responsable: string;
     subtitle: string;
-    aplication: applicationReference;
+    responsable: string;
+    eventType: eventsTypes;
 }>;
 export default _default;
