@@ -43,10 +43,6 @@ interface IPeriod {
 }
 
 const props = defineProps({
-  events: {
-    type: Array as PropType<IEvent[]>,
-    default: () => [],
-  },
   selectedDate: {
     type: Date,
     default: new Date(),

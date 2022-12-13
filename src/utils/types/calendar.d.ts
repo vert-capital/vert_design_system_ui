@@ -1,19 +1,19 @@
 export type applicationsNumber = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
 
-export type applicationReference =
-  | "obligations"
-  | "payment_events"
-  | "integrations"
-  | "subscriptions"
-  | "patrimony_status"
-  | "patrimony"
-  | "series_expiration"
-  | "series_status";
+export type eventsTypes =
+  | "obrigacoes"
+  | "eventos_pagamento"
+  | "integralizacoes"
+  | "subscricoes"
+  | "atualizacao_status_patrimonios"
+  | "marcos_patrimonios"
+  | "vencimento_series"
+  | "rating";
+
 export interface IDay {
   dayName: string;
   dateTimeString: string;
   events?: IEvent[];
-  fullDayEvents?: IEventsFullDay;
 }
 
 export type eventId = string | number;
@@ -23,22 +23,13 @@ export type modeType = "month" | "week" | "day" | "personalized" | "mini";
 export interface IEvent {
   id?: eventId;
   title?: string;
-  application: applicationsNumber;
-  patrimony?: number;
-  series?: number;
-  emission?: number;
-  time?: { start: string; end: string };
+  event_type: eventsTypes;
   event_data: string;
-  data?: any;
+  subtitle?: string;
   responsable?: string;
 }
 
-export interface IEventsFullDay {
-  date: Date;
-  [key: string]: IEvent | any | string;
-}
-
-export type IEventsWeek = IEventsFullDay[];
+export type IEventsWeek = IEvent[];
 
 export interface IPeriod {
   start: Date;
@@ -87,32 +78,6 @@ export type dayIntervalsType = {
   displayClickableInterval?: boolean;
   intervalStyles?: { [key: string]: any };
 };
-
-export interface IConfig {
-  locale?: string;
-  week?: {
-    nDays?: 5 | 7;
-    startsOn?: "sunday" | "monday";
-    scrollToHour?: number;
-  };
-  style?: {
-    fontFamily?: string;
-    colorSchemes?: colorSchemes;
-  };
-  defaultMode?: modeType;
-  disableModes?: ("week" | "month")[];
-  isSilent?: boolean;
-  dayIntervals?: dayIntervalsType;
-  eventDialog?: {
-    isDisabled?: boolean;
-    isCustom?: boolean;
-  };
-  dayBoundaries?: {
-    start: number;
-    end: number;
-  };
-  showCurrentTime?: boolean;
-}
 
 export interface DOMRect {
   bottom: number;

@@ -9,7 +9,6 @@
     </template>
     <template #popup-body>
       <v-calendar-mini
-        :events="events"
         :selected-date="calendarSelectedDate"
         @day-was-clicked="onHandleDayClicked"
       ></v-calendar-mini>
@@ -70,7 +69,7 @@ function onHandleDayClicked(payload: any) {
 
   const dateTimeString = payload.dateTimeString.substring(0, 10);
   eventsOfDay.value = eventsDataProperty.value.filter((event: IEvent) => {
-    const eventIsInDay = event?.time?.start.substring(0, 10) === dateTimeString;
+    const eventIsInDay = event?.event_data === dateTimeString;
     return eventIsInDay;
   });
   emits("day-was-clicked", payload);
@@ -111,8 +110,7 @@ watch(
         .toISOString()
         .substring(0, 10);
       eventsOfDay.value = eventsDataProperty.value.filter((event: IEvent) => {
-        const eventIsInDay =
-          event?.time?.start.substring(0, 10) === dateTimeString;
+        const eventIsInDay = event?.event_data === dateTimeString;
         return eventIsInDay;
       });
       eventRenderingKey.value = eventRenderingKey.value + 1;

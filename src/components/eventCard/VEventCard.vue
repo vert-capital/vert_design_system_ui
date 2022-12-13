@@ -1,6 +1,6 @@
 <template>
   <div class="event-card">
-    <div class="event-status" :class="setAplicationClass">
+    <div class="event-status" :class="setEventTypeClass">
       <div class="event-body" :class="`event-body--${size}`">
         <slot v-if="size !== 'small'" name="tag"></slot>
         <h4 class="break-ellipsis break-ellipsis--three_line">{{ title }}</h4>
@@ -23,14 +23,14 @@
 
 <script lang="ts" setup>
 import { computed, PropType } from "vue";
-import { applicationReference } from "@/utils/types/calendar";
+import { eventsTypes } from "@/utils/types/calendar";
 
 export interface Props {
   title: string;
   subtitle: string;
   responsable: string;
   size: string;
-  aplication: applicationReference;
+  aplication: eventsTypes;
   status: string;
 }
 
@@ -51,9 +51,9 @@ const props = defineProps({
     type: String,
     default: "default",
   },
-  aplication: {
-    type: String as PropType<applicationReference>,
-    default: "obligation",
+  eventType: {
+    type: String as PropType<eventsTypes>,
+    default: "obrigacoes",
   },
   status: {
     type: String,
@@ -61,8 +61,8 @@ const props = defineProps({
   },
 });
 
-const setAplicationClass = computed(
-  (): string => `event-status--${props.aplication}`
+const setEventTypeClass = computed(
+  (): string => `event-status--${props.eventType}`
 );
 </script>
 
