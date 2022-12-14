@@ -4,7 +4,7 @@
     flex-wrap: wrap;
     height: 100%;
     width: 100%;
-    align-itens: center;
+    align-items: center;
     justify-content: center;
     font-family: "Lato-Regular", sans-serif;
     font-size: .875rem;
@@ -20,7 +20,7 @@
       order: 2;
       display: flex;
       flex-wrap: wrap;
-      align-itens: center;
+      align-items: center;
       justify-content: center;
 
       &-size {

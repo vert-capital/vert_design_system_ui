@@ -569,7 +569,7 @@ export default defineComponent({
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-itens: center;
+  align-items: center;
   margin: 0 auto;
   padding-bottom: 400px;
 }

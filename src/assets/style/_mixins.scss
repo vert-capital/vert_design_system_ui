@@ -37,7 +37,7 @@ $breakpoints: (
   justify-content: $justify;
   flex-direction: $direction;
   flex-wrap: $wrap;
-  align-itens: $item;
+  align-items: $item;
 }
 
 @mixin icon($icon, $font-size: 24px) {

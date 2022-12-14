@@ -104,7 +104,7 @@ export default defineComponent({
     width: 100%;
     display: flex;
     flex-flow: column;
-    align-itens: center;
+    align-items: center;
     justify-content: flex-start;
     :hover {
       cursor: pointer;
@@ -130,7 +130,7 @@ export default defineComponent({
     width: 1rem;
     border-radius: 50%;
     display: flex;
-    align-itens: center;
+    align-items: center;
     justify-content: center;
     color: #4a4a4a;
     :hover {

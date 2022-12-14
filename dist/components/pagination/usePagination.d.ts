@@ -3,13 +3,13 @@ declare type MaybeRef<T> = T | Ref<T>;
 export interface IOptions {
     page?: MaybeRef<number>;
     pageSize?: MaybeRef<number>;
-    numItems?: MaybeRef<number>;
+    numitens?: MaybeRef<number>;
     numButtons?: MaybeRef<number>;
 }
 export interface IPagination {
     page: Ref<number>;
     pageSize: Ref<number>;
-    numItems: Ref<number>;
+    numitens: Ref<number>;
     numButtons: Ref<number>;
     numPages: ComputedRef<number>;
     slice: ComputedRef<[number, number]>;

@@ -162,7 +162,7 @@ watch(
     height: 100%;
     display: flex;
     justify-content: center;
-    align-itens: center;
+    align-items: center;
     p {
       font-size: 0.875rem;
       color: #ccc;

@@ -2370,14 +2370,14 @@ var VCalendarButton = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["__file", "/hom
 const defaultOptions = {
   page: 1,
   pageSize: 5,
-  numItems: 0,
+  numitens: 0,
   numButtons: 5
 };
 var usePaginator = (userOptions) => {
   const options = { ...defaultOptions, ...userOptions };
   const _page = ref(options.page);
   const pageSize = ref(options.pageSize);
-  const numItems = ref(options.numItems);
+  const numitens = ref(options.numitens);
   const numButtons = ref(options.numButtons);
   const page = computed({
     get: () => _page.value,
@@ -2387,15 +2387,15 @@ var usePaginator = (userOptions) => {
       }
     }
   });
-  const numPages = computed(() => Math.ceil(numItems.value / pageSize.value));
-  watch([pageSize, numItems], () => {
+  const numPages = computed(() => Math.ceil(numitens.value / pageSize.value));
+  watch([pageSize, numitens], () => {
     if (page.value > numPages.value) {
       page.value = numPages.value;
     }
   });
   const slice = computed(() => {
     const start = (page.value - 1) * pageSize.value;
-    const end = Math.min(start + pageSize.value, numItems.value);
+    const end = Math.min(start + pageSize.value, numitens.value);
     return [start, end];
   });
   const hasPrev = computed(() => page.value > 1);
@@ -2429,7 +2429,7 @@ var usePaginator = (userOptions) => {
   return {
     page,
     pageSize,
-    numItems,
+    numitens,
     numButtons,
     numPages,
     slice,
@@ -2516,23 +2516,23 @@ const _sfc_main$2 = defineComponent({
       default: () => [
         {
           value: "5",
-          label: "5 items"
+          label: "5 itens"
         },
         {
           value: "10",
-          label: "10 items"
+          label: "10 itens"
         },
         {
           value: "30",
-          label: "30 items"
+          label: "30 itens"
         },
         {
           value: "50",
-          label: "50 items"
+          label: "50 itens"
         },
         {
           value: "100",
-          label: "100 items"
+          label: "100 itens"
         }
       ]
     },
@@ -2552,7 +2552,7 @@ const _sfc_main$2 = defineComponent({
       goNext,
       buttons,
       numPages,
-      numItems
+      numitens
     } = usePaginator({
       pageSize: props.sizeDefault,
       numButtons: props.qtdeButtonsPaginate
@@ -2560,7 +2560,7 @@ const _sfc_main$2 = defineComponent({
     watch(
       () => props.count,
       (count) => {
-        numItems.value = count;
+        numitens.value = count;
       }
     );
     watch([page, pageSize], ([newPage, newPageSize]) => {
@@ -2596,7 +2596,7 @@ const _hoisted_11 = [
 function _sfc_render$2(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_v_select = resolveComponent("v-select");
   return openBlock(), createElementBlock("div", _hoisted_1$2, [
-    createElementVNode("div", _hoisted_2, toDisplayString(_ctx.count) + " items", 1),
+    createElementVNode("div", _hoisted_2, toDisplayString(_ctx.count) + " itens", 1),
     createElementVNode("div", _hoisted_3, [
       createElementVNode("div", _hoisted_4, [
         createVNode(_component_v_select, {
