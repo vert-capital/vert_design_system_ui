@@ -429,7 +429,7 @@ export default defineComponent({
     font-size: var(--vcalendar-font-m);
     cursor: pointer;
     display: flex;
-    align-items: center;
+    align-itens: center;
     justify-content: center;
     gap: var(--vcalendar-spacing-half);
     user-select: none;
@@ -482,7 +482,7 @@ export default defineComponent({
   &__week-picker-navigation {
     font-weight: 900;
     display: flex;
-    align-items: center;
+    align-itens: center;
     justify-content: space-between;
     gap: var(--vcalendar-spacing-half);
     margin-bottom: 0.25em;
@@ -512,7 +512,7 @@ export default defineComponent({
     width: 100%;
     display: flex;
     justify-content: space-evenly;
-    align-items: center;
+    align-itens: center;
     margin: 4px 0;
 
     &.is-active {
@@ -525,7 +525,7 @@ export default defineComponent({
       min-height: 32px;
       min-width: 32px;
       justify-content: center;
-      align-items: center;
+      align-itens: center;
       flex: 1 1 100%;
       cursor: pointer;
       border-radius: 50%;

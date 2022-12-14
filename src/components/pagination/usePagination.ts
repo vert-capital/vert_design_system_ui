@@ -6,14 +6,14 @@ type MaybeRef<T> = T | Ref<T>;
 export interface IOptions {
   page?: MaybeRef<number>;
   pageSize?: MaybeRef<number>;
-  numItems?: MaybeRef<number>;
+  numitens?: MaybeRef<number>;
   numButtons?: MaybeRef<number>;
 }
 
 export interface IPagination {
   page: Ref<number>;
   pageSize: Ref<number>;
-  numItems: Ref<number>;
+  numitens: Ref<number>;
   numButtons: Ref<number>;
   numPages: ComputedRef<number>;
   slice: ComputedRef<[number, number]>;
@@ -45,7 +45,7 @@ export type IPaginatorButton = IPageButton | IEllipsisButton;
 const defaultOptions: Required<IOptions> = {
   page: 1,
   pageSize: 5,
-  numItems: 0,
+  numitens: 0,
   numButtons: 5,
 };
 
@@ -53,7 +53,7 @@ export default (userOptions: IOptions): IPagination => {
   const options: Required<IOptions> = { ...defaultOptions, ...userOptions };
   const _page = ref(options.page);
   const pageSize = ref(options.pageSize);
-  const numItems = ref(options.numItems);
+  const numitens = ref(options.numitens);
   const numButtons = ref(options.numButtons);
 
   const page = computed({
@@ -65,9 +65,9 @@ export default (userOptions: IOptions): IPagination => {
     },
   });
 
-  const numPages = computed(() => Math.ceil(numItems.value / pageSize.value));
+  const numPages = computed(() => Math.ceil(numitens.value / pageSize.value));
 
-  watch([pageSize, numItems], () => {
+  watch([pageSize, numitens], () => {
     if (page.value > numPages.value) {
       page.value = numPages.value;
     }
@@ -75,7 +75,7 @@ export default (userOptions: IOptions): IPagination => {
 
   const slice = computed((): [number, number] => {
     const start = (page.value - 1) * pageSize.value;
-    const end = Math.min(start + pageSize.value, numItems.value);
+    const end = Math.min(start + pageSize.value, numitens.value);
     return [start, end];
   });
 
@@ -112,7 +112,7 @@ export default (userOptions: IOptions): IPagination => {
   return {
     page,
     pageSize,
-    numItems,
+    numitens,
     numButtons,
     numPages,
     slice,

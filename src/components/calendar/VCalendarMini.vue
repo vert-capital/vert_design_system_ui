@@ -210,7 +210,7 @@ onMounted(() => {
 .calendar-header {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
+  align-itens: center;
   justify-content: space-between;
   padding: 0;
   border-radius: 2px;
@@ -226,7 +226,7 @@ onMounted(() => {
   &__period {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
+    align-itens: center;
     gap: 20px;
     width: 60%;
     color: $neutral-color-low-pure;

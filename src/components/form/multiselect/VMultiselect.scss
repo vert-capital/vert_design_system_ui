@@ -13,7 +13,7 @@
     box-sizing: border-box;
     position: relative;
     display: flex;
-    align-items: center;
+    align-itens: center;
     transition: ease-in-out .2s outline;
     outline: 1px solid transparent;
 
@@ -136,7 +136,7 @@
 
 // .multiselect {
 //   &__container {
-//     align-items: center;
+//     align-itens: center;
 //     background-color: #fff;
 //     border-radius: 2px;
 //     box-shadow: 0 1px 3px 0 #d1d1d2, 0 0 0 1px #d1d1d2;
@@ -179,7 +179,7 @@
 //     flex-wrap: wrap;
 //     height: 100%;
 //     width: 100%;
-//     align-items: center;
+//     align-itens: center;
 //   }
 
 //   &__clear-btn {
@@ -264,7 +264,7 @@
 //     margin: 0.25rem;
 //     padding: 4px 0.5rem;
 //     display: flex;
-//     align-items: center;
+//     align-itens: center;
 //     border-radius: $border-radius-pill;
 
 //     .multiselect__remove-btn {
