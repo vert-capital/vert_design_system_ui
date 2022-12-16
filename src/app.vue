@@ -178,7 +178,7 @@
   </div>
   <br />
   <hr />
-  <div class="section-calendar">
+  <div>
     <h4>CARD</h4>
     <v-card type="shadow">
       <template #buttons>
@@ -205,17 +205,20 @@
 
   <hr />
   <br />
-  <div class="section-calendar">
+  <!-- <div style="margin-left: 30%;">
     <h4>Calendário de eventos</h4>
     <h3>Calendário reduzido (popUp)</h3>
     <v-calendar-button
       :events="events"
+      :url="`https://api.json-generator.com/templates/f-G4yucOd7dK/data`"
+      authorization="Bearer 198191818181811"
+      :event-class="EventClass"
       @day-was-clicked="onHandleClickDay"
       @search-was-inputed="onHandleSearch"
       @event-was-clicked="onHandleEventClicked"
     >
     </v-calendar-button>
-  </div>
+  </div> -->
 
   <hr />
   <br />
@@ -234,7 +237,7 @@
     </v-event-card>
   </div>
   <br />
-  <v-card type="shadow">
+  <v-card type="shadow" border-size="sm">
     Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa modi
     voluptatibus quam consequatur, quae perspiciatis debitis quas molestias
     repudiandae, nesciunt adipisci vel harum iste, ullam rerum corporis tempora.
@@ -267,7 +270,7 @@ import type { IEvent } from "./utils/types/calendar";
 import VPopUp from "./components/popUp/VPopUp.vue";
 import VCard from "./components/card/VCard.vue";
 import VDropdown from "./components/dropdown/VDropdown.vue";
-import VCalendarButton from "./components/calendar/VCalendarButton.vue";
+// import VCalendarButton from "./components/calendar/VCalendarButton.vue";
 import VEventCard from "./components/eventCard/VEventCard.vue";
 import VMultiselect from "./components/form/multiselect/VMultiselect.vue";
 
@@ -286,7 +289,7 @@ export default defineComponent({
     VPopUp,
     VCard,
     VDropdown,
-    VCalendarButton,
+    // VCalendarButton,
     VEventCard,
     VMultiselect,
   },
@@ -345,13 +348,16 @@ export default defineComponent({
       const res = await fetch(
         `https://pokeapi.co/api/v2/pokemon/?offset=${data.offset}&limit=${data.limit}`
       );
-      const pokemons = await res.json();
-      return pokemons;
+      if (res) {
+        const pokemons = await res.json();
+        return pokemons;
+      }
+      return [];
     };
 
     async function updateDataPokemons(data = { offset: 0, limit: 5 }) {
       pokemons.value = await getPokemons(data);
-      pagination.count = pokemons.value.count;
+      pagination.count = pokemons.value?.count;
     }
 
     onMounted(async () => {
@@ -564,7 +570,7 @@ export default defineComponent({
 }
 .section-calendar {
   width: 400px;
-  height: 600px;
+  height: auto;
   min-height: 200px;
   display: flex;
   flex-direction: column;

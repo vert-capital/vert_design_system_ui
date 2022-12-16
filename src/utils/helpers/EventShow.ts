@@ -11,7 +11,15 @@ export class EventShow implements IEvent {
 
   public timeHelper = new Time();
 
-  constructor(data: IEvent) {
+  constructor(
+    data: IEvent = {
+      id: 0,
+      title: "",
+      event_type: "obrigacoes",
+      event_data: "",
+      responsable: "",
+    }
+  ) {
     this.id = data?.id;
     this.title = data?.title;
     this.event_data =

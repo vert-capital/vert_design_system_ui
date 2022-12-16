@@ -19,7 +19,7 @@
       </div>
 
       <div id="container-list" class="list-events">
-        <div v-if="eventsOfDay.length > 0">
+        <div v-if="eventsOfDay?.length > 0">
           <div
             v-for="(event, index) in eventsOfDay"
             :key="index"
@@ -42,16 +42,31 @@
 <script lang="ts" setup>
 import { VPopUp, VCalendarMini } from "@/components";
 import IconCalendar from "@/components/icons/CalendarDay.vue";
-import type { IEvent } from "@/utils/types/calendar";
-import { onMounted, PropType, ref, watch } from "vue";
+import type { IEvent } from "@/utils/types/event";
+import { onMounted, PropType, ref, shallowRef, watch } from "vue";
 import PerfectScrollbar from "perfect-scrollbar";
 import Event from "@/components/calendar/mini/Event.vue";
 import SearchIcon from "@/components/icons/Search.vue";
+import { useCalendar } from "@/components/calendar/useCalendar";
 
 const props = defineProps({
-  events: {
-    type: Array as PropType<IEvent[]>,
-    default: () => [],
+  url: {
+    type: String,
+    default: "",
+  },
+  authorization: {
+    type: String,
+    default: "",
+  },
+  method: {
+    type: String,
+    default: "GET",
+  },
+  eventClass: {
+    type: Object as PropType<any>,
+    default: () => {
+      return;
+    },
   },
 });
 
@@ -68,7 +83,8 @@ function onHandleDayClicked(payload: any) {
   calendarSelectedDate.value = date;
 
   const dateTimeString = payload.dateTimeString.substring(0, 10);
-  eventsOfDay.value = eventsDataProperty.value.filter((event: IEvent) => {
+  eventsDataProperty.value = events.value as unknown as IEvent[];
+  eventsOfDay.value = eventsDataProperty.value?.filter((event: IEvent) => {
     const eventIsInDay = event?.event_data === dateTimeString;
     return eventIsInDay;
   });
@@ -92,32 +108,37 @@ function initScrollbar() {
     wheelPropagation: true,
   });
 }
+const { events } = useCalendar(
+  props.url,
+  props.autorization,
+  props.method,
+  props.eventClass
+);
 
-onMounted(() => {
-  initScrollbar();
-});
-
-const eventsDataProperty = ref(props.events);
-const eventsOfDay = ref(props.events);
+const eventsDataProperty = shallowRef<IEvent[]>(events as unknown as IEvent[]);
+const eventsOfDay = ref([] as IEvent[]);
 const eventRenderingKey = ref(0);
 
 watch(
-  () => props.events,
+  () => events,
   (newVal, oldVal) => {
-    if (JSON.stringify(newVal) !== JSON.stringify(oldVal)) {
-      eventsDataProperty.value = props.events;
-      const dateTimeString = calendarSelectedDate.value
-        .toISOString()
-        .substring(0, 10);
-      eventsOfDay.value = eventsDataProperty.value.filter((event: IEvent) => {
-        const eventIsInDay = event?.event_data === dateTimeString;
-        return eventIsInDay;
-      });
-      eventRenderingKey.value = eventRenderingKey.value + 1;
-    }
+    if (!newVal.value) return;
+    eventsDataProperty.value = newVal.value as unknown as IEvent[];
+    const dateTimeString = calendarSelectedDate.value
+      .toISOString()
+      .substring(0, 10);
+    eventsOfDay.value = eventsDataProperty.value.filter((event: IEvent) => {
+      const eventIsInDay = event?.event_data === dateTimeString;
+      return eventIsInDay;
+    });
+    eventRenderingKey.value = eventRenderingKey.value + 1;
   },
   { deep: true, immediate: true }
 );
+
+onMounted(async () => {
+  initScrollbar();
+});
 </script>
 
 <style lang="scss">
