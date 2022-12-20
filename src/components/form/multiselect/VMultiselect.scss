@@ -1,183 +1,319 @@
-.multiselect {
-  &__container {
-    align-items: center;
-    background-color: #fff;
-    border-radius: 2px;
-    box-shadow: 0 1px 3px 0 #d1d1d2, 0 0 0 1px #d1d1d2;
+.v-dropdow {
+  position: relative;
+  width: 100%;
+  font-family: "Lato", sans-serif;
+  font-size: 14px;
+
+  &__input {
+    border: solid 1px $neutral-color-low-light;
+    border-radius: 4px;
+    min-height: 41px;
+    padding: 0 0.1rem;
+    width: 100%;
     box-sizing: border-box;
-    display: flex;
-    font-family: Arial, Helvetica, sans-serif;
-    min-height: 36px;
-    padding: 2px 0.625rem;
     position: relative;
-    width: 100%;
-    max-width: 354px;
-    margin-top: 0.25rem;
-
-    &:after {
-      content: "";
-      min-height: inherit;
-      font-size: 0;
-    }
-
-    > * {
-      color: #656565;
-      font-size: 14px;
-    }
-
-    .multiselect__wrapper .multiselect__input {
-      border: none;
-      flex-basis: 40px;
-      flex-grow: 1;
-      height: 24px;
-      margin-bottom: 4px;
-      min-width: 40px;
-      outline: none;
-      padding: 0;
-      border: none;
-    }
-  }
-
-  &__wrapper {
     display: flex;
-    flex-wrap: wrap;
-    height: 100%;
-    width: 100%;
     align-items: center;
-  }
+    transition: ease-in-out .2s outline;
+    outline: 1px solid transparent;
 
-  &__clear-btn {
-    cursor: pointer;
-    margin-left: 4px;
+    > span {
+      display: flex;
+    }
 
-    &::after {
-      @include icon("\F0156", 1.25rem);
-      color: $brand-color-primary-pure;
+    &--arrow {
+      position: absolute;
+      right: .25rem;
+      top: 0;
+      bottom: 0;
+      transition: ease-in-out .2s transform;
+
+      &::before {
+        content: '.';
+        color: transparent;
+        transition: ease-in-out .2s opacity;
+        display: block;
+        height: 100%;
+        width: 1.5rem;
+        background-image: url("../../../static/icons/chevron-down.svg");
+        background-size: auto;
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+
+      &--open {
+        transform: rotate(180deg);
+      }
+    }
+
+    &:focus-visible,
+    &:focus,
+    &:focus-within,
+    &:active,
+    &:hover {
+      outline: 1px solid $neutral-color-low-extra-light;
     }
   }
 
   &__options {
-    background-color: #f6f6f6;
-    border-radius: 2px;
-    left: 0;
-    max-height: 0;
-    overflow: hidden;
     position: absolute;
-    top: calc(100% + 3px);
-    z-index: 9999;
-    width: 100%;
-    opacity: 0;
-    transition: max-height 0.1s ease;
-
-    &.visible {
-      max-height: 200px;
-      -webkit-box-shadow: 0 1px 3px 0 #d1d1d2, 0 0 0 1px #d1d1d2;
-      box-shadow: 0 1px 3px 0 #d1d1d2, 0 0 0 1px #d1d1d2;
-      opacity: 1;
-      transition: max-height 0.2s ease;
-    }
+    left: 0;
+    right: 0;
+    z-index: 100;
 
     ul {
+      box-shadow: 0px 0px 12px #0000001f;
+      background-color: $neutral-color-hight-pure;
+      margin: 0 0 0 0;
+      padding: 0;
+      border: solid 1px $neutral-color-low-extra-light;
+      border-radius: 4px;
       list-style: none;
-      margin: 0;
-      padding: 2px 0;
-      max-height: 200px;
+      max-height: 150px;
       overflow: auto;
 
-      li {
-        cursor: pointer;
-        padding: 4px 8px;
+      input {
+        display: none;
+      }
 
-        * {
-          pointer-events: none;
-        }
-
-        &.multiselect__options--selected {
-          background-color: $brand-color-primary-pure;
-          transition: background-color ease-in-out 0.25s;
-          color: #fff;
+      li > input {
+        & ~ label {
+          padding: .5rem 1rem;
+          display: block;
+          cursor: pointer;
+          transition: ease-in-out .2s opacity;
 
           &:hover {
-            background-color: darken($brand-color-primary-pure, 3);
+            opacity: .9;
+            background-color: $neutral-color-low-extra-light;
+
           }
         }
 
-        &:hover {
-          background-color: #dedede;
+        &:checked ~ label {
+          background-color: $feedback-color-default-pure;
+          color: $neutral-color-hight-pure;
+
+          &:hover {
+            opacity: .9;
+          }
         }
-
-        &.arrow-selected {
-          border: 2px solid rgba(101, 101, 101, 0.5);
-        }
-      }
-
-      p.multiselect__options--no-results,
-      p.multiselect__options--no-data {
-        margin: 0;
-        padding: 8px;
-        text-align: center;
       }
     }
   }
 
-  &__selected {
-    background-color: $neutral-color-hight-medium;
-    // border-radius: 2px;
-    color: $neutral-color-low-pure;
-    font-size: 0.75rem;
-    margin: 0.25rem;
-    padding: 4px 0.5rem;
-    display: flex;
-    align-items: center;
-    border-radius: $border-radius-pill;
+  &__fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    width: 100vw;
+    height: 100vh;
+  }
 
-    .multiselect__remove-btn {
-      cursor: pointer;
-      display: flex;
-      margin-left: 6px;
+  .icon--close {
+    @include close-me;
+    cursor: pointer;
+    z-index: 11;
 
-      &::after {
-        @include icon("\F0156", 1rem);
-        color: $brand-color-primary-pure;
-      }
+    &::before {
+      content: '.';
+      display: block;
+      margin-left: .45rem;
+      width: 14px;
+      height: 100%;
+      color: transparent;
+      background-image: url("../../../static/icons/close.svg");
+      filter: invert(1);
+      background-size: auto;
+      background-repeat: no-repeat;
+      background-position: bottom;
     }
   }
 }
 
-select:disabled ~ .multiselect__container {
-  background-color: $neutral-color-hight-medium;
 
-  div,
-  input {
-    background-color: $neutral-color-hight-medium;
-  }
 
-  div,
-  input,
-  span {
-    cursor: auto;
-  }
+// .multiselect {
+//   &__container {
+//     align-items: center;
+//     background-color: #fff;
+//     border-radius: 2px;
+//     box-shadow: 0 1px 3px 0 #d1d1d2, 0 0 0 1px #d1d1d2;
+//     box-sizing: border-box;
+//     display: flex;
+//     font-family: Arial, Helvetica, sans-serif;
+//     min-height: 36px;
+//     padding: 2px 0.625rem;
+//     position: relative;
+//     width: 100%;
+//     max-width: 354px;
+//     margin-top: 0.25rem;
 
-  .multiselect__clear-btn,
-  .multiselect__remove-btn {
-    &::after {
-      color: $neutral-color-low-medium;
-    }
-  }
-}
+//     &:after {
+//       content: "";
+//       min-height: inherit;
+//       font-size: 0;
+//     }
 
-.input-size-lg .multiselect__container {
-  padding: {
-    top: 6px;
-    bottom: 6px;
-  }
-}
+//     > * {
+//       color: #656565;
+//       font-size: 14px;
+//     }
 
-.input-size-sm .multiselect__container {
-  padding: {
-    top: 0px;
-    bottom: 0px;
-  }
+//     .multiselect__wrapper .multiselect__input {
+//       border: none;
+//       flex-basis: 40px;
+//       flex-grow: 1;
+//       height: 24px;
+//       margin-bottom: 4px;
+//       min-width: 40px;
+//       outline: none;
+//       padding: 0;
+//       border: none;
+//     }
+//   }
 
-  min-height: 2rem;
-}
+//   &__wrapper {
+//     display: flex;
+//     flex-wrap: wrap;
+//     height: 100%;
+//     width: 100%;
+//     align-items: center;
+//   }
+
+//   &__clear-btn {
+//     cursor: pointer;
+//     margin-left: 4px;
+
+//     &::after {
+//       @include icon("\F0156", 1.25rem);
+//       color: $brand-color-primary-pure;
+//     }
+//   }
+
+//   &__options {
+//     background-color: #f6f6f6;
+//     border-radius: 2px;
+//     left: 0;
+//     max-height: 0;
+//     overflow: hidden;
+//     position: absolute;
+//     top: calc(100% + 3px);
+//     z-index: 9999;
+//     width: 100%;
+//     opacity: 0;
+//     transition: max-height 0.1s ease;
+
+//     &.visible {
+//       max-height: 200px;
+//       -webkit-box-shadow: 0 1px 3px 0 #d1d1d2, 0 0 0 1px #d1d1d2;
+//       box-shadow: 0 1px 3px 0 #d1d1d2, 0 0 0 1px #d1d1d2;
+//       opacity: 1;
+//       transition: max-height 0.2s ease;
+//     }
+
+//     ul {
+//       list-style: none;
+//       margin: 0;
+//       padding: 2px 0;
+//       max-height: 200px;
+//       overflow: auto;
+
+//       li {
+//         cursor: pointer;
+//         padding: 4px 8px;
+
+//         * {
+//           pointer-events: none;
+//         }
+
+//         &.multiselect__options--selected {
+//           background-color: $brand-color-primary-pure;
+//           transition: background-color ease-in-out 0.25s;
+//           color: #fff;
+
+//           &:hover {
+//             background-color: darken($brand-color-primary-pure, 3);
+//           }
+//         }
+
+//         &:hover {
+//           background-color: #dedede;
+//         }
+
+//         &.arrow-selected {
+//           border: 2px solid rgba(101, 101, 101, 0.5);
+//         }
+//       }
+
+//       p.multiselect__options--no-results,
+//       p.multiselect__options--no-data {
+//         margin: 0;
+//         padding: 8px;
+//         text-align: center;
+//       }
+//     }
+//   }
+
+//   &__selected {
+//     background-color: $neutral-color-hight-medium;
+//     // border-radius: 2px;
+//     color: $neutral-color-low-pure;
+//     font-size: 0.75rem;
+//     margin: 0.25rem;
+//     padding: 4px 0.5rem;
+//     display: flex;
+//     align-items: center;
+//     border-radius: $border-radius-pill;
+
+//     .multiselect__remove-btn {
+//       cursor: pointer;
+//       display: flex;
+//       margin-left: 6px;
+
+//       &::after {
+//         @include icon("\F0156", 1rem);
+//         color: $brand-color-primary-pure;
+//       }
+//     }
+//   }
+// }
+
+// select:disabled ~ .multiselect__container {
+//   background-color: $neutral-color-hight-medium;
+
+//   div,
+//   input {
+//     background-color: $neutral-color-hight-medium;
+//   }
+
+//   div,
+//   input,
+//   span {
+//     cursor: auto;
+//   }
+
+//   .multiselect__clear-btn,
+//   .multiselect__remove-btn {
+//     &::after {
+//       color: $neutral-color-low-medium;
+//     }
+//   }
+// }
+
+// .input-size-lg .multiselect__container {
+//   padding: {
+//     top: 6px;
+//     bottom: 6px;
+//   }
+// }
+
+// .input-size-sm .multiselect__container {
+//   padding: {
+//     top: 0px;
+//     bottom: 0px;
+//   }
+
+//   min-height: 2rem;
+// }

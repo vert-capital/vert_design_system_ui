@@ -164,24 +164,22 @@
       <v-tag status="secondary" square>Tag secondary</v-tag>
     </div>
     <br />
-    <v-dropdown
+    <v-multiselect
       v-model="dropDownExemplo"
       :options="selectOptions"
       name="teste1"
-      multiple
-    ></v-dropdown>
+    ></v-multiselect>
     <div style="width: 200px">
       <v-dropdown
         v-model="dropDownExemplo2"
         name="teste2"
         :options="selectOptions"
-        type="2"
       ></v-dropdown>
     </div>
   </div>
   <br />
   <hr />
-  <div class="section-calendar">
+  <div>
     <h4>CARD</h4>
     <v-card type="shadow">
       <template #buttons>
@@ -208,17 +206,20 @@
 
   <hr />
   <br />
-  <div class="section-calendar">
+  <!-- <div style="margin-left: 30%;">
     <h4>Calendário de eventos</h4>
     <h3>Calendário reduzido (popUp)</h3>
     <v-calendar-button
       :events="events"
+      :url="`https://api.json-generator.com/templates/f-G4yucOd7dK/data`"
+      authorization="Bearer 198191818181811"
+      :event-class="EventClass"
       @day-was-clicked="onHandleClickDay"
       @search-was-inputed="onHandleSearch"
       @event-was-clicked="onHandleEventClicked"
     >
     </v-calendar-button>
-  </div>
+  </div> -->
 
   <hr />
   <br />
@@ -237,7 +238,7 @@
     </v-event-card>
   </div>
   <br />
-  <v-card type="shadow">
+  <v-card type="shadow" border-size="sm">
     Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa modi
     voluptatibus quam consequatur, quae perspiciatis debitis quas molestias
     repudiandae, nesciunt adipisci vel harum iste, ullam rerum corporis tempora.
@@ -245,11 +246,11 @@
   </v-card>
   <div class="item--checkbox">
     <input
+      id="teste-234"
+      v-model="checkbox"
       type="checkbox"
       name="teste"
-      id="teste-234"
       value="3"
-      v-model="checkbox"
     />
     <label for="teste-234">TESTE</label>
   </div>
@@ -270,9 +271,10 @@ import type { IEvent } from "./utils/types/calendar";
 import VPopUp from "./components/popUp/VPopUp.vue";
 import VCard from "./components/card/VCard.vue";
 import VDropdown from "./components/dropdown/VDropdown.vue";
-import VCalendarButton from "./components/calendar/VCalendarButton.vue";
+// import VCalendarButton from "./components/calendar/VCalendarButton.vue";
 import VEventCard from "./components/eventCard/VEventCard.vue";
 import { changeTab } from "./components/tab/VTab";
+import VMultiselect from "./components/form/multiselect/VMultiselect.vue";
 
 export default defineComponent({
   name: "App",
@@ -289,79 +291,9 @@ export default defineComponent({
     VPopUp,
     VCard,
     VDropdown,
-    VCalendarButton,
+    // VCalendarButton,
     VEventCard,
-  },
-
-  data() {
-    return {
-      typeTab: "x",
-      testeSelect: "",
-      dropDownExemplo: [],
-      dropDownExemplo2: [],
-      checkbox: [],
-      events: [
-        {
-          id: 1,
-          title: "Obrigações",
-          application: 1,
-          time: { start: "2022-12-06 08:00", end: "2022-12-06 09:00" },
-          event_data: "2022-12-06",
-          responsable: "Caio Arruda",
-          emission: 1,
-        },
-        {
-          id: 2,
-          title: "Pagamento de Juros",
-          application: 2,
-          time: { start: "2022-12-06 08:00", end: "2022-12-06 09:00" },
-          event_data: "2022-12-06",
-          responsable: "Márcio",
-        },
-        {
-          id: 3,
-          title: "Pagamento de Juros A",
-          application: 3,
-          time: { start: "2022-12-06 08:00", end: "2022-12-06 09:00" },
-          event_data: "2022-12-06",
-          responsable: "Maria das Dores",
-        },
-        {
-          id: 4,
-          title: "Pagamento de Juros B",
-          application: 4,
-          time: { start: "2022-12-06 08:00", end: "2022-12-06 09:00" },
-          event_data: "2022-12-06",
-          responsable: "João das Neves",
-        },
-        {
-          id: 5,
-          title: "Pagamento de Juros C",
-          application: 5,
-          time: { start: "2022-12-06 08:00", end: "2022-12-06 09:00" },
-          event_data: "2022-12-06",
-          responsable: "João das Couves",
-        },
-        {
-          id: 6,
-          title: "Pagamento de Juros D",
-          application: 6,
-          time: { start: "2022-12-06 08:00", end: "2022-12-06 09:00" },
-          event_data: "2022-12-06",
-          responsable: "João das Flores",
-        },
-        {
-          id: 8,
-          title: "Pagamento de Juros E",
-          application: 7,
-          time: { start: "2022-12-06 08:00", end: "2022-12-06 09:00" },
-          event_data: "2022-12-06",
-          responsable: "José das Couves",
-        },
-      ] as IEvent[],
-
-      isLoading: false,
-    };
+    VMultiselect,
   },
 
   setup() {
@@ -418,13 +350,16 @@ export default defineComponent({
       const res = await fetch(
         `https://pokeapi.co/api/v2/pokemon/?offset=${data.offset}&limit=${data.limit}`
       );
-      const pokemons = await res.json();
-      return pokemons;
+      if (res) {
+        const pokemons = await res.json();
+        return pokemons;
+      }
+      return [];
     };
 
     async function updateDataPokemons(data = { offset: 0, limit: 5 }) {
       pokemons.value = await getPokemons(data);
-      pagination.count = pokemons.value.count;
+      pagination.count = pokemons.value?.count;
     }
 
     onMounted(async () => {
@@ -452,15 +387,15 @@ export default defineComponent({
     }
 
     function onHandleClickDay() {
-      alert("onHandleClickDay");
+      console.log("onHandleClickDay");
     }
 
     function onHandleSearch(search: any) {
-      alert("search:" + search);
+      console.log("search:" + search);
     }
 
     function onHandleEventClicked(event: any) {
-      alert("event:" + event);
+      console.log("event:" + event);
     }
 
     return {
@@ -480,6 +415,155 @@ export default defineComponent({
       changeTab,
     };
   },
+
+  data() {
+    return {
+      typeTab: "x",
+      testeSelect: "",
+      dropDownExemplo: [],
+      dropDownExemplo2: [],
+      checkbox: [],
+      events: [
+        {
+          title: "Vencimento de séries - culpa est",
+          subtitle: "(culpa officia - 10) (#19.15 | 2 - eiusmod enim - cra)",
+          responsable: "Cook Herrera(Responsável), Brady Shaw",
+          event_data: "2022-12-13",
+          event_type: "integralizacoes",
+        },
+        {
+          title: "Obrigações - dolore cupidatat",
+          subtitle:
+            "(proident consectetur - 2) (#48.63 | 9 - aute ullamco - cri)",
+          responsable: "Espinoza Norris(Responsável), Alyson Hawkins",
+          event_data: "2022-12-25",
+          event_type: "vencimento_series",
+        },
+        {
+          title: "Obrigações - ullamco exercitation",
+          subtitle: "(consequat aute - 8) (#88.76 | 7 - labore laborum - cra)",
+          responsable: "Boyle Love(Responsável), Melba Whitney",
+          event_data: "2022-12-22",
+          event_type: "vencimento_series",
+        },
+        {
+          title: "Vencimento de séries - laborum cupidatat",
+          subtitle: "(sit consequat - 0) (#65.31 | 8 - in pariatur - cra)",
+          responsable: "Kathie Graves(Responsável), Evans Mcconnell",
+          event_data: "2022-11-30",
+          event_type: "eventos_pagamento",
+        },
+        {
+          title: "Integralizaçao - ullamco consectetur",
+          subtitle: "(ullamco sint - 9) (#28.51 | 5 - officia nisi - cra)",
+          responsable: "Higgins Cash(Responsável), Audrey Chase",
+          event_data: "2022-12-03",
+          event_type: "atualizacao_status_patrimonios",
+        },
+        {
+          title: "Integralizaçao - eiusmod duis",
+          subtitle: "(aliquip aliquip - 2) (#58.99 | 2 - ex ullamco - cra)",
+          responsable: "Little Pugh(Responsável), Jeanette Guzman",
+          event_data: "2022-12-27",
+          event_type: "vencimento_series",
+        },
+        {
+          title: "Integralizaçao - esse ad",
+          subtitle:
+            "(labore nulla - 9) (#67.49 | 1 - reprehenderit ipsum - cra)",
+          responsable: "Cummings Townsend(Responsável), Austin Rosa",
+          event_data: "2022-12-08",
+          event_type: "marcos_patrimonios",
+        },
+        {
+          title: "Atualização de status do patrimônio - incididunt laborum",
+          subtitle: "(id officia - 5) (#41.03 | 1 - laboris elit - cra)",
+          responsable: "Klein Bell(Responsável), Therese Adams",
+          event_data: "2022-12-08",
+          event_type: "obrigacoes",
+        },
+        {
+          title: "Obrigações - dolor qui",
+          subtitle: "(ex ad - 8) (#96.02 | 7 - nulla anim - cra)",
+          responsable: "Baker Mayer(Responsável), Carson Brooks",
+          event_data: "2022-12-17",
+          event_type: "rating",
+        },
+        {
+          title: "Rating - sunt eu",
+          subtitle: "(fugiat ullamco - 8) (#54.68 | 5 - voluptate sit - cri)",
+          responsable: "Deana Drake(Responsável), Lizzie Rosario",
+          event_data: "2022-12-17",
+          event_type: "marcos_patrimonios",
+        },
+        {
+          title: "Vencimento de séries - anim aliqua",
+          subtitle: "(irure in - 0) (#86.39 | 5 - ipsum est - cra)",
+          responsable: "Lee Hayes(Responsável), James Hess",
+          event_data: "2022-12-24",
+          event_type: "integralizacoes",
+        },
+        {
+          title: "Subscrição - eu proident",
+          subtitle: "(voluptate velit - 0) (#22.18 | 9 - elit et - debenture)",
+          responsable: "Garrison Hill(Responsável), Stout Whitfield",
+          event_data: "2022-12-22",
+          event_type: "atualizacao_status_patrimonios",
+        },
+        {
+          title: "Eventos de pagamento - anim laborum",
+          subtitle: "(laborum enim - 1) (#63.12 | 2 - ut laborum - cri)",
+          responsable: "Puckett Kirk(Responsável), Hull Acevedo",
+          event_data: "2022-12-12",
+          event_type: "marcos_patrimonios",
+        },
+        {
+          title: "Integralizaçao - consequat consectetur",
+          subtitle: "(aliqua officia - 2) (#95.51 | 5 - ut Lorem - cri)",
+          responsable: "Nichole Peck(Responsável), Cantu Ayers",
+          event_data: "2022-12-02",
+          event_type: "subscricoes",
+        },
+        {
+          title: "Marcos do patrimônio - eu irure",
+          subtitle: "(nisi do - 8) (#84.61 | 3 - labore esse - cra)",
+          responsable: "Keith Winters(Responsável), Colleen Bradshaw",
+          event_data: "2022-12-14",
+          event_type: "subscricoes",
+        },
+        {
+          title: "Eventos de pagamento - consequat veniam",
+          subtitle: "(laboris laboris - 9) (#95.83 | 3 - ex nulla - cra)",
+          responsable: "Dana Mcgee(Responsável), Lynn Jackson",
+          event_data: "2022-12-20",
+          event_type: "subscricoes",
+        },
+        {
+          title: "Vencimento de séries - dolor sint",
+          subtitle: "(ut magna - 3) (#2.38 | 4 - magna duis - cri)",
+          responsable: "Brennan Duffy(Responsável), Mavis Anthony",
+          event_data: "2022-12-06",
+          event_type: "atualizacao_status_patrimonios",
+        },
+        {
+          title: "Marcos do patrimônio - reprehenderit nisi",
+          subtitle: "(mollit anim - 6) (#38.68 | 8 - cillum irure - cri)",
+          responsable: "Joyner Foster(Responsável), Clark Mooney",
+          event_data: "2022-12-24",
+          event_type: "atualizacao_status_patrimonios",
+        },
+        {
+          title: "Rating - laboris ad 1",
+          subtitle: "(eiusmod ea - 4) (#9.15 | 3 - nisi eiusmod - debenture)",
+          responsable: "Jean Warner(Responsável), Ingram Nielsen",
+          event_data: "2022-12-30",
+          event_type: "obrigacoes",
+        },
+      ] as IEvent[],
+
+      isLoading: false,
+    };
+  },
 });
 </script>
 <style lang="scss">
@@ -489,7 +573,7 @@ export default defineComponent({
 }
 .section-calendar {
   width: 400px;
-  height: 600px;
+  height: auto;
   min-height: 200px;
   display: flex;
   flex-direction: column;

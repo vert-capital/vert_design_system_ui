@@ -68,11 +68,14 @@ const emit = defineEmits<{
 
 const selected = ref<any>(props.modelValue);
 
-watch(["modelValue"], (modelValue) => {
-  if (modelValue !== selected.value) {
-    selected.value = modelValue;
+watch(
+  () => props.modelValue,
+  (modelValue) => {
+    if (modelValue !== selected.value) {
+      selected.value = modelValue;
+    }
   }
-});
+);
 
 function selectChange(event: any): void {
   selected.value = event.target.value;

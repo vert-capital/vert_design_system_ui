@@ -1,15 +1,19 @@
 export interface Props {
-    title: string;
+    title?: string;
     type: string;
+    borderSize: string;
 }
 declare const _default: import("vue").DefineComponent<{
     title: {
+        type: import("vue").PropType<string>;
+    };
+    type: {
         type: import("vue").PropType<string>;
         required: true;
     } & {
         default: string;
     };
-    type: {
+    borderSize: {
         type: import("vue").PropType<string>;
         required: true;
     } & {
@@ -18,9 +22,6 @@ declare const _default: import("vue").DefineComponent<{
 }, () => void, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
     title: {
         type: import("vue").PropType<string>;
-        required: true;
-    } & {
-        default: string;
     };
     type: {
         type: import("vue").PropType<string>;
@@ -28,8 +29,14 @@ declare const _default: import("vue").DefineComponent<{
     } & {
         default: string;
     };
+    borderSize: {
+        type: import("vue").PropType<string>;
+        required: true;
+    } & {
+        default: string;
+    };
 }>>, {
     type: string;
-    title: string;
+    borderSize: string;
 }>;
 export default _default;

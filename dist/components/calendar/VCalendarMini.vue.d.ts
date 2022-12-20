@@ -1,10 +1,4 @@
-import { PropType } from "vue";
-import { IEvent } from "@/utils/types/calendar";
 declare const _default: import("vue").DefineComponent<{
-    events: {
-        type: PropType<IEvent[]>;
-        default: () => never[];
-    };
     selectedDate: {
         type: DateConstructor;
         default: Date;
@@ -18,10 +12,6 @@ declare const _default: import("vue").DefineComponent<{
 } & {
     "day-was-clicked": (event: any) => void;
 }, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
-    events: {
-        type: PropType<IEvent[]>;
-        default: () => never[];
-    };
     selectedDate: {
         type: DateConstructor;
         default: Date;
@@ -34,7 +24,6 @@ declare const _default: import("vue").DefineComponent<{
     "onEvent-was-clicked"?: ((event: any) => any) | undefined;
     "onDay-was-clicked"?: ((event: any) => any) | undefined;
 }, {
-    events: IEvent[];
     selectedDate: Date;
     isLoading: boolean;
 }>;

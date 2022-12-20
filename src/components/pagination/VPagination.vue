@@ -1,6 +1,6 @@
 <template>
   <div class="box--pagination">
-    <div class="box--pagination-count">{{ count }} items</div>
+    <div class="box--pagination-count">{{ count }} itens</div>
 
     <div class="box--pagination-pages">
       <div class="box--pagination-pages-size">
@@ -72,23 +72,23 @@ export default defineComponent({
       default: () => [
         {
           value: "5",
-          label: "5 items",
+          label: "5 itens",
         },
         {
           value: "10",
-          label: "10 items",
+          label: "10 itens",
         },
         {
           value: "30",
-          label: "30 items",
+          label: "30 itens",
         },
         {
           value: "50",
-          label: "50 items",
+          label: "50 itens",
         },
         {
           value: "100",
-          label: "100 items",
+          label: "100 itens",
         },
       ],
     },
@@ -108,7 +108,7 @@ export default defineComponent({
       goNext,
       buttons,
       numPages,
-      numItems,
+      numitens,
     } = usePaginator({
       pageSize: props.sizeDefault,
       numButtons: props.qtdeButtonsPaginate,
@@ -117,7 +117,7 @@ export default defineComponent({
     watch(
       () => props.count,
       (count) => {
-        numItems.value = count;
+        numitens.value = count;
       }
     );
 

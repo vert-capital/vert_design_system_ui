@@ -21,7 +21,7 @@ import { computed } from "vue";
 export interface Props {
   title?: string;
   type: string;
-  borderSize: string;
+  borderSize?: string;
 }
 
 const props = withDefaults(defineProps<Props>(), {
