@@ -15,6 +15,8 @@ export function useCalendar(
     if (!_url || !_authorization) {
       return;
     }
+    console.log('eventClass', eventClass);
+
     await fetch(`${_url}`, {
       credentials: "same-origin",
       method: _method,
@@ -27,6 +29,15 @@ export function useCalendar(
     }).then(async (res) => {
       if (res) {
         const _res = await res.json();
+        if (eventClass === undefined) {
+          return;
+        }
+        if (typeof eventClass == "function") {
+          events.value = _res.map(
+            (event: any) => new eventClass(event).event_formated
+          );
+          return;
+        }
         events.value = _res.map(
           (event: any) => new eventClass.Event(event).event_formated
         );
