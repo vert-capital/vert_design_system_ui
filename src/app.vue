@@ -99,6 +99,7 @@
         </v-tab-content>
       </div>
     </v-tab>
+    <button @click="changeTab('tab1')">Ir para Tab 1</button>
     <br />
     <hr />
     <h4>SELECT</h4>
@@ -271,6 +272,7 @@ import VCard from "./components/card/VCard.vue";
 import VDropdown from "./components/dropdown/VDropdown.vue";
 import VCalendarButton from "./components/calendar/VCalendarButton.vue";
 import VEventCard from "./components/eventCard/VEventCard.vue";
+import { changeTab } from "./components/tab/VTab";
 
 export default defineComponent({
   name: "App",
@@ -475,6 +477,7 @@ export default defineComponent({
       aplication,
       onHandleSearch,
       onHandleEventClicked,
+      changeTab,
     };
   },
 });
