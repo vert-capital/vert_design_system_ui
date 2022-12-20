@@ -10,6 +10,7 @@
 </template>
 <script lang="ts">
 import { defineComponent } from "vue";
+import { showContentTab } from "./VTab";
 
 export default defineComponent({
   name: "VTabContent",
@@ -32,20 +33,10 @@ export default defineComponent({
       const tabHead = event.path[1].children;
       for (const item of tabHead) item.classList.remove("active");
       event.target.classList.add("active");
-      this.showContentTab(
+      showContentTab(
         event?.target.dataset.tabTo,
         event?.target.dataset.tabType
       );
-    },
-    showContentTab(contentId: string, typeTab: string): void {
-      const tabContents = document.getElementsByClassName("tab--content");
-      for (const item of tabContents as any) {
-        if (typeTab == item.dataset.tabContentType) item.style.display = "none";
-
-        if (contentId == item.getAttribute("id")) {
-          item.style.display = "block";
-        }
-      }
     },
   },
 });
