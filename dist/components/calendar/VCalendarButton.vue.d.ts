@@ -38,9 +38,9 @@ declare const _default: import("vue").DefineComponent<{
     "onDay-was-clicked"?: ((...args: any[]) => any) | undefined;
     "onSearch-event"?: ((...args: any[]) => any) | undefined;
 }, {
+    eventClass: any;
     method: string;
     url: string;
     authorization: string;
-    eventClass: any;
 }>;
 export default _default;
