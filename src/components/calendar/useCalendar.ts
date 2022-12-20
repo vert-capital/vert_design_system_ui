@@ -16,9 +16,14 @@ export function useCalendar(
       return;
     }
     await fetch(`${_url}`, {
+      credentials: "same-origin",
       method: _method,
-      credentials: "include",
-      headers: { Authorization: _authorization },
+      headers: {
+        Authorization: _authorization,
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+        Accept: "application/json",
+      },
     }).then(async (res) => {
       if (res) {
         const _res = await res.json();
