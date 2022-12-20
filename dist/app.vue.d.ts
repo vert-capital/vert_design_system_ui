@@ -84,6 +84,7 @@ declare const _default: import("vue").DefineComponent<{}, {
     aplication: string[];
     onHandleSearch: (search: any) => void;
     onHandleEventClicked: (event: any) => void;
+    changeTab: (idElement: string) => void;
 }, {
     typeTab: string;
     testeSelect: string;

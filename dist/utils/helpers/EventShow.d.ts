@@ -8,5 +8,5 @@ export declare class EventShow implements IEvent {
     event_data: string;
     responsable?: string | undefined;
     timeHelper: Time;
-    constructor(data: IEvent);
+    constructor(data?: IEvent);
 }

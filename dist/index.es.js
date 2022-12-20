@@ -4,7 +4,7 @@ var __publicField = (obj, key, value) => {
   __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
   return value;
 };
-import { defineComponent, openBlock, createElementBlock, mergeProps, createElementVNode, createCommentVNode, renderSlot, useSlots, ref, Fragment, renderList, normalizeClass, withModifiers, toDisplayString, normalizeProps, createTextVNode, watch, computed, unref, withDirectives, normalizeStyle, vShow, resolveComponent, createVNode, onMounted, Transition, withCtx, createBlock, vModelText } from "vue";
+import { defineComponent, openBlock, createElementBlock, mergeProps, createElementVNode, createCommentVNode, renderSlot, useSlots, ref, Fragment, renderList, normalizeClass, withModifiers, toDisplayString, normalizeProps, createTextVNode, watch, computed, unref, withDirectives, normalizeStyle, vShow, resolveComponent, createVNode, onMounted, Transition, withCtx, createBlock, shallowRef, vModelText } from "vue";
 var VButton_scss_vue_type_style_index_0_src_6e5341db_lang = "";
 var _export_sfc = (sfc, props) => {
   const target = sfc.__vccOpts || sfc;
@@ -221,11 +221,14 @@ const _sfc_main$i = defineComponent({
   setup(__props, { emit }) {
     const props = __props;
     const selected = ref(props.modelValue);
-    watch(["modelValue"], (modelValue) => {
-      if (modelValue !== selected.value) {
-        selected.value = modelValue;
+    watch(
+      () => props.modelValue,
+      (modelValue) => {
+        if (modelValue !== selected.value) {
+          selected.value = modelValue;
+        }
       }
-    });
+    );
     function selectChange(event) {
       selected.value = event.target.value;
       emit("onChange", selected.value);
@@ -357,7 +360,7 @@ const _sfc_main$g = defineComponent({
   props: {
     title: { type: String, required: false },
     type: { type: String, required: true, default: "default" },
-    borderSize: { type: String, required: true, default: "sm" }
+    borderSize: { type: String, required: false, default: "sm" }
   },
   setup(__props) {
     const props = __props;
@@ -671,6 +674,12 @@ class Time {
   }
   getNumberOfDaysInMonth(year, month) {
     return new Date(year, month, 0).getDate();
+  }
+  getWeekDaysFromWeekNumber(weekNumber, year) {
+    const firstDayOfYear = new Date(year, 0, 1);
+    const pastDaysOfYear = (weekNumber - 1) * 7;
+    firstDayOfYear.setDate(firstDayOfYear.getDate() + pastDaysOfYear);
+    return this.getNextWeek(firstDayOfYear);
   }
 }
 var _imports_0$3 = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+CiAgIDxwYXRoIGZpbGw9IiNhYWEiIGQ9Ik0xNS40MSwxNi41OEwxMC44MywxMkwxNS40MSw3LjQxTDE0LDZMOCwxMkwxNCwxOEwxNS40MSwxNi41OFoiIC8+Cjwvc3ZnPg==";
@@ -2238,6 +2247,31 @@ function _sfc_render$3(_ctx, _cache) {
   return openBlock(), createElementBlock("img", _hoisted_1$4);
 }
 var SearchIcon = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["render", _sfc_render$3], ["__file", "/home/debora/Documentos/www/vert_design_system_ui/src/components/icons/Search.vue"]]);
+function useCalendar(url, authorization, method, eventClass) {
+  const events = ref(null);
+  const _url = unref(url);
+  const _authorization = unref(authorization);
+  const _method = unref(method) || "GET";
+  async function getEvents() {
+    if (!_url || !_authorization) {
+      return;
+    }
+    await fetch(`${_url}`, {
+      method: _method,
+      credentials: "include",
+      headers: { Authorization: _authorization }
+    }).then(async (res) => {
+      if (res) {
+        const _res = await res.json();
+        events.value = _res.map(
+          (event) => new eventClass.Event(event).event_formated
+        );
+      }
+    });
+  }
+  getEvents();
+  return { events };
+}
 var VCalendarButton_vue_vue_type_style_index_0_lang = "";
 const _hoisted_1$3 = { class: "search-events" };
 const _hoisted_2$1 = {
@@ -2257,9 +2291,23 @@ const _hoisted_7$1 = /* @__PURE__ */ createElementVNode("a", { class: "a-link" }
 const _sfc_main$3 = /* @__PURE__ */ defineComponent({
   __name: "VCalendarButton",
   props: {
-    events: {
-      type: Array,
-      default: () => []
+    url: {
+      type: String,
+      default: ""
+    },
+    authorization: {
+      type: String,
+      default: ""
+    },
+    method: {
+      type: String,
+      default: "GET"
+    },
+    eventClass: {
+      type: Object,
+      default: () => {
+        return;
+      }
     }
   },
   emits: [
@@ -2271,10 +2319,12 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
     const props = __props;
     const calendarSelectedDate = ref(new Date());
     function onHandleDayClicked(payload) {
+      var _a;
       const date = new Date(payload.dateTimeString);
       calendarSelectedDate.value = date;
       const dateTimeString = payload.dateTimeString.substring(0, 10);
-      eventsOfDay.value = eventsDataProperty.value.filter((event) => {
+      eventsDataProperty.value = events.value;
+      eventsOfDay.value = (_a = eventsDataProperty.value) == null ? void 0 : _a.filter((event) => {
         const eventIsInDay = (event == null ? void 0 : event.event_data) === dateTimeString;
         return eventIsInDay;
       });
@@ -2294,27 +2344,33 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
         wheelPropagation: true
       });
     }
-    onMounted(() => {
-      initScrollbar();
-    });
-    const eventsDataProperty = ref(props.events);
-    const eventsOfDay = ref(props.events);
+    const { events } = useCalendar(
+      props.url,
+      props.authorization,
+      props.method,
+      props.eventClass
+    );
+    const eventsDataProperty = shallowRef(events);
+    const eventsOfDay = ref([]);
     const eventRenderingKey = ref(0);
     watch(
-      () => props.events,
+      () => events,
       (newVal, oldVal) => {
-        if (JSON.stringify(newVal) !== JSON.stringify(oldVal)) {
-          eventsDataProperty.value = props.events;
-          const dateTimeString = calendarSelectedDate.value.toISOString().substring(0, 10);
-          eventsOfDay.value = eventsDataProperty.value.filter((event) => {
-            const eventIsInDay = (event == null ? void 0 : event.event_data) === dateTimeString;
-            return eventIsInDay;
-          });
-          eventRenderingKey.value = eventRenderingKey.value + 1;
-        }
+        if (!newVal.value)
+          return;
+        eventsDataProperty.value = newVal.value;
+        const dateTimeString = calendarSelectedDate.value.toISOString().substring(0, 10);
+        eventsOfDay.value = eventsDataProperty.value.filter((event) => {
+          const eventIsInDay = (event == null ? void 0 : event.event_data) === dateTimeString;
+          return eventIsInDay;
+        });
+        eventRenderingKey.value = eventRenderingKey.value + 1;
       },
       { deep: true, immediate: true }
     );
+    onMounted(async () => {
+      initScrollbar();
+    });
     return (_ctx, _cache) => {
       return openBlock(), createBlock(unref(VPopUp), {
         "position-content": "center center",
@@ -2324,40 +2380,43 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
         "event-area": withCtx(() => [
           createVNode(IconCalendar)
         ]),
-        "popup-body": withCtx(() => [
-          createVNode(unref(VCalendarMini), {
-            "selected-date": calendarSelectedDate.value,
-            onDayWasClicked: onHandleDayClicked
-          }, null, 8, ["selected-date"]),
-          createElementVNode("div", _hoisted_1$3, [
-            withDirectives(createElementVNode("input", {
-              "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => search.value = $event),
-              placeholder: "Buscar",
-              onInput: searchEvent
-            }, null, 544), [
-              [vModelText, search.value]
+        "popup-body": withCtx(() => {
+          var _a;
+          return [
+            createVNode(unref(VCalendarMini), {
+              "selected-date": calendarSelectedDate.value,
+              onDayWasClicked: onHandleDayClicked
+            }, null, 8, ["selected-date"]),
+            createElementVNode("div", _hoisted_1$3, [
+              withDirectives(createElementVNode("input", {
+                "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => search.value = $event),
+                placeholder: "Buscar",
+                onInput: searchEvent
+              }, null, 544), [
+                [vModelText, search.value]
+              ]),
+              createVNode(SearchIcon, {
+                class: "search-events__icon",
+                onClick: searchEvent
+              })
             ]),
-            createVNode(SearchIcon, {
-              class: "search-events__icon",
-              onClick: searchEvent
-            })
-          ]),
-          createElementVNode("div", _hoisted_2$1, [
-            eventsOfDay.value.length > 0 ? (openBlock(), createElementBlock("div", _hoisted_3$1, [
-              (openBlock(true), createElementBlock(Fragment, null, renderList(eventsOfDay.value, (event, index) => {
-                return openBlock(), createElementBlock("div", {
-                  key: index,
-                  class: "list-events__item"
-                }, [
-                  createVNode(Event, {
-                    event,
-                    onClick: ($event) => onHandleEventClicked(event)
-                  }, null, 8, ["event", "onClick"])
-                ]);
-              }), 128))
-            ])) : (openBlock(), createElementBlock("div", _hoisted_4$1, _hoisted_6$1))
-          ])
-        ]),
+            createElementVNode("div", _hoisted_2$1, [
+              ((_a = eventsOfDay.value) == null ? void 0 : _a.length) > 0 ? (openBlock(), createElementBlock("div", _hoisted_3$1, [
+                (openBlock(true), createElementBlock(Fragment, null, renderList(eventsOfDay.value, (event, index) => {
+                  return openBlock(), createElementBlock("div", {
+                    key: index,
+                    class: "list-events__item"
+                  }, [
+                    createVNode(Event, {
+                      event,
+                      onClick: ($event) => onHandleEventClicked(event)
+                    }, null, 8, ["event", "onClick"])
+                  ]);
+                }), 128))
+              ])) : (openBlock(), createElementBlock("div", _hoisted_4$1, _hoisted_6$1))
+            ])
+          ];
+        }),
         "popup-footer": withCtx(() => [
           _hoisted_7$1
         ]),
@@ -2659,6 +2718,16 @@ function _sfc_render$1(_ctx, _cache, $props, $setup, $data, $options) {
   ], 8, _hoisted_1$1);
 }
 var VTabContent = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["render", _sfc_render$1], ["__file", "/home/debora/Documentos/www/vert_design_system_ui/src/components/tab/VTabContent.vue"]]);
+const showContentTab = (contentId, typeTab) => {
+  const tabContents = document.getElementsByClassName("tab--content");
+  for (const item of tabContents) {
+    if (typeTab == item.dataset.tabContentType)
+      item.style.display = "none";
+    if (contentId == item.getAttribute("id")) {
+      item.style.display = "block";
+    }
+  }
+};
 const _sfc_main = defineComponent({
   name: "VTabContent",
   props: {
@@ -2681,20 +2750,10 @@ const _sfc_main = defineComponent({
       for (const item of tabHead)
         item.classList.remove("active");
       event.target.classList.add("active");
-      this.showContentTab(
+      showContentTab(
         event == null ? void 0 : event.target.dataset.tabTo,
         event == null ? void 0 : event.target.dataset.tabType
       );
-    },
-    showContentTab(contentId, typeTab) {
-      const tabContents = document.getElementsByClassName("tab--content");
-      for (const item of tabContents) {
-        if (typeTab == item.dataset.tabContentType)
-          item.style.display = "none";
-        if (contentId == item.getAttribute("id")) {
-          item.style.display = "block";
-        }
-      }
     }
   }
 });

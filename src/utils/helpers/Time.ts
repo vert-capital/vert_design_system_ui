@@ -276,4 +276,13 @@ export default class Time {
   getNumberOfDaysInMonth(year: number, month: number) {
     return new Date(year, month, 0).getDate();
   }
+
+  getWeekDaysFromWeekNumber(weekNumber: number, year: number) {
+    const firstDayOfYear = new Date(year, 0, 1);
+    const pastDaysOfYear = (weekNumber - 1) * 7;
+
+    firstDayOfYear.setDate(firstDayOfYear.getDate() + pastDaysOfYear);
+
+    return this.getNextWeek(firstDayOfYear);
+  }
 }

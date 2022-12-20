@@ -40,4 +40,5 @@ export default class Time {
     getNextWeek(day: Date): Date[];
     getLastWeek(day: Date): Date[];
     getNumberOfDaysInMonth(year: number, month: number): number;
+    getWeekDaysFromWeekNumber(weekNumber: number, year: number): Date[];
 }

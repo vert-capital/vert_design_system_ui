@@ -1,7 +1,7 @@
 export interface Props {
     title?: string;
     type: string;
-    borderSize: string;
+    borderSize?: string;
 }
 declare const _default: import("vue").DefineComponent<{
     title: {
@@ -15,7 +15,6 @@ declare const _default: import("vue").DefineComponent<{
     };
     borderSize: {
         type: import("vue").PropType<string>;
-        required: true;
     } & {
         default: string;
     };
@@ -31,7 +30,6 @@ declare const _default: import("vue").DefineComponent<{
     };
     borderSize: {
         type: import("vue").PropType<string>;
-        required: true;
     } & {
         default: string;
     };

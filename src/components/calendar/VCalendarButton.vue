@@ -42,7 +42,7 @@
 <script lang="ts" setup>
 import { VPopUp, VCalendarMini } from "@/components";
 import IconCalendar from "@/components/icons/CalendarDay.vue";
-import type { IEvent } from "@/utils/types/event";
+import type { IEvent } from "@/utils/types/calendar";
 import { onMounted, PropType, ref, shallowRef, watch } from "vue";
 import PerfectScrollbar from "perfect-scrollbar";
 import Event from "@/components/calendar/mini/Event.vue";
@@ -110,7 +110,7 @@ function initScrollbar() {
 }
 const { events } = useCalendar(
   props.url,
-  props.autorization,
+  props.authorization,
   props.method,
   props.eventClass
 );
