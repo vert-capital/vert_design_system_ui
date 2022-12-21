@@ -1,13 +1,5 @@
 import { PropType } from "vue";
 import { eventsTypes } from "@/utils/types/calendar";
-export interface Props {
-    title: string;
-    subtitle: string;
-    responsable: string;
-    size: string;
-    aplication: eventsTypes;
-    status: string;
-}
 declare const _default: import("vue").DefineComponent<{
     title: {
         type: StringConstructor;

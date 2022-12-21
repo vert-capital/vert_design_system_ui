@@ -9,7 +9,7 @@ declare const _default: import("vue").DefineComponent<{
     };
     icon: {
         type: StringConstructor;
-        required: false;
+        default: string;
     };
     square: {
         type: BooleanConstructor;
@@ -28,7 +28,7 @@ declare const _default: import("vue").DefineComponent<{
     };
     icon: {
         type: StringConstructor;
-        required: false;
+        default: string;
     };
     square: {
         type: BooleanConstructor;
@@ -36,6 +36,7 @@ declare const _default: import("vue").DefineComponent<{
     };
 }>>, {
     status: string;
+    icon: string;
     type: string;
     square: boolean;
 }>;

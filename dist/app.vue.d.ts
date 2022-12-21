@@ -1,4 +1,4 @@
-import type { IEvent } from "./utils/types/calendar";
+import { eventsTypes, IEvent } from "./utils/types/calendar";
 declare const _default: import("vue").DefineComponent<{}, {
     pagination: {
         count: number;
@@ -81,7 +81,7 @@ declare const _default: import("vue").DefineComponent<{}, {
     onClickButtonWarning: () => void;
     onClickButton: () => void;
     onHandleClickDay: () => void;
-    aplication: string[];
+    eventsTypes: import("vue").Ref<eventsTypes[]>;
     onHandleSearch: (search: any) => void;
     onHandleEventClicked: (event: any) => void;
     changeTab: (idElement: string) => void;

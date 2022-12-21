@@ -429,7 +429,7 @@ const _sfc_main$e = defineComponent({
     },
     icon: {
       type: String,
-      required: false
+      default: ""
     },
     square: {
       type: Boolean,
@@ -451,7 +451,7 @@ function _sfc_render$8(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("div", {
     class: normalizeClass([`v-tag__${_ctx.type}--${_ctx.status}`, { "v-tag--square": _ctx.square }])
   }, [
-    _ctx.icon ? (openBlock(), createElementBlock("div", _hoisted_1$d, [
+    _ctx.icon != "" ? (openBlock(), createElementBlock("div", _hoisted_1$d, [
       createElementVNode("img", { src: _ctx.setIcon }, null, 8, _hoisted_2$7)
     ])) : createCommentVNode("v-if", true),
     renderSlot(_ctx.$slots, "default")
@@ -2156,16 +2156,13 @@ PerfectScrollbar.prototype.removePsClasses = function removePsClasses() {
 };
 var VEventCard_scss_vue_type_style_index_0_src_67fe39ee_lang = "";
 const _hoisted_1$5 = { class: "event-card" };
-const _hoisted_2$2 = { class: "break-ellipsis break-ellipsis--three_line" };
+const _hoisted_2$2 = { class: "break-ellipsis event-body--title break-ellipsis--title" };
 const _hoisted_3$2 = {
   key: 1,
-  class: "break-ellipsis break-ellipsis--one_line"
+  class: "break-ellipsis break-ellipsis--subtitle"
 };
-const _hoisted_4$2 = {
-  key: 2,
-  class: "break-ellipsis break-ellipsis--one_line"
-};
-const _sfc_main$6 = defineComponent({
+const _hoisted_4$2 = { key: 2 };
+const _sfc_main$6 = /* @__PURE__ */ defineComponent({
   __name: "VEventCard",
   props: {
     title: {
@@ -2204,12 +2201,12 @@ const _sfc_main$6 = defineComponent({
           class: normalizeClass(["event-status", unref(setEventTypeClass)])
         }, [
           createElementVNode("div", {
-            class: normalizeClass(["event-body", `event-body--${__props.size}`])
+            class: normalizeClass(["event-body", [`event-body--${__props.size}`]])
           }, [
-            __props.size !== "small" ? renderSlot(_ctx.$slots, "tag", { key: 0 }) : createCommentVNode("v-if", true),
-            createElementVNode("h4", _hoisted_2$2, toDisplayString(__props.title), 1),
-            __props.subtitle != "" ? (openBlock(), createElementBlock("p", _hoisted_3$2, toDisplayString(__props.subtitle), 1)) : createCommentVNode("v-if", true),
-            __props.size !== "small" && __props.responsable != "" ? (openBlock(), createElementBlock("p", _hoisted_4$2, toDisplayString(__props.responsable), 1)) : createCommentVNode("v-if", true)
+            __props.size === "default" ? renderSlot(_ctx.$slots, "tag", { key: 0 }) : createCommentVNode("v-if", true),
+            createElementVNode("p", _hoisted_2$2, toDisplayString(__props.title), 1),
+            __props.subtitle != "" && __props.size !== "very-small" ? (openBlock(), createElementBlock("p", _hoisted_3$2, toDisplayString(__props.subtitle), 1)) : createCommentVNode("v-if", true),
+            __props.size === "default" && __props.responsable != "" ? (openBlock(), createElementBlock("p", _hoisted_4$2, toDisplayString(__props.responsable), 1)) : createCommentVNode("v-if", true)
           ], 2)
         ], 2)
       ]);
@@ -2256,7 +2253,6 @@ function useCalendar(url, authorization, method, eventClass) {
     if (!_url || !_authorization) {
       return;
     }
-    console.log("eventClass", eventClass);
     await fetch(`${_url}`, {
       credentials: "same-origin",
       method: _method,
