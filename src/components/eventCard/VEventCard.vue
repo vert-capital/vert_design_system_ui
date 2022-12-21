@@ -1,19 +1,19 @@
 <template>
   <div class="event-card">
     <div class="event-status" :class="setEventTypeClass">
-      <div class="event-body" :class="`event-body--${size}`">
-        <slot v-if="size !== 'small'" name="tag"></slot>
-        <h4 class="break-ellipsis break-ellipsis--three_line">{{ title }}</h4>
+      <div class="event-body" :class="[`event-body--${size}`]">
+        <slot v-if="size === 'default'" name="tag"></slot>
+        <p class="break-ellipsis event-body--title break-ellipsis--title">
+          {{ title }}
+        </p>
+
         <p
-          v-if="subtitle != ''"
-          class="break-ellipsis break-ellipsis--one_line"
+          v-if="subtitle != '' && size !== 'very-small'"
+          class="break-ellipsis break-ellipsis--subtitle"
         >
           {{ subtitle }}
         </p>
-        <p
-          v-if="size !== 'small' && responsable != ''"
-          class="break-ellipsis break-ellipsis--one_line"
-        >
+        <p v-if="size === 'default' && responsable != ''">
           {{ responsable }}
         </p>
       </div>
@@ -24,15 +24,6 @@
 <script lang="ts" setup>
 import { computed, PropType } from "vue";
 import { eventsTypes } from "@/utils/types/calendar";
-
-export interface Props {
-  title: string;
-  subtitle: string;
-  responsable: string;
-  size: string;
-  aplication: eventsTypes;
-  status: string;
-}
 
 const props = defineProps({
   title: {

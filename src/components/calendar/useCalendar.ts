@@ -15,7 +15,6 @@ export function useCalendar(
     if (!_url || !_authorization) {
       return;
     }
-    console.log('eventClass', eventClass);
 
     await fetch(`${_url}`, {
       credentials: "same-origin",

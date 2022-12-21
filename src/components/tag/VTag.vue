@@ -1,6 +1,6 @@
 <template>
   <div :class="[`v-tag__${type}--${status}`, { 'v-tag--square': square }]">
-    <div v-if="icon" class="v-tag--img">
+    <div v-if="icon != ''" class="v-tag--img">
       <img :src="setIcon" />
     </div>
     <slot></slot>
@@ -23,7 +23,7 @@ export default defineComponent({
     },
     icon: {
       type: String,
-      required: false,
+      default: "",
     },
     square: {
       type: Boolean,

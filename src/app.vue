@@ -223,18 +223,40 @@
 
   <hr />
   <br />
-  <div v-for="(item, index) in aplication" :key="index">
+  <div v-for="(item, index) in eventsTypes" :key="index" style="width: 800px">
     <v-event-card
-      title="Obrigações - Pagamento de Juros"
+      title="Obrigações - 3CRIBMG - 1"
       style="margin-top: 20px"
       subtitle="(3CRIBMG - 1)(#556 | 1 - Senior - CDI+%)"
       responsable="Frederico Quadros (Responsável), Douglas Queres e João Dias"
-      size="small"
-      :aplication="(item as any)"
+      size="default"
+      :event-type="item"
     >
       <template #tag>
         <v-tag style="margin-bottom: 12px" status="helper">Tag helper</v-tag>
       </template>
+    </v-event-card>
+  </div>
+  <div v-for="(item, index) in eventsTypes" :key="index" style="width: 200px">
+    <v-event-card
+      title="Obrigações - 3CRIBMG - 1"
+      style="margin-top: 20px"
+      subtitle="(3CRIBMG - 1)(#556 | 1 - Senior - CDI+%)"
+      responsable="Frederico Quadros (Responsável), Douglas Queres e João Dias"
+      size="small"
+      :event-type="item"
+    >
+    </v-event-card>
+  </div>
+  <div v-for="(item, index) in eventsTypes" :key="index" style="width: 100px">
+    <v-event-card
+      title="Obrigações - 3CRIBMG - 1"
+      style="margin-top: 20px"
+      subtitle="(3CRIBMG - 1)(#556 | 1 - Senior - CDI+%)"
+      responsable="Frederico Quadros (Responsável), Douglas Queres e João Dias"
+      size="very-small"
+      :event-type="item"
+    >
     </v-event-card>
   </div>
   <br />
@@ -267,7 +289,7 @@ import VTabContent from "./components/tab/VTabContent.vue";
 import VTabHeader from "./components/tab/VTabHeader.vue";
 import VSelect from "./components/form/select/VSelect.vue";
 import VTag from "./components/tag/VTag.vue";
-import type { IEvent } from "./utils/types/calendar";
+import { eventsTypes, IEvent } from "./utils/types/calendar";
 import VPopUp from "./components/popUp/VPopUp.vue";
 import VCard from "./components/card/VCard.vue";
 import VDropdown from "./components/dropdown/VDropdown.vue";
@@ -328,15 +350,15 @@ export default defineComponent({
       },
     ]);
 
-    const aplication = reactive([
-      "obligations",
-      "payment_events",
-      "payments",
-      "subscriptions",
-      "patrimony_status",
-      "patrimony",
-      "series_status",
-      "series_expiration",
+    const eventsTypes = ref<eventsTypes[]>([
+      "obrigacoes",
+      "eventos_pagamento",
+      "integralizacoes",
+      "subscricoes",
+      "atualizacao_status_patrimonios",
+      "marcos_patrimonios",
+      "vencimento_series",
+      "rating",
     ]);
 
     function onChangePagination(data: any) {
@@ -409,7 +431,7 @@ export default defineComponent({
       onClickButtonWarning,
       onClickButton,
       onHandleClickDay,
-      aplication,
+      eventsTypes,
       onHandleSearch,
       onHandleEventClicked,
       changeTab,

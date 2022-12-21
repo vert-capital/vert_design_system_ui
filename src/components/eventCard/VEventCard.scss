@@ -1,8 +1,5 @@
 .event-card {
   font-family: "Lato", sans-serif;
-  border-radius: 12px;
-  background-color: #f2f2f2;
-  box-sizing: border-box;
   min-height: 40px;
   max-height: 111px;
 
@@ -22,8 +19,7 @@
   .event-status {
     border-left: 12px solid;
     border-radius: 12px;
-    min-height: 40px;
-    max-height: 111px;
+    background-color: #f2f2f2;
 
     &--obrigacoes {
       border-color: #3DA5A5;
@@ -58,14 +54,28 @@
     }
 
     .event-body {
+      border-radius: 12px;
+      box-sizing: border-box;
 
-      // width: 200px;
+      &--very-small {
+        padding: 2px 4px 2px 4px;
+        max-height: 2rem;
+        max-width: 6rem;
+      }
+
       &--small {
         padding: 4px 16px 4px 16px;
+        max-width: 100vmax;
+        max-height: 50px;
+        font-size: 12px;
       }
 
       &--default {
         padding: 16px 8px 16px 8px;
+      }
+
+      &--title {
+        font-weight: $weight-bold;
       }
     }
   }
@@ -77,15 +87,11 @@
   display: -webkit-box;
   -webkit-box-orient: vertical;
 
-  &--one_line {
+  &--title {
     -webkit-line-clamp: 1;
   }
 
-  &--two_line {
-    -webkit-line-clamp: 2;
-  }
-
-  &--three_line {
-    -webkit-line-clamp: 3;
+  &--subtitle {
+    -webkit-line-clamp: 1;
   }
 }

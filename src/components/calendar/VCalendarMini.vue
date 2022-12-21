@@ -29,8 +29,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, onMounted, PropType, ref } from "vue";
-import { IEvent } from "@/utils/types/calendar";
+import { computed, onMounted, ref } from "vue";
 import Time from "@/utils/helpers/Time";
 import Mini from "@/components/calendar/mini/Mini.vue";
 import VDropdown from "@/components/dropdown/VDropdown.vue";
