@@ -84,7 +84,9 @@ declare const _default: import("vue").DefineComponent<{}, {
     eventsTypes: import("vue").Ref<eventsTypes[]>;
     onHandleSearch: (search: any) => void;
     onHandleEventClicked: (event: any) => void;
-    changeTab: (idElement: string) => void;
+    onChangeTab: (tab: string) => void;
+    currentTab: import("vue").Ref<string>;
+    testeActiveTab: () => void;
 }, {
     typeTab: string;
     testeSelect: string;

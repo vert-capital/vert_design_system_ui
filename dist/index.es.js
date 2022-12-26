@@ -400,6 +400,29 @@ const _sfc_main$f = defineComponent({
     borderBottom: {
       type: Boolean,
       default: false
+    },
+    modelValue: {
+      type: String,
+      required: true
+    }
+  },
+  emits: ["update:modelValue", "changeTab"],
+  data() {
+    return {
+      tabActived: this.modelValue
+    };
+  },
+  watch: {
+    modelValue(value) {
+      this.tabActived = value;
+      this.$emit("changeTab", value, this.eixo);
+    }
+  },
+  methods: {
+    onChangeTab(tabTo) {
+      this.tabActived = tabTo;
+      this.$emit("update:modelValue", tabTo);
+      this.$emit("changeTab", tabTo, this.eixo);
     }
   }
 });
@@ -409,7 +432,10 @@ function _sfc_render$9(_ctx, _cache, $props, $setup, $data, $options) {
     createElementVNode("div", {
       class: normalizeClass([{ "tab--border": _ctx.borderBottom }, `tab--${_ctx.eixo}`])
     }, [
-      renderSlot(_ctx.$slots, "header")
+      renderSlot(_ctx.$slots, "header", {
+        changeTab: _ctx.onChangeTab,
+        activeTab: _ctx.modelValue
+      })
     ], 2),
     renderSlot(_ctx.$slots, "default")
   ]);
@@ -2742,10 +2768,6 @@ const showContentTab = (contentId, typeTab) => {
 const _sfc_main = defineComponent({
   name: "VTabContent",
   props: {
-    actived: {
-      type: Boolean,
-      default: false
-    },
     eixo: {
       type: String,
       default: "x"
@@ -2753,18 +2775,28 @@ const _sfc_main = defineComponent({
     tabTo: {
       type: String,
       required: true
+    },
+    modelValue: {
+      type: String,
+      required: true
+    }
+  },
+  emits: ["changeTab"],
+  computed: {
+    actived() {
+      return this.modelValue === this.tabTo;
+    }
+  },
+  watch: {
+    modelValue(value) {
+      showContentTab(value, this.eixo);
     }
   },
   methods: {
     activeTab(event) {
-      const tabHead = event.path[1].children;
-      for (const item of tabHead)
-        item.classList.remove("active");
-      event.target.classList.add("active");
-      showContentTab(
-        event == null ? void 0 : event.target.dataset.tabTo,
-        event == null ? void 0 : event.target.dataset.tabType
-      );
+      if (!event.target.dataset.tabTo)
+        return;
+      this.$emit("changeTab", event == null ? void 0 : event.target.dataset.tabTo);
     }
   }
 });

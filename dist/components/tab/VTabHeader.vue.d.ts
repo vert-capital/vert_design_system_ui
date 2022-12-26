@@ -1,8 +1,4 @@
 declare const _default: import("vue").DefineComponent<{
-    actived: {
-        type: BooleanConstructor;
-        default: boolean;
-    };
     eixo: {
         type: StringConstructor;
         default: string;
@@ -11,13 +7,15 @@ declare const _default: import("vue").DefineComponent<{
         type: StringConstructor;
         required: true;
     };
-}, unknown, unknown, {}, {
+    modelValue: {
+        type: StringConstructor;
+        required: true;
+    };
+}, unknown, unknown, {
+    actived(): boolean;
+}, {
     activeTab(event: any): void;
-}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
-    actived: {
-        type: BooleanConstructor;
-        default: boolean;
-    };
+}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, "changeTab"[], "changeTab", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
     eixo: {
         type: StringConstructor;
         default: string;
@@ -26,8 +24,13 @@ declare const _default: import("vue").DefineComponent<{
         type: StringConstructor;
         required: true;
     };
-}>>, {
+    modelValue: {
+        type: StringConstructor;
+        required: true;
+    };
+}>> & {
+    onChangeTab?: ((...args: any[]) => any) | undefined;
+}, {
     eixo: string;
-    actived: boolean;
 }>;
 export default _default;
