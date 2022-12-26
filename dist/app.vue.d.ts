@@ -1,4 +1,5 @@
-import { eventsTypes, IEvent } from "./utils/types/calendar";
+import { eventTypes, IEventCard } from "./utils/types/calendar";
+import { Event } from "./utils/helpers/Event";
 declare const _default: import("vue").DefineComponent<{}, {
     pagination: {
         count: number;
@@ -81,7 +82,7 @@ declare const _default: import("vue").DefineComponent<{}, {
     onClickButtonWarning: () => void;
     onClickButton: () => void;
     onHandleClickDay: () => void;
-    eventsTypes: import("vue").Ref<eventsTypes[]>;
+    eventsTypes: import("vue").Ref<eventTypes[]>;
     onHandleSearch: (search: any) => void;
     onHandleEventClicked: (event: any) => void;
     onChangeTab: (tab: string) => void;
@@ -93,7 +94,8 @@ declare const _default: import("vue").DefineComponent<{}, {
     dropDownExemplo: never[];
     dropDownExemplo2: never[];
     checkbox: never[];
-    events: IEvent[];
+    Event: typeof Event;
+    events: IEventCard[];
     isLoading: boolean;
 }, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{}>>, {}>;
 export default _default;

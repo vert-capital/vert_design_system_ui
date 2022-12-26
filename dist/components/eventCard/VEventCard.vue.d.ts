@@ -1,5 +1,4 @@
 import { PropType } from "vue";
-import { eventsTypes } from "@/utils/types/calendar";
 declare const _default: import("vue").DefineComponent<{
     title: {
         type: StringConstructor;

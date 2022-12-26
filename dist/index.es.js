@@ -22,8 +22,7 @@ const _sfc_main$k = defineComponent({
     },
     status: {
       type: String,
-      default: "primary",
-      required: true
+      default: "primary"
     },
     icon: {
       type: String,
@@ -33,7 +32,7 @@ const _sfc_main$k = defineComponent({
       type: Boolean,
       default: false
     },
-    style_type: {
+    stypeType: {
       type: String,
       default: "solid"
     }
@@ -43,7 +42,7 @@ const _sfc_main$k = defineComponent({
       return `v-btn--${this.size}`;
     },
     setStatus() {
-      return `v-btn__${this.style_type}--${this.status}`;
+      return `v-btn__${this.stypeType}--${this.status}`;
     },
     setIcon() {
       return `/static/icons/${this.icon}.svg`;
@@ -2271,43 +2270,40 @@ function _sfc_render$3(_ctx, _cache) {
 }
 var SearchIcon = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["render", _sfc_render$3], ["__file", "/home/debora/Documentos/www/vert_design_system_ui/src/components/icons/Search.vue"]]);
 function useCalendar(url, authorization, method, eventClass) {
-  const events = ref(null);
   const _url = unref(url);
   const _authorization = unref(authorization);
   const _method = unref(method) || "GET";
-  async function getEvents() {
+  async function getEvents(params) {
     if (!_url || !_authorization) {
       return;
     }
-    await fetch(`${_url}`, {
-      credentials: "same-origin",
-      method: _method,
-      headers: {
-        Authorization: _authorization,
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-        Accept: "application/json"
+    const _params = params ? params : {};
+    return await fetch(
+      `${_url}?event_data_before=${(_params == null ? void 0 : _params.event_data_before) ? params.event_data_before : ""}&event_data_after=${(params == null ? void 0 : params.event_data_after) ? _params.event_data_after : ""}&page=${(params == null ? void 0 : params.page) ? _params.page : 1}&page_size=${(params == null ? void 0 : params.per_page) ? _params.per_page : 10}`,
+      {
+        credentials: "same-origin",
+        method: _method,
+        headers: {
+          Authorization: _authorization
+        }
       }
-    }).then(async (res) => {
+    ).then(async (res) => {
       if (res) {
         const _res = await res.json();
+        const data = _res.data ? _res.data : _res.results;
         if (eventClass === void 0) {
-          return;
+          return [];
         }
         if (typeof eventClass == "function") {
-          events.value = _res.map(
-            (event) => new eventClass(event).event_formated
-          );
-          return;
+          return data.map((event) => new eventClass(event).event_formated);
         }
-        events.value = _res.map(
+        return data.map(
           (event) => new eventClass.Event(event).event_formated
         );
       }
     });
   }
-  getEvents();
-  return { events };
+  return { getEvents };
 }
 var VCalendarButton_vue_vue_type_style_index_0_lang = "";
 const _hoisted_1$3 = { class: "search-events" };
@@ -2328,6 +2324,12 @@ const _hoisted_7$1 = /* @__PURE__ */ createElementVNode("a", { class: "a-link" }
 const _sfc_main$3 = /* @__PURE__ */ defineComponent({
   __name: "VCalendarButton",
   props: {
+    events: {
+      type: Array,
+      default: () => {
+        return null;
+      }
+    },
     url: {
       type: String,
       default: ""
@@ -2341,7 +2343,7 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
       default: "GET"
     },
     eventClass: {
-      type: Object,
+      type: [Function, Object],
       default: () => {
         return;
       }
@@ -2355,11 +2357,31 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
   setup(__props, { emit: emits }) {
     const props = __props;
     const calendarSelectedDate = ref(new Date());
-    function onHandleDayClicked(payload) {
+    const events = ref([]);
+    const eventsDataProperty = shallowRef(events);
+    const eventsOfDay = ref([]);
+    const eventRenderingKey = ref(0);
+    const { getEvents } = useCalendar(
+      props.url,
+      props.authorization,
+      props.method,
+      props.eventClass
+    );
+    async function onHandleDayClicked(payload) {
       var _a;
+      console.log(payload);
+      const dateTimeString = payload.dateTimeString.substring(0, 10);
+      if (!props.events) {
+        const _data = await getEvents({
+          event_data_after: dateTimeString,
+          event_data_before: dateTimeString,
+          page: 1,
+          per_page: 1e3
+        });
+        events.value = _data;
+      }
       const date = new Date(payload.dateTimeString);
       calendarSelectedDate.value = date;
-      const dateTimeString = payload.dateTimeString.substring(0, 10);
       eventsDataProperty.value = events.value;
       eventsOfDay.value = (_a = eventsDataProperty.value) == null ? void 0 : _a.filter((event) => {
         const eventIsInDay = (event == null ? void 0 : event.event_data) === dateTimeString;
@@ -2381,15 +2403,6 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
         wheelPropagation: true
       });
     }
-    const { events } = useCalendar(
-      props.url,
-      props.authorization,
-      props.method,
-      props.eventClass
-    );
-    const eventsDataProperty = shallowRef(events);
-    const eventsOfDay = ref([]);
-    const eventRenderingKey = ref(0);
     watch(
       () => events,
       (newVal, oldVal) => {
@@ -2407,6 +2420,19 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
     );
     onMounted(async () => {
       initScrollbar();
+      if (props.events) {
+        events.value = props.events;
+      } else {
+        const today = new Date();
+        const dateTimeString = today.toISOString().substring(0, 10);
+        const data = await getEvents({
+          event_data_after: dateTimeString,
+          event_data_before: dateTimeString,
+          page: 1,
+          per_page: 1e3
+        });
+        events.value = data;
+      }
     });
     return (_ctx, _cache) => {
       return openBlock(), createBlock(unref(VPopUp), {

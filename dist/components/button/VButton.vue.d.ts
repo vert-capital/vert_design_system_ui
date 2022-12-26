@@ -6,7 +6,6 @@ declare const _default: import("vue").DefineComponent<{
     status: {
         type: StringConstructor;
         default: string;
-        required: true;
     };
     icon: {
         type: StringConstructor;
@@ -16,7 +15,7 @@ declare const _default: import("vue").DefineComponent<{
         type: BooleanConstructor;
         default: boolean;
     };
-    style_type: {
+    stypeType: {
         type: StringConstructor;
         default: string;
     };
@@ -32,7 +31,6 @@ declare const _default: import("vue").DefineComponent<{
     status: {
         type: StringConstructor;
         default: string;
-        required: true;
     };
     icon: {
         type: StringConstructor;
@@ -42,7 +40,7 @@ declare const _default: import("vue").DefineComponent<{
         type: BooleanConstructor;
         default: boolean;
     };
-    style_type: {
+    stypeType: {
         type: StringConstructor;
         default: string;
     };
@@ -51,6 +49,6 @@ declare const _default: import("vue").DefineComponent<{
     status: string;
     icon: string;
     disabled: boolean;
-    style_type: string;
+    stypeType: string;
 }>;
 export default _default;
