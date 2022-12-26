@@ -68,12 +68,27 @@
     <hr />
     <h4>TAB</h4>
     <br />
-    <v-tab :eixo="typeTab" border-bottom>
-      <template #header>
-        <v-tab-header tab-to="tab1" :eixo="typeTab" actived
+    <v-button @click="testeActiveTab">active tab 2</v-button>
+    <v-tab
+      v-model="currentTab"
+      :eixo="typeTab"
+      border-bottom
+      @change-tab="onChangeTab"
+    >
+      <template #header="slotProps">
+        <v-tab-header
+          tab-to="tab1"
+          :eixo="typeTab"
+          :model-value="slotProps.activeTab"
+          @change-tab="slotProps.changeTab"
           >Exemplo 1</v-tab-header
         >
-        <v-tab-header tab-to="tab2" :eixo="typeTab">
+        <v-tab-header
+          tab-to="tab2"
+          :eixo="typeTab"
+          :model-value="slotProps.activeTab"
+          @change-tab="slotProps.changeTab"
+        >
           <v-tag icon="alert" status="secondary" square>2</v-tag>
           Exemplo 2
         </v-tab-header>
@@ -99,7 +114,6 @@
         </v-tab-content>
       </div>
     </v-tab>
-    <button @click="changeTab('tab1')">Ir para Tab 1</button>
     <br />
     <hr />
     <h4>SELECT</h4>
@@ -295,7 +309,6 @@ import VCard from "./components/card/VCard.vue";
 import VDropdown from "./components/dropdown/VDropdown.vue";
 // import VCalendarButton from "./components/calendar/VCalendarButton.vue";
 import VEventCard from "./components/eventCard/VEventCard.vue";
-import { changeTab } from "./components/tab/VTab";
 import VMultiselect from "./components/form/multiselect/VMultiselect.vue";
 
 export default defineComponent({
@@ -320,7 +333,7 @@ export default defineComponent({
 
   setup() {
     const pokemons = ref({ count: 0, next: "", previous: "", results: [] });
-
+    const currentTab = ref("tab1");
     const pagination = reactive({
       count: 0,
       page: 1,
@@ -420,6 +433,15 @@ export default defineComponent({
       console.log("event:" + event);
     }
 
+    function onChangeTab(tab: string) {
+      console.log("tab:" + tab);
+      console.log("currentTab:" + currentTab.value);
+    }
+
+    function testeActiveTab() {
+      currentTab.value = "tab2";
+    }
+
     return {
       pagination,
       selectOptions,
@@ -434,7 +456,9 @@ export default defineComponent({
       eventsTypes,
       onHandleSearch,
       onHandleEventClicked,
-      changeTab,
+      onChangeTab,
+      currentTab,
+      testeActiveTab
     };
   },
 

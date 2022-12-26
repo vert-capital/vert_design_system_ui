@@ -1,7 +1,11 @@
 <template>
   <div class="box">
     <div :class="[{ 'tab--border': borderBottom }, `tab--${eixo}`]">
-      <slot name="header"></slot>
+      <slot
+        name="header"
+        :change-tab="onChangeTab"
+        :active-tab="modelValue"
+      ></slot>
     </div>
     <slot></slot>
   </div>
@@ -19,6 +23,29 @@ export default defineComponent({
     borderBottom: {
       type: Boolean,
       default: false,
+    },
+    modelValue: {
+      type: String,
+      required: true,
+    },
+  },
+  emits: ["update:modelValue", "changeTab"],
+  data() {
+    return {
+      tabActived: this.modelValue,
+    };
+  },
+  watch: {
+    modelValue(value: string) {
+      this.tabActived = value;
+      this.$emit("changeTab", value, this.eixo);
+    },
+  },
+  methods: {
+    onChangeTab(tabTo: string): void {
+      this.tabActived = tabTo;
+      this.$emit("update:modelValue", tabTo);
+      this.$emit("changeTab", tabTo, this.eixo);
     },
   },
 });

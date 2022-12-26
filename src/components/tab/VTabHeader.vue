@@ -15,10 +15,6 @@ import { showContentTab } from "./VTab";
 export default defineComponent({
   name: "VTabContent",
   props: {
-    actived: {
-      type: Boolean,
-      default: false,
-    },
     eixo: {
       type: String,
       default: "x",
@@ -27,16 +23,26 @@ export default defineComponent({
       type: String,
       required: true,
     },
+    modelValue: {
+      type: String,
+      required: true,
+    },
+  },
+  emits: ["changeTab"],
+  computed: {
+    actived(): boolean {
+      return this.modelValue === this.tabTo;
+    },
+  },
+  watch: {
+    modelValue(value: string) {
+      showContentTab(value, this.eixo);
+    },
   },
   methods: {
     activeTab(event: any): void {
-      const tabHead = event.path[1].children;
-      for (const item of tabHead) item.classList.remove("active");
-      event.target.classList.add("active");
-      showContentTab(
-        event?.target.dataset.tabTo,
-        event?.target.dataset.tabType
-      );
+      if (!event.target.dataset.tabTo) return;
+      this.$emit("changeTab", event?.target.dataset.tabTo);
     },
   },
 });
