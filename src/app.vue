@@ -29,7 +29,7 @@
     <div class="d-flex">
       <v-button
         icon="close"
-        style_type="shadow"
+        style-type="shadow"
         status="helper"
         @click="onClickButton"
         >Erro: 402 favor falar com desenvolvedor
@@ -42,7 +42,7 @@
       <v-button
         icon="info"
         status="primary"
-        style_type="outline"
+        style-type="outline"
         @click="onClickButtonWarning"
         >Padrão out</v-button
       >
@@ -137,7 +137,7 @@
       <v-button
         icon="info"
         status="primary"
-        style_type="outline"
+        stype-type="outline"
         @click="onClickButtonWarning"
         >Padrão</v-button
       >
@@ -220,20 +220,19 @@
 
   <hr />
   <br />
-  <!-- <div style="margin-left: 30%;">
+  <div style="margin-left: 30%;">
     <h4>Calendário de eventos</h4>
     <h3>Calendário reduzido (popUp)</h3>
     <v-calendar-button
-      :events="events"
-      :url="`https://api.json-generator.com/templates/f-G4yucOd7dK/data`"
-      authorization="Bearer 198191818181811"
-      :event-class="EventClass"
+      :url="`http://localhost:8080/event-central/event/`"
+      authorization="JWT null"
+      :event-class="Event"
       @day-was-clicked="onHandleClickDay"
       @search-was-inputed="onHandleSearch"
       @event-was-clicked="onHandleEventClicked"
     >
     </v-calendar-button>
-  </div> -->
+  </div>
 
   <hr />
   <br />
@@ -303,13 +302,14 @@ import VTabContent from "./components/tab/VTabContent.vue";
 import VTabHeader from "./components/tab/VTabHeader.vue";
 import VSelect from "./components/form/select/VSelect.vue";
 import VTag from "./components/tag/VTag.vue";
-import { eventsTypes, IEvent } from "./utils/types/calendar";
+import { eventTypes, IEventCard } from "./utils/types/calendar";
 import VPopUp from "./components/popUp/VPopUp.vue";
 import VCard from "./components/card/VCard.vue";
 import VDropdown from "./components/dropdown/VDropdown.vue";
-// import VCalendarButton from "./components/calendar/VCalendarButton.vue";
+import VCalendarButton from "./components/calendar/VCalendarButton.vue";
 import VEventCard from "./components/eventCard/VEventCard.vue";
 import VMultiselect from "./components/form/multiselect/VMultiselect.vue";
+import { Event } from "./utils/helpers/Event";
 
 export default defineComponent({
   name: "App",
@@ -326,7 +326,7 @@ export default defineComponent({
     VPopUp,
     VCard,
     VDropdown,
-    // VCalendarButton,
+    VCalendarButton,
     VEventCard,
     VMultiselect,
   },
@@ -363,7 +363,7 @@ export default defineComponent({
       },
     ]);
 
-    const eventsTypes = ref<eventsTypes[]>([
+    const eventsTypes = ref<eventTypes[]>([
       "obrigacoes",
       "eventos_pagamento",
       "integralizacoes",
@@ -458,7 +458,7 @@ export default defineComponent({
       onHandleEventClicked,
       onChangeTab,
       currentTab,
-      testeActiveTab
+      testeActiveTab,
     };
   },
 
@@ -469,6 +469,7 @@ export default defineComponent({
       dropDownExemplo: [],
       dropDownExemplo2: [],
       checkbox: [],
+      Event,
       events: [
         {
           title: "Vencimento de séries - culpa est",
@@ -605,7 +606,7 @@ export default defineComponent({
           event_data: "2022-12-30",
           event_type: "obrigacoes",
         },
-      ] as IEvent[],
+      ] as IEventCard[],
 
       isLoading: false,
     };
