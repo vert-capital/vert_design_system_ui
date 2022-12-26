@@ -42,7 +42,7 @@
 <script lang="ts" setup>
 import { VPopUp, VCalendarMini } from "@/components";
 import IconCalendar from "@/components/icons/CalendarDay.vue";
-import type { IEvent } from "@/utils/types/calendar";
+import type { IEvent, IEventCard } from "@/utils/types/calendar";
 import { onMounted, PropType, ref, shallowRef, watch } from "vue";
 import PerfectScrollbar from "perfect-scrollbar";
 import Event from "@/components/calendar/mini/Event.vue";
@@ -50,6 +50,12 @@ import SearchIcon from "@/components/icons/Search.vue";
 import { useCalendar } from "@/components/calendar/useCalendar";
 
 const props = defineProps({
+  events: {
+    type: Array as PropType<IEventCard[]>,
+    default: () => {
+      return null;
+    },
+  },
   url: {
     type: String,
     default: "",
@@ -63,7 +69,7 @@ const props = defineProps({
     default: "GET",
   },
   eventClass: {
-    type: Object as PropType<any>,
+    type: [Function, Object] as PropType<any>,
     default: () => {
       return;
     },
@@ -77,12 +83,35 @@ const emits = defineEmits([
 ]);
 
 const calendarSelectedDate = ref(new Date());
+const events = ref<IEventCard[]>([]);
 
-function onHandleDayClicked(payload: any) {
+const eventsDataProperty = shallowRef<IEvent[]>(events as unknown as IEvent[]);
+const eventsOfDay = ref([] as IEvent[]);
+const eventRenderingKey = ref(0);
+
+const { getEvents } = useCalendar(
+  props.url,
+  props.authorization,
+  props.method,
+  props.eventClass
+);
+
+async function onHandleDayClicked(payload: any) {
+  console.log(payload);
+
+  const dateTimeString = payload.dateTimeString.substring(0, 10);
+  if (!props.events) {
+    const _data: IEventCard[] = await getEvents({
+      event_data_after: dateTimeString,
+      event_data_before: dateTimeString,
+      page: 1,
+      per_page: 1000,
+    });
+    events.value = _data;
+  }
   const date = new Date(payload.dateTimeString);
   calendarSelectedDate.value = date;
 
-  const dateTimeString = payload.dateTimeString.substring(0, 10);
   eventsDataProperty.value = events.value as unknown as IEvent[];
   eventsOfDay.value = eventsDataProperty.value?.filter((event: IEvent) => {
     const eventIsInDay = event?.event_data === dateTimeString;
@@ -108,16 +137,6 @@ function initScrollbar() {
     wheelPropagation: true,
   });
 }
-const { events } = useCalendar(
-  props.url,
-  props.authorization,
-  props.method,
-  props.eventClass
-);
-
-const eventsDataProperty = shallowRef<IEvent[]>(events as unknown as IEvent[]);
-const eventsOfDay = ref([] as IEvent[]);
-const eventRenderingKey = ref(0);
 
 watch(
   () => events,
@@ -138,6 +157,20 @@ watch(
 
 onMounted(async () => {
   initScrollbar();
+
+  if (props.events) {
+    events.value = props.events;
+  } else {
+    const today = new Date();
+    const dateTimeString = today.toISOString().substring(0, 10);
+    const data: IEventCard[] = await getEvents({
+      event_data_after: dateTimeString,
+      event_data_before: dateTimeString,
+      page: 1,
+      per_page: 1000,
+    });
+    events.value = data;
+  }
 });
 </script>
 

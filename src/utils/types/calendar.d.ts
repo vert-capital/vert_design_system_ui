@@ -1,6 +1,6 @@
 export type applicationsNumber = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
 
-export type eventsTypes =
+export type eventTypes =
   | "obrigacoes"
   | "eventos_pagamento"
   | "integralizacoes"
@@ -20,13 +20,95 @@ export type eventId = string | number;
 
 export type modeType = "month" | "week" | "day" | "personalized" | "mini";
 
+export enum eventTypesEnum {
+  OBRIGACOES = 'obrigacoes',
+  EVENTOS_PAGAMENTO = 'eventos_pagamento',
+  INTEGRALIZACOES = 'integralizacoes',
+  SUBSCRICOES = 'subscricoes',
+  ATUALIZACAO_STATUS_PATRIMONIOS = 'atualizacao_status_patrimonios',
+  MARCOS_PATRIMONIOS = 'marcos_patrimonios',
+  VENCIMENTO_SERIES = 'vencimento_series',
+  RATING = 'rating'
+}
+
 export interface IEvent {
-  id?: eventId;
-  title?: string;
-  event_type: eventsTypes;
+  id?: number | null;
+  json: IJSON;
+  series: ISeries;
+  emission: IEmission;
+  patrimony: IPatrimony;
   event_data: string;
-  subtitle?: string;
+  application: IApplication;
+  event_type: IEventType;
+  event_formated?: IEventCard;
+  tag?: string[];
+}
+
+export interface IEventCard {
+  title: string;
+  subtitle: string;
   responsable?: string;
+  size?: string;
+  event_type: eventTypes;
+  status?: string;
+  event_data?: string;
+}
+
+export interface IEmission {
+  date: string;
+  type: string;
+  number: number;
+  approved: string;
+  responsible: string[];
+  _emission_name: string;
+  number_patrimonies: number;
+  _emission_code_name: string;
+  external_emission_id: number;
+  principal_responsable_name: string;
+  principal_responsable_email: string;
+}
+
+export interface IJSON {
+  march: string;
+  title: string;
+  status: string;
+  march_period: string;
+  issuing_company: string;
+  effective_period: string;
+  financial_instrument: string;
+}
+
+export interface IPatrimony {
+  number: number;
+  external_patrimony_id: number;
+  status: string;
+  status_mark: string;
+  credit_purchase_period_start_date: string | null;
+  credit_purchase_period_end_date: string | null;
+  payment_period_start_date: string | null;
+  payment_period_end_date: string | null;
+  closing_period_start_date: string | null;
+  closing_period_end_date: string | null;
+}
+
+export interface ISeries {
+  name: string;
+  type: string;
+  priority: number;
+  patrimony: number;
+  external_series_id: number;
+}
+
+export interface IApplication {
+  id: number;
+  slug: string;
+  name: string;
+}
+
+export interface IEventType {
+  id: number;
+  name: string;
+  responsible_area: IResponsiblesArea;
 }
 
 export type IEventsWeek = IEvent[];

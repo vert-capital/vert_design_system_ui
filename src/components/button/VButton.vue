@@ -25,17 +25,16 @@ export default defineComponent({
     status: {
       type: String,
       default: "primary",
-      required: true,
     },
     icon: {
       type: String,
       default: "",
-    } ,
+    },
     disabled: {
       type: Boolean,
       default: false,
     },
-    style_type: {
+    stypeType: {
       type: String,
       default: "solid",
     },
@@ -45,7 +44,7 @@ export default defineComponent({
       return `v-btn--${this.size}`;
     },
     setStatus(): string {
-      return `v-btn__${this.style_type}--${this.status}`;
+      return `v-btn__${this.stypeType}--${this.status}`;
     },
     setIcon(): string {
       return `/static/icons/${this.icon}.svg`;
