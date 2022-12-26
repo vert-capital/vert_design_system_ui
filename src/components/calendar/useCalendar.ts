@@ -13,7 +13,7 @@ export function useCalendar(
 
   async function getEvents(params?: any): Promise<IEventCard[]> {
     if (!_url || !_authorization) {
-      return;
+      return [];
     }
 
     const _params = params ? params : {};

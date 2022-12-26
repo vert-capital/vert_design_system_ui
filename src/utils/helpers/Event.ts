@@ -93,7 +93,9 @@ export class Event implements IEvent {
       "VENCIMENTO_SERIES",
       "RATING",
     ];
-    return eventTypesEnum[events[this.event_type.id - 1]];
+    const _key: number = this.event_type.id - 1;
+    const _keyofenum: any = events[_key];
+    return eventTypesEnum[_keyofenum as keyof typeof eventTypesEnum];
   }
 
   getTitle(): string {

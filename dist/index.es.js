@@ -2275,7 +2275,7 @@ function useCalendar(url, authorization, method, eventClass) {
   const _method = unref(method) || "GET";
   async function getEvents(params) {
     if (!_url || !_authorization) {
-      return;
+      return [];
     }
     const _params = params ? params : {};
     return await fetch(

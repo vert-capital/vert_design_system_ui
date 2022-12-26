@@ -23,7 +23,7 @@
 
 <script lang="ts" setup>
 import { computed, PropType } from "vue";
-import { eventsTypes } from "@/utils/types/calendar";
+import { eventTypes } from "@/utils/types/calendar";
 
 const props = defineProps({
   title: {
@@ -43,7 +43,7 @@ const props = defineProps({
     default: "default",
   },
   eventType: {
-    type: String as PropType<eventsTypes>,
+    type: String as PropType<eventTypes>,
     default: "obrigacoes",
   },
   status: {

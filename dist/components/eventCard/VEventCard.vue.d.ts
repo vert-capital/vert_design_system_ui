@@ -1,4 +1,5 @@
 import { PropType } from "vue";
+import { eventTypes } from "@/utils/types/calendar";
 declare const _default: import("vue").DefineComponent<{
     title: {
         type: StringConstructor;
@@ -17,7 +18,7 @@ declare const _default: import("vue").DefineComponent<{
         default: string;
     };
     eventType: {
-        type: PropType<eventsTypes>;
+        type: PropType<eventTypes>;
         default: string;
     };
     status: {
@@ -42,7 +43,7 @@ declare const _default: import("vue").DefineComponent<{
         default: string;
     };
     eventType: {
-        type: PropType<eventsTypes>;
+        type: PropType<eventTypes>;
         default: string;
     };
     status: {
@@ -55,6 +56,6 @@ declare const _default: import("vue").DefineComponent<{
     title: string;
     subtitle: string;
     responsable: string;
-    eventType: eventsTypes;
+    eventType: eventTypes;
 }>;
 export default _default;
