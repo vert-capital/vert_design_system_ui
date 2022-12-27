@@ -2281,7 +2281,7 @@ function useCalendar(url, authorization, method, eventClass) {
     return await fetch(
       `${_url}?event_data_before=${(_params == null ? void 0 : _params.event_data_before) ? params.event_data_before : ""}&event_data_after=${(params == null ? void 0 : params.event_data_after) ? _params.event_data_after : ""}&page=${(params == null ? void 0 : params.page) ? _params.page : 1}&page_size=${(params == null ? void 0 : params.per_page) ? _params.per_page : 10}`,
       {
-        credentials: "include",
+        credentials: "same-origin",
         method: _method,
         headers: {
           Authorization: _authorization

@@ -27,7 +27,7 @@ export function useCalendar(
         params?.per_page ? _params.per_page : 10
       }`,
       {
-        credentials: "include",
+        credentials: "same-origin",
         method: _method,
         headers: {
           Authorization: _authorization,
