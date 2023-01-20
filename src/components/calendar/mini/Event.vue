@@ -4,6 +4,7 @@
     :event-type="event.event_type"
     :subtitle="event.subtitle"
     :responsable="event.responsable"
+    :color="event.color"
   ></v-event-card>
 </template>
 <script lang="ts" setup>

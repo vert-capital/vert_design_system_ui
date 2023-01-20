@@ -220,7 +220,7 @@
 
   <hr />
   <br />
-  <div style="margin-left: 30%;">
+  <div style="margin-left: 30%">
     <h4>Calendário de eventos</h4>
     <h3>Calendário reduzido (popUp)</h3>
     <v-calendar-button
@@ -244,6 +244,7 @@
       responsable="Frederico Quadros (Responsável), Douglas Queres e João Dias"
       size="default"
       :event-type="item"
+      color="#3da5a5"
     >
       <template #tag>
         <v-tag style="margin-bottom: 12px" status="helper">Tag helper</v-tag>
