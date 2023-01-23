@@ -1,6 +1,6 @@
 <template>
   <div class="event-card">
-    <div class="event-status" :class="setEventTypeClass">
+    <div class="event-status" :style="`border-color: ${color};`">
       <div class="event-body" :class="[`event-body--${size}`]">
         <slot v-if="size === 'default'" name="tag"></slot>
         <p class="break-ellipsis event-body--title break-ellipsis--title">
@@ -22,8 +22,17 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, PropType } from "vue";
-import { eventTypes } from "@/utils/types/calendar";
+import { eventsTypes } from "@/utils/types/calendar";
+
+export interface Props {
+  title: string;
+  subtitle: string;
+  responsable: string;
+  size: string;
+  aplication: eventsTypes;
+  status: string;
+  color: string;
+}
 
 const props = defineProps({
   title: {
@@ -42,19 +51,15 @@ const props = defineProps({
     type: String,
     default: "default",
   },
-  eventType: {
-    type: String as PropType<eventTypes>,
-    default: "obrigacoes",
-  },
   status: {
     type: String,
     default: "pending",
   },
+  color: {
+    type: String,
+    default: "inerent",
+  },
 });
-
-const setEventTypeClass = computed(
-  (): string => `event-status--${props.eventType}`
-);
 </script>
 
 <style src="./VEventCard.scss" lang="scss" />
