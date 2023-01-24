@@ -1,12 +1,12 @@
 <template>
-  <div class="skeleton">
+  <div class="skeleton" v-if="isLoading">
     <div class="skeleton-left">
       <div class="line h14"></div>
       <div class="line h10 w50"></div>
       <div class="line h10 w75"></div>
     </div>
   </div>
-  <div class="event-card" @click="handleClicked">
+  <div class="event-card" @click="handleClicked" v-else>
     <div class="event-status" :style="`border-color: ${color};`">
       <div class="event-body" :class="[`event-body--${size}`]">
         <slot v-if="size === 'default'" name="tag"></slot>

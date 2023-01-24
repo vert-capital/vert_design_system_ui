@@ -4,6 +4,7 @@
     :subtitle="event.subtitle"
     :responsable="event.responsable"
     :color="event.color"
+    :is-loading="loading"
     @on-clicked="handleClick"
   ></v-event-card>
 </template>
@@ -14,6 +15,10 @@ const props = defineProps({
   event: {
     type: Object as PropType<any>,
     required: true,
+  },
+  loading: {
+    type: Boolean,
+    default: false,
   },
 });
 

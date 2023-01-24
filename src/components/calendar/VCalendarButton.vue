@@ -19,17 +19,15 @@
       </div>
 
       <div id="container-list" class="list-events">
-        <div v-if="eventsOfDay?.length > 0">
-          <div
-            v-for="(event, index) in eventsOfDay"
-            :key="index"
-            class="list-events__item"
-          >
-            <event :event="event" @on-clicked="onHandleEventClicked"></event>
-          </div>
+        <div
+          v-for="(event, index) in eventsOfDay"
+          :key="index"
+          class="list-events__item"
+        >
+          <event :event="event" @on-clicked="onHandleEventClicked" :loading="isLoading"></event>
         </div>
 
-        <div v-else class="list-events__empty">
+        <div v-if="!isLoading && !eventsOfDay.length" class="list-events__empty">
           <p>Nenhum evento encontrado</p>
         </div>
       </div>
@@ -94,6 +92,7 @@ const eventsOfDay = ref([] as IEvent[]);
 const eventRenderingKey = ref(0);
 const dayClicked = ref('');
 const search = ref('');
+const isLoading = ref(false);
 
 const { getEvents } = useCalendar(
   props.url,
@@ -115,7 +114,10 @@ const _params = computed(() => {
 async function onHandleDayClicked(payload: any) {
   dayClicked.value = payload.dateTimeString.substring(0, 10);
   if (!props.events) {
-    const _data: IEventCard[] = await getEvents(_params.value);
+    isLoading.value = true;
+    const _data: IEventCard[] = await getEvents(_params.value).finally(() => {
+      isLoading.value = false;
+    });
     events.value = _data;
   }
   const date = new Date(payload.dateTimeString);
@@ -131,7 +133,10 @@ async function onHandleDayClicked(payload: any) {
 
 async function searchEvent() {
   if (!props.events) {
-    const _data: IEventCard[] = await getEvents(_params.value);
+    isLoading.value = true;
+    const _data: IEventCard[] = await getEvents(_params.value).finally(() => {
+      isLoading.value = false;
+    });
     events.value = _data;
   }
 
@@ -182,9 +187,12 @@ onMounted(async () => {
   if (props.events) {
     events.value = props.events;
   } else {
+    isLoading.value = true;
     const today = new Date();
     dayClicked.value = today.toISOString().substring(0, 10);
-    const data: IEventCard[] = await getEvents(_params.value);
+    const data: IEventCard[] = await getEvents(_params.value).finally(() => {
+      isLoading.value = false;
+    });
     events.value = data;
   }
 });
