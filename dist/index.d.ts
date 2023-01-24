@@ -11,4 +11,5 @@ export { default as VCard } from "./components/card/VCard.vue";
 export { default as VCalendarMini } from "./components/calendar/VCalendarMini.vue";
 export { default as VCalendarButton } from "./components/calendar/VCalendarButton.vue";
 export { default as VEventCard } from "./components/eventCard/VEventCard.vue";
+export { default as VLoading } from "./components/loading/VLoading.vue";
 export * as constants from "./utils/constants";

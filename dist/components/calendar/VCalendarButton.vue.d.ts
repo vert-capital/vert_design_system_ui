@@ -9,6 +9,10 @@ declare const _default: import("vue").DefineComponent<{
         type: StringConstructor;
         default: string;
     };
+    urlEvents: {
+        type: StringConstructor;
+        default: string;
+    };
     authorization: {
         type: StringConstructor;
         default: string;
@@ -27,6 +31,10 @@ declare const _default: import("vue").DefineComponent<{
         default: () => null;
     };
     url: {
+        type: StringConstructor;
+        default: string;
+    };
+    urlEvents: {
         type: StringConstructor;
         default: string;
     };
@@ -50,6 +58,7 @@ declare const _default: import("vue").DefineComponent<{
     events: IEventCard[];
     method: string;
     url: string;
+    urlEvents: string;
     authorization: string;
     eventClass: any;
 }>;

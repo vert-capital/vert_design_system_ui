@@ -1,5 +1,3 @@
-import { PropType } from "vue";
-import { eventTypes } from "@/utils/types/calendar";
 declare const _default: import("vue").DefineComponent<{
     title: {
         type: StringConstructor;
@@ -17,15 +15,19 @@ declare const _default: import("vue").DefineComponent<{
         type: StringConstructor;
         default: string;
     };
-    eventType: {
-        type: PropType<eventTypes>;
-        default: string;
-    };
     status: {
         type: StringConstructor;
         default: string;
     };
-}, () => void, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
+    color: {
+        type: StringConstructor;
+        default: string;
+    };
+    isLoading: {
+        type: BooleanConstructor;
+        default: boolean;
+    };
+}, () => void, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, "on-clicked"[], "on-clicked", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
     title: {
         type: StringConstructor;
         default: string;
@@ -42,20 +44,27 @@ declare const _default: import("vue").DefineComponent<{
         type: StringConstructor;
         default: string;
     };
-    eventType: {
-        type: PropType<eventTypes>;
-        default: string;
-    };
     status: {
         type: StringConstructor;
         default: string;
     };
-}>>, {
+    color: {
+        type: StringConstructor;
+        default: string;
+    };
+    isLoading: {
+        type: BooleanConstructor;
+        default: boolean;
+    };
+}>> & {
+    "onOn-clicked"?: ((...args: any[]) => any) | undefined;
+}, {
     size: string;
     status: string;
     title: string;
     subtitle: string;
     responsable: string;
-    eventType: eventTypes;
+    isLoading: boolean;
+    color: string;
 }>;
 export default _default;
