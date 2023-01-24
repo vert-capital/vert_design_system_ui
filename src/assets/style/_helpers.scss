@@ -1,3 +1,67 @@
 .cursor-pointer {
   cursor: pointer;
 }
+.flex1{
+  flex: 1;
+}
+.flex2{
+  flex: 2;
+}
+.h8{
+  height: 8px !important;
+}
+.h10{
+  height: 10px !important;
+}
+.h12{
+  height: 12px !important;
+}
+.h15{
+  height: 15px !important;
+}
+.h17{
+  height: 17px !important;
+}
+.h20{
+  height: 20px !important;
+}
+.h25{
+  height: 25px !important;
+}
+.w25{
+  width: 25% !important
+}
+.w40{
+  width:40% !important;
+}
+.w50{
+  width: 50% !important
+}
+.w75{
+  width: 75% !important
+}
+.m10{
+  margin-bottom: 10px !important;
+}
+.circle {
+  border-radius: 50% !important;
+  height: 80px !important;
+  width: 80px;
+}
+
+@keyframes wave-lines {
+  0% {
+      background-position: -468px 0;
+  }
+  100% {
+      background-position: 468px 0;
+  }
+}
+@keyframes wave-squares {
+  0% {
+      background-position: -468px 0;
+  }
+  100% {
+      background-position: 468px 0;
+  }
+}

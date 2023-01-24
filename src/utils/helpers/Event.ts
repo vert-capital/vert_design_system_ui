@@ -44,6 +44,7 @@ export class Event implements IEvent {
     this.event_type = event.event_type;
 
     this.event_formated = {
+      id: "",
       title: "",
       subtitle: "",
       responsable: "",
@@ -55,6 +56,7 @@ export class Event implements IEvent {
   }
 
   formatEvent(): void {
+    this.event_formated.id = this.id?.toString() || "";
     this.event_formated.title = this.getTitle();
     this.event_formated.subtitle =
       this.getEmissionFormated() + " " + this.getSeriesFormated();

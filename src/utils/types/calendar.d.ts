@@ -45,6 +45,7 @@ export interface IEvent {
 }
 
 export interface IEventCard {
+  id: string;
   title: string;
   subtitle: string;
   responsable?: string;

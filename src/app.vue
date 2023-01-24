@@ -224,12 +224,13 @@
     <h4>Calendário de eventos</h4>
     <h3>Calendário reduzido (popUp)</h3>
     <v-calendar-button
-      :url="`http://localhost:8080/event-central/event/`"
+      :url="`http://127.0.0.1:8081/event-central/event/`"
       authorization="JWT null"
       :event-class="Event"
       @day-was-clicked="onHandleClickDay"
       @search-was-inputed="onHandleSearch"
       @event-was-clicked="onHandleEventClicked"
+      urlEvents="http://127.0.0.1:8081"
     >
     </v-calendar-button>
   </div>
@@ -239,11 +240,9 @@
   <div v-for="(item, index) in eventsTypes" :key="index" style="width: 800px">
     <v-event-card
       title="Obrigações - 3CRIBMG - 1"
-      style="margin-top: 20px"
       subtitle="(3CRIBMG - 1)(#556 | 1 - Senior - CDI+%)"
       responsable="Frederico Quadros (Responsável), Douglas Queres e João Dias"
       size="default"
-      :event-type="item"
       color="#3da5a5"
     >
       <template #tag>
@@ -254,22 +253,18 @@
   <div v-for="(item, index) in eventsTypes" :key="index" style="width: 200px">
     <v-event-card
       title="Obrigações - 3CRIBMG - 1"
-      style="margin-top: 20px"
       subtitle="(3CRIBMG - 1)(#556 | 1 - Senior - CDI+%)"
       responsable="Frederico Quadros (Responsável), Douglas Queres e João Dias"
       size="small"
-      :event-type="item"
     >
     </v-event-card>
   </div>
   <div v-for="(item, index) in eventsTypes" :key="index" style="width: 100px">
     <v-event-card
       title="Obrigações - 3CRIBMG - 1"
-      style="margin-top: 20px"
       subtitle="(3CRIBMG - 1)(#556 | 1 - Senior - CDI+%)"
       responsable="Frederico Quadros (Responsável), Douglas Queres e João Dias"
       size="very-small"
-      :event-type="item"
     >
     </v-event-card>
   </div>

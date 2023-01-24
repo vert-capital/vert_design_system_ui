@@ -1,5 +1,12 @@
 <template>
-  <div class="event-card">
+  <div class="skeleton">
+    <div class="skeleton-left">
+      <div class="line h14"></div>
+      <div class="line h10 w50"></div>
+      <div class="line h10 w75"></div>
+    </div>
+  </div>
+  <div class="event-card" @click="handleClicked">
     <div class="event-status" :style="`border-color: ${color};`">
       <div class="event-body" :class="[`event-body--${size}`]">
         <slot v-if="size === 'default'" name="tag"></slot>
@@ -22,19 +29,8 @@
 </template>
 
 <script lang="ts" setup>
-import { eventsTypes } from "@/utils/types/calendar";
 
-export interface Props {
-  title: string;
-  subtitle: string;
-  responsable: string;
-  size: string;
-  aplication: eventsTypes;
-  status: string;
-  color: string;
-}
-
-const props = defineProps({
+defineProps({
   title: {
     type: String,
     default: "Título do evento",
@@ -59,7 +55,17 @@ const props = defineProps({
     type: String,
     default: "inerent",
   },
+  isLoading: {
+    type: Boolean,
+    default: false,
+  },
 });
+
+const emit = defineEmits(["on-clicked"]);
+
+function handleClicked() {
+  emit("on-clicked");
+}
 </script>
 
 <style src="./VEventCard.scss" lang="scss" />

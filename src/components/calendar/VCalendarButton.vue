@@ -14,7 +14,7 @@
       ></v-calendar-mini>
 
       <div class="search-events">
-        <input v-model="search" placeholder="Buscar" @input="searchEvent" />
+        <input v-model="search" placeholder="Buscar" @focusout="searchEvent" @keyup.enter="searchEvent" />
         <search-icon class="search-events__icon" @click="searchEvent" />
       </div>
 
@@ -25,7 +25,7 @@
             :key="index"
             class="list-events__item"
           >
-            <event :event="event" @click="onHandleEventClicked(event)"></event>
+            <event :event="event" @on-clicked="onHandleEventClicked"></event>
           </div>
         </div>
 
@@ -43,7 +43,7 @@
 import { VPopUp, VCalendarMini } from "@/components";
 import IconCalendar from "@/components/icons/CalendarDay.vue";
 import type { IEvent, IEventCard } from "@/utils/types/calendar";
-import { onMounted, PropType, ref, shallowRef, watch } from "vue";
+import { onMounted, PropType, ref, shallowRef, watch, computed } from "vue";
 import PerfectScrollbar from "perfect-scrollbar";
 import Event from "@/components/calendar/mini/Event.vue";
 import SearchIcon from "@/components/icons/Search.vue";
@@ -57,6 +57,10 @@ const props = defineProps({
     },
   },
   url: {
+    type: String,
+    default: "",
+  },
+  urlEvents: {
     type: String,
     default: "",
   },
@@ -88,6 +92,8 @@ const events = ref<IEventCard[]>([]);
 const eventsDataProperty = shallowRef<IEvent[]>(events as unknown as IEvent[]);
 const eventsOfDay = ref([] as IEvent[]);
 const eventRenderingKey = ref(0);
+const dayClicked = ref('');
+const search = ref('');
 
 const { getEvents } = useCalendar(
   props.url,
@@ -96,17 +102,20 @@ const { getEvents } = useCalendar(
   props.eventClass
 );
 
-async function onHandleDayClicked(payload: any) {
-  console.log(payload);
+const _params = computed(() => {
+  return {
+    event_data_after: dayClicked.value,
+    event_data_before: dayClicked.value,
+    page: 1,
+    per_page: 1000,
+    q: search.value,
+  };
+});
 
-  const dateTimeString = payload.dateTimeString.substring(0, 10);
+async function onHandleDayClicked(payload: any) {
+  dayClicked.value = payload.dateTimeString.substring(0, 10);
   if (!props.events) {
-    const _data: IEventCard[] = await getEvents({
-      event_data_after: dateTimeString,
-      event_data_before: dateTimeString,
-      page: 1,
-      per_page: 1000,
-    });
+    const _data: IEventCard[] = await getEvents(_params.value);
     events.value = _data;
   }
   const date = new Date(payload.dateTimeString);
@@ -114,19 +123,31 @@ async function onHandleDayClicked(payload: any) {
 
   eventsDataProperty.value = events.value as unknown as IEvent[];
   eventsOfDay.value = eventsDataProperty.value?.filter((event: IEvent) => {
-    const eventIsInDay = event?.event_data === dateTimeString;
+    const eventIsInDay = event?.event_data === dayClicked.value;
     return eventIsInDay;
   });
   emits("day-was-clicked", payload);
 }
 
-const search = ref("");
-function searchEvent() {
+async function searchEvent() {
+  if (!props.events) {
+    const _data: IEventCard[] = await getEvents(_params.value);
+    events.value = _data;
+  }
+
+  eventsDataProperty.value = events.value as unknown as IEvent[];
+  eventsOfDay.value = eventsDataProperty.value?.filter((event: IEvent) => {
+    const eventIsInDay = event?.event_data === dayClicked.value;
+    return eventIsInDay;
+  });
   emits("search-event", search.value);
 }
 
 function onHandleEventClicked(event: any) {
   emits("event-was-clicked", event);
+  if (props.urlEvents === "") return;
+  const _url = props.urlEvents + '/modal/event-detail/' + event?.id;
+  window.open(_url, '_blank');
 }
 
 const scrollbar = ref<any | null>(null);
@@ -162,13 +183,8 @@ onMounted(async () => {
     events.value = props.events;
   } else {
     const today = new Date();
-    const dateTimeString = today.toISOString().substring(0, 10);
-    const data: IEventCard[] = await getEvents({
-      event_data_after: dateTimeString,
-      event_data_before: dateTimeString,
-      page: 1,
-      per_page: 1000,
-    });
+    dayClicked.value = today.toISOString().substring(0, 10);
+    const data: IEventCard[] = await getEvents(_params.value);
     events.value = data;
   }
 });
