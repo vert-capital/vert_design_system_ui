@@ -10,13 +10,17 @@
     <div class="event-status" :style="`border-color: ${color};`">
       <div class="event-body" :class="[`event-body--${size}`]">
         <slot v-if="size === 'default'" name="tag"></slot>
-        <p class="break-ellipsis event-body--title break-ellipsis--title">
+        <p
+          class="event-body--title"
+          :class="!noWrap ? 'break-ellipsis break-ellipsis--title' : ''"
+        >
           {{ title }}
         </p>
 
         <p
           v-if="subtitle != '' && size !== 'very-small'"
-          class="break-ellipsis break-ellipsis--subtitle"
+          class="event-body--subtitle"
+          :class="!noWrap ? 'break-ellipsis break-ellipsis--subtitle' : ''"
         >
           {{ subtitle }}
         </p>
@@ -29,7 +33,6 @@
 </template>
 
 <script lang="ts" setup>
-
 defineProps({
   title: {
     type: String,
@@ -56,6 +59,10 @@ defineProps({
     default: "inerent",
   },
   isLoading: {
+    type: Boolean,
+    default: false,
+  },
+  noWrap: {
     type: Boolean,
     default: false,
   },

@@ -6,6 +6,7 @@
     :color="event.color"
     :is-loading="loading"
     @on-clicked="handleClick"
+    no-wrap
   ></v-event-card>
 </template>
 <script lang="ts" setup>

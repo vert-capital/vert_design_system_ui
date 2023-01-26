@@ -237,13 +237,18 @@
 
   <hr />
   <br />
-  <div v-for="(item, index) in eventsTypes" :key="index" style="width: 800px">
+  <div
+    v-for="(item, index) in eventsTypes"
+    :key="index"
+    style="max-width: 800px; margin-bottom: 0.5rem"
+  >
     <v-event-card
       title="Obrigações - 3CRIBMG - 1"
       subtitle="(3CRIBMG - 1)(#556 | 1 - Senior - CDI+%)"
       responsable="Frederico Quadros (Responsável), Douglas Queres e João Dias"
       size="default"
       color="#3da5a5"
+      no-wrap
     >
       <template #tag>
         <v-tag style="margin-bottom: 12px" status="helper">Tag helper</v-tag>

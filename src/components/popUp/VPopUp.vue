@@ -9,7 +9,7 @@
       v-show="show"
       class="v-popup__content"
       :class="positionContent"
-      :style="`min-width: ${widthContent}`"
+      :style="`width: ${widthContent}`"
     >
       <div class="v-popup__content--head">
         <h3 class="v-popup__content--head-title">{{ title }}</h3>
