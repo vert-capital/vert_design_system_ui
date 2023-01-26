@@ -27,6 +27,10 @@ declare const _default: import("vue").DefineComponent<{
         type: BooleanConstructor;
         default: boolean;
     };
+    noWrap: {
+        type: BooleanConstructor;
+        default: boolean;
+    };
 }, () => void, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, "on-clicked"[], "on-clicked", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
     title: {
         type: StringConstructor;
@@ -56,6 +60,10 @@ declare const _default: import("vue").DefineComponent<{
         type: BooleanConstructor;
         default: boolean;
     };
+    noWrap: {
+        type: BooleanConstructor;
+        default: boolean;
+    };
 }>> & {
     "onOn-clicked"?: ((...args: any[]) => any) | undefined;
 }, {
@@ -66,5 +74,6 @@ declare const _default: import("vue").DefineComponent<{
     responsable: string;
     isLoading: boolean;
     color: string;
+    noWrap: boolean;
 }>;
 export default _default;

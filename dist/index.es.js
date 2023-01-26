@@ -140,7 +140,7 @@ const _hoisted_1$j = { class: "v-table" };
 const _hoisted_2$c = { class: "v-table__body-wrapper" };
 const _hoisted_3$b = { class: "responsive-table" };
 const _hoisted_4$9 = ["onClick"];
-const _hoisted_5$7 = ["onClick"];
+const _hoisted_5$6 = ["onClick"];
 function _sfc_render$a(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("div", _hoisted_1$j, [
     createElementVNode("div", _hoisted_2$c, [
@@ -180,7 +180,7 @@ function _sfc_render$a(_ctx, _cache, $props, $setup, $data, $options) {
                   ], 64))
                 ]);
               }), 128))
-            ], 8, _hoisted_5$7);
+            ], 8, _hoisted_5$6);
           }), 128))
         ])
       ])
@@ -196,8 +196,8 @@ const _hoisted_2$b = {
 };
 const _hoisted_3$a = ["for"];
 const _hoisted_4$8 = { class: "v-selec--content" };
-const _hoisted_5$6 = ["id", "name", "required", "disabled"];
-const _hoisted_6$5 = {
+const _hoisted_5$5 = ["id", "name", "required", "disabled"];
+const _hoisted_6$4 = {
   key: 0,
   value: ""
 };
@@ -250,7 +250,7 @@ const _sfc_main$j = defineComponent({
             disabled: __props.disable,
             onChange: _cache[0] || (_cache[0] = ($event) => selectChange($event))
           }, [
-            __props.placeholder ? (openBlock(), createElementBlock("option", _hoisted_6$5, toDisplayString(__props.placeholder), 1)) : createCommentVNode("v-if", true),
+            __props.placeholder ? (openBlock(), createElementBlock("option", _hoisted_6$4, toDisplayString(__props.placeholder), 1)) : createCommentVNode("v-if", true),
             (openBlock(true), createElementBlock(Fragment, null, renderList(__props.options, (option, index) => {
               return openBlock(), createElementBlock("option", {
                 key: index,
@@ -259,7 +259,7 @@ const _sfc_main$j = defineComponent({
                 "aria-checked": "false"
               }, toDisplayString(option.label), 9, _hoisted_7$4);
             }), 128))
-          ], 42, _hoisted_5$6)
+          ], 42, _hoisted_5$5)
         ])
       ]);
     };
@@ -272,9 +272,9 @@ const _hoisted_1$h = { class: "v-popup" };
 const _hoisted_2$a = { class: "v-popup--click" };
 const _hoisted_3$9 = { class: "v-popup__content--head" };
 const _hoisted_4$7 = { class: "v-popup__content--head-title" };
-const _hoisted_5$5 = /* @__PURE__ */ createElementVNode("img", { src: _imports_0$4 }, null, -1);
-const _hoisted_6$4 = [
-  _hoisted_5$5
+const _hoisted_5$4 = /* @__PURE__ */ createElementVNode("img", { src: _imports_0$4 }, null, -1);
+const _hoisted_6$3 = [
+  _hoisted_5$4
 ];
 const _hoisted_7$3 = { class: "v-popup__content--body" };
 const _hoisted_8$2 = { class: "v-popup__content--footer" };
@@ -322,14 +322,14 @@ const _sfc_main$i = /* @__PURE__ */ defineComponent({
         ]),
         withDirectives(createElementVNode("div", {
           class: normalizeClass(["v-popup__content", __props.positionContent]),
-          style: normalizeStyle(`min-width: ${__props.widthContent}`)
+          style: normalizeStyle(`width: ${__props.widthContent}`)
         }, [
           createElementVNode("div", _hoisted_3$9, [
             createElementVNode("h3", _hoisted_4$7, toDisplayString(__props.title), 1),
             createElementVNode("span", {
               class: "v-popup__content--head-close",
               onClick: _cache[1] || (_cache[1] = ($event) => show.value = !unref(show))
-            }, _hoisted_6$4)
+            }, _hoisted_6$3)
           ]),
           createElementVNode("div", _hoisted_7$3, [
             renderSlot(_ctx.$slots, "popup-body")
@@ -1007,7 +1007,7 @@ const _hoisted_3$4 = {
   class: "top-bar-loader"
 };
 const _hoisted_4$4 = { class: "calendar-header" };
-const _hoisted_5$4 = { class: "calendar-header__period" };
+const _hoisted_5$3 = { class: "calendar-header__period" };
 const _sfc_main$9 = /* @__PURE__ */ defineComponent({
   __name: "VCalendarMini",
   props: {
@@ -1097,7 +1097,7 @@ const _sfc_main$9 = /* @__PURE__ */ defineComponent({
             _: 1
           }),
           createElementVNode("div", _hoisted_4$4, [
-            createElementVNode("div", _hoisted_5$4, [
+            createElementVNode("div", _hoisted_5$3, [
               createVNode(VDropdown, {
                 "model-value": monthYearSelected.value,
                 options: unref(months),
@@ -2192,12 +2192,7 @@ const _hoisted_2$3 = /* @__PURE__ */ createElementVNode("div", { class: "skeleto
 const _hoisted_3$3 = [
   _hoisted_2$3
 ];
-const _hoisted_4$3 = { class: "break-ellipsis event-body--title break-ellipsis--title" };
-const _hoisted_5$3 = {
-  key: 1,
-  class: "break-ellipsis break-ellipsis--subtitle"
-};
-const _hoisted_6$3 = { key: 2 };
+const _hoisted_4$3 = { key: 2 };
 const _sfc_main$7 = /* @__PURE__ */ defineComponent({
   __name: "VEventCard",
   props: {
@@ -2228,6 +2223,10 @@ const _sfc_main$7 = /* @__PURE__ */ defineComponent({
     isLoading: {
       type: Boolean,
       default: false
+    },
+    noWrap: {
+      type: Boolean,
+      default: false
     }
   },
   emits: ["on-clicked"],
@@ -2249,9 +2248,14 @@ const _sfc_main$7 = /* @__PURE__ */ defineComponent({
             class: normalizeClass(["event-body", [`event-body--${__props.size}`]])
           }, [
             __props.size === "default" ? renderSlot(_ctx.$slots, "tag", { key: 0 }) : createCommentVNode("v-if", true),
-            createElementVNode("p", _hoisted_4$3, toDisplayString(__props.title), 1),
-            __props.subtitle != "" && __props.size !== "very-small" ? (openBlock(), createElementBlock("p", _hoisted_5$3, toDisplayString(__props.subtitle), 1)) : createCommentVNode("v-if", true),
-            __props.size === "default" && __props.responsable != "" ? (openBlock(), createElementBlock("p", _hoisted_6$3, toDisplayString(__props.responsable), 1)) : createCommentVNode("v-if", true)
+            createElementVNode("p", {
+              class: normalizeClass(["event-body--title", !__props.noWrap ? "break-ellipsis break-ellipsis--title" : ""])
+            }, toDisplayString(__props.title), 3),
+            __props.subtitle != "" && __props.size !== "very-small" ? (openBlock(), createElementBlock("p", {
+              key: 1,
+              class: normalizeClass(["event-body--subtitle", !__props.noWrap ? "break-ellipsis break-ellipsis--subtitle" : ""])
+            }, toDisplayString(__props.subtitle), 3)) : createCommentVNode("v-if", true),
+            __props.size === "default" && __props.responsable != "" ? (openBlock(), createElementBlock("p", _hoisted_4$3, toDisplayString(__props.responsable), 1)) : createCommentVNode("v-if", true)
           ], 2)
         ], 4)
       ]));
@@ -2284,7 +2288,8 @@ const _sfc_main$6 = /* @__PURE__ */ defineComponent({
         responsable: __props.event.responsable,
         color: __props.event.color,
         "is-loading": __props.loading,
-        onOnClicked: handleClick
+        onOnClicked: handleClick,
+        "no-wrap": ""
       }, null, 8, ["title", "subtitle", "responsable", "color", "is-loading"]);
     };
   }
