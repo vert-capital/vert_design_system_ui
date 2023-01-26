@@ -14,7 +14,12 @@
       ></v-calendar-mini>
 
       <div class="search-events">
-        <input v-model="search" placeholder="Buscar" @focusout="searchEvent" @keyup.enter="searchEvent" />
+        <input
+          v-model="search"
+          placeholder="Buscar"
+          @focusout="searchEvent"
+          @keyup.enter="searchEvent"
+        />
         <search-icon class="search-events__icon" @click="searchEvent" />
       </div>
 
@@ -24,10 +29,17 @@
           :key="index"
           class="list-events__item"
         >
-          <event :event="event" @on-clicked="onHandleEventClicked" :loading="isLoading"></event>
+          <event
+            :event="event"
+            @on-clicked="onHandleEventClicked"
+            :loading="isLoading"
+          ></event>
         </div>
 
-        <div v-if="!isLoading && !eventsOfDay.length" class="list-events__empty">
+        <div
+          v-if="!isLoading && !eventsOfDay.length"
+          class="list-events__empty"
+        >
           <p>Nenhum evento encontrado</p>
         </div>
       </div>
@@ -90,8 +102,8 @@ const events = ref<IEventCard[]>([]);
 const eventsDataProperty = shallowRef<IEvent[]>(events as unknown as IEvent[]);
 const eventsOfDay = ref([] as IEvent[]);
 const eventRenderingKey = ref(0);
-const dayClicked = ref('');
-const search = ref('');
+const dayClicked = ref("");
+const search = ref("");
 const isLoading = ref(false);
 
 const { getEvents } = useCalendar(
@@ -151,8 +163,8 @@ async function searchEvent() {
 function onHandleEventClicked(event: any) {
   emits("event-was-clicked", event);
   if (props.urlEvents === "") return;
-  const _url = props.urlEvents + '/modal/event-detail/' + event?.id;
-  window.open(_url, '_blank');
+  const _url = props.urlEvents + "/modal/event-detail/" + event?.id;
+  window.open(_url, "_blank");
 }
 
 const scrollbar = ref<any | null>(null);
@@ -213,10 +225,13 @@ onMounted(async () => {
 
   input {
     width: 100%;
-    padding: 0.5rem;
+    padding: 0.7rem;
     border: 1px solid #ccc;
     border-right: none;
     border-radius: 0.25rem 0 0 0.25rem;
+    &:focus-visible {
+      outline: none;
+    }
   }
 
   .search-events__icon {
@@ -249,7 +264,7 @@ onMounted(async () => {
 }
 
 #container-list {
-  height: 300px;
+  height: 21rem;
   overflow: auto;
   max-height: 100%;
   min-height: 0px;
@@ -277,6 +292,5 @@ onMounted(async () => {
   text-decoration: none;
   cursor: pointer;
   line-height: 1rem;
-  margin-left: 22%;
 }
 </style>

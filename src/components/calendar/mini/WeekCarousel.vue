@@ -90,7 +90,6 @@ export default defineComponent({
   height: fit-content;
   display: flex;
   justify-content: space-evenly;
-  padding-bottom: 5px;
   padding-left: 0;
   border-bottom: $color-primary-medium;
   font-family: "Lato", sans-serif;
@@ -116,16 +115,15 @@ export default defineComponent({
     font-size: 0.843rem;
     font-weight: 400;
     font-style: normal;
-    margin-bottom: 4px;
+    margin-bottom: 1rem;
     color: $neutral-color-low-medium;
     line-height: 17px;
   }
 
   &__date {
     font-size: 0.843rem;
-    padding: 3px;
     line-height: 1rem;
-    margin-bottom: 4px;
+    margin-bottom: 1rem;
     height: 1rem;
     width: 1rem;
     border-radius: 50%;
