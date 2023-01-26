@@ -8,7 +8,7 @@
     position: absolute;
     box-sizing: border-box;
     z-index: 10;
-    padding: 1rem;
+    padding: 1.5rem;
     border-radius: .5rem;
     background-color: $neutral-color-hight-pure;
 
@@ -27,14 +27,15 @@
       &-title {
         font-size: 1rem;
         font-weight: 700;
+        margin: 0;
+        line-height: initial;
       }
 
       &-close {
         position: absolute;
         cursor: pointer;
         right: 0;
-        top: -1.5rem;
-        padding: .5rem;
+        top: -1.8rem;
         transition: ease-in-out .5s opacity;
         opacity: .4;
 
@@ -49,10 +50,11 @@
       }
     }
 
-    &--body {}
-
     &--footer {
       padding-top: 1.75rem;
+      line-height: initial;
+      display: flex;
+      justify-content: center;
     }
   }
 

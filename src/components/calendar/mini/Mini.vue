@@ -135,8 +135,9 @@ onMounted(() => {
   &--day {
     font-weight: 700;
     font-size: 1rem;
-    padding-top: 0.8rem;
+    padding-top: 1rem;
     color: $neutral-color-low-pure;
+    line-height: initial;
   }
 }
 </style>
