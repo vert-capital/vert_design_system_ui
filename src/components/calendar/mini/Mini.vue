@@ -16,9 +16,9 @@
 <script lang="ts" setup>
 import { onMounted, PropType, ref } from "vue";
 import { IPeriod, IDay } from "@/utils/types/calendar";
-import Time from "@/utils/helpers/Time";
+import { Time } from "@/utils/helpers/Time";
 import WeekCarousel from "./WeekCarousel.vue";
-import StringHelper from "@/utils/helpers/String";
+import { StringHelper } from "@/utils/helpers/String";
 
 const props = defineProps({
   time: {

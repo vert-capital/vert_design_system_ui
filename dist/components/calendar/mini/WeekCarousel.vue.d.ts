@@ -1,6 +1,6 @@
 import { PropType } from "vue";
 import { IDay } from "@/utils/types/calendar";
-import Time from "@/utils/helpers/Time";
+import { Time } from "@/utils/helpers/Time";
 declare const _default: import("vue").DefineComponent<{
     days: {
         type: PropType<IDay[]>;

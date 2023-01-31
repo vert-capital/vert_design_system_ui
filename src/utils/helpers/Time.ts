@@ -1,5 +1,5 @@
 import EDate from "./EDate";
-import StringHelper from "./String";
+import { StringHelper } from "./String";
 export type calendarWeekType = Date[];
 export type calendarMonthType = calendarWeekType[];
 export type calendarYearMonths = Date[];

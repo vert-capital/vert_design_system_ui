@@ -11,7 +11,7 @@
 </template>
 <script lang="ts" setup>
 import { computed, ref } from "vue";
-import StringHelper from "@/utils/helpers/String";
+import { StringHelper } from "@/utils/helpers/String";
 import VDropdown from "@/components/dropdown/VDropdown.vue";
 
 const monthYearSelected: any = ref(

@@ -32,7 +32,7 @@ const _sfc_main$l = defineComponent({
       type: Boolean,
       default: false
     },
-    stypeType: {
+    styleType: {
       type: String,
       default: "solid"
     }
@@ -42,7 +42,7 @@ const _sfc_main$l = defineComponent({
       return `v-btn--${this.size}`;
     },
     setStatus() {
-      return `v-btn__${this.stypeType}--${this.status}`;
+      return `v-btn__${this.styleType}--${this.status}`;
     },
     setIcon() {
       return `/static/icons/${this.icon}.svg`;
@@ -494,7 +494,7 @@ class EDate extends Date {
     return this.getDate();
   }
 }
-class String$1 {
+class StringHelper {
   static capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
@@ -506,18 +506,25 @@ class String$1 {
   }
 }
 class Time {
-  constructor(firstDayOfWeek = "monday", locale = null, dayBoundaries = {
-    start: 0,
-    end: 2400
-  }) {
+  constructor(firstDayOfWeek = "monday", locale = null) {
     __publicField(this, "FIRST_DAY_OF_WEEK");
     __publicField(this, "CALENDAR_LOCALE");
-    __publicField(this, "DAY_START");
-    __publicField(this, "DAY_END");
+    __publicField(this, "monthNames", [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "Mai",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Set",
+      "Out",
+      "Nov",
+      "Dez"
+    ]);
     this.FIRST_DAY_OF_WEEK = firstDayOfWeek;
     this.CALENDAR_LOCALE = locale ? locale : "pt-BR";
-    this.DAY_START = dayBoundaries.start;
-    this.DAY_END = dayBoundaries.end;
   }
   getDatesBetweenTwoDates(start, end) {
     let arr = [];
@@ -589,7 +596,7 @@ class Time {
     return yearList;
   }
   getLocalizedNameOfWeekday(date, weekdayNameLength = "short") {
-    return String$1.capitalizeFirstLetter(
+    return StringHelper.capitalizeFirstLetter(
       date.toLocaleDateString(this.CALENDAR_LOCALE, {
         weekday: weekdayNameLength
       })
@@ -625,6 +632,13 @@ class Time {
       minutes: +dateTimeString.substring(14, 16)
     };
   }
+  getAllVariablesFromDatetring(dateTString) {
+    return {
+      year: +dateTString.substring(0, 4),
+      month: +dateTString.substring(5, 7) - 1,
+      date: +dateTString.substring(8, 10)
+    };
+  }
   dateIsToday(date) {
     const {
       fullYear: yearToday,
@@ -654,6 +668,14 @@ class Time {
     const mm = date.getMonth() + 1;
     const dd = date.getDate();
     return `${yyyy}-${mm >= 10 ? mm : "0" + mm}-${dd >= 10 ? dd : "0" + dd}`;
+  }
+  getDateFromDateString(dateString) {
+    const { year, month, date } = this.getAllVariablesFromDatetring(dateString);
+    return new Date(year, month, date);
+  }
+  getDateLocaleFromDateString(dateString) {
+    const { year, month, date } = this.getAllVariablesFromDatetring(dateString);
+    return new Date(year, month, date).toLocaleDateString(this.CALENDAR_LOCALE);
   }
   dateStringsHaveEqualDates(dateTimeString1, dateTimeString2) {
     const {
@@ -705,6 +727,46 @@ class Time {
     const pastDaysOfYear = (weekNumber - 1) * 7;
     firstDayOfYear.setDate(firstDayOfYear.getDate() + pastDaysOfYear);
     return this.getNextWeek(firstDayOfYear);
+  }
+  getDayOfWeek(date) {
+    const dayOfWeek = date.getDay();
+    return isNaN(dayOfWeek) ? null : dayOfWeek;
+  }
+  getWeekStart(date) {
+    const dayOfWeek = this.getDayOfWeek(date);
+    return new Date(
+      date.getFullYear(),
+      date.getMonth(),
+      date.getDate() - dayOfWeek
+    );
+  }
+  getWeekEnd(date) {
+    const dayOfWeek = this.getDayOfWeek(date);
+    return new Date(
+      date.getFullYear(),
+      date.getMonth(),
+      date.getDate() + (6 - dayOfWeek)
+    );
+  }
+  getFirstDayOfMonth(date) {
+    return new Date(date.getFullYear(), date.getMonth(), 1);
+  }
+  getLastDayOfMonth(date) {
+    return new Date(date.getFullYear(), date.getMonth() + 1, 0);
+  }
+  isFirstDayOfMonth(date) {
+    return date.getDate() === 1;
+  }
+  isLastDayOfMonth(date) {
+    return date.getDate() === this.getNumberOfDaysInMonth(date.getFullYear(), date.getMonth() + 1);
+  }
+  getMonthName(date) {
+    return this.monthNames[date.getMonth()];
+  }
+  getDateMoreAddDaysFromDateString(dateString, days) {
+    const date = this.getDateFromDateString(dateString);
+    date.setDate(date.getDate() + days);
+    return date;
   }
 }
 var _imports_0$3 = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+DQogICA8cGF0aCBmaWxsPSIjYWFhIiBkPSJNMTUuNDEsMTYuNThMMTAuODMsMTJMMTUuNDEsNy40MUwxNCw2TDgsMTJMMTQsMThMMTUuNDEsMTYuNThaIiAvPg0KPC9zdmc+";
@@ -874,7 +936,7 @@ const _sfc_main$b = /* @__PURE__ */ defineComponent({
       const { date } = props.time.getAllVariablesFromDateTimeString(
         props.time.getDateTimeStringFromDate(day, "start")
       );
-      dayNameSelected.value = (isToday ? "Hoje - " : "") + props.time.getLocalizedNameOfWeekday(day, "short") + ", " + date + " de " + String$1.capitalizeFirstLetter(
+      dayNameSelected.value = (isToday ? "Hoje - " : "") + props.time.getLocalizedNameOfWeekday(day, "short") + ", " + date + " de " + StringHelper.capitalizeFirstLetter(
         props.time.getLocalizedNameOfMonth(day, "short")
       );
       return dayNameSelected.value;
@@ -1034,7 +1096,7 @@ const _sfc_main$9 = /* @__PURE__ */ defineComponent({
           const month = j <= 8 ? `0${j + 1}` : j + 1;
           months2.push({
             value: String(`${currentYear + i}-${month}`),
-            label: String$1.capitalizeFirstLetter(
+            label: StringHelper.capitalizeFirstLetter(
               new Date(currentYear + i, j, 1).toLocaleString("default", {
                 month: "long",
                 year: "numeric"
@@ -1074,7 +1136,7 @@ const _sfc_main$9 = /* @__PURE__ */ defineComponent({
         const month = value.substring(5, 7);
         months.value.push({
           value: String(`${year}-${month}`),
-          label: String$1.capitalizeFirstLetter(
+          label: StringHelper.capitalizeFirstLetter(
             new Date(year, Number(month) - 1, 1).toLocaleString("default", {
               month: "long",
               year: "numeric"
@@ -2315,16 +2377,13 @@ function useCalendar(url, authorization, method, eventClass) {
     }
     const _params = params ? params : {};
     const urlWithParams = `${_url}?event_data_before=${(_params == null ? void 0 : _params.event_data_before) ? params.event_data_before : ""}&event_data_after=${(params == null ? void 0 : params.event_data_after) ? _params.event_data_after : ""}&page=${(params == null ? void 0 : params.page) ? _params.page : 1}&page_size=${(params == null ? void 0 : params.per_page) ? _params.per_page : 10}${(params == null ? void 0 : params.q) ? "&q=" + _params.q : ""}`;
-    const _return = fetch(
-      urlWithParams,
-      {
-        credentials: "same-origin",
-        method: _method,
-        headers: {
-          Authorization: _authorization
-        }
+    const _return = fetch(urlWithParams, {
+      credentials: "same-origin",
+      method: _method,
+      headers: {
+        Authorization: _authorization
       }
-    ).then(async (res) => {
+    }).then(async (res) => {
       if (res) {
         const _res = await res.json();
         const data = _res.data ? _res.data : _res.results;
@@ -2332,7 +2391,9 @@ function useCalendar(url, authorization, method, eventClass) {
           return [];
         }
         if (typeof eventClass == "function") {
-          return data.map((event) => event ? new eventClass(event).event_formated : {});
+          return data.map(
+            (event) => event ? new eventClass(event).event_formated : {}
+          );
         }
         return data.map(
           (event) => event ? new eventClass.Event(event).event_formated : {}
@@ -2961,6 +3022,16 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
   }
 });
 var VLoading = /* @__PURE__ */ _export_sfc(_sfc_main, [["__file", "C:/Users/debor/Documents/vert_design_system_ui/src/components/loading/VLoading.vue"]]);
+function mountQueryParams(params) {
+  return Object.keys(params).reduce((acc, cur) => {
+    if (params[cur] === void 0 || !params[cur])
+      return acc;
+    if (Array.isArray(params[cur])) {
+      return [...acc, ...params[cur].map((c) => `${cur}=${c}`)];
+    }
+    return [...acc, `${cur}=${params[cur]}`];
+  }, []).join("&");
+}
 const DATE_TIME_PATTERN = /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}$/;
 const DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
 const ITENS_COLOR = {
@@ -3012,4 +3083,4 @@ var constants = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.definePrope
   APPLICATIONS_COLORS,
   APPLICATIONS_REFERENCE_NAME
 }, Symbol.toStringTag, { value: "Module" }));
-export { VButton, VCalendarButton, VCalendarMini, VCard, VEventCard, VLoading, VPagination, VPopUp, VSelect, VTab, VTabContent, VTabHeader, VTable, VTag, constants };
+export { StringHelper, Time, VButton, VCalendarButton, VCalendarMini, VCard, VEventCard, VLoading, VPagination, VPopUp, VSelect, VTab, VTabContent, VTabHeader, VTable, VTag, constants, mountQueryParams };

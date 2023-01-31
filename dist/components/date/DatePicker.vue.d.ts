@@ -1,5 +1,5 @@
 import { PropType } from "vue";
-import Time, { calendarMonthType, calendarWeekType, calendarYearMonths } from "@/utils/helpers/Time";
+import { Time, calendarMonthType, calendarWeekType, calendarYearMonths } from "@/utils/helpers/Time";
 import { modeType } from "@/utils/types/calendar";
 interface disableDates {
     before: Date;

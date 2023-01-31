@@ -3,7 +3,7 @@ export function mountQueryParams(params: any): string {
     .reduce((acc: string[], cur: string) => {
       if (params[cur] === undefined || !params[cur]) return acc;
       if (Array.isArray(params[cur])) {
-        return [...acc, ...params[cur].map((c) => `${cur}=${c}`)];
+        return [...acc, ...params[cur].map((c: string) => `${cur}=${c}`)];
       }
       return [...acc, `${cur}=${params[cur]}`];
     }, [])

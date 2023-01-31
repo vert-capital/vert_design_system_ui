@@ -35,7 +35,7 @@
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
 import { IDay } from "@/utils/types/calendar";
-import Time from "@/utils/helpers/Time";
+import { Time } from "@/utils/helpers/Time";
 import ChevronLeft from "@/components/icons/ChevronLeft.vue";
 import ChevronRight from "@/components/icons/ChevronRight.vue";
 export default defineComponent({

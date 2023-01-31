@@ -15,7 +15,7 @@ declare const _default: import("vue").DefineComponent<{
         type: BooleanConstructor;
         default: boolean;
     };
-    stypeType: {
+    styleType: {
         type: StringConstructor;
         default: string;
     };
@@ -40,7 +40,7 @@ declare const _default: import("vue").DefineComponent<{
         type: BooleanConstructor;
         default: boolean;
     };
-    stypeType: {
+    styleType: {
         type: StringConstructor;
         default: string;
     };
@@ -49,6 +49,6 @@ declare const _default: import("vue").DefineComponent<{
     status: string;
     icon: string;
     disabled: boolean;
-    stypeType: string;
+    styleType: string;
 }>;
 export default _default;

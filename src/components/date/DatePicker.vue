@@ -97,7 +97,8 @@ import { defineComponent, PropType } from "vue";
 import IconCalendarDay from "@/components/icons/CalendarDay.vue";
 import IconChevronLeft from "@/components/icons/ChevronLeft.vue";
 import IconChevronRight from "@/components/icons/ChevronRight.vue";
-import Time, {
+import {
+  Time,
   calendarMonthType,
   calendarWeekType,
   calendarYearMonths,
