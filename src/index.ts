@@ -13,4 +13,7 @@ export { default as VCalendarButton } from "./components/calendar/VCalendarButto
 export { default as VEventCard } from "./components/eventCard/VEventCard.vue";
 export { default as VLoading } from "./components/loading/VLoading.vue";
 
+export { Time } from "./utils/helpers/Time";
+export { String } from "./utils/helpers/String";
+export { mountQueryParams } from "./utils/helpers/QueryParams";
 export * as constants from "./utils/constants";

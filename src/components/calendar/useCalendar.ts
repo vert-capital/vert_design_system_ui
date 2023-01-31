@@ -25,17 +25,13 @@ export function useCalendar(
       params?.per_page ? _params.per_page : 10
     }${params?.q ? "&q=" + _params.q : ""}`;
 
-    const _return = fetch(
-      urlWithParams
-    ,
-      {
-        credentials: "same-origin",
-        method: _method,
-        headers: {
-          Authorization: _authorization,
-        },
-      }
-    ).then(async (res) => {
+    const _return = fetch(urlWithParams, {
+      credentials: "same-origin",
+      method: _method,
+      headers: {
+        Authorization: _authorization,
+      },
+    }).then(async (res) => {
       if (res) {
         const _res: any = await res.json();
         const data = _res.data ? _res.data : _res.results;
@@ -43,10 +39,12 @@ export function useCalendar(
           return [];
         }
         if (typeof eventClass == "function") {
-          return data.map((event: any) => event ? new eventClass(event).event_formated : {});
+          return data.map((event: any) =>
+            event ? new eventClass(event).event_formated : {}
+          );
         }
-        return data.map(
-          (event: any) => event ? new eventClass.Event(event).event_formated : {}
+        return data.map((event: any) =>
+          event ? new eventClass.Event(event).event_formated : {}
         );
       } else {
         return [];

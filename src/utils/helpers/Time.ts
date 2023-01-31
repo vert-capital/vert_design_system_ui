@@ -1,38 +1,30 @@
-import { IDayStarEndControl } from "@/utils/types/calendar";
 import EDate from "./EDate";
 import StringHelper from "./String";
 export type calendarWeekType = Date[];
 export type calendarMonthType = calendarWeekType[];
 export type calendarYearMonths = Date[];
 
-export default class Time {
+export class Time {
   FIRST_DAY_OF_WEEK: "sunday" | "monday";
   CALENDAR_LOCALE: string;
-  DAY_START: number;
-  DAY_END: number;
 
   constructor(
     firstDayOfWeek: "sunday" | "monday" = "monday",
-    locale: string | null = null,
-    dayBoundaries: { start: IDayStarEndControl; end: IDayStarEndControl } = {
-      start: 0,
-      end: 2400,
-    }
+    locale: string | null = null
   ) {
     this.FIRST_DAY_OF_WEEK = firstDayOfWeek;
     this.CALENDAR_LOCALE = locale ? locale : "pt-BR";
-    this.DAY_START = dayBoundaries.start;
-    this.DAY_END = dayBoundaries.end;
   }
 
   getDatesBetweenTwoDates(start: Date, end: Date) {
     let arr = [];
-    let dt = new Date(start);
+    let dt: Date = new Date(start);
     for (
       arr = [], dt = new Date(start);
       dt <= end;
       dt.setDate(dt.getDate() + 1)
     ) {
+      //@ts-ignore
       arr.push(new Date(dt.getFullYear(), dt.getMonth(), dt.getDate()));
     }
 
@@ -181,6 +173,14 @@ export default class Time {
     };
   }
 
+  getAllVariablesFromDatetring(dateTString: string) {
+    return {
+      year: +dateTString.substring(0, 4),
+      month: +dateTString.substring(5, 7) - 1,
+      date: +dateTString.substring(8, 10),
+    };
+  }
+
   dateIsToday(date: Date) {
     const {
       fullYear: yearToday,
@@ -220,6 +220,16 @@ export default class Time {
     const dd = date.getDate();
 
     return `${yyyy}-${mm >= 10 ? mm : "0" + mm}-${dd >= 10 ? dd : "0" + dd}`;
+  }
+
+  getDateFromDateString(dateString: string) {
+    const { year, month, date } = this.getAllVariablesFromDatetring(dateString);
+    return new Date(year, month, date);
+  }
+
+  getDateLocaleFromDateString(dateString: string) {
+    const { year, month, date } = this.getAllVariablesFromDatetring(dateString);
+    return new Date(year, month, date).toLocaleDateString(this.CALENDAR_LOCALE);
   }
 
   dateStringsHaveEqualDates(dateTimeString1: string, dateTimeString2: string) {
@@ -284,5 +294,72 @@ export default class Time {
     firstDayOfYear.setDate(firstDayOfYear.getDate() + pastDaysOfYear);
 
     return this.getNextWeek(firstDayOfYear);
+  }
+
+  getDayOfWeek(date: Date) {
+    const dayOfWeek = date.getDay();
+    return isNaN(dayOfWeek) ? null : dayOfWeek;
+  }
+
+  getWeekStart(date: Date) {
+    const dayOfWeek: any = this.getDayOfWeek(date);
+    return new Date(
+      date.getFullYear(),
+      date.getMonth(),
+      date.getDate() - dayOfWeek
+    );
+  }
+
+  getWeekEnd(date: Date) {
+    const dayOfWeek: any = this.getDayOfWeek(date);
+    return new Date(
+      date.getFullYear(),
+      date.getMonth(),
+      date.getDate() + (6 - dayOfWeek)
+    );
+  }
+
+  getFirstDayOfMonth(date: Date) {
+    return new Date(date.getFullYear(), date.getMonth(), 1);
+  }
+
+  getLastDayOfMonth(date: Date) {
+    return new Date(date.getFullYear(), date.getMonth() + 1, 0);
+  }
+
+  isFirstDayOfMonth(date: Date) {
+    return date.getDate() === 1;
+  }
+
+  isLastDayOfMonth(date: Date) {
+    return (
+      date.getDate() ===
+      this.getNumberOfDaysInMonth(date.getFullYear(), date.getMonth() + 1)
+    );
+  }
+
+  monthNames = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "Mai",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Set",
+    "Out",
+    "Nov",
+    "Dez",
+  ];
+
+  getMonthName(date: Date) {
+    return this.monthNames[date.getMonth()];
+  }
+
+  getDateMoreAddDaysFromDateString(dateString: string, days: number) {
+    const date = this.getDateFromDateString(dateString);
+    date.setDate(date.getDate() + days);
+    return date;
   }
 }
