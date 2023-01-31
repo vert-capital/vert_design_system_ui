@@ -34,7 +34,7 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
-    stypeType: {
+    styleType: {
       type: String,
       default: "solid",
     },
@@ -44,7 +44,7 @@ export default defineComponent({
       return `v-btn--${this.size}`;
     },
     setStatus(): string {
-      return `v-btn__${this.stypeType}--${this.status}`;
+      return `v-btn__${this.styleType}--${this.status}`;
     },
     setIcon(): string {
       return `/static/icons/${this.icon}.svg`;
