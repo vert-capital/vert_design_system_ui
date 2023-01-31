@@ -137,7 +137,7 @@
       <v-button
         icon="info"
         status="primary"
-        stype-type="outline"
+        style-type="outline"
         @click="onClickButtonWarning"
         >Padrão</v-button
       >
