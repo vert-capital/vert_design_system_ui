@@ -45,19 +45,21 @@
       </div>
     </template>
     <template #popup-footer>
-      <a class="a-link">Ir para versão completa</a>
+      <div class="a-link" @click="onHandleCompleteCalendar">
+        Ir para versão completa
+      </div>
     </template>
   </v-pop-up>
 </template>
 <script lang="ts" setup>
-import { VPopUp, VCalendarMini } from "@/components";
-import IconCalendar from "@/components/icons/CalendarDay.vue";
-import type { IEvent, IEventCard } from "@/utils/types/calendar";
-import { onMounted, PropType, ref, shallowRef, watch, computed } from "vue";
-import PerfectScrollbar from "perfect-scrollbar";
-import Event from "@/components/calendar/mini/Event.vue";
-import SearchIcon from "@/components/icons/Search.vue";
-import { useCalendar } from "@/components/calendar/useCalendar";
+import { VPopUp, VCalendarMini } from '@/components';
+import IconCalendar from '@/components/icons/CalendarDay.vue';
+import type { IEvent, IEventCard } from '@/utils/types/calendar';
+import { onMounted, PropType, ref, shallowRef, watch, computed } from 'vue';
+import PerfectScrollbar from 'perfect-scrollbar';
+import Event from '@/components/calendar/mini/Event.vue';
+import SearchIcon from '@/components/icons/Search.vue';
+import { useCalendar } from '@/components/calendar/useCalendar';
 
 const props = defineProps({
   events: {
@@ -68,19 +70,19 @@ const props = defineProps({
   },
   url: {
     type: String,
-    default: "",
+    default: '',
   },
   urlEvents: {
     type: String,
-    default: "",
+    default: '',
   },
   authorization: {
     type: String,
-    default: "",
+    default: '',
   },
   method: {
     type: String,
-    default: "GET",
+    default: 'GET',
   },
   eventClass: {
     type: [Function, Object] as PropType<any>,
@@ -91,9 +93,9 @@ const props = defineProps({
 });
 
 const emits = defineEmits([
-  "search-event",
-  "event-was-clicked",
-  "day-was-clicked",
+  'search-event',
+  'event-was-clicked',
+  'day-was-clicked',
 ]);
 
 const calendarSelectedDate = ref(new Date());
@@ -102,8 +104,8 @@ const events = ref<IEventCard[]>([]);
 const eventsDataProperty = shallowRef<IEvent[]>(events as unknown as IEvent[]);
 const eventsOfDay = ref([] as IEvent[]);
 const eventRenderingKey = ref(0);
-const dayClicked = ref("");
-const search = ref("");
+const dayClicked = ref('');
+const search = ref('');
 const isLoading = ref(false);
 
 const { getEvents } = useCalendar(
@@ -140,7 +142,7 @@ async function onHandleDayClicked(payload: any) {
     const eventIsInDay = event?.event_data === dayClicked.value;
     return eventIsInDay;
   });
-  emits("day-was-clicked", payload);
+  emits('day-was-clicked', payload);
 }
 
 async function searchEvent() {
@@ -157,20 +159,25 @@ async function searchEvent() {
     const eventIsInDay = event?.event_data === dayClicked.value;
     return eventIsInDay;
   });
-  emits("search-event", search.value);
+  emits('search-event', search.value);
 }
 
 function onHandleEventClicked(event: any) {
-  emits("event-was-clicked", event);
-  if (props.urlEvents === "") return;
-  const _url = props.urlEvents + "/modal/event-detail/" + event?.id;
-  window.open(_url, "_blank");
+  emits('event-was-clicked', event);
+  if (props.urlEvents === '') return;
+  const _url = props.urlEvents + '/modal/event-detail/' + event?.id;
+  window.open(_url, '_blank');
+}
+
+function onHandleCompleteCalendar() {
+  if (props.urlEvents === '') return;
+  else window.open(props.urlEvents, '_blank');
 }
 
 const scrollbar = ref<any | null>(null);
 
 function initScrollbar() {
-  scrollbar.value = new PerfectScrollbar(".list-events", {
+  scrollbar.value = new PerfectScrollbar('.list-events', {
     wheelSpeed: 0.5,
     wheelPropagation: true,
   });
