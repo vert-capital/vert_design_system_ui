@@ -201,7 +201,7 @@ const _hoisted_6$4 = {
   key: 0,
   value: ""
 };
-const _hoisted_7$4 = ["value", "selected"];
+const _hoisted_7$3 = ["value", "selected"];
 const _sfc_main$j = defineComponent({
   __name: "VSelect",
   props: {
@@ -257,7 +257,7 @@ const _sfc_main$j = defineComponent({
                 value: option.value,
                 selected: option.value == selected.value,
                 "aria-checked": "false"
-              }, toDisplayString(option.label), 9, _hoisted_7$4);
+              }, toDisplayString(option.label), 9, _hoisted_7$3);
             }), 128))
           ], 42, _hoisted_5$5)
         ])
@@ -276,7 +276,7 @@ const _hoisted_5$4 = /* @__PURE__ */ createElementVNode("img", { src: _imports_0
 const _hoisted_6$3 = [
   _hoisted_5$4
 ];
-const _hoisted_7$3 = { class: "v-popup__content--body" };
+const _hoisted_7$2 = { class: "v-popup__content--body" };
 const _hoisted_8$2 = { class: "v-popup__content--footer" };
 const _hoisted_9$1 = /* @__PURE__ */ createElementVNode("a", {
   href: "#",
@@ -331,7 +331,7 @@ const _sfc_main$i = /* @__PURE__ */ defineComponent({
               onClick: _cache[1] || (_cache[1] = ($event) => show.value = !unref(show))
             }, _hoisted_6$3)
           ]),
-          createElementVNode("div", _hoisted_7$3, [
+          createElementVNode("div", _hoisted_7$2, [
             renderSlot(_ctx.$slots, "popup-body")
           ]),
           createElementVNode("div", _hoisted_8$2, [
@@ -2421,7 +2421,6 @@ const _hoisted_5$2 = /* @__PURE__ */ createElementVNode("p", null, "Nenhum event
 const _hoisted_6$2 = [
   _hoisted_5$2
 ];
-const _hoisted_7$2 = /* @__PURE__ */ createElementVNode("a", { class: "a-link" }, "Ir para vers\xE3o completa", -1);
 const _sfc_main$4 = /* @__PURE__ */ defineComponent({
   __name: "VCalendarButton",
   props: {
@@ -2526,6 +2525,12 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
       const _url = props.urlEvents + "/modal/event-detail/" + (event == null ? void 0 : event.id);
       window.open(_url, "_blank");
     }
+    function onHandleCompleteCalendar() {
+      if (props.urlEvents === "")
+        return;
+      else
+        window.open(props.urlEvents, "_blank");
+    }
     const scrollbar = ref(null);
     function initScrollbar() {
       scrollbar.value = new PerfectScrollbar(".list-events", {
@@ -2607,7 +2612,10 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
           ])
         ]),
         "popup-footer": withCtx(() => [
-          _hoisted_7$2
+          createElementVNode("div", {
+            class: "a-link",
+            onClick: onHandleCompleteCalendar
+          }, " Ir para vers\xE3o completa ")
         ]),
         _: 1
       });
