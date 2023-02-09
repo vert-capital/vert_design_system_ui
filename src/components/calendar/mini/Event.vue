@@ -7,11 +7,22 @@
     :is-loading="loading"
     @on-clicked="handleClick"
     no-wrap
-  ></v-event-card>
+  >
+    <template v-if="event.tag" #tag>
+      <v-tag
+        style="margin-bottom: 0.5rem"
+        type="ice"
+        :status="event.tag?.status"
+      >
+        {{ event.tag?.text }}
+      </v-tag>
+    </template>
+  </v-event-card>
 </template>
 <script lang="ts" setup>
 import { PropType } from "vue";
 import VEventCard from "@/components/eventCard/VEventCard.vue";
+import VTag from "@/components/tag/VTag.vue";
 const props = defineProps({
   event: {
     type: Object as PropType<any>,
