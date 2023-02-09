@@ -1182,7 +1182,7 @@ const _sfc_main$9 = /* @__PURE__ */ defineComponent({
   }
 });
 var VCalendarMini = /* @__PURE__ */ _export_sfc(_sfc_main$9, [["__file", "C:/Users/debor/Documents/vert_design_system_ui/src/components/calendar/VCalendarMini.vue"]]);
-var _imports_0$1 = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+DQogICA8cGF0aCBmaWxsPSIjYWFhIiBkPSJNNywxMEgxMlYxNUg3TTE5LDE5SDVWOEgxOU0xOSwzSDE4VjFIMTZWM0g4VjFINlYzSDVDMy44OSwzIDMsMy45IDMsNVYxOUEyLDIgMCAwLDAgNSwyMUgxOUEyLDIgMCAwLDAgMjEsMTlWNUEyLDIgMCAwLDAgMTksM1oiIC8+DQo8L3N2Zz4=";
+var _imports_0$1 = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+DQogICA8cGF0aCBmaWxsPSIjYWFhIiBkPSJNMTksMTlINVY4SDE5TTE5LDNIMThWMUgxNlYzSDhWMUg2VjNINUMzLjg5LDMgMywzLjkgMyw1VjE5QTIsMiAwIDAsMCA1LDIxSDE5QTIsMiAwIDAsMCAyMSwxOVY1QTIsMiAwIDAsMCAxOSwzTTE2LjUzLDExLjA2TDE1LjQ3LDEwTDEwLjU5LDE0Ljg4TDguNDcsMTIuNzZMNy40MSwxMy44MkwxMC41OSwxN0wxNi41MywxMS4wNloiIC8+DQo8L3N2Zz4NCg==";
 const _sfc_main$8 = defineComponent({
   name: "CalendarDay"
 });
