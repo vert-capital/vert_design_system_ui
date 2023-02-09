@@ -4,7 +4,7 @@ var __publicField = (obj, key, value) => {
   __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
   return value;
 };
-import { defineComponent, openBlock, createElementBlock, mergeProps, createElementVNode, createCommentVNode, renderSlot, useSlots, ref, Fragment, renderList, normalizeClass, withModifiers, toDisplayString, normalizeProps, createTextVNode, watch, computed, unref, withDirectives, normalizeStyle, vShow, resolveComponent, createVNode, onMounted, Transition, withCtx, createBlock, shallowRef, withKeys, vModelText } from "vue";
+import { defineComponent, openBlock, createElementBlock, mergeProps, createElementVNode, createCommentVNode, renderSlot, useSlots, ref, Fragment, renderList, normalizeClass, withModifiers, toDisplayString, normalizeProps, createTextVNode, watch, computed, unref, withDirectives, normalizeStyle, vShow, resolveComponent, createVNode, onMounted, Transition, withCtx, createBlock, createSlots, shallowRef, withKeys, vModelText } from "vue";
 var VButton_scss_vue_type_style_index_0_src_6e5341db_lang = "";
 var _export_sfc = (sfc, props) => {
   const target = sfc.__vccOpts || sfc;
@@ -2352,7 +2352,30 @@ const _sfc_main$6 = /* @__PURE__ */ defineComponent({
         "is-loading": __props.loading,
         onOnClicked: handleClick,
         "no-wrap": ""
-      }, null, 8, ["title", "subtitle", "responsable", "color", "is-loading"]);
+      }, createSlots({ _: 2 }, [
+        __props.event.tag ? {
+          name: "tag",
+          fn: withCtx(() => {
+            var _a;
+            return [
+              createVNode(VTag, {
+                style: { "margin-bottom": "0.5rem" },
+                type: "ice",
+                status: (_a = __props.event.tag) == null ? void 0 : _a.status
+              }, {
+                default: withCtx(() => {
+                  var _a2;
+                  return [
+                    createTextVNode(toDisplayString((_a2 = __props.event.tag) == null ? void 0 : _a2.text), 1)
+                  ];
+                }),
+                _: 1
+              }, 8, ["status"])
+            ];
+          }),
+          key: "0"
+        } : void 0
+      ]), 1032, ["title", "subtitle", "responsable", "color", "is-loading"]);
     };
   }
 });
