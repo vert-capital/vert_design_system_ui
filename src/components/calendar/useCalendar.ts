@@ -23,7 +23,9 @@ export function useCalendar(
       params?.event_data_after ? _params.event_data_after : ""
     }&page=${params?.page ? _params.page : 1}&page_size=${
       params?.per_page ? _params.per_page : 10
-    }${params?.q ? "&q=" + _params.q : ""}`;
+    }&emission__principal_responsable_email=${params?.me ? _params.me : ""}${
+      params?.q ? "&q=" + _params.q : ""
+    }`;
 
     const _return = fetch(urlWithParams, {
       credentials: "same-origin",
