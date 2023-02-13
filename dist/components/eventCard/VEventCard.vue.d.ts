@@ -70,9 +70,9 @@ declare const _default: import("vue").DefineComponent<{
     size: string;
     status: string;
     title: string;
+    isLoading: boolean;
     subtitle: string;
     responsable: string;
-    isLoading: boolean;
     color: string;
     noWrap: boolean;
 }>;

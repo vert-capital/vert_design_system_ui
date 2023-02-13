@@ -8,8 +8,8 @@ import {
   IApplication,
   IEventType,
   eventTypes,
-  eventTypesEnum
-} from '@/utils/types/calendar';
+  eventTypesEnum,
+} from "@/utils/types/calendar.d";
 
 export class Event implements IEvent {
   id: number | null | undefined;
@@ -36,10 +36,10 @@ export class Event implements IEvent {
       series: {} as ISeries,
       emission: {} as IEmission,
       patrimony: {} as IPatrimony,
-      event_data: '',
-      event_title: '',
+      event_data: "",
+      event_title: "",
       application: {} as IApplication,
-      event_type: {} as IEventType
+      event_type: {} as IEventType,
     } as IEvent
   ) {
     this.json = event.json;
@@ -53,12 +53,12 @@ export class Event implements IEvent {
     this.id = event.id;
 
     this.event_formated = {
-      title: '',
-      subtitle: '',
-      responsable: '',
-      event_data: '',
+      title: "",
+      subtitle: "",
+      responsable: "",
+      event_data: "",
       event_type: eventTypesEnum.OBRIGACOES,
-      color: ''
+      color: "",
     };
 
     this.formatEvent();
@@ -73,7 +73,8 @@ export class Event implements IEvent {
   formatEvent(): void {
     this.event_formated.id = this.id;
     this.event_formated.title = this.event_title;
-    this.event_formated.subtitle = this.getEmissionFormated() + ' ' + this.getSeriesFormated();
+    this.event_formated.subtitle =
+      this.getEmissionFormated() + " " + this.getSeriesFormated();
     this.event_formated.responsable = this.getResponsableFormated();
     this.event_formated.event_data = this.event_data;
     this.event_formated.event_type = this.getEventTypeFormated();
@@ -84,39 +85,39 @@ export class Event implements IEvent {
     if (this.emission) {
       return `(${this.emission?._emission_code_name} - ${this.patrimony?.number})`;
     }
-    return '';
+    return "";
   }
 
   getEmissionName(): string {
     if (this.emission) {
       return `${this.emission?._emission_code_name} - ${this.patrimony?.number}`;
     }
-    return '';
+    return "";
   }
 
   getSeriesFormated(): string {
     if (this.series) {
       return `(#${this.series.external_series_id} | ${this.series.priority} - ${this.series.name} - ${this.series.type})`;
     }
-    return '';
+    return "";
   }
 
   getSeriesName(): string {
     if (this.series) {
       return `#${this.series.external_series_id} | ${this.series.priority} - ${this.series.name} - ${this.series.type}`;
     }
-    return '';
+    return "";
   }
 
   getResponsableFormated(): string {
     if (this.emission) {
       return (
         this.emission?.principal_responsable_name +
-        '(Responsável), ' +
-        this.emission?.responsible?.join(', ')
+        "(Responsável), " +
+        this.emission?.responsible?.join(", ")
       );
     }
-    return '';
+    return "";
   }
 
   getResponsablesObject(): any[] {
@@ -126,15 +127,15 @@ export class Event implements IEvent {
         name: this.emission?.principal_responsable_name,
         isPrincipal: true,
         email: this.emission?.principal_responsable_email,
-        avatar: ''
+        avatar: "",
       });
 
       this.emission?.responsible?.forEach((responsable) => {
         responsables.push({
           name: responsable,
           isPrincipal: false,
-          email: '',
-          avatar: ''
+          email: "",
+          avatar: "",
         });
       });
     }
@@ -144,25 +145,31 @@ export class Event implements IEvent {
 
   getEventTypeFormated(): eventTypes {
     const events = [
-      'OBRIGACOES',
-      'EVENTOS_PAGAMENTO',
-      'INTEGRALIZACOES',
-      'SUBSCRICOES',
-      'ATUALIZACAO_STATUS_PATRIMONIOS',
-      'MARCOS_PATRIMONIOS',
-      'VENCIMENTO_SERIES',
-      'RATING'
+      "OBRIGACOES",
+      "EVENTOS_PAGAMENTO",
+      "INTEGRALIZACOES",
+      "SUBSCRICOES",
+      "ATUALIZACAO_STATUS_PATRIMONIOS",
+      "MARCOS_PATRIMONIOS",
+      "VENCIMENTO_SERIES",
+      "RATING",
     ];
-    return eventTypesEnum[events[this.event_type?.id - 1]];
+    return eventTypesEnum[
+      events[this.event_type?.id - 1] as keyof typeof eventTypesEnum
+    ];
   }
 
   getLinkApplication(): string | undefined {
-    if (this.application?.slug === 'ops') {
-      return import.meta.env.VITE_OPS_URL + '/patrimony/' + this.patrimony?.external_patrimony_id;
-    } else if (this.application?.slug === 'obrigacoes') {
+    if (this.application?.slug === "ops") {
+      return (
+        import.meta.env.VITE_OPS_URL +
+        "/patrimony/" +
+        this.patrimony?.external_patrimony_id
+      );
+    } else if (this.application?.slug === "obrigacoes") {
       return import.meta.env.VITE_OBRIGACOES_URL;
     }
 
-    return '';
+    return "";
   }
 }

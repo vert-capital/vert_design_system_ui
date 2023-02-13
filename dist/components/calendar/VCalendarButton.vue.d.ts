@@ -1,5 +1,5 @@
-import type { IEventCard } from '@/utils/types/calendar';
-import { PropType } from 'vue';
+import type { IEventCard } from "@/utils/types/calendar";
+import { PropType } from "vue";
 declare const _default: import("vue").DefineComponent<{
     events: {
         type: PropType<IEventCard[]>;
@@ -18,6 +18,10 @@ declare const _default: import("vue").DefineComponent<{
         default: string;
     };
     method: {
+        type: StringConstructor;
+        default: string;
+    };
+    me: {
         type: StringConstructor;
         default: string;
     };
@@ -46,6 +50,10 @@ declare const _default: import("vue").DefineComponent<{
         type: StringConstructor;
         default: string;
     };
+    me: {
+        type: StringConstructor;
+        default: string;
+    };
     eventClass: {
         type: PropType<any>;
         default: () => void;
@@ -55,11 +63,12 @@ declare const _default: import("vue").DefineComponent<{
     "onDay-was-clicked"?: ((...args: any[]) => any) | undefined;
     "onSearch-event"?: ((...args: any[]) => any) | undefined;
 }, {
-    events: IEventCard[];
     method: string;
+    events: IEventCard[];
     url: string;
     urlEvents: string;
     authorization: string;
+    me: string;
     eventClass: any;
 }>;
 export default _default;

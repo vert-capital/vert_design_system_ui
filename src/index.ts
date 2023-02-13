@@ -17,5 +17,5 @@ export { Time } from "./utils/helpers/Time";
 export { StringHelper } from "./utils/helpers/String";
 export { mountQueryParams } from "./utils/helpers/QueryParams";
 export { Event } from "./utils/helpers/Event";
-export * as calendarTypes from "./utils/types/calendar";
+export * as calendarTypes from "./utils/types/calendar.d";
 export * as constants from "./utils/constants";

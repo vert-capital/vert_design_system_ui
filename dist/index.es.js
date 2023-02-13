@@ -2379,7 +2379,7 @@ const _sfc_main$6 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-var Event = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["__file", "C:/Users/debor/Documents/vert_design_system_ui/src/components/calendar/mini/Event.vue"]]);
+var Event$1 = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["__file", "C:/Users/debor/Documents/vert_design_system_ui/src/components/calendar/mini/Event.vue"]]);
 var _imports_0 = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+DQogICA8cGF0aCBmaWxsPSIjY2NjY2NjIiBkPSJNOS41LDNBNi41LDYuNSAwIDAsMSAxNiw5LjVDMTYsMTEuMTEgMTUuNDEsMTIuNTkgMTQuNDQsMTMuNzNMMTQuNzEsMTRIMTUuNUwyMC41LDE5TDE5LDIwLjVMMTQsMTUuNVYxNC43MUwxMy43MywxNC40NEMxMi41OSwxNS40MSAxMS4xMSwxNiA5LjUsMTZBNi41LDYuNSAwIDAsMSAzLDkuNUE2LjUsNi41IDAgMCwxIDkuNSwzTTkuNSw1QzcsNSA1LDcgNSw5LjVDNSwxMiA3LDE0IDkuNSwxNEMxMiwxNCAxNCwxMiAxNCw5LjVDMTQsNyAxMiw1IDkuNSw1WiIgLz4NCjwvc3ZnPg==";
 const _sfc_main$5 = {};
 const _hoisted_1$5 = {
@@ -2399,7 +2399,7 @@ function useCalendar(url, authorization, method, eventClass) {
       return Promise.resolve([]);
     }
     const _params = params ? params : {};
-    const urlWithParams = `${_url}?event_data_before=${(_params == null ? void 0 : _params.event_data_before) ? params.event_data_before : ""}&event_data_after=${(params == null ? void 0 : params.event_data_after) ? _params.event_data_after : ""}&page=${(params == null ? void 0 : params.page) ? _params.page : 1}&page_size=${(params == null ? void 0 : params.per_page) ? _params.per_page : 10}${(params == null ? void 0 : params.q) ? "&q=" + _params.q : ""}`;
+    const urlWithParams = `${_url}?event_data_before=${(_params == null ? void 0 : _params.event_data_before) ? params.event_data_before : ""}&event_data_after=${(params == null ? void 0 : params.event_data_after) ? _params.event_data_after : ""}&page=${(params == null ? void 0 : params.page) ? _params.page : 1}&page_size=${(params == null ? void 0 : params.per_page) ? _params.per_page : 10}&emission__principal_responsable_email=${(params == null ? void 0 : params.me) ? _params.me : ""}${(params == null ? void 0 : params.q) ? "&q=" + _params.q : ""}`;
     const _return = fetch(urlWithParams, {
       credentials: "same-origin",
       method: _method,
@@ -2440,7 +2440,7 @@ const _hoisted_4$2 = {
   key: 0,
   class: "list-events__empty"
 };
-const _hoisted_5$2 = /* @__PURE__ */ createElementVNode("p", null, "Nenhum evento encontrado", -1);
+const _hoisted_5$2 = /* @__PURE__ */ createElementVNode("p", null, " Voc\xEA n\xE3o possui eventos na data selecionada, utilize os filtros para verificar outros eventos ", -1);
 const _hoisted_6$2 = [
   _hoisted_5$2
 ];
@@ -2468,6 +2468,10 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
     method: {
       type: String,
       default: "GET"
+    },
+    me: {
+      type: String,
+      default: ""
     },
     eventClass: {
       type: [Function, Object],
@@ -2503,7 +2507,8 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
         event_data_before: dayClicked.value,
         page: 1,
         per_page: 1e3,
-        q: search.value
+        q: search.value,
+        me: props.me
       };
     });
     async function onHandleDayClicked(payload) {
@@ -2624,7 +2629,7 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
                 key: index,
                 class: "list-events__item"
               }, [
-                createVNode(Event, {
+                createVNode(Event$1, {
                   event,
                   onOnClicked: onHandleEventClicked,
                   loading: isLoading.value
@@ -3063,6 +3068,160 @@ function mountQueryParams(params) {
     return [...acc, `${cur}=${params[cur]}`];
   }, []).join("&");
 }
+var eventTypesEnum = /* @__PURE__ */ ((eventTypesEnum2) => {
+  eventTypesEnum2["OBRIGACOES"] = "obrigacoes";
+  eventTypesEnum2["EVENTOS_PAGAMENTO"] = "eventos_pagamento";
+  eventTypesEnum2["INTEGRALIZACOES"] = "integralizacoes";
+  eventTypesEnum2["SUBSCRICOES"] = "subscricoes";
+  eventTypesEnum2["ATUALIZACAO_STATUS_PATRIMONIOS"] = "atualizacao_status_patrimonios";
+  eventTypesEnum2["MARCOS_PATRIMONIOS"] = "marcos_patrimonios";
+  eventTypesEnum2["VENCIMENTO_SERIES"] = "vencimento_series";
+  eventTypesEnum2["RATING"] = "rating";
+  return eventTypesEnum2;
+})(eventTypesEnum || {});
+var calendar_d = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+  __proto__: null,
+  eventTypesEnum
+}, Symbol.toStringTag, { value: "Module" }));
+class Event {
+  constructor(event = {
+    id: null,
+    json: {},
+    series: {},
+    emission: {},
+    patrimony: {},
+    event_data: "",
+    event_title: "",
+    application: {},
+    event_type: {}
+  }) {
+    __publicField(this, "id");
+    __publicField(this, "json");
+    __publicField(this, "series");
+    __publicField(this, "emission");
+    __publicField(this, "patrimony");
+    __publicField(this, "event_data");
+    __publicField(this, "event_title");
+    __publicField(this, "application");
+    __publicField(this, "event_type");
+    __publicField(this, "event_formated");
+    __publicField(this, "emission_name");
+    __publicField(this, "series_name");
+    __publicField(this, "responsables_name");
+    __publicField(this, "application_link");
+    __publicField(this, "all_responsables");
+    this.json = event.json;
+    this.series = event.series;
+    this.emission = event.emission;
+    this.patrimony = event.patrimony;
+    this.event_data = event.event_data;
+    this.event_title = event.event_title;
+    this.application = event.application;
+    this.event_type = event.event_type;
+    this.id = event.id;
+    this.event_formated = {
+      title: "",
+      subtitle: "",
+      responsable: "",
+      event_data: "",
+      event_type: eventTypesEnum.OBRIGACOES,
+      color: ""
+    };
+    this.formatEvent();
+    this.emission_name = this.getEmissionName();
+    this.series_name = this.getSeriesFormated();
+    this.responsables_name = this.getResponsableFormated();
+    this.application_link = this.getLinkApplication();
+    this.all_responsables = this.getResponsablesObject();
+  }
+  formatEvent() {
+    var _a;
+    this.event_formated.id = this.id;
+    this.event_formated.title = this.event_title;
+    this.event_formated.subtitle = this.getEmissionFormated() + " " + this.getSeriesFormated();
+    this.event_formated.responsable = this.getResponsableFormated();
+    this.event_formated.event_data = this.event_data;
+    this.event_formated.event_type = this.getEventTypeFormated();
+    this.event_formated.color = (_a = this.event_type) == null ? void 0 : _a.color;
+  }
+  getEmissionFormated() {
+    var _a, _b;
+    if (this.emission) {
+      return `(${(_a = this.emission) == null ? void 0 : _a._emission_code_name} - ${(_b = this.patrimony) == null ? void 0 : _b.number})`;
+    }
+    return "";
+  }
+  getEmissionName() {
+    var _a, _b;
+    if (this.emission) {
+      return `${(_a = this.emission) == null ? void 0 : _a._emission_code_name} - ${(_b = this.patrimony) == null ? void 0 : _b.number}`;
+    }
+    return "";
+  }
+  getSeriesFormated() {
+    if (this.series) {
+      return `(#${this.series.external_series_id} | ${this.series.priority} - ${this.series.name} - ${this.series.type})`;
+    }
+    return "";
+  }
+  getSeriesName() {
+    if (this.series) {
+      return `#${this.series.external_series_id} | ${this.series.priority} - ${this.series.name} - ${this.series.type}`;
+    }
+    return "";
+  }
+  getResponsableFormated() {
+    var _a, _b, _c;
+    if (this.emission) {
+      return ((_a = this.emission) == null ? void 0 : _a.principal_responsable_name) + "(Respons\xE1vel), " + ((_c = (_b = this.emission) == null ? void 0 : _b.responsible) == null ? void 0 : _c.join(", "));
+    }
+    return "";
+  }
+  getResponsablesObject() {
+    var _a, _b, _c, _d;
+    const responsables = [];
+    if (this.emission) {
+      responsables.push({
+        name: (_a = this.emission) == null ? void 0 : _a.principal_responsable_name,
+        isPrincipal: true,
+        email: (_b = this.emission) == null ? void 0 : _b.principal_responsable_email,
+        avatar: ""
+      });
+      (_d = (_c = this.emission) == null ? void 0 : _c.responsible) == null ? void 0 : _d.forEach((responsable) => {
+        responsables.push({
+          name: responsable,
+          isPrincipal: false,
+          email: "",
+          avatar: ""
+        });
+      });
+    }
+    return responsables;
+  }
+  getEventTypeFormated() {
+    var _a;
+    const events = [
+      "OBRIGACOES",
+      "EVENTOS_PAGAMENTO",
+      "INTEGRALIZACOES",
+      "SUBSCRICOES",
+      "ATUALIZACAO_STATUS_PATRIMONIOS",
+      "MARCOS_PATRIMONIOS",
+      "VENCIMENTO_SERIES",
+      "RATING"
+    ];
+    return eventTypesEnum[events[((_a = this.event_type) == null ? void 0 : _a.id) - 1]];
+  }
+  getLinkApplication() {
+    var _a, _b, _c;
+    if (((_a = this.application) == null ? void 0 : _a.slug) === "ops") {
+      return {}.VITE_OPS_URL + "/patrimony/" + ((_b = this.patrimony) == null ? void 0 : _b.external_patrimony_id);
+    } else if (((_c = this.application) == null ? void 0 : _c.slug) === "obrigacoes") {
+      return {}.VITE_OBRIGACOES_URL;
+    }
+    return "";
+  }
+}
 const DATE_TIME_PATTERN = /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}$/;
 const DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
 const ITENS_COLOR = {
@@ -3114,4 +3273,4 @@ var constants = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.definePrope
   APPLICATIONS_COLORS,
   APPLICATIONS_REFERENCE_NAME
 }, Symbol.toStringTag, { value: "Module" }));
-export { StringHelper, Time, VButton, VCalendarButton, VCalendarMini, VCard, VEventCard, VLoading, VPagination, VPopUp, VSelect, VTab, VTabContent, VTabHeader, VTable, VTag, constants, mountQueryParams };
+export { Event, StringHelper, Time, VButton, VCalendarButton, VCalendarMini, VCard, VEventCard, VLoading, VPagination, VPopUp, VSelect, VTab, VTabContent, VTabHeader, VTable, VTag, calendar_d as calendarTypes, constants, mountQueryParams };

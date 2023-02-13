@@ -45,7 +45,7 @@ export default defineComponent({
 
   props: {
     days: {
-      type: Array as PropType<IDay[]>,
+      type: Array as PropType<any[]>,
       required: true,
     },
     time: {

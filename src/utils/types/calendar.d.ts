@@ -11,7 +11,7 @@ export type eventId = string | number;
 export type modeType = "month" | "week" | "day" | "personalized" | "mini";
 
 export interface IEventCard {
-  id: string;
+  id: number | null | undefined;
   title: string;
   subtitle: string;
   responsable?: string;
