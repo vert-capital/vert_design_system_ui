@@ -1,5 +1,5 @@
-import { IEventCard } from "@/utils/types/calendar";
-import { ref, unref } from "vue";
+import { IEventCard } from '@/utils/types/calendar';
+import { ref, unref } from 'vue';
 
 export function useCalendar(
   url: string,
@@ -9,7 +9,7 @@ export function useCalendar(
 ) {
   const _url = unref(url);
   const _authorization = unref(authorization);
-  const _method = unref(method) || "GET";
+  const _method = unref(method) || 'GET';
 
   function getEvents(params: any = {}): Promise<IEventCard[]> {
     if (!_url || !_authorization) {
@@ -18,17 +18,17 @@ export function useCalendar(
 
     const _params = params ? params : {};
     const urlWithParams = `${_url}?event_data_before=${
-      _params?.event_data_before ? params.event_data_before : ""
+      _params?.event_data_before ? params.event_data_before : ''
     }&event_data_after=${
-      params?.event_data_after ? _params.event_data_after : ""
+      params?.event_data_after ? _params.event_data_after : ''
     }&page=${params?.page ? _params.page : 1}&page_size=${
       params?.per_page ? _params.per_page : 10
-    }&emission__principal_responsable_email=${params?.me ? _params.me : ""}${
-      params?.q ? "&q=" + _params.q : ""
+    }&emission__principal_responsable_email=${params?.me ? _params.me : ''}${
+      params?.search ? '&search=' + _params.search : ''
     }`;
 
     const _return = fetch(urlWithParams, {
-      credentials: "same-origin",
+      credentials: 'same-origin',
       method: _method,
       headers: {
         Authorization: _authorization,
@@ -40,7 +40,7 @@ export function useCalendar(
         if (eventClass === undefined) {
           return [];
         }
-        if (typeof eventClass == "function") {
+        if (typeof eventClass == 'function') {
           return data.map((event: any) =>
             event ? new eventClass(event).event_formated : {}
           );
