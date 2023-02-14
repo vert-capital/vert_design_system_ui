@@ -67,7 +67,7 @@ function _sfc_render$b(_ctx, _cache, $props, $setup, $data, $options) {
     renderSlot(_ctx.$slots, "default")
   ], 16, _hoisted_1$k);
 }
-var VButton = /* @__PURE__ */ _export_sfc(_sfc_main$l, [["render", _sfc_render$b], ["__file", "C:/Users/debor/Documents/vert_design_system_ui/src/components/button/VButton.vue"]]);
+var VButton = /* @__PURE__ */ _export_sfc(_sfc_main$l, [["render", _sfc_render$b], ["__file", "/home/diego/Projetos/Hyperspace/Vert/vert_design_system_ui/src/components/button/VButton.vue"]]);
 function getItemValue(column, item) {
   if (column.includes(".")) {
     let content = "";
@@ -187,7 +187,7 @@ function _sfc_render$a(_ctx, _cache, $props, $setup, $data, $options) {
     ])
   ]);
 }
-var VTable = /* @__PURE__ */ _export_sfc(_sfc_main$k, [["render", _sfc_render$a], ["__file", "C:/Users/debor/Documents/vert_design_system_ui/src/components/table/VTable.vue"]]);
+var VTable = /* @__PURE__ */ _export_sfc(_sfc_main$k, [["render", _sfc_render$a], ["__file", "/home/diego/Projetos/Hyperspace/Vert/vert_design_system_ui/src/components/table/VTable.vue"]]);
 var VSelect_scss_vue_type_style_index_0_src_4a2786ac_lang = "";
 const _hoisted_1$i = { class: "v-select" };
 const _hoisted_2$b = {
@@ -265,7 +265,7 @@ const _sfc_main$j = defineComponent({
     };
   }
 });
-var VSelect = /* @__PURE__ */ _export_sfc(_sfc_main$j, [["__file", "C:/Users/debor/Documents/vert_design_system_ui/src/components/form/select/VSelect.vue"]]);
+var VSelect = /* @__PURE__ */ _export_sfc(_sfc_main$j, [["__file", "/home/diego/Projetos/Hyperspace/Vert/vert_design_system_ui/src/components/form/select/VSelect.vue"]]);
 var _imports_0$4 = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTE5LDYuNDFMMTcuNTksNUwxMiwxMC41OUw2LjQxLDVMNSw2LjQxTDEwLjU5LDEyTDUsMTcuNTlMNi40MSwxOUwxMiwxMy40MUwxNy41OSwxOUwxOSwxNy41OUwxMy40MSwxMkwxOSw2LjQxWiIgLz48L3N2Zz4=";
 var VPopUp_scss_vue_type_style_index_0_src_12e74449_lang = "";
 const _hoisted_1$h = { class: "v-popup" };
@@ -346,7 +346,7 @@ const _sfc_main$i = /* @__PURE__ */ defineComponent({
     };
   }
 });
-var VPopUp = /* @__PURE__ */ _export_sfc(_sfc_main$i, [["__file", "C:/Users/debor/Documents/vert_design_system_ui/src/components/popUp/VPopUp.vue"]]);
+var VPopUp = /* @__PURE__ */ _export_sfc(_sfc_main$i, [["__file", "/home/diego/Projetos/Hyperspace/Vert/vert_design_system_ui/src/components/popUp/VPopUp.vue"]]);
 var VCard_scss_vue_type_style_index_0_src_28d3c952_lang = "";
 const _hoisted_1$g = {
   key: 0,
@@ -387,7 +387,7 @@ const _sfc_main$h = defineComponent({
     };
   }
 });
-var VCard = /* @__PURE__ */ _export_sfc(_sfc_main$h, [["__file", "C:/Users/debor/Documents/vert_design_system_ui/src/components/card/VCard.vue"]]);
+var VCard = /* @__PURE__ */ _export_sfc(_sfc_main$h, [["__file", "/home/diego/Projetos/Hyperspace/Vert/vert_design_system_ui/src/components/card/VCard.vue"]]);
 var VTab_scss_vue_type_style_index_0_src_a3c685ae_lang = "";
 const _sfc_main$g = defineComponent({
   name: "VTab",
@@ -439,7 +439,7 @@ function _sfc_render$9(_ctx, _cache, $props, $setup, $data, $options) {
     renderSlot(_ctx.$slots, "default")
   ]);
 }
-var VTab = /* @__PURE__ */ _export_sfc(_sfc_main$g, [["render", _sfc_render$9], ["__file", "C:/Users/debor/Documents/vert_design_system_ui/src/components/tab/VTab.vue"]]);
+var VTab = /* @__PURE__ */ _export_sfc(_sfc_main$g, [["render", _sfc_render$9], ["__file", "/home/diego/Projetos/Hyperspace/Vert/vert_design_system_ui/src/components/tab/VTab.vue"]]);
 var VTag_scss_vue_type_style_index_0_src_73d26849_lang = "";
 const _sfc_main$f = defineComponent({
   name: "VTag",
@@ -482,7 +482,7 @@ function _sfc_render$8(_ctx, _cache, $props, $setup, $data, $options) {
     renderSlot(_ctx.$slots, "default")
   ], 2);
 }
-var VTag = /* @__PURE__ */ _export_sfc(_sfc_main$f, [["render", _sfc_render$8], ["__file", "C:/Users/debor/Documents/vert_design_system_ui/src/components/tag/VTag.vue"]]);
+var VTag = /* @__PURE__ */ _export_sfc(_sfc_main$f, [["render", _sfc_render$8], ["__file", "/home/diego/Projetos/Hyperspace/Vert/vert_design_system_ui/src/components/tag/VTag.vue"]]);
 class EDate extends Date {
   get fullYear() {
     return this.getFullYear();
@@ -769,7 +769,7 @@ class Time {
     return date;
   }
 }
-var _imports_0$3 = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+DQogICA8cGF0aCBmaWxsPSIjYWFhIiBkPSJNMTUuNDEsMTYuNThMMTAuODMsMTJMMTUuNDEsNy40MUwxNCw2TDgsMTJMMTQsMThMMTUuNDEsMTYuNThaIiAvPg0KPC9zdmc+";
+var _imports_0$3 = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+CiAgIDxwYXRoIGZpbGw9IiNhYWEiIGQ9Ik0xNS40MSwxNi41OEwxMC44MywxMkwxNS40MSw3LjQxTDE0LDZMOCwxMkwxNCwxOEwxNS40MSwxNi41OFoiIC8+Cjwvc3ZnPg==";
 const _sfc_main$e = defineComponent({
   name: "ChevronLeft"
 });
@@ -780,8 +780,8 @@ const _hoisted_1$d = {
 function _sfc_render$7(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("img", _hoisted_1$d);
 }
-var ChevronLeft = /* @__PURE__ */ _export_sfc(_sfc_main$e, [["render", _sfc_render$7], ["__file", "C:/Users/debor/Documents/vert_design_system_ui/src/components/icons/ChevronLeft.vue"]]);
-var _imports_0$2 = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+DQogICA8cGF0aCBmaWxsPSIjYWFhIiBkPSJNOC41OSwxNi41OEwxMy4xNywxMkw4LjU5LDcuNDFMMTAsNkwxNiwxMkwxMCwxOEw4LjU5LDE2LjU4WiIgLz4NCjwvc3ZnPg==";
+var ChevronLeft = /* @__PURE__ */ _export_sfc(_sfc_main$e, [["render", _sfc_render$7], ["__file", "/home/diego/Projetos/Hyperspace/Vert/vert_design_system_ui/src/components/icons/ChevronLeft.vue"]]);
+var _imports_0$2 = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+CiAgIDxwYXRoIGZpbGw9IiNhYWEiIGQ9Ik04LjU5LDE2LjU4TDEzLjE3LDEyTDguNTksNy40MUwxMCw2TDE2LDEyTDEwLDE4TDguNTksMTYuNThaIiAvPgo8L3N2Zz4=";
 const _sfc_main$d = defineComponent({
   name: "ChevronRight"
 });
@@ -792,7 +792,7 @@ const _hoisted_1$c = {
 function _sfc_render$6(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("img", _hoisted_1$c);
 }
-var ChevronRight = /* @__PURE__ */ _export_sfc(_sfc_main$d, [["render", _sfc_render$6], ["__file", "C:/Users/debor/Documents/vert_design_system_ui/src/components/icons/ChevronRight.vue"]]);
+var ChevronRight = /* @__PURE__ */ _export_sfc(_sfc_main$d, [["render", _sfc_render$6], ["__file", "/home/diego/Projetos/Hyperspace/Vert/vert_design_system_ui/src/components/icons/ChevronRight.vue"]]);
 var WeekCarousel_vue_vue_type_style_index_0_scoped_true_lang = "";
 const _sfc_main$c = defineComponent({
   name: "Weekcarousel",
@@ -866,7 +866,7 @@ function _sfc_render$5(_ctx, _cache, $props, $setup, $data, $options) {
     }, null, 8, ["onClick"])
   ]);
 }
-var WeekCarousel = /* @__PURE__ */ _export_sfc(_sfc_main$c, [["render", _sfc_render$5], ["__scopeId", "data-v-5d140c4b"], ["__file", "C:/Users/debor/Documents/vert_design_system_ui/src/components/calendar/mini/WeekCarousel.vue"]]);
+var WeekCarousel = /* @__PURE__ */ _export_sfc(_sfc_main$c, [["render", _sfc_render$5], ["__scopeId", "data-v-5d140c4b"], ["__file", "/home/diego/Projetos/Hyperspace/Vert/vert_design_system_ui/src/components/calendar/mini/WeekCarousel.vue"]]);
 var Mini_vue_vue_type_style_index_0_scoped_true_lang = "";
 const _hoisted_1$a = { class: "vcalendar-mini" };
 const _hoisted_2$6 = { class: "vcalendar-mini--week" };
@@ -965,7 +965,7 @@ const _sfc_main$b = /* @__PURE__ */ defineComponent({
     };
   }
 });
-var Mini = /* @__PURE__ */ _export_sfc(_sfc_main$b, [["__scopeId", "data-v-7d7d84ae"], ["__file", "C:/Users/debor/Documents/vert_design_system_ui/src/components/calendar/mini/Mini.vue"]]);
+var Mini = /* @__PURE__ */ _export_sfc(_sfc_main$b, [["__scopeId", "data-v-7d7d84ae"], ["__file", "/home/diego/Projetos/Hyperspace/Vert/vert_design_system_ui/src/components/calendar/mini/Mini.vue"]]);
 var VDropdown_scss_vue_type_style_index_0_src_12d7f8ce_lang = "";
 const _hoisted_1$9 = { class: "v-dropdow__options" };
 const _hoisted_2$5 = ["tabIndex"];
@@ -1060,7 +1060,7 @@ const _sfc_main$a = defineComponent({
     };
   }
 });
-var VDropdown = /* @__PURE__ */ _export_sfc(_sfc_main$a, [["__file", "C:/Users/debor/Documents/vert_design_system_ui/src/components/dropdown/VDropdown.vue"]]);
+var VDropdown = /* @__PURE__ */ _export_sfc(_sfc_main$a, [["__file", "/home/diego/Projetos/Hyperspace/Vert/vert_design_system_ui/src/components/dropdown/VDropdown.vue"]]);
 var VCalendarMini_vue_vue_type_style_index_0_lang = "";
 const _hoisted_1$8 = { class: "calendar-root-wrapper" };
 const _hoisted_2$4 = { class: "calendar-root mode-is-mini" };
@@ -1181,8 +1181,8 @@ const _sfc_main$9 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-var VCalendarMini = /* @__PURE__ */ _export_sfc(_sfc_main$9, [["__file", "C:/Users/debor/Documents/vert_design_system_ui/src/components/calendar/VCalendarMini.vue"]]);
-var _imports_0$1 = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+DQogICA8cGF0aCBmaWxsPSIjYWFhIiBkPSJNMTksMTlINVY4SDE5TTE5LDNIMThWMUgxNlYzSDhWMUg2VjNINUMzLjg5LDMgMywzLjkgMyw1VjE5QTIsMiAwIDAsMCA1LDIxSDE5QTIsMiAwIDAsMCAyMSwxOVY1QTIsMiAwIDAsMCAxOSwzTTE2LjUzLDExLjA2TDE1LjQ3LDEwTDEwLjU5LDE0Ljg4TDguNDcsMTIuNzZMNy40MSwxMy44MkwxMC41OSwxN0wxNi41MywxMS4wNloiIC8+DQo8L3N2Zz4NCg==";
+var VCalendarMini = /* @__PURE__ */ _export_sfc(_sfc_main$9, [["__file", "/home/diego/Projetos/Hyperspace/Vert/vert_design_system_ui/src/components/calendar/VCalendarMini.vue"]]);
+var _imports_0$1 = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+CiAgIDxwYXRoIGZpbGw9IiNhYWEiIGQ9Ik0xOSwxOUg1VjhIMTlNMTksM0gxOFYxSDE2VjNIOFYxSDZWM0g1QzMuODksMyAzLDMuOSAzLDVWMTlBMiwyIDAgMCwwIDUsMjFIMTlBMiwyIDAgMCwwIDIxLDE5VjVBMiwyIDAgMCwwIDE5LDNNMTYuNTMsMTEuMDZMMTUuNDcsMTBMMTAuNTksMTQuODhMOC40NywxMi43Nkw3LjQxLDEzLjgyTDEwLjU5LDE3TDE2LjUzLDExLjA2WiIgLz4KPC9zdmc+Cg==";
 const _sfc_main$8 = defineComponent({
   name: "CalendarDay"
 });
@@ -1193,7 +1193,7 @@ const _hoisted_1$7 = {
 function _sfc_render$4(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("img", _hoisted_1$7);
 }
-var IconCalendar = /* @__PURE__ */ _export_sfc(_sfc_main$8, [["render", _sfc_render$4], ["__file", "C:/Users/debor/Documents/vert_design_system_ui/src/components/icons/CalendarDay.vue"]]);
+var IconCalendar = /* @__PURE__ */ _export_sfc(_sfc_main$8, [["render", _sfc_render$4], ["__file", "/home/diego/Projetos/Hyperspace/Vert/vert_design_system_ui/src/components/icons/CalendarDay.vue"]]);
 /*!
  * perfect-scrollbar v1.5.3
  * Copyright 2021 Hyunje Jun, MDBootstrap and Contributors
@@ -2324,7 +2324,7 @@ const _sfc_main$7 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-var VEventCard = /* @__PURE__ */ _export_sfc(_sfc_main$7, [["__file", "C:/Users/debor/Documents/vert_design_system_ui/src/components/eventCard/VEventCard.vue"]]);
+var VEventCard = /* @__PURE__ */ _export_sfc(_sfc_main$7, [["__file", "/home/diego/Projetos/Hyperspace/Vert/vert_design_system_ui/src/components/eventCard/VEventCard.vue"]]);
 const _sfc_main$6 = /* @__PURE__ */ defineComponent({
   __name: "Event",
   props: {
@@ -2379,8 +2379,8 @@ const _sfc_main$6 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-var Event$1 = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["__file", "C:/Users/debor/Documents/vert_design_system_ui/src/components/calendar/mini/Event.vue"]]);
-var _imports_0 = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+DQogICA8cGF0aCBmaWxsPSIjY2NjY2NjIiBkPSJNOS41LDNBNi41LDYuNSAwIDAsMSAxNiw5LjVDMTYsMTEuMTEgMTUuNDEsMTIuNTkgMTQuNDQsMTMuNzNMMTQuNzEsMTRIMTUuNUwyMC41LDE5TDE5LDIwLjVMMTQsMTUuNVYxNC43MUwxMy43MywxNC40NEMxMi41OSwxNS40MSAxMS4xMSwxNiA5LjUsMTZBNi41LDYuNSAwIDAsMSAzLDkuNUE2LjUsNi41IDAgMCwxIDkuNSwzTTkuNSw1QzcsNSA1LDcgNSw5LjVDNSwxMiA3LDE0IDkuNSwxNEMxMiwxNCAxNCwxMiAxNCw5LjVDMTQsNyAxMiw1IDkuNSw1WiIgLz4NCjwvc3ZnPg==";
+var Event$1 = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["__file", "/home/diego/Projetos/Hyperspace/Vert/vert_design_system_ui/src/components/calendar/mini/Event.vue"]]);
+var _imports_0 = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+CiAgIDxwYXRoIGZpbGw9IiNjY2NjY2MiIGQ9Ik05LjUsM0E2LjUsNi41IDAgMCwxIDE2LDkuNUMxNiwxMS4xMSAxNS40MSwxMi41OSAxNC40NCwxMy43M0wxNC43MSwxNEgxNS41TDIwLjUsMTlMMTksMjAuNUwxNCwxNS41VjE0LjcxTDEzLjczLDE0LjQ0QzEyLjU5LDE1LjQxIDExLjExLDE2IDkuNSwxNkE2LjUsNi41IDAgMCwxIDMsOS41QTYuNSw2LjUgMCAwLDEgOS41LDNNOS41LDVDNyw1IDUsNyA1LDkuNUM1LDEyIDcsMTQgOS41LDE0QzEyLDE0IDE0LDEyIDE0LDkuNUMxNCw3IDEyLDUgOS41LDVaIiAvPgo8L3N2Zz4=";
 const _sfc_main$5 = {};
 const _hoisted_1$5 = {
   src: _imports_0,
@@ -2389,7 +2389,7 @@ const _hoisted_1$5 = {
 function _sfc_render$3(_ctx, _cache) {
   return openBlock(), createElementBlock("img", _hoisted_1$5);
 }
-var SearchIcon = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["render", _sfc_render$3], ["__file", "C:/Users/debor/Documents/vert_design_system_ui/src/components/icons/Search.vue"]]);
+var SearchIcon = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["render", _sfc_render$3], ["__file", "/home/diego/Projetos/Hyperspace/Vert/vert_design_system_ui/src/components/icons/Search.vue"]]);
 function useCalendar(url, authorization, method, eventClass) {
   const _url = unref(url);
   const _authorization = unref(authorization);
@@ -2399,7 +2399,7 @@ function useCalendar(url, authorization, method, eventClass) {
       return Promise.resolve([]);
     }
     const _params = params ? params : {};
-    const urlWithParams = `${_url}?event_data_before=${(_params == null ? void 0 : _params.event_data_before) ? params.event_data_before : ""}&event_data_after=${(params == null ? void 0 : params.event_data_after) ? _params.event_data_after : ""}&page=${(params == null ? void 0 : params.page) ? _params.page : 1}&page_size=${(params == null ? void 0 : params.per_page) ? _params.per_page : 10}&emission__principal_responsable_email=${(params == null ? void 0 : params.me) ? _params.me : ""}${(params == null ? void 0 : params.q) ? "&q=" + _params.q : ""}`;
+    const urlWithParams = `${_url}?event_data_before=${(_params == null ? void 0 : _params.event_data_before) ? params.event_data_before : ""}&event_data_after=${(params == null ? void 0 : params.event_data_after) ? _params.event_data_after : ""}&page=${(params == null ? void 0 : params.page) ? _params.page : 1}&page_size=${(params == null ? void 0 : params.per_page) ? _params.per_page : 10}&emission__principal_responsable_email=${(params == null ? void 0 : params.me) ? _params.me : ""}${(params == null ? void 0 : params.search) ? "&search=" + _params.search : ""}`;
     const _return = fetch(urlWithParams, {
       credentials: "same-origin",
       method: _method,
@@ -2440,7 +2440,7 @@ const _hoisted_4$2 = {
   key: 0,
   class: "list-events__empty"
 };
-const _hoisted_5$2 = /* @__PURE__ */ createElementVNode("p", null, " Voc\xEA n\xE3o possui eventos na data selecionada, utilize os filtros para verificar outros eventos ", -1);
+const _hoisted_5$2 = /* @__PURE__ */ createElementVNode("p", { class: "find-empty" }, " Voc\xEA n\xE3o possui eventos na data selecionada, utilize os filtros para verificar outros eventos ", -1);
 const _hoisted_6$2 = [
   _hoisted_5$2
 ];
@@ -2507,7 +2507,7 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
         event_data_before: dayClicked.value,
         page: 1,
         per_page: 1e3,
-        q: search.value,
+        search: search.value,
         me: props.me
       };
     });
@@ -2650,7 +2650,7 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-var VCalendarButton = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["__file", "C:/Users/debor/Documents/vert_design_system_ui/src/components/calendar/VCalendarButton.vue"]]);
+var VCalendarButton = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["__file", "/home/diego/Projetos/Hyperspace/Vert/vert_design_system_ui/src/components/calendar/VCalendarButton.vue"]]);
 const defaultOptions = {
   page: 1,
   pageSize: 5,
@@ -2918,7 +2918,7 @@ function _sfc_render$2(_ctx, _cache, $props, $setup, $data, $options) {
     ])
   ]);
 }
-var VPagination = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["render", _sfc_render$2], ["__file", "C:/Users/debor/Documents/vert_design_system_ui/src/components/pagination/VPagination.vue"]]);
+var VPagination = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["render", _sfc_render$2], ["__file", "/home/diego/Projetos/Hyperspace/Vert/vert_design_system_ui/src/components/pagination/VPagination.vue"]]);
 const _sfc_main$2 = defineComponent({
   name: "VTabContent",
   props: {
@@ -2942,7 +2942,7 @@ function _sfc_render$1(_ctx, _cache, $props, $setup, $data, $options) {
     renderSlot(_ctx.$slots, "default")
   ], 8, _hoisted_1$2);
 }
-var VTabContent = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["render", _sfc_render$1], ["__file", "C:/Users/debor/Documents/vert_design_system_ui/src/components/tab/VTabContent.vue"]]);
+var VTabContent = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["render", _sfc_render$1], ["__file", "/home/diego/Projetos/Hyperspace/Vert/vert_design_system_ui/src/components/tab/VTabContent.vue"]]);
 const showContentTab = (contentId, typeTab) => {
   const tabContents = document.getElementsByClassName("tab--content");
   for (const item of tabContents) {
@@ -2999,7 +2999,7 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
     renderSlot(_ctx.$slots, "default")
   ], 10, _hoisted_1$1);
 }
-var VTabHeader = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["render", _sfc_render], ["__file", "C:/Users/debor/Documents/vert_design_system_ui/src/components/tab/VTabHeader.vue"]]);
+var VTabHeader = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["render", _sfc_render], ["__file", "/home/diego/Projetos/Hyperspace/Vert/vert_design_system_ui/src/components/tab/VTabHeader.vue"]]);
 var VLoading_vue_vue_type_style_index_0_lang = "";
 const _hoisted_1 = {
   key: 0,
@@ -3057,7 +3057,7 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
     };
   }
 });
-var VLoading = /* @__PURE__ */ _export_sfc(_sfc_main, [["__file", "C:/Users/debor/Documents/vert_design_system_ui/src/components/loading/VLoading.vue"]]);
+var VLoading = /* @__PURE__ */ _export_sfc(_sfc_main, [["__file", "/home/diego/Projetos/Hyperspace/Vert/vert_design_system_ui/src/components/loading/VLoading.vue"]]);
 function mountQueryParams(params) {
   return Object.keys(params).reduce((acc, cur) => {
     if (params[cur] === void 0 || !params[cur])
