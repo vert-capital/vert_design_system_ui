@@ -1,4 +1,4 @@
-import { IEvent, IJSON, ISeries, IEmission, IPatrimony, IEventCard, IApplication, IEventType, eventTypes } from "@/utils/types/calendar.d";
+import { IEvent, IJSON, ISeries, IEmission, IPatrimony, IEventCard, IApplication, IEventType, eventTypes, IObligation } from '@/utils/types/calendar.d';
 export declare class Event implements IEvent {
     id: number | null | undefined;
     json: IJSON;
@@ -9,20 +9,26 @@ export declare class Event implements IEvent {
     event_title: string;
     application: IApplication;
     event_type: IEventType;
+    obligation: IObligation;
     event_formated: IEventCard;
     emission_name: string;
     series_name: string;
     responsables_name: string;
     application_link: string | undefined;
     all_responsables: any[];
-    constructor(event?: IEvent);
+    url_ops: string;
+    url_obrigacoes: string;
+    constructor(event?: IEvent | null, url_ops?: string, url_obrigacoes?: string);
     formatEvent(): void;
     getEmissionFormated(): string;
     getEmissionName(): string;
     getSeriesFormated(): string;
     getSeriesName(): string;
     getResponsableFormated(): string;
+    getResponsable(): string;
+    getCoresponsable(): string[];
     getResponsablesObject(): any[];
     getEventTypeFormated(): eventTypes;
     getLinkApplication(): string | undefined;
+    getEventTag(): object | null;
 }

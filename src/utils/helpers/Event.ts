@@ -212,7 +212,10 @@ export class Event implements IEvent {
   }
   getEventTag(): object | null {
     if (this.application.slug === 'obligation') {
-      return { status: EStatus[this.json.status], text: this.json.status };
+      return {
+        status: EStatus[this.json.status as keyof typeof EStatus],
+        text: this.json.status,
+      };
     } else return null;
   }
 }
