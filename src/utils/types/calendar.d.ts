@@ -8,7 +8,7 @@ export interface IDay {
 
 export type eventId = string | number;
 
-export type modeType = "month" | "week" | "day" | "personalized" | "mini";
+export type modeType = 'month' | 'week' | 'day' | 'personalized' | 'mini';
 
 export interface IEventCard {
   id: number | null | undefined;
@@ -19,6 +19,8 @@ export interface IEventCard {
   event_type: eventTypes;
   status?: string;
   event_data?: string;
+  color: string;
+  tag: object | null;
 }
 export type IEventsWeek = IEvent[];
 
@@ -68,6 +70,7 @@ export interface IEvent {
   event_type: IEventType;
   event_formated?: IEventCard;
   tag?: string[];
+  obligation: IObligation;
 }
 
 export interface IEmission {
@@ -92,6 +95,7 @@ export interface IJSON {
   issuing_company: string;
   effective_period: string;
   financial_instrument: string;
+  responsible_obligation?: string;
 }
 
 export interface IPatrimony {
@@ -133,7 +137,14 @@ export enum eventTypesEnum {
   ATUALIZACAO_STATUS_PATRIMONIOS = 'atualizacao_status_patrimonios',
   MARCOS_PATRIMONIOS = 'marcos_patrimonios',
   VENCIMENTO_SERIES = 'vencimento_series',
-  RATING = 'rating'
+  RATING = 'rating',
+}
+
+export enum EStatus {
+  'À Vencer' = 'warning',
+  'Vencida' = 'helper',
+  'Cumprida' = 'success',
+  'Cumprida fora do vencimento' = 'secondary',
 }
 
 export interface IEventCard {
@@ -185,4 +196,13 @@ export interface IEventDetail {
   is_recurrence: boolean | null;
   responsibles: string[] | null;
   recurrences: IRecurrence[] | null;
+}
+
+export interface IObligation {
+  description: string;
+  due_date: string;
+  external_obligation_id: number;
+  parent_id: number;
+  status: string;
+  title: string;
 }
