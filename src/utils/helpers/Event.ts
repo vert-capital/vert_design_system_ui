@@ -28,6 +28,7 @@ export class Event implements IEvent {
   public emission_name: string;
   public series_name: string;
   public responsables_name: string;
+  public responsable: string;
   public application_link: string | undefined;
   public all_responsables: any[];
   public url_ops = '';
@@ -44,6 +45,7 @@ export class Event implements IEvent {
       event_title: '',
       application: {} as IApplication,
       event_type: {} as IEventType,
+      obligation: {} as IObligation,
     } as IEvent,
     url_ops = '',
     url_obrigacoes = ''
@@ -71,6 +73,7 @@ export class Event implements IEvent {
     this.emission_name = this.getEmissionName();
     this.series_name = this.getSeriesFormated();
     this.responsables_name = this.getResponsableFormated();
+    this.responsable = this.getResponsable();
     this.application_link = this.getLinkApplication();
     this.all_responsables = this.getResponsablesObject();
     this.url_obrigacoes = url_obrigacoes;
@@ -89,6 +92,7 @@ export class Event implements IEvent {
     this.event_formated.event_data = this.event_data;
     this.event_formated.event_type = this.getEventTypeFormated();
     this.event_formated.color = this.event_type?.color;
+    this.event_formated.tag = this.getEventTag();
   }
 
   getEmissionFormated(): string {
@@ -152,7 +156,7 @@ export class Event implements IEvent {
   }
 
   getCoresponsable(): string[] {
-    const coResponsible = this.emission?.responsible.filter(
+    const coResponsible = this.emission?.responsible?.filter(
       (main) => main != this.responsables_name
     );
     return this.emission?.principal_responsable_name &&
