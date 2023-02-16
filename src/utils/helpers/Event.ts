@@ -96,7 +96,7 @@ export class Event implements IEvent {
   }
 
   getEmissionFormated(): string {
-    if (this.emission) {
+    if (this.emission && Object.keys(this.emission).length != 0) {
       return `(${
         this.emission?._emission_code_name +
         (this.patrimony?.number ? ' - ' + this.patrimony?.number : '')
@@ -113,7 +113,7 @@ export class Event implements IEvent {
   }
 
   getSeriesFormated(): string {
-    if (this.series) {
+    if (this.series && Object.keys(this.series).length != 0) {
       return `#${this.series.external_series_id} | ${this.series.priority} - ${
         this.series.name + (this.series.type ? ' - ' + this.series.type : '')
       }`;
@@ -133,17 +133,15 @@ export class Event implements IEvent {
       return (
         this.json.responsible_obligation +
         ' (Responsável)' +
-        (this.emission
-          ? `, ${
-              this.emission?.principal_responsable_name
-            }, ${this.emission?.responsible?.join(', ')}`
+        (Object.keys(this.emission).length != 0
+          ? `, ${this.getCoresponsable().join(', ')}`
           : '')
       );
     } else {
-      return this.emission
+      return Object.keys(this.emission).length != 0
         ? this.emission?.principal_responsable_name +
             ' (Responsável), ' +
-            this.emission?.responsible?.join(', ')
+            this.getCoresponsable().join(', ')
         : '';
     }
   }
@@ -156,13 +154,16 @@ export class Event implements IEvent {
   }
 
   getCoresponsable(): string[] {
-    const coResponsible = this.emission?.responsible?.filter(
-      (main) => main != this.responsables_name
-    );
-    return this.emission?.principal_responsable_name &&
-      this.responsables_name != this.emission?.principal_responsable_name
-      ? [this.emission?.principal_responsable_name, ...coResponsible]
-      : coResponsible;
+    if (Object.keys(this.emission).length != 0) {
+      const coResponsible = this.emission?.responsible?.filter(
+        (main) => main != this.getResponsable()
+      );
+      return this.emission?.principal_responsable_name &&
+        this.getResponsable() != this.emission?.principal_responsable_name
+        ? [this.emission?.principal_responsable_name, ...coResponsible]
+        : coResponsible;
+    }
+    return [];
   }
 
   getResponsablesObject(): any[] {
