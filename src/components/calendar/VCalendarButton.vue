@@ -41,8 +41,7 @@
           class="list-events__empty"
         >
           <p class="find-empty">
-            Você não possui eventos na data selecionada, utilize os filtros para
-            verificar outros eventos
+            {{ findEmpty }}
           </p>
         </div>
       </div>
@@ -90,6 +89,11 @@ const props = defineProps({
   me: {
     type: String,
     default: '',
+  },
+  findEmpty: {
+    type: String,
+    default:
+      'Você não possui eventos na data selecionada, verifique a visão completa',
   },
   eventClass: {
     type: [Function, Object] as PropType<any>,
