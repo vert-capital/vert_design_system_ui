@@ -1,3 +1,13 @@
 .cursor-pointer {
   cursor: pointer;
 }
+
+.gutter-sm {
+  margin-top: -0.5rem;
+  margin-left: -0.5rem;
+}
+
+.gutter-sm > * {
+  margin-top: 0.5rem;
+  margin-left: 0.5rem;
+}
