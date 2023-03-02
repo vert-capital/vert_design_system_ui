@@ -51,17 +51,8 @@ const setDays = (day: Date) => {
     .map((day: Date) => {
       const dayName = props.time.getLocalizedNameOfWeekday(day, "long");
       const dateTimeString = props.time.getDateTimeStringFromDate(day, "start");
-      if (props.time.dateIsToday(day)) {
-        getDateAndDayLongName(day, true);
-      }
-      const { month, year, date } =
-        props.time.getAllVariablesFromDateTimeString(dateTimeString);
-      if (
-        month !== initialMonth.value ||
-        (year !== initialYear.value &&
-          (date == props.time.getNumberOfDaysInMonth(year, month) || date == 1))
-      )
-        emits("change-period", dateTimeString.substring(0, 7));
+      if (props.time.dateIsToday(day)) getDateAndDayLongName(day, true);
+      emits("change-period", dateTimeString.substring(0, 7));
       return { dayName, dateTimeString };
     });
   days.value = days_;
