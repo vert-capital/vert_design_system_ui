@@ -15,10 +15,10 @@
 </template>
 <script lang="ts" setup>
 import { onMounted, PropType, ref } from "vue";
-import { IPeriod, IDay } from "@/utils/types/calendar";
-import Time from "@/utils/helpers/Time";
+import { IPeriod } from "@/utils/types/calendar";
+import { Time } from "@/utils/helpers/Time";
 import WeekCarousel from "./WeekCarousel.vue";
-import StringHelper from "@/utils/helpers/String";
+import { StringHelper } from "@/utils/helpers/String";
 
 const props = defineProps({
   time: {
@@ -36,17 +36,17 @@ const props = defineProps({
 });
 
 const emits = defineEmits({
-  "day-was-clicked": (__day: IDay) => true,
+  "day-was-clicked": (__day: any) => true,
   "change-period": (__value: string) => true,
 });
 
-const days = ref<IDay[]>([]);
+const days = ref<any[]>([]);
 const dayNameSelected = ref("");
 const initialMonth = ref<number | null>(null);
 const initialYear = ref<number | null>(null);
 
 const setDays = (day: Date) => {
-  const days_: IDay[] = props.time
+  const days_: any[] = props.time
     .getCalendarWeekDateObjects(day)
     .map((day: Date) => {
       const dayName = props.time.getLocalizedNameOfWeekday(day, "long");
@@ -107,7 +107,7 @@ const getDateAndDayLongName = (day: Date, isToday = false) => {
   return dayNameSelected.value;
 };
 
-const handleDayWasClicked = (day: IDay) => {
+const handleDayWasClicked = (day: any) => {
   const replate_date = day.dateTimeString.replace("-", ",");
   const dayDate = new Date(replate_date);
   day.dayName = getDateAndDayLongName(dayDate, props.time.dateIsToday(dayDate));
@@ -135,8 +135,9 @@ onMounted(() => {
   &--day {
     font-weight: 700;
     font-size: 1rem;
-    padding-top: 0.8rem;
+    padding-top: 1rem;
     color: $neutral-color-low-pure;
+    line-height: initial;
   }
 }
 </style>

@@ -14,40 +14,54 @@
       ></v-calendar-mini>
 
       <div class="search-events">
-        <input v-model="search" placeholder="Buscar" @input="searchEvent" />
+        <input
+          v-model="search"
+          placeholder="Buscar"
+          @focusout="searchEvent"
+          @keyup.enter="searchEvent"
+        />
         <search-icon class="search-events__icon" @click="searchEvent" />
       </div>
 
       <div id="container-list" class="list-events">
-        <div v-if="eventsOfDay?.length > 0">
-          <div
-            v-for="(event, index) in eventsOfDay"
-            :key="index"
-            class="list-events__item"
-          >
-            <event :event="event" @click="onHandleEventClicked(event)"></event>
-          </div>
+        <div
+          v-for="(event, index) in eventsOfDay"
+          :key="index"
+          class="list-events__item"
+        >
+          <event
+            :event="event"
+            @on-clicked="onHandleEventClicked"
+            :loading="isLoading"
+          ></event>
         </div>
 
-        <div v-else class="list-events__empty">
-          <p>Nenhum evento encontrado</p>
+        <div
+          v-if="!isLoading && !eventsOfDay.length"
+          class="list-events__empty"
+        >
+          <p class="find-empty">
+            {{ findEmpty }}
+          </p>
         </div>
       </div>
     </template>
     <template #popup-footer>
-      <a class="a-link">Ir para versão completa</a>
+      <div class="a-link" @click="onHandleCompleteCalendar">
+        Ir para versão completa
+      </div>
     </template>
   </v-pop-up>
 </template>
 <script lang="ts" setup>
-import { VPopUp, VCalendarMini } from "@/components";
-import IconCalendar from "@/components/icons/CalendarDay.vue";
-import type { IEvent, IEventCard } from "@/utils/types/calendar";
-import { onMounted, PropType, ref, shallowRef, watch } from "vue";
-import PerfectScrollbar from "perfect-scrollbar";
-import Event from "@/components/calendar/mini/Event.vue";
-import SearchIcon from "@/components/icons/Search.vue";
-import { useCalendar } from "@/components/calendar/useCalendar";
+import { VPopUp, VCalendarMini } from '@/components';
+import IconCalendar from '@/components/icons/CalendarDay.vue';
+import type { IEvent, IEventCard } from '@/utils/types/calendar';
+import { onMounted, PropType, ref, shallowRef, watch, computed } from 'vue';
+import PerfectScrollbar from 'perfect-scrollbar';
+import Event from '@/components/calendar/mini/Event.vue';
+import SearchIcon from '@/components/icons/Search.vue';
+import { useCalendar } from '@/components/calendar/useCalendar';
 
 const props = defineProps({
   events: {
@@ -58,15 +72,28 @@ const props = defineProps({
   },
   url: {
     type: String,
-    default: "",
+    default: '',
+  },
+  urlEvents: {
+    type: String,
+    default: '',
   },
   authorization: {
     type: String,
-    default: "",
+    default: '',
   },
   method: {
     type: String,
-    default: "GET",
+    default: 'GET',
+  },
+  me: {
+    type: String,
+    default: '',
+  },
+  findEmpty: {
+    type: String,
+    default:
+      'Você não possui eventos na data selecionada, verifique a visão completa',
   },
   eventClass: {
     type: [Function, Object] as PropType<any>,
@@ -77,9 +104,9 @@ const props = defineProps({
 });
 
 const emits = defineEmits([
-  "search-event",
-  "event-was-clicked",
-  "day-was-clicked",
+  'search-event',
+  'event-was-clicked',
+  'day-was-clicked',
 ]);
 
 const calendarSelectedDate = ref(new Date());
@@ -88,6 +115,9 @@ const events = ref<IEventCard[]>([]);
 const eventsDataProperty = shallowRef<IEvent[]>(events as unknown as IEvent[]);
 const eventsOfDay = ref([] as IEvent[]);
 const eventRenderingKey = ref(0);
+const dayClicked = ref('');
+const search = ref('');
+const isLoading = ref(false);
 
 const { getEvents } = useCalendar(
   props.url,
@@ -96,16 +126,23 @@ const { getEvents } = useCalendar(
   props.eventClass
 );
 
-async function onHandleDayClicked(payload: any) {
-  console.log(payload);
+const _params = computed(() => {
+  return {
+    event_data_after: dayClicked.value,
+    event_data_before: dayClicked.value,
+    page: 1,
+    per_page: 1000,
+    search: search.value,
+    me: props.me,
+  };
+});
 
-  const dateTimeString = payload.dateTimeString.substring(0, 10);
+async function onHandleDayClicked(payload: any) {
+  dayClicked.value = payload.dateTimeString.substring(0, 10);
   if (!props.events) {
-    const _data: IEventCard[] = await getEvents({
-      event_data_after: dateTimeString,
-      event_data_before: dateTimeString,
-      page: 1,
-      per_page: 1000,
+    isLoading.value = true;
+    const _data: IEventCard[] = await getEvents(_params.value).finally(() => {
+      isLoading.value = false;
     });
     events.value = _data;
   }
@@ -114,25 +151,45 @@ async function onHandleDayClicked(payload: any) {
 
   eventsDataProperty.value = events.value as unknown as IEvent[];
   eventsOfDay.value = eventsDataProperty.value?.filter((event: IEvent) => {
-    const eventIsInDay = event?.event_data === dateTimeString;
+    const eventIsInDay = event?.event_data === dayClicked.value;
     return eventIsInDay;
   });
-  emits("day-was-clicked", payload);
+  emits('day-was-clicked', payload);
 }
 
-const search = ref("");
-function searchEvent() {
-  emits("search-event", search.value);
+async function searchEvent() {
+  if (!props.events) {
+    isLoading.value = true;
+    const _data: IEventCard[] = await getEvents(_params.value).finally(() => {
+      isLoading.value = false;
+    });
+    events.value = _data;
+  }
+
+  eventsDataProperty.value = events.value as unknown as IEvent[];
+  eventsOfDay.value = eventsDataProperty.value?.filter((event: IEvent) => {
+    const eventIsInDay = event?.event_data === dayClicked.value;
+    return eventIsInDay;
+  });
+  emits('search-event', search.value);
 }
 
 function onHandleEventClicked(event: any) {
-  emits("event-was-clicked", event);
+  emits('event-was-clicked', event);
+  if (props.urlEvents === '') return;
+  const _url = props.urlEvents + '/modal/event-detail/' + event?.id;
+  window.open(_url, '_blank');
+}
+
+function onHandleCompleteCalendar() {
+  if (props.urlEvents === '') return;
+  else window.open(props.urlEvents, '_blank');
 }
 
 const scrollbar = ref<any | null>(null);
 
 function initScrollbar() {
-  scrollbar.value = new PerfectScrollbar(".list-events", {
+  scrollbar.value = new PerfectScrollbar('.list-events', {
     wheelSpeed: 0.5,
     wheelPropagation: true,
   });
@@ -161,13 +218,11 @@ onMounted(async () => {
   if (props.events) {
     events.value = props.events;
   } else {
+    isLoading.value = true;
     const today = new Date();
-    const dateTimeString = today.toISOString().substring(0, 10);
-    const data: IEventCard[] = await getEvents({
-      event_data_after: dateTimeString,
-      event_data_before: dateTimeString,
-      page: 1,
-      per_page: 1000,
+    dayClicked.value = today.toISOString().substring(0, 10);
+    const data: IEventCard[] = await getEvents(_params.value).finally(() => {
+      isLoading.value = false;
     });
     events.value = data;
   }
@@ -177,6 +232,12 @@ onMounted(async () => {
 <style lang="scss">
 .v-popup__content.center {
   left: auto;
+}
+
+.find-empty {
+  white-space: break-spaces;
+  line-height: normal;
+  text-align: center;
 }
 
 .search-events {
@@ -189,10 +250,13 @@ onMounted(async () => {
 
   input {
     width: 100%;
-    padding: 0.5rem;
+    padding: 0.7rem;
     border: 1px solid #ccc;
     border-right: none;
     border-radius: 0.25rem 0 0 0.25rem;
+    &:focus-visible {
+      outline: none;
+    }
   }
 
   .search-events__icon {
@@ -225,7 +289,7 @@ onMounted(async () => {
 }
 
 #container-list {
-  height: 300px;
+  height: 21rem;
   overflow: auto;
   max-height: 100%;
   min-height: 0px;
@@ -253,6 +317,5 @@ onMounted(async () => {
   text-decoration: none;
   cursor: pointer;
   line-height: 1rem;
-  margin-left: 22%;
 }
 </style>

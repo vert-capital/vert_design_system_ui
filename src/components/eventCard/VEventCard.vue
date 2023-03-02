@@ -1,15 +1,26 @@
 <template>
-  <div class="event-card">
-    <div class="event-status" :class="setEventTypeClass">
+  <div class="skeleton" v-if="isLoading">
+    <div class="skeleton-left">
+      <div class="line h14"></div>
+      <div class="line h10 w50"></div>
+      <div class="line h10 w75"></div>
+    </div>
+  </div>
+  <div class="event-card" @click="handleClicked" v-else>
+    <div class="event-status" :style="`border-color: ${color};`">
       <div class="event-body" :class="[`event-body--${size}`]">
         <slot v-if="size === 'default'" name="tag"></slot>
-        <p class="break-ellipsis event-body--title break-ellipsis--title">
+        <p
+          class="event-body--title"
+          :class="!noWrap ? 'break-ellipsis break-ellipsis--title' : ''"
+        >
           {{ title }}
         </p>
 
         <p
           v-if="subtitle != '' && size !== 'very-small'"
-          class="break-ellipsis break-ellipsis--subtitle"
+          class="event-body--subtitle"
+          :class="!noWrap ? 'break-ellipsis break-ellipsis--subtitle' : ''"
         >
           {{ subtitle }}
         </p>
@@ -22,10 +33,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, PropType } from "vue";
-import { eventTypes } from "@/utils/types/calendar";
-
-const props = defineProps({
+defineProps({
   title: {
     type: String,
     default: "Título do evento",
@@ -42,19 +50,29 @@ const props = defineProps({
     type: String,
     default: "default",
   },
-  eventType: {
-    type: String as PropType<eventTypes>,
-    default: "obrigacoes",
-  },
   status: {
     type: String,
     default: "pending",
   },
+  color: {
+    type: String,
+    default: "inerent",
+  },
+  isLoading: {
+    type: Boolean,
+    default: false,
+  },
+  noWrap: {
+    type: Boolean,
+    default: false,
+  },
 });
 
-const setEventTypeClass = computed(
-  (): string => `event-status--${props.eventType}`
-);
+const emit = defineEmits(["on-clicked"]);
+
+function handleClicked() {
+  emit("on-clicked");
+}
 </script>
 
 <style src="./VEventCard.scss" lang="scss" />

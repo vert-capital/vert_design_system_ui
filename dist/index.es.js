@@ -4,7 +4,7 @@ var __publicField = (obj, key, value) => {
   __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
   return value;
 };
-import { defineComponent, openBlock, createElementBlock, mergeProps, createElementVNode, createCommentVNode, renderSlot, useSlots, ref, Fragment, renderList, normalizeClass, withModifiers, toDisplayString, normalizeProps, createTextVNode, watch, computed, unref, withDirectives, normalizeStyle, vShow, resolveComponent, createVNode, onMounted, Transition, withCtx, createBlock, shallowRef, vModelText } from "vue";
+import { defineComponent, openBlock, createElementBlock, mergeProps, createElementVNode, createCommentVNode, renderSlot, useSlots, ref, Fragment, renderList, normalizeClass, withModifiers, toDisplayString, normalizeProps, createTextVNode, watch, computed, unref, withDirectives, normalizeStyle, vShow, resolveComponent, createVNode, onMounted, Transition, withCtx, createBlock, createSlots, shallowRef, withKeys, vModelText } from "vue";
 var VButton_scss_vue_type_style_index_0_src_6e5341db_lang = "";
 var _export_sfc = (sfc, props) => {
   const target = sfc.__vccOpts || sfc;
@@ -13,7 +13,7 @@ var _export_sfc = (sfc, props) => {
   }
   return target;
 };
-const _sfc_main$k = defineComponent({
+const _sfc_main$l = defineComponent({
   name: "VButton",
   props: {
     size: {
@@ -32,7 +32,7 @@ const _sfc_main$k = defineComponent({
       type: Boolean,
       default: false
     },
-    stypeType: {
+    styleType: {
       type: String,
       default: "solid"
     }
@@ -42,32 +42,32 @@ const _sfc_main$k = defineComponent({
       return `v-btn--${this.size}`;
     },
     setStatus() {
-      return `v-btn__${this.stypeType}--${this.status}`;
+      return `v-btn__${this.styleType}--${this.status}`;
     },
     setIcon() {
       return `/static/icons/${this.icon}.svg`;
     }
   }
 });
-const _hoisted_1$j = ["disabled"];
-const _hoisted_2$c = {
+const _hoisted_1$k = ["disabled"];
+const _hoisted_2$d = {
   key: 0,
   class: "v-btn--img"
 };
-const _hoisted_3$b = ["src"];
+const _hoisted_3$c = ["src"];
 function _sfc_render$b(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("button", mergeProps({
     class: [_ctx.setSizeClass, _ctx.setStatus],
     disabled: _ctx.disabled,
     type: "button"
   }, _ctx.$attrs), [
-    _ctx.icon != "" ? (openBlock(), createElementBlock("div", _hoisted_2$c, [
-      createElementVNode("img", { src: _ctx.setIcon }, null, 8, _hoisted_3$b)
+    _ctx.icon != "" ? (openBlock(), createElementBlock("div", _hoisted_2$d, [
+      createElementVNode("img", { src: _ctx.setIcon }, null, 8, _hoisted_3$c)
     ])) : createCommentVNode("v-if", true),
     renderSlot(_ctx.$slots, "default")
-  ], 16, _hoisted_1$j);
+  ], 16, _hoisted_1$k);
 }
-var VButton = /* @__PURE__ */ _export_sfc(_sfc_main$k, [["render", _sfc_render$b], ["__file", "/home/debora/Documentos/www/vert_design_system_ui/src/components/button/VButton.vue"]]);
+var VButton = /* @__PURE__ */ _export_sfc(_sfc_main$l, [["render", _sfc_render$b], ["__file", "C:/Users/debor/Documents/vert_design_system_ui/src/components/button/VButton.vue"]]);
 function getItemValue(column, item) {
   if (column.includes(".")) {
     let content = "";
@@ -84,7 +84,7 @@ function generateColumnContent(column, item) {
   return Array.isArray(content) ? content.join(",") : content;
 }
 var VTable_scss_vue_type_style_index_0_src_52ffde09_lang = "";
-const _sfc_main$j = defineComponent({
+const _sfc_main$k = defineComponent({
   name: "VTable",
   props: {
     data: {
@@ -136,15 +136,15 @@ const _sfc_main$j = defineComponent({
     };
   }
 });
-const _hoisted_1$i = { class: "v-table" };
-const _hoisted_2$b = { class: "v-table__body-wrapper" };
-const _hoisted_3$a = { class: "responsive-table" };
-const _hoisted_4$8 = ["onClick"];
-const _hoisted_5$5 = ["onClick"];
+const _hoisted_1$j = { class: "v-table" };
+const _hoisted_2$c = { class: "v-table__body-wrapper" };
+const _hoisted_3$b = { class: "responsive-table" };
+const _hoisted_4$9 = ["onClick"];
+const _hoisted_5$6 = ["onClick"];
 function _sfc_render$a(_ctx, _cache, $props, $setup, $data, $options) {
-  return openBlock(), createElementBlock("div", _hoisted_1$i, [
-    createElementVNode("div", _hoisted_2$b, [
-      createElementVNode("table", _hoisted_3$a, [
+  return openBlock(), createElementBlock("div", _hoisted_1$j, [
+    createElementVNode("div", _hoisted_2$c, [
+      createElementVNode("table", _hoisted_3$b, [
         createElementVNode("thead", null, [
           createElementVNode("tr", null, [
             (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.headers, (col, index) => {
@@ -159,7 +159,7 @@ function _sfc_render$a(_ctx, _cache, $props, $setup, $data, $options) {
                   }
                 ]]),
                 onClick: withModifiers(($event) => col.sortable && col.sortType ? _ctx.updateSortField(col.prop, col.sortType) : null, ["stop"])
-              }, toDisplayString(col.label), 11, _hoisted_4$8);
+              }, toDisplayString(col.label), 11, _hoisted_4$9);
             }), 128))
           ])
         ]),
@@ -180,29 +180,29 @@ function _sfc_render$a(_ctx, _cache, $props, $setup, $data, $options) {
                   ], 64))
                 ]);
               }), 128))
-            ], 8, _hoisted_5$5);
+            ], 8, _hoisted_5$6);
           }), 128))
         ])
       ])
     ])
   ]);
 }
-var VTable = /* @__PURE__ */ _export_sfc(_sfc_main$j, [["render", _sfc_render$a], ["__file", "/home/debora/Documentos/www/vert_design_system_ui/src/components/table/VTable.vue"]]);
+var VTable = /* @__PURE__ */ _export_sfc(_sfc_main$k, [["render", _sfc_render$a], ["__file", "C:/Users/debor/Documents/vert_design_system_ui/src/components/table/VTable.vue"]]);
 var VSelect_scss_vue_type_style_index_0_src_4a2786ac_lang = "";
-const _hoisted_1$h = { class: "v-select" };
-const _hoisted_2$a = {
+const _hoisted_1$i = { class: "v-select" };
+const _hoisted_2$b = {
   key: 0,
   class: "v-select--label"
 };
-const _hoisted_3$9 = ["for"];
-const _hoisted_4$7 = { class: "v-selec--content" };
-const _hoisted_5$4 = ["id", "name", "required", "disabled"];
-const _hoisted_6$3 = {
+const _hoisted_3$a = ["for"];
+const _hoisted_4$8 = { class: "v-selec--content" };
+const _hoisted_5$5 = ["id", "name", "required", "disabled"];
+const _hoisted_6$4 = {
   key: 0,
   value: ""
 };
 const _hoisted_7$3 = ["value", "selected"];
-const _sfc_main$i = defineComponent({
+const _sfc_main$j = defineComponent({
   __name: "VSelect",
   props: {
     id: { type: String, required: false, default: "select_id" },
@@ -234,11 +234,11 @@ const _sfc_main$i = defineComponent({
       emit("update:modelValue", selected.value);
     }
     return (_ctx, _cache) => {
-      return openBlock(), createElementBlock("div", _hoisted_1$h, [
-        __props.label ? (openBlock(), createElementBlock("div", _hoisted_2$a, [
-          createElementVNode("label", { for: __props.id }, toDisplayString(__props.label), 9, _hoisted_3$9)
+      return openBlock(), createElementBlock("div", _hoisted_1$i, [
+        __props.label ? (openBlock(), createElementBlock("div", _hoisted_2$b, [
+          createElementVNode("label", { for: __props.id }, toDisplayString(__props.label), 9, _hoisted_3$a)
         ])) : createCommentVNode("v-if", true),
-        createElementVNode("div", _hoisted_4$7, [
+        createElementVNode("div", _hoisted_4$8, [
           createElementVNode("select", {
             id: __props.id,
             class: normalizeClass([
@@ -250,7 +250,7 @@ const _sfc_main$i = defineComponent({
             disabled: __props.disable,
             onChange: _cache[0] || (_cache[0] = ($event) => selectChange($event))
           }, [
-            __props.placeholder ? (openBlock(), createElementBlock("option", _hoisted_6$3, toDisplayString(__props.placeholder), 1)) : createCommentVNode("v-if", true),
+            __props.placeholder ? (openBlock(), createElementBlock("option", _hoisted_6$4, toDisplayString(__props.placeholder), 1)) : createCommentVNode("v-if", true),
             (openBlock(true), createElementBlock(Fragment, null, renderList(__props.options, (option, index) => {
               return openBlock(), createElementBlock("option", {
                 key: index,
@@ -259,30 +259,30 @@ const _sfc_main$i = defineComponent({
                 "aria-checked": "false"
               }, toDisplayString(option.label), 9, _hoisted_7$3);
             }), 128))
-          ], 42, _hoisted_5$4)
+          ], 42, _hoisted_5$5)
         ])
       ]);
     };
   }
 });
-var VSelect = /* @__PURE__ */ _export_sfc(_sfc_main$i, [["__file", "/home/debora/Documentos/www/vert_design_system_ui/src/components/form/select/VSelect.vue"]]);
+var VSelect = /* @__PURE__ */ _export_sfc(_sfc_main$j, [["__file", "C:/Users/debor/Documents/vert_design_system_ui/src/components/form/select/VSelect.vue"]]);
 var _imports_0$4 = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTE5LDYuNDFMMTcuNTksNUwxMiwxMC41OUw2LjQxLDVMNSw2LjQxTDEwLjU5LDEyTDUsMTcuNTlMNi40MSwxOUwxMiwxMy40MUwxNy41OSwxOUwxOSwxNy41OUwxMy40MSwxMkwxOSw2LjQxWiIgLz48L3N2Zz4=";
 var VPopUp_scss_vue_type_style_index_0_src_12e74449_lang = "";
-const _hoisted_1$g = { class: "v-popup" };
-const _hoisted_2$9 = { class: "v-popup--click" };
-const _hoisted_3$8 = { class: "v-popup__content--head" };
-const _hoisted_4$6 = { class: "v-popup__content--head-title" };
-const _hoisted_5$3 = /* @__PURE__ */ createElementVNode("img", { src: _imports_0$4 }, null, -1);
-const _hoisted_6$2 = [
-  _hoisted_5$3
+const _hoisted_1$h = { class: "v-popup" };
+const _hoisted_2$a = { class: "v-popup--click" };
+const _hoisted_3$9 = { class: "v-popup__content--head" };
+const _hoisted_4$7 = { class: "v-popup__content--head-title" };
+const _hoisted_5$4 = /* @__PURE__ */ createElementVNode("img", { src: _imports_0$4 }, null, -1);
+const _hoisted_6$3 = [
+  _hoisted_5$4
 ];
 const _hoisted_7$2 = { class: "v-popup__content--body" };
-const _hoisted_8$1 = { class: "v-popup__content--footer" };
+const _hoisted_8$2 = { class: "v-popup__content--footer" };
 const _hoisted_9$1 = /* @__PURE__ */ createElementVNode("a", {
   href: "#",
   target: "_blank"
 }, "Ir para vis\xE3o completa", -1);
-const _sfc_main$h = /* @__PURE__ */ defineComponent({
+const _sfc_main$i = /* @__PURE__ */ defineComponent({
   __name: "VPopUp",
   props: {
     title: {
@@ -310,8 +310,8 @@ const _sfc_main$h = /* @__PURE__ */ defineComponent({
     const props = __props;
     const show = props.showIcon ? ref(false) : computed(() => props.showPopUp);
     return (_ctx, _cache) => {
-      return openBlock(), createElementBlock("div", _hoisted_1$g, [
-        createElementVNode("div", _hoisted_2$9, [
+      return openBlock(), createElementBlock("div", _hoisted_1$h, [
+        createElementVNode("div", _hoisted_2$a, [
           createElementVNode("a", {
             onClick: _cache[0] || (_cache[0] = ($event) => show.value = !unref(show))
           }, [
@@ -322,19 +322,19 @@ const _sfc_main$h = /* @__PURE__ */ defineComponent({
         ]),
         withDirectives(createElementVNode("div", {
           class: normalizeClass(["v-popup__content", __props.positionContent]),
-          style: normalizeStyle(`min-width: ${__props.widthContent}`)
+          style: normalizeStyle(`width: ${__props.widthContent}`)
         }, [
-          createElementVNode("div", _hoisted_3$8, [
-            createElementVNode("h3", _hoisted_4$6, toDisplayString(__props.title), 1),
+          createElementVNode("div", _hoisted_3$9, [
+            createElementVNode("h3", _hoisted_4$7, toDisplayString(__props.title), 1),
             createElementVNode("span", {
               class: "v-popup__content--head-close",
               onClick: _cache[1] || (_cache[1] = ($event) => show.value = !unref(show))
-            }, _hoisted_6$2)
+            }, _hoisted_6$3)
           ]),
           createElementVNode("div", _hoisted_7$2, [
             renderSlot(_ctx.$slots, "popup-body")
           ]),
-          createElementVNode("div", _hoisted_8$1, [
+          createElementVNode("div", _hoisted_8$2, [
             renderSlot(_ctx.$slots, "popup-footer", {}, () => [
               _hoisted_9$1
             ])
@@ -346,15 +346,15 @@ const _sfc_main$h = /* @__PURE__ */ defineComponent({
     };
   }
 });
-var VPopUp = /* @__PURE__ */ _export_sfc(_sfc_main$h, [["__file", "/home/debora/Documentos/www/vert_design_system_ui/src/components/popUp/VPopUp.vue"]]);
+var VPopUp = /* @__PURE__ */ _export_sfc(_sfc_main$i, [["__file", "C:/Users/debor/Documents/vert_design_system_ui/src/components/popUp/VPopUp.vue"]]);
 var VCard_scss_vue_type_style_index_0_src_28d3c952_lang = "";
-const _hoisted_1$f = {
+const _hoisted_1$g = {
   key: 0,
   class: "v-section__header"
 };
-const _hoisted_2$8 = { class: "v-section__header--title" };
-const _hoisted_3$7 = { class: "v-section__body" };
-const _sfc_main$g = defineComponent({
+const _hoisted_2$9 = { class: "v-section__header--title" };
+const _hoisted_3$8 = { class: "v-section__body" };
+const _sfc_main$h = defineComponent({
   __name: "VCard",
   props: {
     title: { type: String, required: false },
@@ -371,8 +371,8 @@ const _sfc_main$g = defineComponent({
       return openBlock(), createElementBlock("div", {
         class: normalizeClass(["card", [unref(setType), unref(setBorder)]])
       }, [
-        props.title ? (openBlock(), createElementBlock("div", _hoisted_1$f, [
-          createElementVNode("div", _hoisted_2$8, [
+        props.title ? (openBlock(), createElementBlock("div", _hoisted_1$g, [
+          createElementVNode("div", _hoisted_2$9, [
             createElementVNode("h3", null, toDisplayString(props.title), 1)
           ]),
           createElementVNode("div", null, [
@@ -380,16 +380,16 @@ const _sfc_main$g = defineComponent({
             renderSlot(_ctx.$slots, "input")
           ])
         ])) : createCommentVNode("v-if", true),
-        createElementVNode("div", _hoisted_3$7, [
+        createElementVNode("div", _hoisted_3$8, [
           renderSlot(_ctx.$slots, "default")
         ])
       ], 2);
     };
   }
 });
-var VCard = /* @__PURE__ */ _export_sfc(_sfc_main$g, [["__file", "/home/debora/Documentos/www/vert_design_system_ui/src/components/card/VCard.vue"]]);
+var VCard = /* @__PURE__ */ _export_sfc(_sfc_main$h, [["__file", "C:/Users/debor/Documents/vert_design_system_ui/src/components/card/VCard.vue"]]);
 var VTab_scss_vue_type_style_index_0_src_a3c685ae_lang = "";
-const _sfc_main$f = defineComponent({
+const _sfc_main$g = defineComponent({
   name: "VTab",
   props: {
     eixo: {
@@ -425,9 +425,9 @@ const _sfc_main$f = defineComponent({
     }
   }
 });
-const _hoisted_1$e = { class: "box" };
+const _hoisted_1$f = { class: "box" };
 function _sfc_render$9(_ctx, _cache, $props, $setup, $data, $options) {
-  return openBlock(), createElementBlock("div", _hoisted_1$e, [
+  return openBlock(), createElementBlock("div", _hoisted_1$f, [
     createElementVNode("div", {
       class: normalizeClass([{ "tab--border": _ctx.borderBottom }, `tab--${_ctx.eixo}`])
     }, [
@@ -439,9 +439,9 @@ function _sfc_render$9(_ctx, _cache, $props, $setup, $data, $options) {
     renderSlot(_ctx.$slots, "default")
   ]);
 }
-var VTab = /* @__PURE__ */ _export_sfc(_sfc_main$f, [["render", _sfc_render$9], ["__file", "/home/debora/Documentos/www/vert_design_system_ui/src/components/tab/VTab.vue"]]);
+var VTab = /* @__PURE__ */ _export_sfc(_sfc_main$g, [["render", _sfc_render$9], ["__file", "C:/Users/debor/Documents/vert_design_system_ui/src/components/tab/VTab.vue"]]);
 var VTag_scss_vue_type_style_index_0_src_73d26849_lang = "";
-const _sfc_main$e = defineComponent({
+const _sfc_main$f = defineComponent({
   name: "VTag",
   props: {
     status: {
@@ -467,22 +467,22 @@ const _sfc_main$e = defineComponent({
     }
   }
 });
-const _hoisted_1$d = {
+const _hoisted_1$e = {
   key: 0,
   class: "v-tag--img"
 };
-const _hoisted_2$7 = ["src"];
+const _hoisted_2$8 = ["src"];
 function _sfc_render$8(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("div", {
     class: normalizeClass([`v-tag__${_ctx.type}--${_ctx.status}`, { "v-tag--square": _ctx.square }])
   }, [
-    _ctx.icon != "" ? (openBlock(), createElementBlock("div", _hoisted_1$d, [
-      createElementVNode("img", { src: _ctx.setIcon }, null, 8, _hoisted_2$7)
+    _ctx.icon != "" ? (openBlock(), createElementBlock("div", _hoisted_1$e, [
+      createElementVNode("img", { src: _ctx.setIcon }, null, 8, _hoisted_2$8)
     ])) : createCommentVNode("v-if", true),
     renderSlot(_ctx.$slots, "default")
   ], 2);
 }
-var VTag = /* @__PURE__ */ _export_sfc(_sfc_main$e, [["render", _sfc_render$8], ["__file", "/home/debora/Documentos/www/vert_design_system_ui/src/components/tag/VTag.vue"]]);
+var VTag = /* @__PURE__ */ _export_sfc(_sfc_main$f, [["render", _sfc_render$8], ["__file", "C:/Users/debor/Documents/vert_design_system_ui/src/components/tag/VTag.vue"]]);
 class EDate extends Date {
   get fullYear() {
     return this.getFullYear();
@@ -494,7 +494,7 @@ class EDate extends Date {
     return this.getDate();
   }
 }
-class String$1 {
+class StringHelper {
   static capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
@@ -506,18 +506,25 @@ class String$1 {
   }
 }
 class Time {
-  constructor(firstDayOfWeek = "monday", locale = null, dayBoundaries = {
-    start: 0,
-    end: 2400
-  }) {
+  constructor(firstDayOfWeek = "monday", locale = null) {
     __publicField(this, "FIRST_DAY_OF_WEEK");
     __publicField(this, "CALENDAR_LOCALE");
-    __publicField(this, "DAY_START");
-    __publicField(this, "DAY_END");
+    __publicField(this, "monthNames", [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "Mai",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Set",
+      "Out",
+      "Nov",
+      "Dez"
+    ]);
     this.FIRST_DAY_OF_WEEK = firstDayOfWeek;
     this.CALENDAR_LOCALE = locale ? locale : "pt-BR";
-    this.DAY_START = dayBoundaries.start;
-    this.DAY_END = dayBoundaries.end;
   }
   getDatesBetweenTwoDates(start, end) {
     let arr = [];
@@ -589,7 +596,7 @@ class Time {
     return yearList;
   }
   getLocalizedNameOfWeekday(date, weekdayNameLength = "short") {
-    return String$1.capitalizeFirstLetter(
+    return StringHelper.capitalizeFirstLetter(
       date.toLocaleDateString(this.CALENDAR_LOCALE, {
         weekday: weekdayNameLength
       })
@@ -625,6 +632,13 @@ class Time {
       minutes: +dateTimeString.substring(14, 16)
     };
   }
+  getAllVariablesFromDatetring(dateTString) {
+    return {
+      year: +dateTString.substring(0, 4),
+      month: +dateTString.substring(5, 7) - 1,
+      date: +dateTString.substring(8, 10)
+    };
+  }
   dateIsToday(date) {
     const {
       fullYear: yearToday,
@@ -654,6 +668,14 @@ class Time {
     const mm = date.getMonth() + 1;
     const dd = date.getDate();
     return `${yyyy}-${mm >= 10 ? mm : "0" + mm}-${dd >= 10 ? dd : "0" + dd}`;
+  }
+  getDateFromDateString(dateString) {
+    const { year, month, date } = this.getAllVariablesFromDatetring(dateString);
+    return new Date(year, month, date);
+  }
+  getDateLocaleFromDateString(dateString) {
+    const { year, month, date } = this.getAllVariablesFromDatetring(dateString);
+    return new Date(year, month, date).toLocaleDateString(this.CALENDAR_LOCALE);
   }
   dateStringsHaveEqualDates(dateTimeString1, dateTimeString2) {
     const {
@@ -706,33 +728,73 @@ class Time {
     firstDayOfYear.setDate(firstDayOfYear.getDate() + pastDaysOfYear);
     return this.getNextWeek(firstDayOfYear);
   }
+  getDayOfWeek(date) {
+    const dayOfWeek = date.getDay();
+    return isNaN(dayOfWeek) ? null : dayOfWeek;
+  }
+  getWeekStart(date) {
+    const dayOfWeek = this.getDayOfWeek(date);
+    return new Date(
+      date.getFullYear(),
+      date.getMonth(),
+      date.getDate() - dayOfWeek
+    );
+  }
+  getWeekEnd(date) {
+    const dayOfWeek = this.getDayOfWeek(date);
+    return new Date(
+      date.getFullYear(),
+      date.getMonth(),
+      date.getDate() + (6 - dayOfWeek)
+    );
+  }
+  getFirstDayOfMonth(date) {
+    return new Date(date.getFullYear(), date.getMonth(), 1);
+  }
+  getLastDayOfMonth(date) {
+    return new Date(date.getFullYear(), date.getMonth() + 1, 0);
+  }
+  isFirstDayOfMonth(date) {
+    return date.getDate() === 1;
+  }
+  isLastDayOfMonth(date) {
+    return date.getDate() === this.getNumberOfDaysInMonth(date.getFullYear(), date.getMonth() + 1);
+  }
+  getMonthName(date) {
+    return this.monthNames[date.getMonth()];
+  }
+  getDateMoreAddDaysFromDateString(dateString, days) {
+    const date = this.getDateFromDateString(dateString);
+    date.setDate(date.getDate() + days);
+    return date;
+  }
 }
-var _imports_0$3 = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+CiAgIDxwYXRoIGZpbGw9IiNhYWEiIGQ9Ik0xNS40MSwxNi41OEwxMC44MywxMkwxNS40MSw3LjQxTDE0LDZMOCwxMkwxNCwxOEwxNS40MSwxNi41OFoiIC8+Cjwvc3ZnPg==";
-const _sfc_main$d = defineComponent({
+var _imports_0$3 = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+DQogICA8cGF0aCBmaWxsPSIjYWFhIiBkPSJNMTUuNDEsMTYuNThMMTAuODMsMTJMMTUuNDEsNy40MUwxNCw2TDgsMTJMMTQsMThMMTUuNDEsMTYuNThaIiAvPg0KPC9zdmc+";
+const _sfc_main$e = defineComponent({
   name: "ChevronLeft"
 });
-const _hoisted_1$c = {
+const _hoisted_1$d = {
   src: _imports_0$3,
   width: "24"
 };
 function _sfc_render$7(_ctx, _cache, $props, $setup, $data, $options) {
-  return openBlock(), createElementBlock("img", _hoisted_1$c);
+  return openBlock(), createElementBlock("img", _hoisted_1$d);
 }
-var ChevronLeft = /* @__PURE__ */ _export_sfc(_sfc_main$d, [["render", _sfc_render$7], ["__file", "/home/debora/Documentos/www/vert_design_system_ui/src/components/icons/ChevronLeft.vue"]]);
-var _imports_0$2 = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+CiAgIDxwYXRoIGZpbGw9IiNhYWEiIGQ9Ik04LjU5LDE2LjU4TDEzLjE3LDEyTDguNTksNy40MUwxMCw2TDE2LDEyTDEwLDE4TDguNTksMTYuNThaIiAvPgo8L3N2Zz4=";
-const _sfc_main$c = defineComponent({
+var ChevronLeft = /* @__PURE__ */ _export_sfc(_sfc_main$e, [["render", _sfc_render$7], ["__file", "C:/Users/debor/Documents/vert_design_system_ui/src/components/icons/ChevronLeft.vue"]]);
+var _imports_0$2 = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+DQogICA8cGF0aCBmaWxsPSIjYWFhIiBkPSJNOC41OSwxNi41OEwxMy4xNywxMkw4LjU5LDcuNDFMMTAsNkwxNiwxMkwxMCwxOEw4LjU5LDE2LjU4WiIgLz4NCjwvc3ZnPg==";
+const _sfc_main$d = defineComponent({
   name: "ChevronRight"
 });
-const _hoisted_1$b = {
+const _hoisted_1$c = {
   src: _imports_0$2,
   width: "24"
 };
 function _sfc_render$6(_ctx, _cache, $props, $setup, $data, $options) {
-  return openBlock(), createElementBlock("img", _hoisted_1$b);
+  return openBlock(), createElementBlock("img", _hoisted_1$c);
 }
-var ChevronRight = /* @__PURE__ */ _export_sfc(_sfc_main$c, [["render", _sfc_render$6], ["__file", "/home/debora/Documentos/www/vert_design_system_ui/src/components/icons/ChevronRight.vue"]]);
+var ChevronRight = /* @__PURE__ */ _export_sfc(_sfc_main$d, [["render", _sfc_render$6], ["__file", "C:/Users/debor/Documents/vert_design_system_ui/src/components/icons/ChevronRight.vue"]]);
 var WeekCarousel_vue_vue_type_style_index_0_scoped_true_lang = "";
-const _sfc_main$b = defineComponent({
+const _sfc_main$c = defineComponent({
   name: "Weekcarousel",
   components: { ChevronLeft, ChevronRight },
   props: {
@@ -771,14 +833,14 @@ const _sfc_main$b = defineComponent({
     }
   }
 });
-const _hoisted_1$a = { class: "week-carousel" };
-const _hoisted_2$6 = ["onClick"];
-const _hoisted_3$6 = { class: "week-carousel__day-name" };
-const _hoisted_4$5 = { class: "week-carousel__date" };
+const _hoisted_1$b = { class: "week-carousel" };
+const _hoisted_2$7 = ["onClick"];
+const _hoisted_3$7 = { class: "week-carousel__day-name" };
+const _hoisted_4$6 = { class: "week-carousel__date" };
 function _sfc_render$5(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_chevron_left = resolveComponent("chevron-left");
   const _component_chevron_right = resolveComponent("chevron-right");
-  return openBlock(), createElementBlock("div", _hoisted_1$a, [
+  return openBlock(), createElementBlock("div", _hoisted_1$b, [
     createVNode(_component_chevron_left, {
       class: "week-carousel__chevron-left",
       onClick: _ctx.onHandleChevronLeftWasClicked
@@ -794,9 +856,9 @@ function _sfc_render$5(_ctx, _cache, $props, $setup, $data, $options) {
         ]]),
         onClick: ($event) => _ctx.onHandleDayWasClicked(day)
       }, [
-        createElementVNode("div", _hoisted_3$6, toDisplayString(day.dayName.substring(0, 3)), 1),
-        createElementVNode("div", _hoisted_4$5, toDisplayString(_ctx.getDaysDate(day)), 1)
-      ], 10, _hoisted_2$6);
+        createElementVNode("div", _hoisted_3$7, toDisplayString(day.dayName.substring(0, 3)), 1),
+        createElementVNode("div", _hoisted_4$6, toDisplayString(_ctx.getDaysDate(day)), 1)
+      ], 10, _hoisted_2$7);
     }), 128)),
     createVNode(_component_chevron_right, {
       class: "week-carousel__chevron-right",
@@ -804,12 +866,12 @@ function _sfc_render$5(_ctx, _cache, $props, $setup, $data, $options) {
     }, null, 8, ["onClick"])
   ]);
 }
-var WeekCarousel = /* @__PURE__ */ _export_sfc(_sfc_main$b, [["render", _sfc_render$5], ["__scopeId", "data-v-5d140c4b"], ["__file", "/home/debora/Documentos/www/vert_design_system_ui/src/components/calendar/mini/WeekCarousel.vue"]]);
+var WeekCarousel = /* @__PURE__ */ _export_sfc(_sfc_main$c, [["render", _sfc_render$5], ["__scopeId", "data-v-5d140c4b"], ["__file", "C:/Users/debor/Documents/vert_design_system_ui/src/components/calendar/mini/WeekCarousel.vue"]]);
 var Mini_vue_vue_type_style_index_0_scoped_true_lang = "";
-const _hoisted_1$9 = { class: "vcalendar-mini" };
-const _hoisted_2$5 = { class: "vcalendar-mini--week" };
-const _hoisted_3$5 = { class: "vcalendar-mini--day" };
-const _sfc_main$a = /* @__PURE__ */ defineComponent({
+const _hoisted_1$a = { class: "vcalendar-mini" };
+const _hoisted_2$6 = { class: "vcalendar-mini--week" };
+const _hoisted_3$6 = { class: "vcalendar-mini--day" };
+const _sfc_main$b = /* @__PURE__ */ defineComponent({
   __name: "Mini",
   props: {
     time: {
@@ -874,7 +936,7 @@ const _sfc_main$a = /* @__PURE__ */ defineComponent({
       const { date } = props.time.getAllVariablesFromDateTimeString(
         props.time.getDateTimeStringFromDate(day, "start")
       );
-      dayNameSelected.value = (isToday ? "Hoje - " : "") + props.time.getLocalizedNameOfWeekday(day, "short") + ", " + date + " de " + String$1.capitalizeFirstLetter(
+      dayNameSelected.value = (isToday ? "Hoje - " : "") + props.time.getLocalizedNameOfWeekday(day, "short") + ", " + date + " de " + StringHelper.capitalizeFirstLetter(
         props.time.getLocalizedNameOfMonth(day, "short")
       );
       return dayNameSelected.value;
@@ -889,8 +951,8 @@ const _sfc_main$a = /* @__PURE__ */ defineComponent({
       setInitialEvents();
     });
     return (_ctx, _cache) => {
-      return openBlock(), createElementBlock("div", _hoisted_1$9, [
-        createElementVNode("div", _hoisted_2$5, [
+      return openBlock(), createElementBlock("div", _hoisted_1$a, [
+        createElementVNode("div", _hoisted_2$6, [
           createVNode(WeekCarousel, {
             days: days.value,
             time: __props.time,
@@ -898,18 +960,18 @@ const _sfc_main$a = /* @__PURE__ */ defineComponent({
             onEventWasClicked: changeWeekDays
           }, null, 8, ["days", "time"])
         ]),
-        createElementVNode("div", _hoisted_3$5, toDisplayString(dayNameSelected.value), 1)
+        createElementVNode("div", _hoisted_3$6, toDisplayString(dayNameSelected.value), 1)
       ]);
     };
   }
 });
-var Mini = /* @__PURE__ */ _export_sfc(_sfc_main$a, [["__scopeId", "data-v-7d7d84ae"], ["__file", "/home/debora/Documentos/www/vert_design_system_ui/src/components/calendar/mini/Mini.vue"]]);
+var Mini = /* @__PURE__ */ _export_sfc(_sfc_main$b, [["__scopeId", "data-v-7d7d84ae"], ["__file", "C:/Users/debor/Documents/vert_design_system_ui/src/components/calendar/mini/Mini.vue"]]);
 var VDropdown_scss_vue_type_style_index_0_src_12d7f8ce_lang = "";
-const _hoisted_1$8 = { class: "v-dropdow__options" };
-const _hoisted_2$4 = ["tabIndex"];
-const _hoisted_3$4 = ["id", "value", "onChange"];
-const _hoisted_4$4 = ["for"];
-const _sfc_main$9 = defineComponent({
+const _hoisted_1$9 = { class: "v-dropdow__options" };
+const _hoisted_2$5 = ["tabIndex"];
+const _hoisted_3$5 = ["id", "value", "onChange"];
+const _hoisted_4$5 = ["for"];
+const _sfc_main$a = defineComponent({
   __name: "VDropdown",
   props: {
     id: { type: String, required: false, default: "exemplo" },
@@ -964,7 +1026,7 @@ const _sfc_main$9 = defineComponent({
               class: normalizeClass(["v-dropdow__input--arrow", { "v-dropdow__input--arrow--open": showOptions.value }])
             }, null, 2)
           ]),
-          withDirectives(createElementVNode("div", _hoisted_1$8, [
+          withDirectives(createElementVNode("div", _hoisted_1$9, [
             createElementVNode("ul", null, [
               (openBlock(true), createElementBlock(Fragment, null, renderList(__props.options, (option, i) => {
                 return openBlock(), createElementBlock("li", {
@@ -977,11 +1039,11 @@ const _sfc_main$9 = defineComponent({
                     value: option.value,
                     type: "radio",
                     onChange: ($event) => selectChange(option.value)
-                  }, null, 40, _hoisted_3$4),
+                  }, null, 40, _hoisted_3$5),
                   createElementVNode("label", {
                     for: __props.name + "-" + option.value
-                  }, toDisplayString(option.label), 9, _hoisted_4$4)
-                ], 8, _hoisted_2$4);
+                  }, toDisplayString(option.label), 9, _hoisted_4$5)
+                ], 8, _hoisted_2$5);
               }), 128))
             ])
           ], 512), [
@@ -998,17 +1060,17 @@ const _sfc_main$9 = defineComponent({
     };
   }
 });
-var VDropdown = /* @__PURE__ */ _export_sfc(_sfc_main$9, [["__file", "/home/debora/Documentos/www/vert_design_system_ui/src/components/dropdown/VDropdown.vue"]]);
+var VDropdown = /* @__PURE__ */ _export_sfc(_sfc_main$a, [["__file", "C:/Users/debor/Documents/vert_design_system_ui/src/components/dropdown/VDropdown.vue"]]);
 var VCalendarMini_vue_vue_type_style_index_0_lang = "";
-const _hoisted_1$7 = { class: "calendar-root-wrapper" };
-const _hoisted_2$3 = { class: "calendar-root mode-is-mini" };
-const _hoisted_3$3 = {
+const _hoisted_1$8 = { class: "calendar-root-wrapper" };
+const _hoisted_2$4 = { class: "calendar-root mode-is-mini" };
+const _hoisted_3$4 = {
   key: 0,
   class: "top-bar-loader"
 };
-const _hoisted_4$3 = { class: "calendar-header" };
-const _hoisted_5$2 = { class: "calendar-header__period" };
-const _sfc_main$8 = /* @__PURE__ */ defineComponent({
+const _hoisted_4$4 = { class: "calendar-header" };
+const _hoisted_5$3 = { class: "calendar-header__period" };
+const _sfc_main$9 = /* @__PURE__ */ defineComponent({
   __name: "VCalendarMini",
   props: {
     selectedDate: {
@@ -1034,7 +1096,7 @@ const _sfc_main$8 = /* @__PURE__ */ defineComponent({
           const month = j <= 8 ? `0${j + 1}` : j + 1;
           months2.push({
             value: String(`${currentYear + i}-${month}`),
-            label: String$1.capitalizeFirstLetter(
+            label: StringHelper.capitalizeFirstLetter(
               new Date(currentYear + i, j, 1).toLocaleString("default", {
                 month: "long",
                 year: "numeric"
@@ -1074,7 +1136,7 @@ const _sfc_main$8 = /* @__PURE__ */ defineComponent({
         const month = value.substring(5, 7);
         months.value.push({
           value: String(`${year}-${month}`),
-          label: String$1.capitalizeFirstLetter(
+          label: StringHelper.capitalizeFirstLetter(
             new Date(year, Number(month) - 1, 1).toLocaleString("default", {
               month: "long",
               year: "numeric"
@@ -1088,16 +1150,16 @@ const _sfc_main$8 = /* @__PURE__ */ defineComponent({
       setPeriodOnMount();
     });
     return (_ctx, _cache) => {
-      return openBlock(), createElementBlock("div", _hoisted_1$7, [
-        createElementVNode("div", _hoisted_2$3, [
+      return openBlock(), createElementBlock("div", _hoisted_1$8, [
+        createElementVNode("div", _hoisted_2$4, [
           createVNode(Transition, { name: "loading" }, {
             default: withCtx(() => [
-              __props.isLoading ? (openBlock(), createElementBlock("div", _hoisted_3$3)) : createCommentVNode("v-if", true)
+              __props.isLoading ? (openBlock(), createElementBlock("div", _hoisted_3$4)) : createCommentVNode("v-if", true)
             ]),
             _: 1
           }),
-          createElementVNode("div", _hoisted_4$3, [
-            createElementVNode("div", _hoisted_5$2, [
+          createElementVNode("div", _hoisted_4$4, [
+            createElementVNode("div", _hoisted_5$3, [
               createVNode(VDropdown, {
                 "model-value": monthYearSelected.value,
                 options: unref(months),
@@ -1119,19 +1181,19 @@ const _sfc_main$8 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-var VCalendarMini = /* @__PURE__ */ _export_sfc(_sfc_main$8, [["__file", "/home/debora/Documentos/www/vert_design_system_ui/src/components/calendar/VCalendarMini.vue"]]);
-var _imports_0$1 = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+CiAgIDxwYXRoIGZpbGw9IiNhYWEiIGQ9Ik03LDEwSDEyVjE1SDdNMTksMTlINVY4SDE5TTE5LDNIMThWMUgxNlYzSDhWMUg2VjNINUMzLjg5LDMgMywzLjkgMyw1VjE5QTIsMiAwIDAsMCA1LDIxSDE5QTIsMiAwIDAsMCAyMSwxOVY1QTIsMiAwIDAsMCAxOSwzWiIgLz4KPC9zdmc+";
-const _sfc_main$7 = defineComponent({
+var VCalendarMini = /* @__PURE__ */ _export_sfc(_sfc_main$9, [["__file", "C:/Users/debor/Documents/vert_design_system_ui/src/components/calendar/VCalendarMini.vue"]]);
+var _imports_0$1 = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+DQogICA8cGF0aCBmaWxsPSIjYWFhIiBkPSJNMTksMTlINVY4SDE5TTE5LDNIMThWMUgxNlYzSDhWMUg2VjNINUMzLjg5LDMgMywzLjkgMyw1VjE5QTIsMiAwIDAsMCA1LDIxSDE5QTIsMiAwIDAsMCAyMSwxOVY1QTIsMiAwIDAsMCAxOSwzTTE2LjUzLDExLjA2TDE1LjQ3LDEwTDEwLjU5LDE0Ljg4TDguNDcsMTIuNzZMNy40MSwxMy44MkwxMC41OSwxN0wxNi41MywxMS4wNloiIC8+DQo8L3N2Zz4NCg==";
+const _sfc_main$8 = defineComponent({
   name: "CalendarDay"
 });
-const _hoisted_1$6 = {
+const _hoisted_1$7 = {
   src: _imports_0$1,
   width: "24"
 };
 function _sfc_render$4(_ctx, _cache, $props, $setup, $data, $options) {
-  return openBlock(), createElementBlock("img", _hoisted_1$6);
+  return openBlock(), createElementBlock("img", _hoisted_1$7);
 }
-var IconCalendar = /* @__PURE__ */ _export_sfc(_sfc_main$7, [["render", _sfc_render$4], ["__file", "/home/debora/Documentos/www/vert_design_system_ui/src/components/icons/CalendarDay.vue"]]);
+var IconCalendar = /* @__PURE__ */ _export_sfc(_sfc_main$8, [["render", _sfc_render$4], ["__file", "C:/Users/debor/Documents/vert_design_system_ui/src/components/icons/CalendarDay.vue"]]);
 /*!
  * perfect-scrollbar v1.5.3
  * Copyright 2021 Hyunje Jun, MDBootstrap and Contributors
@@ -2180,14 +2242,20 @@ PerfectScrollbar.prototype.removePsClasses = function removePsClasses() {
   }).join(" ");
 };
 var VEventCard_scss_vue_type_style_index_0_src_67fe39ee_lang = "";
-const _hoisted_1$5 = { class: "event-card" };
-const _hoisted_2$2 = { class: "break-ellipsis event-body--title break-ellipsis--title" };
-const _hoisted_3$2 = {
-  key: 1,
-  class: "break-ellipsis break-ellipsis--subtitle"
+const _hoisted_1$6 = {
+  key: 0,
+  class: "skeleton"
 };
-const _hoisted_4$2 = { key: 2 };
-const _sfc_main$6 = /* @__PURE__ */ defineComponent({
+const _hoisted_2$3 = /* @__PURE__ */ createElementVNode("div", { class: "skeleton-left" }, [
+  /* @__PURE__ */ createElementVNode("div", { class: "line h14" }),
+  /* @__PURE__ */ createElementVNode("div", { class: "line h10 w50" }),
+  /* @__PURE__ */ createElementVNode("div", { class: "line h10 w75" })
+], -1);
+const _hoisted_3$3 = [
+  _hoisted_2$3
+];
+const _hoisted_4$3 = { key: 2 };
+const _sfc_main$7 = /* @__PURE__ */ defineComponent({
   __name: "VEventCard",
   props: {
     title: {
@@ -2206,88 +2274,139 @@ const _sfc_main$6 = /* @__PURE__ */ defineComponent({
       type: String,
       default: "default"
     },
-    eventType: {
-      type: String,
-      default: "obrigacoes"
-    },
     status: {
       type: String,
       default: "pending"
+    },
+    color: {
+      type: String,
+      default: "inerent"
+    },
+    isLoading: {
+      type: Boolean,
+      default: false
+    },
+    noWrap: {
+      type: Boolean,
+      default: false
     }
   },
-  setup(__props) {
-    const props = __props;
-    const setEventTypeClass = computed(
-      () => `event-status--${props.eventType}`
-    );
+  emits: ["on-clicked"],
+  setup(__props, { emit }) {
+    function handleClicked() {
+      emit("on-clicked");
+    }
     return (_ctx, _cache) => {
-      return openBlock(), createElementBlock("div", _hoisted_1$5, [
+      return __props.isLoading ? (openBlock(), createElementBlock("div", _hoisted_1$6, _hoisted_3$3)) : (openBlock(), createElementBlock("div", {
+        key: 1,
+        class: "event-card",
+        onClick: handleClicked
+      }, [
         createElementVNode("div", {
-          class: normalizeClass(["event-status", unref(setEventTypeClass)])
+          class: "event-status",
+          style: normalizeStyle(`border-color: ${__props.color};`)
         }, [
           createElementVNode("div", {
             class: normalizeClass(["event-body", [`event-body--${__props.size}`]])
           }, [
             __props.size === "default" ? renderSlot(_ctx.$slots, "tag", { key: 0 }) : createCommentVNode("v-if", true),
-            createElementVNode("p", _hoisted_2$2, toDisplayString(__props.title), 1),
-            __props.subtitle != "" && __props.size !== "very-small" ? (openBlock(), createElementBlock("p", _hoisted_3$2, toDisplayString(__props.subtitle), 1)) : createCommentVNode("v-if", true),
-            __props.size === "default" && __props.responsable != "" ? (openBlock(), createElementBlock("p", _hoisted_4$2, toDisplayString(__props.responsable), 1)) : createCommentVNode("v-if", true)
+            createElementVNode("p", {
+              class: normalizeClass(["event-body--title", !__props.noWrap ? "break-ellipsis break-ellipsis--title" : ""])
+            }, toDisplayString(__props.title), 3),
+            __props.subtitle != "" && __props.size !== "very-small" ? (openBlock(), createElementBlock("p", {
+              key: 1,
+              class: normalizeClass(["event-body--subtitle", !__props.noWrap ? "break-ellipsis break-ellipsis--subtitle" : ""])
+            }, toDisplayString(__props.subtitle), 3)) : createCommentVNode("v-if", true),
+            __props.size === "default" && __props.responsable != "" ? (openBlock(), createElementBlock("p", _hoisted_4$3, toDisplayString(__props.responsable), 1)) : createCommentVNode("v-if", true)
           ], 2)
-        ], 2)
-      ]);
+        ], 4)
+      ]));
     };
   }
 });
-var VEventCard = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["__file", "/home/debora/Documentos/www/vert_design_system_ui/src/components/eventCard/VEventCard.vue"]]);
-const _sfc_main$5 = /* @__PURE__ */ defineComponent({
+var VEventCard = /* @__PURE__ */ _export_sfc(_sfc_main$7, [["__file", "C:/Users/debor/Documents/vert_design_system_ui/src/components/eventCard/VEventCard.vue"]]);
+const _sfc_main$6 = /* @__PURE__ */ defineComponent({
   __name: "Event",
   props: {
     event: {
       type: Object,
       required: true
+    },
+    loading: {
+      type: Boolean,
+      default: false
     }
   },
-  setup(__props) {
+  emits: ["on-clicked"],
+  setup(__props, { emit }) {
+    const props = __props;
+    function handleClick() {
+      emit("on-clicked", props.event);
+    }
     return (_ctx, _cache) => {
       return openBlock(), createBlock(VEventCard, {
         title: __props.event.title,
-        "event-type": __props.event.event_type,
         subtitle: __props.event.subtitle,
-        responsable: __props.event.responsable
-      }, null, 8, ["title", "event-type", "subtitle", "responsable"]);
+        responsable: __props.event.responsable,
+        color: __props.event.color,
+        "is-loading": __props.loading,
+        onOnClicked: handleClick,
+        "no-wrap": ""
+      }, createSlots({ _: 2 }, [
+        __props.event.tag ? {
+          name: "tag",
+          fn: withCtx(() => {
+            var _a;
+            return [
+              createVNode(VTag, {
+                style: { "margin-bottom": "0.5rem" },
+                type: "ice",
+                status: (_a = __props.event.tag) == null ? void 0 : _a.status
+              }, {
+                default: withCtx(() => {
+                  var _a2;
+                  return [
+                    createTextVNode(toDisplayString((_a2 = __props.event.tag) == null ? void 0 : _a2.text), 1)
+                  ];
+                }),
+                _: 1
+              }, 8, ["status"])
+            ];
+          }),
+          key: "0"
+        } : void 0
+      ]), 1032, ["title", "subtitle", "responsable", "color", "is-loading"]);
     };
   }
 });
-var Event = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["__file", "/home/debora/Documentos/www/vert_design_system_ui/src/components/calendar/mini/Event.vue"]]);
-var _imports_0 = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+CiAgIDxwYXRoIGZpbGw9IiNjY2NjY2MiIGQ9Ik05LjUsM0E2LjUsNi41IDAgMCwxIDE2LDkuNUMxNiwxMS4xMSAxNS40MSwxMi41OSAxNC40NCwxMy43M0wxNC43MSwxNEgxNS41TDIwLjUsMTlMMTksMjAuNUwxNCwxNS41VjE0LjcxTDEzLjczLDE0LjQ0QzEyLjU5LDE1LjQxIDExLjExLDE2IDkuNSwxNkE2LjUsNi41IDAgMCwxIDMsOS41QTYuNSw2LjUgMCAwLDEgOS41LDNNOS41LDVDNyw1IDUsNyA1LDkuNUM1LDEyIDcsMTQgOS41LDE0QzEyLDE0IDE0LDEyIDE0LDkuNUMxNCw3IDEyLDUgOS41LDVaIiAvPgo8L3N2Zz4=";
-const _sfc_main$4 = {};
-const _hoisted_1$4 = {
+var Event$1 = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["__file", "C:/Users/debor/Documents/vert_design_system_ui/src/components/calendar/mini/Event.vue"]]);
+var _imports_0 = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+DQogICA8cGF0aCBmaWxsPSIjY2NjY2NjIiBkPSJNOS41LDNBNi41LDYuNSAwIDAsMSAxNiw5LjVDMTYsMTEuMTEgMTUuNDEsMTIuNTkgMTQuNDQsMTMuNzNMMTQuNzEsMTRIMTUuNUwyMC41LDE5TDE5LDIwLjVMMTQsMTUuNVYxNC43MUwxMy43MywxNC40NEMxMi41OSwxNS40MSAxMS4xMSwxNiA5LjUsMTZBNi41LDYuNSAwIDAsMSAzLDkuNUE2LjUsNi41IDAgMCwxIDkuNSwzTTkuNSw1QzcsNSA1LDcgNSw5LjVDNSwxMiA3LDE0IDkuNSwxNEMxMiwxNCAxNCwxMiAxNCw5LjVDMTQsNyAxMiw1IDkuNSw1WiIgLz4NCjwvc3ZnPg==";
+const _sfc_main$5 = {};
+const _hoisted_1$5 = {
   src: _imports_0,
   width: "24"
 };
 function _sfc_render$3(_ctx, _cache) {
-  return openBlock(), createElementBlock("img", _hoisted_1$4);
+  return openBlock(), createElementBlock("img", _hoisted_1$5);
 }
-var SearchIcon = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["render", _sfc_render$3], ["__file", "/home/debora/Documentos/www/vert_design_system_ui/src/components/icons/Search.vue"]]);
+var SearchIcon = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["render", _sfc_render$3], ["__file", "C:/Users/debor/Documents/vert_design_system_ui/src/components/icons/Search.vue"]]);
 function useCalendar(url, authorization, method, eventClass) {
   const _url = unref(url);
   const _authorization = unref(authorization);
   const _method = unref(method) || "GET";
-  async function getEvents(params) {
+  function getEvents(params = {}) {
     if (!_url || !_authorization) {
-      return [];
+      return Promise.resolve([]);
     }
     const _params = params ? params : {};
-    return await fetch(
-      `${_url}?event_data_before=${(_params == null ? void 0 : _params.event_data_before) ? params.event_data_before : ""}&event_data_after=${(params == null ? void 0 : params.event_data_after) ? _params.event_data_after : ""}&page=${(params == null ? void 0 : params.page) ? _params.page : 1}&page_size=${(params == null ? void 0 : params.per_page) ? _params.per_page : 10}`,
-      {
-        credentials: "same-origin",
-        method: _method,
-        headers: {
-          Authorization: _authorization
-        }
+    const urlWithParams = `${_url}?event_data_before=${(_params == null ? void 0 : _params.event_data_before) ? params.event_data_before : ""}&event_data_after=${(params == null ? void 0 : params.event_data_after) ? _params.event_data_after : ""}&page=${(params == null ? void 0 : params.page) ? _params.page : 1}&page_size=${(params == null ? void 0 : params.per_page) ? _params.per_page : 10}&emission__principal_responsable_email=${(params == null ? void 0 : params.me) ? _params.me : ""}${(params == null ? void 0 : params.search) ? "&search=" + _params.search : ""}`;
+    const _return = fetch(urlWithParams, {
+      credentials: "same-origin",
+      method: _method,
+      headers: {
+        Authorization: _authorization
       }
-    ).then(async (res) => {
+    }).then(async (res) => {
       if (res) {
         const _res = await res.json();
         const data = _res.data ? _res.data : _res.results;
@@ -2295,33 +2414,37 @@ function useCalendar(url, authorization, method, eventClass) {
           return [];
         }
         if (typeof eventClass == "function") {
-          return data.map((event) => new eventClass(event).event_formated);
+          return data.map(
+            (event) => event ? new eventClass(event).event_formated : {}
+          );
         }
         return data.map(
-          (event) => new eventClass.Event(event).event_formated
+          (event) => event ? new eventClass.Event(event).event_formated : {}
         );
+      } else {
+        return [];
       }
     });
+    return _return;
   }
   return { getEvents };
 }
 var VCalendarButton_vue_vue_type_style_index_0_lang = "";
-const _hoisted_1$3 = { class: "search-events" };
-const _hoisted_2$1 = {
+const _hoisted_1$4 = { class: "search-events" };
+const _hoisted_2$2 = ["onKeyup"];
+const _hoisted_3$2 = {
   id: "container-list",
   class: "list-events"
 };
-const _hoisted_3$1 = { key: 0 };
-const _hoisted_4$1 = {
-  key: 1,
+const _hoisted_4$2 = {
+  key: 0,
   class: "list-events__empty"
 };
-const _hoisted_5$1 = /* @__PURE__ */ createElementVNode("p", null, "Nenhum evento encontrado", -1);
-const _hoisted_6$1 = [
-  _hoisted_5$1
+const _hoisted_5$2 = /* @__PURE__ */ createElementVNode("p", { class: "find-empty" }, " Voc\xEA n\xE3o possui eventos na data selecionada, utilize os filtros para verificar outros eventos ", -1);
+const _hoisted_6$2 = [
+  _hoisted_5$2
 ];
-const _hoisted_7$1 = /* @__PURE__ */ createElementVNode("a", { class: "a-link" }, "Ir para vers\xE3o completa", -1);
-const _sfc_main$3 = /* @__PURE__ */ defineComponent({
+const _sfc_main$4 = /* @__PURE__ */ defineComponent({
   __name: "VCalendarButton",
   props: {
     events: {
@@ -2334,6 +2457,10 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
       type: String,
       default: ""
     },
+    urlEvents: {
+      type: String,
+      default: ""
+    },
     authorization: {
       type: String,
       default: ""
@@ -2341,6 +2468,10 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
     method: {
       type: String,
       default: "GET"
+    },
+    me: {
+      type: String,
+      default: ""
     },
     eventClass: {
       type: [Function, Object],
@@ -2361,22 +2492,32 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
     const eventsDataProperty = shallowRef(events);
     const eventsOfDay = ref([]);
     const eventRenderingKey = ref(0);
+    const dayClicked = ref("");
+    const search = ref("");
+    const isLoading = ref(false);
     const { getEvents } = useCalendar(
       props.url,
       props.authorization,
       props.method,
       props.eventClass
     );
+    const _params = computed(() => {
+      return {
+        event_data_after: dayClicked.value,
+        event_data_before: dayClicked.value,
+        page: 1,
+        per_page: 1e3,
+        search: search.value,
+        me: props.me
+      };
+    });
     async function onHandleDayClicked(payload) {
       var _a;
-      console.log(payload);
-      const dateTimeString = payload.dateTimeString.substring(0, 10);
+      dayClicked.value = payload.dateTimeString.substring(0, 10);
       if (!props.events) {
-        const _data = await getEvents({
-          event_data_after: dateTimeString,
-          event_data_before: dateTimeString,
-          page: 1,
-          per_page: 1e3
+        isLoading.value = true;
+        const _data = await getEvents(_params.value).finally(() => {
+          isLoading.value = false;
         });
         events.value = _data;
       }
@@ -2384,17 +2525,39 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
       calendarSelectedDate.value = date;
       eventsDataProperty.value = events.value;
       eventsOfDay.value = (_a = eventsDataProperty.value) == null ? void 0 : _a.filter((event) => {
-        const eventIsInDay = (event == null ? void 0 : event.event_data) === dateTimeString;
+        const eventIsInDay = (event == null ? void 0 : event.event_data) === dayClicked.value;
         return eventIsInDay;
       });
       emits("day-was-clicked", payload);
     }
-    const search = ref("");
-    function searchEvent() {
+    async function searchEvent() {
+      var _a;
+      if (!props.events) {
+        isLoading.value = true;
+        const _data = await getEvents(_params.value).finally(() => {
+          isLoading.value = false;
+        });
+        events.value = _data;
+      }
+      eventsDataProperty.value = events.value;
+      eventsOfDay.value = (_a = eventsDataProperty.value) == null ? void 0 : _a.filter((event) => {
+        const eventIsInDay = (event == null ? void 0 : event.event_data) === dayClicked.value;
+        return eventIsInDay;
+      });
       emits("search-event", search.value);
     }
     function onHandleEventClicked(event) {
       emits("event-was-clicked", event);
+      if (props.urlEvents === "")
+        return;
+      const _url = props.urlEvents + "/modal/event-detail/" + (event == null ? void 0 : event.id);
+      window.open(_url, "_blank");
+    }
+    function onHandleCompleteCalendar() {
+      if (props.urlEvents === "")
+        return;
+      else
+        window.open(props.urlEvents, "_blank");
     }
     const scrollbar = ref(null);
     function initScrollbar() {
@@ -2423,13 +2586,11 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
       if (props.events) {
         events.value = props.events;
       } else {
+        isLoading.value = true;
         const today = new Date();
-        const dateTimeString = today.toISOString().substring(0, 10);
-        const data = await getEvents({
-          event_data_after: dateTimeString,
-          event_data_before: dateTimeString,
-          page: 1,
-          per_page: 1e3
+        dayClicked.value = today.toISOString().substring(0, 10);
+        const data = await getEvents(_params.value).finally(() => {
+          isLoading.value = false;
         });
         events.value = data;
       }
@@ -2443,52 +2604,53 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
         "event-area": withCtx(() => [
           createVNode(IconCalendar)
         ]),
-        "popup-body": withCtx(() => {
-          var _a;
-          return [
-            createVNode(unref(VCalendarMini), {
-              "selected-date": calendarSelectedDate.value,
-              onDayWasClicked: onHandleDayClicked
-            }, null, 8, ["selected-date"]),
-            createElementVNode("div", _hoisted_1$3, [
-              withDirectives(createElementVNode("input", {
-                "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => search.value = $event),
-                placeholder: "Buscar",
-                onInput: searchEvent
-              }, null, 544), [
-                [vModelText, search.value]
-              ]),
-              createVNode(SearchIcon, {
-                class: "search-events__icon",
-                onClick: searchEvent
-              })
+        "popup-body": withCtx(() => [
+          createVNode(unref(VCalendarMini), {
+            "selected-date": calendarSelectedDate.value,
+            onDayWasClicked: onHandleDayClicked
+          }, null, 8, ["selected-date"]),
+          createElementVNode("div", _hoisted_1$4, [
+            withDirectives(createElementVNode("input", {
+              "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => search.value = $event),
+              placeholder: "Buscar",
+              onFocusout: searchEvent,
+              onKeyup: withKeys(searchEvent, ["enter"])
+            }, null, 40, _hoisted_2$2), [
+              [vModelText, search.value]
             ]),
-            createElementVNode("div", _hoisted_2$1, [
-              ((_a = eventsOfDay.value) == null ? void 0 : _a.length) > 0 ? (openBlock(), createElementBlock("div", _hoisted_3$1, [
-                (openBlock(true), createElementBlock(Fragment, null, renderList(eventsOfDay.value, (event, index) => {
-                  return openBlock(), createElementBlock("div", {
-                    key: index,
-                    class: "list-events__item"
-                  }, [
-                    createVNode(Event, {
-                      event,
-                      onClick: ($event) => onHandleEventClicked(event)
-                    }, null, 8, ["event", "onClick"])
-                  ]);
-                }), 128))
-              ])) : (openBlock(), createElementBlock("div", _hoisted_4$1, _hoisted_6$1))
-            ])
-          ];
-        }),
+            createVNode(SearchIcon, {
+              class: "search-events__icon",
+              onClick: searchEvent
+            })
+          ]),
+          createElementVNode("div", _hoisted_3$2, [
+            (openBlock(true), createElementBlock(Fragment, null, renderList(eventsOfDay.value, (event, index) => {
+              return openBlock(), createElementBlock("div", {
+                key: index,
+                class: "list-events__item"
+              }, [
+                createVNode(Event$1, {
+                  event,
+                  onOnClicked: onHandleEventClicked,
+                  loading: isLoading.value
+                }, null, 8, ["event", "loading"])
+              ]);
+            }), 128)),
+            !isLoading.value && !eventsOfDay.value.length ? (openBlock(), createElementBlock("div", _hoisted_4$2, _hoisted_6$2)) : createCommentVNode("v-if", true)
+          ])
+        ]),
         "popup-footer": withCtx(() => [
-          _hoisted_7$1
+          createElementVNode("div", {
+            class: "a-link",
+            onClick: onHandleCompleteCalendar
+          }, " Ir para vers\xE3o completa ")
         ]),
         _: 1
       });
     };
   }
 });
-var VCalendarButton = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["__file", "/home/debora/Documentos/www/vert_design_system_ui/src/components/calendar/VCalendarButton.vue"]]);
+var VCalendarButton = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["__file", "C:/Users/debor/Documents/vert_design_system_ui/src/components/calendar/VCalendarButton.vue"]]);
 const defaultOptions = {
   page: 1,
   pageSize: 5,
@@ -2617,7 +2779,7 @@ function consecutiveSlots(startIdx, endIdx) {
 }
 var VPagination_scss_vue_type_style_index_0_src_3245b22b_lang = "";
 var VPagination_scss_vue_type_style_index_1_src_3245b22b_lang = "";
-const _sfc_main$2 = defineComponent({
+const _sfc_main$3 = defineComponent({
   name: "VPagination",
   components: { VSelect },
   props: {
@@ -2700,15 +2862,15 @@ const _sfc_main$2 = defineComponent({
     };
   }
 });
-const _hoisted_1$2 = { class: "box--pagination" };
-const _hoisted_2 = { class: "box--pagination-count" };
-const _hoisted_3 = { class: "box--pagination-pages" };
-const _hoisted_4 = { class: "box--pagination-pages-size" };
-const _hoisted_5 = { class: "box--pagination-pages-itens" };
-const _hoisted_6 = { class: "pagination" };
-const _hoisted_7 = /* @__PURE__ */ createElementVNode("a", { class: "pagination_li--item" }, null, -1);
-const _hoisted_8 = [
-  _hoisted_7
+const _hoisted_1$3 = { class: "box--pagination" };
+const _hoisted_2$1 = { class: "box--pagination-count" };
+const _hoisted_3$1 = { class: "box--pagination-pages" };
+const _hoisted_4$1 = { class: "box--pagination-pages-size" };
+const _hoisted_5$1 = { class: "box--pagination-pages-itens" };
+const _hoisted_6$1 = { class: "pagination" };
+const _hoisted_7$1 = /* @__PURE__ */ createElementVNode("a", { class: "pagination_li--item" }, null, -1);
+const _hoisted_8$1 = [
+  _hoisted_7$1
 ];
 const _hoisted_9 = ["onClick"];
 const _hoisted_10 = /* @__PURE__ */ createElementVNode("a", { class: "pagination_li--item" }, null, -1);
@@ -2717,10 +2879,10 @@ const _hoisted_11 = [
 ];
 function _sfc_render$2(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_v_select = resolveComponent("v-select");
-  return openBlock(), createElementBlock("div", _hoisted_1$2, [
-    createElementVNode("div", _hoisted_2, toDisplayString(_ctx.count) + " itens", 1),
-    createElementVNode("div", _hoisted_3, [
-      createElementVNode("div", _hoisted_4, [
+  return openBlock(), createElementBlock("div", _hoisted_1$3, [
+    createElementVNode("div", _hoisted_2$1, toDisplayString(_ctx.count) + " itens", 1),
+    createElementVNode("div", _hoisted_3$1, [
+      createElementVNode("div", _hoisted_4$1, [
         createVNode(_component_v_select, {
           id: "select_page_size",
           modelValue: _ctx.pageSize,
@@ -2730,12 +2892,12 @@ function _sfc_render$2(_ctx, _cache, $props, $setup, $data, $options) {
           size: "sm"
         }, null, 8, ["modelValue", "options"])
       ]),
-      createElementVNode("div", _hoisted_5, [
-        createElementVNode("ol", _hoisted_6, [
+      createElementVNode("div", _hoisted_5$1, [
+        createElementVNode("ol", _hoisted_6$1, [
           createElementVNode("li", {
             class: normalizeClass(["pagination_li", !_ctx.hasPrev && "disabled"]),
             onClick: _cache[1] || (_cache[1] = (...args) => _ctx.goPrev && _ctx.goPrev(...args))
-          }, _hoisted_8, 2),
+          }, _hoisted_8$1, 2),
           (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.buttons, (button, idx) => {
             return openBlock(), createElementBlock("li", {
               key: idx,
@@ -2756,8 +2918,8 @@ function _sfc_render$2(_ctx, _cache, $props, $setup, $data, $options) {
     ])
   ]);
 }
-var VPagination = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["render", _sfc_render$2], ["__file", "/home/debora/Documentos/www/vert_design_system_ui/src/components/pagination/VPagination.vue"]]);
-const _sfc_main$1 = defineComponent({
+var VPagination = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["render", _sfc_render$2], ["__file", "C:/Users/debor/Documents/vert_design_system_ui/src/components/pagination/VPagination.vue"]]);
+const _sfc_main$2 = defineComponent({
   name: "VTabContent",
   props: {
     eixo: {
@@ -2770,7 +2932,7 @@ const _sfc_main$1 = defineComponent({
     }
   }
 });
-const _hoisted_1$1 = ["id", "data-tab-content-type"];
+const _hoisted_1$2 = ["id", "data-tab-content-type"];
 function _sfc_render$1(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("div", {
     id: _ctx.contentId,
@@ -2778,9 +2940,9 @@ function _sfc_render$1(_ctx, _cache, $props, $setup, $data, $options) {
     "data-tab-content-type": _ctx.eixo
   }, [
     renderSlot(_ctx.$slots, "default")
-  ], 8, _hoisted_1$1);
+  ], 8, _hoisted_1$2);
 }
-var VTabContent = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["render", _sfc_render$1], ["__file", "/home/debora/Documentos/www/vert_design_system_ui/src/components/tab/VTabContent.vue"]]);
+var VTabContent = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["render", _sfc_render$1], ["__file", "C:/Users/debor/Documents/vert_design_system_ui/src/components/tab/VTabContent.vue"]]);
 const showContentTab = (contentId, typeTab) => {
   const tabContents = document.getElementsByClassName("tab--content");
   for (const item of tabContents) {
@@ -2791,7 +2953,7 @@ const showContentTab = (contentId, typeTab) => {
     }
   }
 };
-const _sfc_main = defineComponent({
+const _sfc_main$1 = defineComponent({
   name: "VTabContent",
   props: {
     eixo: {
@@ -2826,7 +2988,7 @@ const _sfc_main = defineComponent({
     }
   }
 });
-const _hoisted_1 = ["data-tab-type", "data-tab-to"];
+const _hoisted_1$1 = ["data-tab-type", "data-tab-to"];
 function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("button", {
     class: normalizeClass({ active: _ctx.actived }),
@@ -2835,9 +2997,267 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
     onClick: _cache[0] || (_cache[0] = ($event) => _ctx.activeTab($event))
   }, [
     renderSlot(_ctx.$slots, "default")
-  ], 10, _hoisted_1);
+  ], 10, _hoisted_1$1);
 }
-var VTabHeader = /* @__PURE__ */ _export_sfc(_sfc_main, [["render", _sfc_render], ["__file", "/home/debora/Documentos/www/vert_design_system_ui/src/components/tab/VTabHeader.vue"]]);
+var VTabHeader = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["render", _sfc_render], ["__file", "C:/Users/debor/Documents/vert_design_system_ui/src/components/tab/VTabHeader.vue"]]);
+var VLoading_vue_vue_type_style_index_0_lang = "";
+const _hoisted_1 = {
+  key: 0,
+  class: "v-loading"
+};
+const _hoisted_2 = { class: "v-loading__container" };
+const _hoisted_3 = /* @__PURE__ */ createElementVNode("div", null, null, -1);
+const _hoisted_4 = /* @__PURE__ */ createElementVNode("div", null, null, -1);
+const _hoisted_5 = /* @__PURE__ */ createElementVNode("div", null, null, -1);
+const _hoisted_6 = /* @__PURE__ */ createElementVNode("div", null, null, -1);
+const _hoisted_7 = [
+  _hoisted_3,
+  _hoisted_4,
+  _hoisted_5,
+  _hoisted_6
+];
+const _hoisted_8 = {
+  key: 1,
+  class: "wainting"
+};
+const _sfc_main = /* @__PURE__ */ defineComponent({
+  __name: "VLoading",
+  props: {
+    showLoadingAnimation: {
+      type: Boolean,
+      default: true
+    },
+    showText: {
+      type: Boolean,
+      default: true
+    },
+    waitingText: {
+      type: String,
+      default: "Carregando..."
+    },
+    loadingType: {
+      type: String,
+      default: "ring"
+    }
+  },
+  setup(__props) {
+    return (_ctx, _cache) => {
+      return openBlock(), createElementBlock(Fragment, null, [
+        __props.showLoadingAnimation ? (openBlock(), createElementBlock("div", _hoisted_1, [
+          createElementVNode("div", _hoisted_2, [
+            createElementVNode("div", {
+              class: normalizeClass(`lds-${__props.loadingType}`)
+            }, _hoisted_7, 2)
+          ])
+        ])) : createCommentVNode("v-if", true),
+        __props.showText ? (openBlock(), createElementBlock("div", _hoisted_8, [
+          createElementVNode("span", null, toDisplayString(__props.waitingText), 1)
+        ])) : createCommentVNode("v-if", true)
+      ], 64);
+    };
+  }
+});
+var VLoading = /* @__PURE__ */ _export_sfc(_sfc_main, [["__file", "C:/Users/debor/Documents/vert_design_system_ui/src/components/loading/VLoading.vue"]]);
+function mountQueryParams(params) {
+  return Object.keys(params).reduce((acc, cur) => {
+    if (params[cur] === void 0 || !params[cur])
+      return acc;
+    if (Array.isArray(params[cur])) {
+      return [...acc, ...params[cur].map((c) => `${cur}=${c}`)];
+    }
+    return [...acc, `${cur}=${params[cur]}`];
+  }, []).join("&");
+}
+var eventTypesEnum = /* @__PURE__ */ ((eventTypesEnum2) => {
+  eventTypesEnum2["OBRIGACOES"] = "obrigacoes";
+  eventTypesEnum2["EVENTOS_PAGAMENTO"] = "eventos_pagamento";
+  eventTypesEnum2["INTEGRALIZACOES"] = "integralizacoes";
+  eventTypesEnum2["SUBSCRICOES"] = "subscricoes";
+  eventTypesEnum2["ATUALIZACAO_STATUS_PATRIMONIOS"] = "atualizacao_status_patrimonios";
+  eventTypesEnum2["MARCOS_PATRIMONIOS"] = "marcos_patrimonios";
+  eventTypesEnum2["VENCIMENTO_SERIES"] = "vencimento_series";
+  eventTypesEnum2["RATING"] = "rating";
+  return eventTypesEnum2;
+})(eventTypesEnum || {});
+var EStatus = /* @__PURE__ */ ((EStatus2) => {
+  EStatus2["\xC0 Vencer"] = "warning";
+  EStatus2["Vencida"] = "helper";
+  EStatus2["Cumprida"] = "success";
+  EStatus2["Cumprida fora do vencimento"] = "secondary";
+  return EStatus2;
+})(EStatus || {});
+var calendar_d = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+  __proto__: null,
+  eventTypesEnum,
+  EStatus
+}, Symbol.toStringTag, { value: "Module" }));
+class Event {
+  constructor(event = {
+    id: null,
+    json: {},
+    series: {},
+    emission: {},
+    patrimony: {},
+    event_data: "",
+    event_title: "",
+    application: {},
+    event_type: {}
+  }, url_ops = "", url_obrigacoes = "") {
+    __publicField(this, "id");
+    __publicField(this, "json");
+    __publicField(this, "series");
+    __publicField(this, "emission");
+    __publicField(this, "patrimony");
+    __publicField(this, "event_data");
+    __publicField(this, "event_title");
+    __publicField(this, "application");
+    __publicField(this, "event_type");
+    __publicField(this, "obligation");
+    __publicField(this, "event_formated");
+    __publicField(this, "emission_name");
+    __publicField(this, "series_name");
+    __publicField(this, "responsables_name");
+    __publicField(this, "application_link");
+    __publicField(this, "all_responsables");
+    __publicField(this, "url_ops", "");
+    __publicField(this, "url_obrigacoes", "");
+    this.json = (event == null ? void 0 : event.json) || {};
+    this.series = (event == null ? void 0 : event.series) || {};
+    this.emission = (event == null ? void 0 : event.emission) || {};
+    this.patrimony = (event == null ? void 0 : event.patrimony) || {};
+    this.event_data = (event == null ? void 0 : event.event_data) || "";
+    this.event_title = (event == null ? void 0 : event.event_title) || "";
+    this.application = (event == null ? void 0 : event.application) || {};
+    this.event_type = (event == null ? void 0 : event.event_type) || {};
+    this.obligation = (event == null ? void 0 : event.obligation) || {};
+    this.id = (event == null ? void 0 : event.id) || null;
+    this.event_formated = {
+      title: "",
+      subtitle: "",
+      responsable: "",
+      event_data: "",
+      event_type: eventTypesEnum.OBRIGACOES,
+      color: "",
+      tag: null
+    };
+    this.formatEvent();
+    this.emission_name = this.getEmissionName();
+    this.series_name = this.getSeriesFormated();
+    this.responsables_name = this.getResponsableFormated();
+    this.application_link = this.getLinkApplication();
+    this.all_responsables = this.getResponsablesObject();
+    this.url_obrigacoes = url_obrigacoes;
+    this.url_ops = url_ops;
+  }
+  formatEvent() {
+    var _a;
+    this.event_formated.id = this.id;
+    this.event_formated.title = this.event_title;
+    this.event_formated.subtitle = this.getEmissionFormated() + (this.getSeriesFormated() == "" ? "" : " (" + this.getSeriesFormated() + ")");
+    this.event_formated.responsable = this.getResponsableFormated();
+    this.event_formated.event_data = this.event_data;
+    this.event_formated.event_type = this.getEventTypeFormated();
+    this.event_formated.color = (_a = this.event_type) == null ? void 0 : _a.color;
+  }
+  getEmissionFormated() {
+    var _a, _b, _c;
+    if (this.emission) {
+      return `(${((_a = this.emission) == null ? void 0 : _a._emission_code_name) + (((_b = this.patrimony) == null ? void 0 : _b.number) ? " - " + ((_c = this.patrimony) == null ? void 0 : _c.number) : "")})`;
+    }
+    return "";
+  }
+  getEmissionName() {
+    var _a, _b;
+    if (this.emission) {
+      return `${(_a = this.emission) == null ? void 0 : _a._emission_code_name} - ${(_b = this.patrimony) == null ? void 0 : _b.number}`;
+    }
+    return "";
+  }
+  getSeriesFormated() {
+    if (this.series) {
+      return `#${this.series.external_series_id} | ${this.series.priority} - ${this.series.name + (this.series.type ? " - " + this.series.type : "")}`;
+    }
+    return "";
+  }
+  getSeriesName() {
+    if (this.series) {
+      return `#${this.series.external_series_id} | ${this.series.priority} - ${this.series.name} - ${this.series.type}`;
+    }
+    return "";
+  }
+  getResponsableFormated() {
+    var _a, _b, _c, _d, _e, _f;
+    if (this.json.responsible_obligation) {
+      return this.json.responsible_obligation + " (Respons\xE1vel)" + (this.emission ? `, ${(_a = this.emission) == null ? void 0 : _a.principal_responsable_name}, ${(_c = (_b = this.emission) == null ? void 0 : _b.responsible) == null ? void 0 : _c.join(", ")}` : "");
+    } else {
+      return this.emission ? ((_d = this.emission) == null ? void 0 : _d.principal_responsable_name) + " (Respons\xE1vel), " + ((_f = (_e = this.emission) == null ? void 0 : _e.responsible) == null ? void 0 : _f.join(", ")) : "";
+    }
+  }
+  getResponsable() {
+    var _a;
+    return this.json.responsible_obligation && this.json.responsible_obligation != "" ? this.json.responsible_obligation : (_a = this.emission) == null ? void 0 : _a.principal_responsable_name;
+  }
+  getCoresponsable() {
+    var _a, _b, _c, _d;
+    const coResponsible = (_a = this.emission) == null ? void 0 : _a.responsible.filter(
+      (main) => main != this.responsables_name
+    );
+    return ((_b = this.emission) == null ? void 0 : _b.principal_responsable_name) && this.responsables_name != ((_c = this.emission) == null ? void 0 : _c.principal_responsable_name) ? [(_d = this.emission) == null ? void 0 : _d.principal_responsable_name, ...coResponsible] : coResponsible;
+  }
+  getResponsablesObject() {
+    var _a, _b, _c, _d;
+    const responsables = [];
+    if (this.emission) {
+      responsables.push({
+        name: (_a = this.emission) == null ? void 0 : _a.principal_responsable_name,
+        isPrincipal: true,
+        email: (_b = this.emission) == null ? void 0 : _b.principal_responsable_email,
+        avatar: ""
+      });
+      (_d = (_c = this.emission) == null ? void 0 : _c.responsible) == null ? void 0 : _d.forEach((responsable) => {
+        responsables.push({
+          name: responsable,
+          isPrincipal: false,
+          email: "",
+          avatar: ""
+        });
+      });
+    }
+    return responsables;
+  }
+  getEventTypeFormated() {
+    var _a;
+    const events = [
+      "OBRIGACOES",
+      "EVENTOS_PAGAMENTO",
+      "INTEGRALIZACOES",
+      "SUBSCRICOES",
+      "ATUALIZACAO_STATUS_PATRIMONIOS",
+      "MARCOS_PATRIMONIOS",
+      "VENCIMENTO_SERIES",
+      "RATING"
+    ];
+    return eventTypesEnum[events[((_a = this.event_type) == null ? void 0 : _a.id) - 1]];
+  }
+  getLinkApplication() {
+    var _a, _b, _c;
+    if (((_a = this.application) == null ? void 0 : _a.slug) === "ops") {
+      return this.url_ops + "/patrimony/" + ((_b = this.patrimony) == null ? void 0 : _b.external_patrimony_id);
+    } else if (((_c = this.application) == null ? void 0 : _c.slug) === "obrigacoes") {
+      return this.url_obrigacoes;
+    }
+    return "";
+  }
+  getEventTag() {
+    if (this.application.slug === "obligation") {
+      return {
+        status: EStatus[this.json.status],
+        text: this.json.status
+      };
+    } else
+      return null;
+  }
+}
 const DATE_TIME_PATTERN = /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}$/;
 const DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
 const ITENS_COLOR = {
@@ -2889,4 +3309,4 @@ var constants = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.definePrope
   APPLICATIONS_COLORS,
   APPLICATIONS_REFERENCE_NAME
 }, Symbol.toStringTag, { value: "Module" }));
-export { VButton, VCalendarButton, VCalendarMini, VCard, VEventCard, VPagination, VPopUp, VSelect, VTab, VTabContent, VTabHeader, VTable, VTag, constants };
+export { Event, StringHelper, Time, VButton, VCalendarButton, VCalendarMini, VCard, VEventCard, VLoading, VPagination, VPopUp, VSelect, VTab, VTabContent, VTabHeader, VTable, VTag, calendar_d as calendarTypes, constants, mountQueryParams };

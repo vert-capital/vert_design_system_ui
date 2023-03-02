@@ -1,7 +1,6 @@
 .event-card {
   font-family: "Lato", sans-serif;
   min-height: 40px;
-  max-height: 111px;
 
   p {
     margin: 0px;
@@ -54,6 +53,7 @@
     }
 
     .event-body {
+      white-space: break-spaces;
       border-radius: 12px;
       box-sizing: border-box;
 
@@ -61,21 +61,31 @@
         padding: 2px 4px 2px 4px;
         max-height: 2rem;
         max-width: 6rem;
+
       }
 
       &--small {
         padding: 4px 16px 4px 16px;
         max-width: 100vmax;
-        max-height: 50px;
+        max-height: inherit;
         font-size: 12px;
+        .break-ellipsis:first-child {
+          -webkit-line-clamp: 3;
+        }
       }
 
       &--default {
         padding: 16px 8px 16px 8px;
+        .break-ellipsis {
+          display: block;
+        }
       }
 
       &--title {
         font-weight: $weight-bold;
+      }
+      &--subtitle {
+        margin-bottom: .5rem;
       }
     }
   }

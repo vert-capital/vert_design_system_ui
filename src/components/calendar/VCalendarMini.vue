@@ -30,10 +30,10 @@
 
 <script lang="ts" setup>
 import { computed, onMounted, ref } from "vue";
-import Time from "@/utils/helpers/Time";
+import { Time } from "@/utils/helpers/Time";
 import Mini from "@/components/calendar/mini/Mini.vue";
 import VDropdown from "@/components/dropdown/VDropdown.vue";
-import StringHelper from "@/utils/helpers/String";
+import { StringHelper } from "@/utils/helpers/String";
 
 interface IPeriod {
   start: Date;

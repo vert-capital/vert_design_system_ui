@@ -1,9 +1,9 @@
 import { PropType } from "vue";
 import { IDay } from "@/utils/types/calendar";
-import Time from "@/utils/helpers/Time";
+import { Time } from "@/utils/helpers/Time";
 declare const _default: import("vue").DefineComponent<{
     days: {
-        type: PropType<IDay[]>;
+        type: PropType<any[]>;
         required: true;
     };
     time: {
@@ -20,7 +20,7 @@ declare const _default: import("vue").DefineComponent<{
     onHandleChevronRightWasClicked(): void;
 }, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, ("event-was-clicked" | "day-was-clicked")[], "event-was-clicked" | "day-was-clicked", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
     days: {
-        type: PropType<IDay[]>;
+        type: PropType<any[]>;
         required: true;
     };
     time: {

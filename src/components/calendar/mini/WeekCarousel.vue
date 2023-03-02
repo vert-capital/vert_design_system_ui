@@ -35,7 +35,7 @@
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
 import { IDay } from "@/utils/types/calendar";
-import Time from "@/utils/helpers/Time";
+import { Time } from "@/utils/helpers/Time";
 import ChevronLeft from "@/components/icons/ChevronLeft.vue";
 import ChevronRight from "@/components/icons/ChevronRight.vue";
 export default defineComponent({
@@ -45,7 +45,7 @@ export default defineComponent({
 
   props: {
     days: {
-      type: Array as PropType<IDay[]>,
+      type: Array as PropType<any[]>,
       required: true,
     },
     time: {
@@ -90,7 +90,6 @@ export default defineComponent({
   height: fit-content;
   display: flex;
   justify-content: space-evenly;
-  padding-bottom: 5px;
   padding-left: 0;
   border-bottom: $color-primary-medium;
   font-family: "Lato", sans-serif;
@@ -116,16 +115,15 @@ export default defineComponent({
     font-size: 0.843rem;
     font-weight: 400;
     font-style: normal;
-    margin-bottom: 4px;
+    margin-bottom: 1rem;
     color: $neutral-color-low-medium;
     line-height: 17px;
   }
 
   &__date {
     font-size: 0.843rem;
-    padding: 3px;
     line-height: 1rem;
-    margin-bottom: 4px;
+    margin-bottom: 1rem;
     height: 1rem;
     width: 1rem;
     border-radius: 50%;
