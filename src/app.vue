@@ -190,6 +190,12 @@
         :options="selectOptions"
       ></v-dropdown>
     </div>
+    <hr />
+    <h4>SWITCHES</h4>
+    <div class="d-flex gutter-sm">
+      <v-switch v-model="firstSwitch" />
+      <v-switch v-model="secondSwitch" />
+    </div>
   </div>
   <br />
   <hr />
@@ -303,6 +309,7 @@ import VTabContent from "./components/tab/VTabContent.vue";
 import VTabHeader from "./components/tab/VTabHeader.vue";
 import VSelect from "./components/form/select/VSelect.vue";
 import VTag from "./components/tag/VTag.vue";
+import VSwitch from "./components/switch/VSwitch.vue";
 import { eventTypes, IEventCard } from "./utils/types/calendar";
 import VPopUp from "./components/popUp/VPopUp.vue";
 import VCard from "./components/card/VCard.vue";
@@ -324,6 +331,7 @@ export default defineComponent({
     VPagination,
     VSelect,
     VTag,
+    VSwitch,
     VPopUp,
     VCard,
     VDropdown,
@@ -333,6 +341,8 @@ export default defineComponent({
   },
 
   setup() {
+    const firstSwitch = ref(false);
+    const secondSwitch = ref(true);
     const pokemons = ref({ count: 0, next: "", previous: "", results: [] });
     const currentTab = ref("tab1");
     const pagination = reactive({
@@ -460,6 +470,8 @@ export default defineComponent({
       onChangeTab,
       currentTab,
       testeActiveTab,
+      firstSwitch,
+      secondSwitch,
     };
   },
 
