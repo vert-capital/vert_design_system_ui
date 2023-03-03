@@ -304,6 +304,10 @@ const _sfc_main$i = /* @__PURE__ */ defineComponent({
     showPopUp: {
       type: Boolean,
       default: false
+    },
+    backgroundShadow: {
+      type: String,
+      default: ""
     }
   },
   setup(__props) {
@@ -321,6 +325,13 @@ const _sfc_main$i = /* @__PURE__ */ defineComponent({
           ])
         ]),
         withDirectives(createElementVNode("div", {
+          class: "v-popup--all-shadow",
+          onClick: _cache[1] || (_cache[1] = ($event) => show.value = !unref(show)),
+          style: normalizeStyle(`background: ${__props.backgroundShadow}`)
+        }, null, 4), [
+          [vShow, unref(show)]
+        ]),
+        withDirectives(createElementVNode("div", {
           class: normalizeClass(["v-popup__content", __props.positionContent]),
           style: normalizeStyle(`width: ${__props.widthContent}`)
         }, [
@@ -328,7 +339,7 @@ const _sfc_main$i = /* @__PURE__ */ defineComponent({
             createElementVNode("h3", _hoisted_4$7, toDisplayString(__props.title), 1),
             createElementVNode("span", {
               class: "v-popup__content--head-close",
-              onClick: _cache[1] || (_cache[1] = ($event) => show.value = !unref(show))
+              onClick: _cache[2] || (_cache[2] = ($event) => show.value = !unref(show))
             }, _hoisted_6$2)
           ]),
           createElementVNode("div", _hoisted_7$2, [
