@@ -14,6 +14,7 @@ export declare class Event implements IEvent {
     emission_name: string;
     series_name: string;
     responsables_name: string;
+    responsable: string;
     application_link: string | undefined;
     all_responsables: any[];
     url_ops: string;

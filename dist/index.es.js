@@ -67,7 +67,7 @@ function _sfc_render$b(_ctx, _cache, $props, $setup, $data, $options) {
     renderSlot(_ctx.$slots, "default")
   ], 16, _hoisted_1$k);
 }
-var VButton = /* @__PURE__ */ _export_sfc(_sfc_main$l, [["render", _sfc_render$b], ["__file", "C:/Users/debor/Documents/vert_design_system_ui/src/components/button/VButton.vue"]]);
+var VButton = /* @__PURE__ */ _export_sfc(_sfc_main$l, [["render", _sfc_render$b], ["__file", "/home/diego/Projetos/Hyperspace/Vert/vert_design_system_ui/src/components/button/VButton.vue"]]);
 function getItemValue(column, item) {
   if (column.includes(".")) {
     let content = "";
@@ -187,7 +187,7 @@ function _sfc_render$a(_ctx, _cache, $props, $setup, $data, $options) {
     ])
   ]);
 }
-var VTable = /* @__PURE__ */ _export_sfc(_sfc_main$k, [["render", _sfc_render$a], ["__file", "C:/Users/debor/Documents/vert_design_system_ui/src/components/table/VTable.vue"]]);
+var VTable = /* @__PURE__ */ _export_sfc(_sfc_main$k, [["render", _sfc_render$a], ["__file", "/home/diego/Projetos/Hyperspace/Vert/vert_design_system_ui/src/components/table/VTable.vue"]]);
 var VSelect_scss_vue_type_style_index_0_src_4a2786ac_lang = "";
 const _hoisted_1$i = { class: "v-select" };
 const _hoisted_2$b = {
@@ -197,7 +197,7 @@ const _hoisted_2$b = {
 const _hoisted_3$a = ["for"];
 const _hoisted_4$8 = { class: "v-selec--content" };
 const _hoisted_5$5 = ["id", "name", "required", "disabled"];
-const _hoisted_6$4 = {
+const _hoisted_6$3 = {
   key: 0,
   value: ""
 };
@@ -250,7 +250,7 @@ const _sfc_main$j = defineComponent({
             disabled: __props.disable,
             onChange: _cache[0] || (_cache[0] = ($event) => selectChange($event))
           }, [
-            __props.placeholder ? (openBlock(), createElementBlock("option", _hoisted_6$4, toDisplayString(__props.placeholder), 1)) : createCommentVNode("v-if", true),
+            __props.placeholder ? (openBlock(), createElementBlock("option", _hoisted_6$3, toDisplayString(__props.placeholder), 1)) : createCommentVNode("v-if", true),
             (openBlock(true), createElementBlock(Fragment, null, renderList(__props.options, (option, index) => {
               return openBlock(), createElementBlock("option", {
                 key: index,
@@ -265,7 +265,7 @@ const _sfc_main$j = defineComponent({
     };
   }
 });
-var VSelect = /* @__PURE__ */ _export_sfc(_sfc_main$j, [["__file", "C:/Users/debor/Documents/vert_design_system_ui/src/components/form/select/VSelect.vue"]]);
+var VSelect = /* @__PURE__ */ _export_sfc(_sfc_main$j, [["__file", "/home/diego/Projetos/Hyperspace/Vert/vert_design_system_ui/src/components/form/select/VSelect.vue"]]);
 var _imports_0$4 = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTE5LDYuNDFMMTcuNTksNUwxMiwxMC41OUw2LjQxLDVMNSw2LjQxTDEwLjU5LDEyTDUsMTcuNTlMNi40MSwxOUwxMiwxMy40MUwxNy41OSwxOUwxOSwxNy41OUwxMy40MSwxMkwxOSw2LjQxWiIgLz48L3N2Zz4=";
 var VPopUp_scss_vue_type_style_index_0_src_12e74449_lang = "";
 const _hoisted_1$h = { class: "v-popup" };
@@ -273,7 +273,7 @@ const _hoisted_2$a = { class: "v-popup--click" };
 const _hoisted_3$9 = { class: "v-popup__content--head" };
 const _hoisted_4$7 = { class: "v-popup__content--head-title" };
 const _hoisted_5$4 = /* @__PURE__ */ createElementVNode("img", { src: _imports_0$4 }, null, -1);
-const _hoisted_6$3 = [
+const _hoisted_6$2 = [
   _hoisted_5$4
 ];
 const _hoisted_7$2 = { class: "v-popup__content--body" };
@@ -329,7 +329,7 @@ const _sfc_main$i = /* @__PURE__ */ defineComponent({
             createElementVNode("span", {
               class: "v-popup__content--head-close",
               onClick: _cache[1] || (_cache[1] = ($event) => show.value = !unref(show))
-            }, _hoisted_6$3)
+            }, _hoisted_6$2)
           ]),
           createElementVNode("div", _hoisted_7$2, [
             renderSlot(_ctx.$slots, "popup-body")
@@ -346,7 +346,7 @@ const _sfc_main$i = /* @__PURE__ */ defineComponent({
     };
   }
 });
-var VPopUp = /* @__PURE__ */ _export_sfc(_sfc_main$i, [["__file", "C:/Users/debor/Documents/vert_design_system_ui/src/components/popUp/VPopUp.vue"]]);
+var VPopUp = /* @__PURE__ */ _export_sfc(_sfc_main$i, [["__file", "/home/diego/Projetos/Hyperspace/Vert/vert_design_system_ui/src/components/popUp/VPopUp.vue"]]);
 var VCard_scss_vue_type_style_index_0_src_28d3c952_lang = "";
 const _hoisted_1$g = {
   key: 0,
@@ -387,7 +387,7 @@ const _sfc_main$h = defineComponent({
     };
   }
 });
-var VCard = /* @__PURE__ */ _export_sfc(_sfc_main$h, [["__file", "C:/Users/debor/Documents/vert_design_system_ui/src/components/card/VCard.vue"]]);
+var VCard = /* @__PURE__ */ _export_sfc(_sfc_main$h, [["__file", "/home/diego/Projetos/Hyperspace/Vert/vert_design_system_ui/src/components/card/VCard.vue"]]);
 var VTab_scss_vue_type_style_index_0_src_a3c685ae_lang = "";
 const _sfc_main$g = defineComponent({
   name: "VTab",
@@ -439,7 +439,7 @@ function _sfc_render$9(_ctx, _cache, $props, $setup, $data, $options) {
     renderSlot(_ctx.$slots, "default")
   ]);
 }
-var VTab = /* @__PURE__ */ _export_sfc(_sfc_main$g, [["render", _sfc_render$9], ["__file", "C:/Users/debor/Documents/vert_design_system_ui/src/components/tab/VTab.vue"]]);
+var VTab = /* @__PURE__ */ _export_sfc(_sfc_main$g, [["render", _sfc_render$9], ["__file", "/home/diego/Projetos/Hyperspace/Vert/vert_design_system_ui/src/components/tab/VTab.vue"]]);
 var VTag_scss_vue_type_style_index_0_src_73d26849_lang = "";
 const _sfc_main$f = defineComponent({
   name: "VTag",
@@ -482,7 +482,7 @@ function _sfc_render$8(_ctx, _cache, $props, $setup, $data, $options) {
     renderSlot(_ctx.$slots, "default")
   ], 2);
 }
-var VTag = /* @__PURE__ */ _export_sfc(_sfc_main$f, [["render", _sfc_render$8], ["__file", "C:/Users/debor/Documents/vert_design_system_ui/src/components/tag/VTag.vue"]]);
+var VTag = /* @__PURE__ */ _export_sfc(_sfc_main$f, [["render", _sfc_render$8], ["__file", "/home/diego/Projetos/Hyperspace/Vert/vert_design_system_ui/src/components/tag/VTag.vue"]]);
 class EDate extends Date {
   get fullYear() {
     return this.getFullYear();
@@ -769,7 +769,7 @@ class Time {
     return date;
   }
 }
-var _imports_0$3 = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+DQogICA8cGF0aCBmaWxsPSIjYWFhIiBkPSJNMTUuNDEsMTYuNThMMTAuODMsMTJMMTUuNDEsNy40MUwxNCw2TDgsMTJMMTQsMThMMTUuNDEsMTYuNThaIiAvPg0KPC9zdmc+";
+var _imports_0$3 = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+CiAgIDxwYXRoIGZpbGw9IiNhYWEiIGQ9Ik0xNS40MSwxNi41OEwxMC44MywxMkwxNS40MSw3LjQxTDE0LDZMOCwxMkwxNCwxOEwxNS40MSwxNi41OFoiIC8+Cjwvc3ZnPg==";
 const _sfc_main$e = defineComponent({
   name: "ChevronLeft"
 });
@@ -780,8 +780,8 @@ const _hoisted_1$d = {
 function _sfc_render$7(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("img", _hoisted_1$d);
 }
-var ChevronLeft = /* @__PURE__ */ _export_sfc(_sfc_main$e, [["render", _sfc_render$7], ["__file", "C:/Users/debor/Documents/vert_design_system_ui/src/components/icons/ChevronLeft.vue"]]);
-var _imports_0$2 = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+DQogICA8cGF0aCBmaWxsPSIjYWFhIiBkPSJNOC41OSwxNi41OEwxMy4xNywxMkw4LjU5LDcuNDFMMTAsNkwxNiwxMkwxMCwxOEw4LjU5LDE2LjU4WiIgLz4NCjwvc3ZnPg==";
+var ChevronLeft = /* @__PURE__ */ _export_sfc(_sfc_main$e, [["render", _sfc_render$7], ["__file", "/home/diego/Projetos/Hyperspace/Vert/vert_design_system_ui/src/components/icons/ChevronLeft.vue"]]);
+var _imports_0$2 = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+CiAgIDxwYXRoIGZpbGw9IiNhYWEiIGQ9Ik04LjU5LDE2LjU4TDEzLjE3LDEyTDguNTksNy40MUwxMCw2TDE2LDEyTDEwLDE4TDguNTksMTYuNThaIiAvPgo8L3N2Zz4=";
 const _sfc_main$d = defineComponent({
   name: "ChevronRight"
 });
@@ -792,7 +792,7 @@ const _hoisted_1$c = {
 function _sfc_render$6(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("img", _hoisted_1$c);
 }
-var ChevronRight = /* @__PURE__ */ _export_sfc(_sfc_main$d, [["render", _sfc_render$6], ["__file", "C:/Users/debor/Documents/vert_design_system_ui/src/components/icons/ChevronRight.vue"]]);
+var ChevronRight = /* @__PURE__ */ _export_sfc(_sfc_main$d, [["render", _sfc_render$6], ["__file", "/home/diego/Projetos/Hyperspace/Vert/vert_design_system_ui/src/components/icons/ChevronRight.vue"]]);
 var WeekCarousel_vue_vue_type_style_index_0_scoped_true_lang = "";
 const _sfc_main$c = defineComponent({
   name: "Weekcarousel",
@@ -866,7 +866,7 @@ function _sfc_render$5(_ctx, _cache, $props, $setup, $data, $options) {
     }, null, 8, ["onClick"])
   ]);
 }
-var WeekCarousel = /* @__PURE__ */ _export_sfc(_sfc_main$c, [["render", _sfc_render$5], ["__scopeId", "data-v-5d140c4b"], ["__file", "C:/Users/debor/Documents/vert_design_system_ui/src/components/calendar/mini/WeekCarousel.vue"]]);
+var WeekCarousel = /* @__PURE__ */ _export_sfc(_sfc_main$c, [["render", _sfc_render$5], ["__scopeId", "data-v-5d140c4b"], ["__file", "/home/diego/Projetos/Hyperspace/Vert/vert_design_system_ui/src/components/calendar/mini/WeekCarousel.vue"]]);
 var Mini_vue_vue_type_style_index_0_scoped_true_lang = "";
 const _hoisted_1$a = { class: "vcalendar-mini" };
 const _hoisted_2$6 = { class: "vcalendar-mini--week" };
@@ -901,12 +901,9 @@ const _sfc_main$b = /* @__PURE__ */ defineComponent({
       const days_ = props.time.getCalendarWeekDateObjects(day).map((day2) => {
         const dayName = props.time.getLocalizedNameOfWeekday(day2, "long");
         const dateTimeString = props.time.getDateTimeStringFromDate(day2, "start");
-        if (props.time.dateIsToday(day2)) {
+        if (props.time.dateIsToday(day2))
           getDateAndDayLongName(day2, true);
-        }
-        const { month, year, date } = props.time.getAllVariablesFromDateTimeString(dateTimeString);
-        if (month !== initialMonth.value || year !== initialYear.value && (date == props.time.getNumberOfDaysInMonth(year, month) || date == 1))
-          emits("change-period", dateTimeString.substring(0, 7));
+        emits("change-period", dateTimeString.substring(0, 7));
         return { dayName, dateTimeString };
       });
       days.value = days_;
@@ -965,7 +962,7 @@ const _sfc_main$b = /* @__PURE__ */ defineComponent({
     };
   }
 });
-var Mini = /* @__PURE__ */ _export_sfc(_sfc_main$b, [["__scopeId", "data-v-7d7d84ae"], ["__file", "C:/Users/debor/Documents/vert_design_system_ui/src/components/calendar/mini/Mini.vue"]]);
+var Mini = /* @__PURE__ */ _export_sfc(_sfc_main$b, [["__scopeId", "data-v-7d7d84ae"], ["__file", "/home/diego/Projetos/Hyperspace/Vert/vert_design_system_ui/src/components/calendar/mini/Mini.vue"]]);
 var VDropdown_scss_vue_type_style_index_0_src_12d7f8ce_lang = "";
 const _hoisted_1$9 = { class: "v-dropdow__options" };
 const _hoisted_2$5 = ["tabIndex"];
@@ -1060,7 +1057,7 @@ const _sfc_main$a = defineComponent({
     };
   }
 });
-var VDropdown = /* @__PURE__ */ _export_sfc(_sfc_main$a, [["__file", "C:/Users/debor/Documents/vert_design_system_ui/src/components/dropdown/VDropdown.vue"]]);
+var VDropdown = /* @__PURE__ */ _export_sfc(_sfc_main$a, [["__file", "/home/diego/Projetos/Hyperspace/Vert/vert_design_system_ui/src/components/dropdown/VDropdown.vue"]]);
 var VCalendarMini_vue_vue_type_style_index_0_lang = "";
 const _hoisted_1$8 = { class: "calendar-root-wrapper" };
 const _hoisted_2$4 = { class: "calendar-root mode-is-mini" };
@@ -1181,8 +1178,8 @@ const _sfc_main$9 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-var VCalendarMini = /* @__PURE__ */ _export_sfc(_sfc_main$9, [["__file", "C:/Users/debor/Documents/vert_design_system_ui/src/components/calendar/VCalendarMini.vue"]]);
-var _imports_0$1 = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+DQogICA8cGF0aCBmaWxsPSIjYWFhIiBkPSJNMTksMTlINVY4SDE5TTE5LDNIMThWMUgxNlYzSDhWMUg2VjNINUMzLjg5LDMgMywzLjkgMyw1VjE5QTIsMiAwIDAsMCA1LDIxSDE5QTIsMiAwIDAsMCAyMSwxOVY1QTIsMiAwIDAsMCAxOSwzTTE2LjUzLDExLjA2TDE1LjQ3LDEwTDEwLjU5LDE0Ljg4TDguNDcsMTIuNzZMNy40MSwxMy44MkwxMC41OSwxN0wxNi41MywxMS4wNloiIC8+DQo8L3N2Zz4NCg==";
+var VCalendarMini = /* @__PURE__ */ _export_sfc(_sfc_main$9, [["__file", "/home/diego/Projetos/Hyperspace/Vert/vert_design_system_ui/src/components/calendar/VCalendarMini.vue"]]);
+var _imports_0$1 = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+CiAgIDxwYXRoIGZpbGw9IiNhYWEiIGQ9Ik0xOSwxOUg1VjhIMTlNMTksM0gxOFYxSDE2VjNIOFYxSDZWM0g1QzMuODksMyAzLDMuOSAzLDVWMTlBMiwyIDAgMCwwIDUsMjFIMTlBMiwyIDAgMCwwIDIxLDE5VjVBMiwyIDAgMCwwIDE5LDNNMTYuNTMsMTEuMDZMMTUuNDcsMTBMMTAuNTksMTQuODhMOC40NywxMi43Nkw3LjQxLDEzLjgyTDEwLjU5LDE3TDE2LjUzLDExLjA2WiIgLz4KPC9zdmc+Cg==";
 const _sfc_main$8 = defineComponent({
   name: "CalendarDay"
 });
@@ -1193,7 +1190,7 @@ const _hoisted_1$7 = {
 function _sfc_render$4(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("img", _hoisted_1$7);
 }
-var IconCalendar = /* @__PURE__ */ _export_sfc(_sfc_main$8, [["render", _sfc_render$4], ["__file", "C:/Users/debor/Documents/vert_design_system_ui/src/components/icons/CalendarDay.vue"]]);
+var IconCalendar = /* @__PURE__ */ _export_sfc(_sfc_main$8, [["render", _sfc_render$4], ["__file", "/home/diego/Projetos/Hyperspace/Vert/vert_design_system_ui/src/components/icons/CalendarDay.vue"]]);
 /*!
  * perfect-scrollbar v1.5.3
  * Copyright 2021 Hyunje Jun, MDBootstrap and Contributors
@@ -2324,7 +2321,7 @@ const _sfc_main$7 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-var VEventCard = /* @__PURE__ */ _export_sfc(_sfc_main$7, [["__file", "C:/Users/debor/Documents/vert_design_system_ui/src/components/eventCard/VEventCard.vue"]]);
+var VEventCard = /* @__PURE__ */ _export_sfc(_sfc_main$7, [["__file", "/home/diego/Projetos/Hyperspace/Vert/vert_design_system_ui/src/components/eventCard/VEventCard.vue"]]);
 const _sfc_main$6 = /* @__PURE__ */ defineComponent({
   __name: "Event",
   props: {
@@ -2379,8 +2376,8 @@ const _sfc_main$6 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-var Event$1 = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["__file", "C:/Users/debor/Documents/vert_design_system_ui/src/components/calendar/mini/Event.vue"]]);
-var _imports_0 = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+DQogICA8cGF0aCBmaWxsPSIjY2NjY2NjIiBkPSJNOS41LDNBNi41LDYuNSAwIDAsMSAxNiw5LjVDMTYsMTEuMTEgMTUuNDEsMTIuNTkgMTQuNDQsMTMuNzNMMTQuNzEsMTRIMTUuNUwyMC41LDE5TDE5LDIwLjVMMTQsMTUuNVYxNC43MUwxMy43MywxNC40NEMxMi41OSwxNS40MSAxMS4xMSwxNiA5LjUsMTZBNi41LDYuNSAwIDAsMSAzLDkuNUE2LjUsNi41IDAgMCwxIDkuNSwzTTkuNSw1QzcsNSA1LDcgNSw5LjVDNSwxMiA3LDE0IDkuNSwxNEMxMiwxNCAxNCwxMiAxNCw5LjVDMTQsNyAxMiw1IDkuNSw1WiIgLz4NCjwvc3ZnPg==";
+var Event$1 = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["__file", "/home/diego/Projetos/Hyperspace/Vert/vert_design_system_ui/src/components/calendar/mini/Event.vue"]]);
+var _imports_0 = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+CiAgIDxwYXRoIGZpbGw9IiNjY2NjY2MiIGQ9Ik05LjUsM0E2LjUsNi41IDAgMCwxIDE2LDkuNUMxNiwxMS4xMSAxNS40MSwxMi41OSAxNC40NCwxMy43M0wxNC43MSwxNEgxNS41TDIwLjUsMTlMMTksMjAuNUwxNCwxNS41VjE0LjcxTDEzLjczLDE0LjQ0QzEyLjU5LDE1LjQxIDExLjExLDE2IDkuNSwxNkE2LjUsNi41IDAgMCwxIDMsOS41QTYuNSw2LjUgMCAwLDEgOS41LDNNOS41LDVDNyw1IDUsNyA1LDkuNUM1LDEyIDcsMTQgOS41LDE0QzEyLDE0IDE0LDEyIDE0LDkuNUMxNCw3IDEyLDUgOS41LDVaIiAvPgo8L3N2Zz4=";
 const _sfc_main$5 = {};
 const _hoisted_1$5 = {
   src: _imports_0,
@@ -2389,7 +2386,7 @@ const _hoisted_1$5 = {
 function _sfc_render$3(_ctx, _cache) {
   return openBlock(), createElementBlock("img", _hoisted_1$5);
 }
-var SearchIcon = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["render", _sfc_render$3], ["__file", "C:/Users/debor/Documents/vert_design_system_ui/src/components/icons/Search.vue"]]);
+var SearchIcon = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["render", _sfc_render$3], ["__file", "/home/diego/Projetos/Hyperspace/Vert/vert_design_system_ui/src/components/icons/Search.vue"]]);
 function useCalendar(url, authorization, method, eventClass) {
   const _url = unref(url);
   const _authorization = unref(authorization);
@@ -2440,10 +2437,7 @@ const _hoisted_4$2 = {
   key: 0,
   class: "list-events__empty"
 };
-const _hoisted_5$2 = /* @__PURE__ */ createElementVNode("p", { class: "find-empty" }, " Voc\xEA n\xE3o possui eventos na data selecionada, utilize os filtros para verificar outros eventos ", -1);
-const _hoisted_6$2 = [
-  _hoisted_5$2
-];
+const _hoisted_5$2 = { class: "find-empty" };
 const _sfc_main$4 = /* @__PURE__ */ defineComponent({
   __name: "VCalendarButton",
   props: {
@@ -2472,6 +2466,10 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
     me: {
       type: String,
       default: ""
+    },
+    findEmpty: {
+      type: String,
+      default: "Voc\xEA n\xE3o possui eventos na data selecionada, verifique a vis\xE3o completa"
     },
     eventClass: {
       type: [Function, Object],
@@ -2636,7 +2634,9 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
                 }, null, 8, ["event", "loading"])
               ]);
             }), 128)),
-            !isLoading.value && !eventsOfDay.value.length ? (openBlock(), createElementBlock("div", _hoisted_4$2, _hoisted_6$2)) : createCommentVNode("v-if", true)
+            !isLoading.value && !eventsOfDay.value.length ? (openBlock(), createElementBlock("div", _hoisted_4$2, [
+              createElementVNode("p", _hoisted_5$2, toDisplayString(__props.findEmpty), 1)
+            ])) : createCommentVNode("v-if", true)
           ])
         ]),
         "popup-footer": withCtx(() => [
@@ -2650,7 +2650,7 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-var VCalendarButton = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["__file", "C:/Users/debor/Documents/vert_design_system_ui/src/components/calendar/VCalendarButton.vue"]]);
+var VCalendarButton = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["__file", "/home/diego/Projetos/Hyperspace/Vert/vert_design_system_ui/src/components/calendar/VCalendarButton.vue"]]);
 const defaultOptions = {
   page: 1,
   pageSize: 5,
@@ -2918,7 +2918,7 @@ function _sfc_render$2(_ctx, _cache, $props, $setup, $data, $options) {
     ])
   ]);
 }
-var VPagination = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["render", _sfc_render$2], ["__file", "C:/Users/debor/Documents/vert_design_system_ui/src/components/pagination/VPagination.vue"]]);
+var VPagination = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["render", _sfc_render$2], ["__file", "/home/diego/Projetos/Hyperspace/Vert/vert_design_system_ui/src/components/pagination/VPagination.vue"]]);
 const _sfc_main$2 = defineComponent({
   name: "VTabContent",
   props: {
@@ -2942,7 +2942,7 @@ function _sfc_render$1(_ctx, _cache, $props, $setup, $data, $options) {
     renderSlot(_ctx.$slots, "default")
   ], 8, _hoisted_1$2);
 }
-var VTabContent = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["render", _sfc_render$1], ["__file", "C:/Users/debor/Documents/vert_design_system_ui/src/components/tab/VTabContent.vue"]]);
+var VTabContent = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["render", _sfc_render$1], ["__file", "/home/diego/Projetos/Hyperspace/Vert/vert_design_system_ui/src/components/tab/VTabContent.vue"]]);
 const showContentTab = (contentId, typeTab) => {
   const tabContents = document.getElementsByClassName("tab--content");
   for (const item of tabContents) {
@@ -2999,7 +2999,7 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
     renderSlot(_ctx.$slots, "default")
   ], 10, _hoisted_1$1);
 }
-var VTabHeader = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["render", _sfc_render], ["__file", "C:/Users/debor/Documents/vert_design_system_ui/src/components/tab/VTabHeader.vue"]]);
+var VTabHeader = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["render", _sfc_render], ["__file", "/home/diego/Projetos/Hyperspace/Vert/vert_design_system_ui/src/components/tab/VTabHeader.vue"]]);
 var VLoading_vue_vue_type_style_index_0_lang = "";
 const _hoisted_1 = {
   key: 0,
@@ -3057,7 +3057,7 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
     };
   }
 });
-var VLoading = /* @__PURE__ */ _export_sfc(_sfc_main, [["__file", "C:/Users/debor/Documents/vert_design_system_ui/src/components/loading/VLoading.vue"]]);
+var VLoading = /* @__PURE__ */ _export_sfc(_sfc_main, [["__file", "/home/diego/Projetos/Hyperspace/Vert/vert_design_system_ui/src/components/loading/VLoading.vue"]]);
 function mountQueryParams(params) {
   return Object.keys(params).reduce((acc, cur) => {
     if (params[cur] === void 0 || !params[cur])
@@ -3101,7 +3101,8 @@ class Event {
     event_data: "",
     event_title: "",
     application: {},
-    event_type: {}
+    event_type: {},
+    obligation: {}
   }, url_ops = "", url_obrigacoes = "") {
     __publicField(this, "id");
     __publicField(this, "json");
@@ -3117,6 +3118,7 @@ class Event {
     __publicField(this, "emission_name");
     __publicField(this, "series_name");
     __publicField(this, "responsables_name");
+    __publicField(this, "responsable");
     __publicField(this, "application_link");
     __publicField(this, "all_responsables");
     __publicField(this, "url_ops", "");
@@ -3144,6 +3146,7 @@ class Event {
     this.emission_name = this.getEmissionName();
     this.series_name = this.getSeriesFormated();
     this.responsables_name = this.getResponsableFormated();
+    this.responsable = this.getResponsable();
     this.application_link = this.getLinkApplication();
     this.all_responsables = this.getResponsablesObject();
     this.url_obrigacoes = url_obrigacoes;
@@ -3158,10 +3161,11 @@ class Event {
     this.event_formated.event_data = this.event_data;
     this.event_formated.event_type = this.getEventTypeFormated();
     this.event_formated.color = (_a = this.event_type) == null ? void 0 : _a.color;
+    this.event_formated.tag = this.getEventTag();
   }
   getEmissionFormated() {
     var _a, _b, _c;
-    if (this.emission) {
+    if (this.emission && Object.keys(this.emission).length != 0) {
       return `(${((_a = this.emission) == null ? void 0 : _a._emission_code_name) + (((_b = this.patrimony) == null ? void 0 : _b.number) ? " - " + ((_c = this.patrimony) == null ? void 0 : _c.number) : "")})`;
     }
     return "";
@@ -3174,7 +3178,7 @@ class Event {
     return "";
   }
   getSeriesFormated() {
-    if (this.series) {
+    if (this.series && Object.keys(this.series).length != 0) {
       return `#${this.series.external_series_id} | ${this.series.priority} - ${this.series.name + (this.series.type ? " - " + this.series.type : "")}`;
     }
     return "";
@@ -3186,11 +3190,11 @@ class Event {
     return "";
   }
   getResponsableFormated() {
-    var _a, _b, _c, _d, _e, _f;
+    var _a;
     if (this.json.responsible_obligation) {
-      return this.json.responsible_obligation + " (Respons\xE1vel)" + (this.emission ? `, ${(_a = this.emission) == null ? void 0 : _a.principal_responsable_name}, ${(_c = (_b = this.emission) == null ? void 0 : _b.responsible) == null ? void 0 : _c.join(", ")}` : "");
+      return this.json.responsible_obligation + " (Respons\xE1vel)" + (Object.keys(this.emission).length != 0 ? `, ${this.getCoresponsable().join(", ")}` : "");
     } else {
-      return this.emission ? ((_d = this.emission) == null ? void 0 : _d.principal_responsable_name) + " (Respons\xE1vel), " + ((_f = (_e = this.emission) == null ? void 0 : _e.responsible) == null ? void 0 : _f.join(", ")) : "";
+      return Object.keys(this.emission).length != 0 ? ((_a = this.emission) == null ? void 0 : _a.principal_responsable_name) + " (Respons\xE1vel), " + this.getCoresponsable().join(", ") : "";
     }
   }
   getResponsable() {
@@ -3198,11 +3202,14 @@ class Event {
     return this.json.responsible_obligation && this.json.responsible_obligation != "" ? this.json.responsible_obligation : (_a = this.emission) == null ? void 0 : _a.principal_responsable_name;
   }
   getCoresponsable() {
-    var _a, _b, _c, _d;
-    const coResponsible = (_a = this.emission) == null ? void 0 : _a.responsible.filter(
-      (main) => main != this.responsables_name
-    );
-    return ((_b = this.emission) == null ? void 0 : _b.principal_responsable_name) && this.responsables_name != ((_c = this.emission) == null ? void 0 : _c.principal_responsable_name) ? [(_d = this.emission) == null ? void 0 : _d.principal_responsable_name, ...coResponsible] : coResponsible;
+    var _a, _b, _c, _d, _e;
+    if (Object.keys(this.emission).length != 0) {
+      const coResponsible = (_b = (_a = this.emission) == null ? void 0 : _a.responsible) == null ? void 0 : _b.filter(
+        (main) => main != this.getResponsable()
+      );
+      return ((_c = this.emission) == null ? void 0 : _c.principal_responsable_name) && this.getResponsable() != ((_d = this.emission) == null ? void 0 : _d.principal_responsable_name) ? [(_e = this.emission) == null ? void 0 : _e.principal_responsable_name, ...coResponsible] : coResponsible;
+    }
+    return [];
   }
   getResponsablesObject() {
     var _a, _b, _c, _d;

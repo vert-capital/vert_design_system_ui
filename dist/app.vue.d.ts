@@ -88,6 +88,8 @@ declare const _default: import("vue").DefineComponent<{}, {
     onChangeTab: (tab: string) => void;
     currentTab: import("vue").Ref<string>;
     testeActiveTab: () => void;
+    firstSwitch: import("vue").Ref<boolean>;
+    secondSwitch: import("vue").Ref<boolean>;
 }, {
     typeTab: string;
     testeSelect: string;

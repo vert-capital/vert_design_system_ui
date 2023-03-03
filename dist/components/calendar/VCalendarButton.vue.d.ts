@@ -25,6 +25,10 @@ declare const _default: import("vue").DefineComponent<{
         type: StringConstructor;
         default: string;
     };
+    findEmpty: {
+        type: StringConstructor;
+        default: string;
+    };
     eventClass: {
         type: PropType<any>;
         default: () => void;
@@ -54,6 +58,10 @@ declare const _default: import("vue").DefineComponent<{
         type: StringConstructor;
         default: string;
     };
+    findEmpty: {
+        type: StringConstructor;
+        default: string;
+    };
     eventClass: {
         type: PropType<any>;
         default: () => void;
@@ -69,6 +77,7 @@ declare const _default: import("vue").DefineComponent<{
     urlEvents: string;
     authorization: string;
     me: string;
+    findEmpty: string;
     eventClass: any;
 }>;
 export default _default;
