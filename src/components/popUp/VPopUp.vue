@@ -7,6 +7,12 @@
     </div>
     <div
       v-show="show"
+      class="v-popup--all-shadow"
+      @click="show = !show"
+      :style="`background: ${backgroundShadow}`"
+    ></div>
+    <div
+      v-show="show"
       class="v-popup__content"
       :class="positionContent"
       :style="`width: ${widthContent}`"
@@ -30,19 +36,19 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, ref } from "vue";
+import { computed, ref } from 'vue';
 const props = defineProps({
   title: {
     type: String,
-    default: "",
+    default: '',
   },
   positionContent: {
     type: String,
-    default: "bottom center",
+    default: 'bottom center',
   },
   widthContent: {
     type: String,
-    default: "25rem",
+    default: '25rem',
   },
   showIcon: {
     type: Boolean,
@@ -51,6 +57,11 @@ const props = defineProps({
   showPopUp: {
     type: Boolean,
     default: false,
+  },
+
+  backgroundShadow: {
+    type: String,
+    default: '',
   },
 });
 
