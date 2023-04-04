@@ -232,16 +232,11 @@ onMounted(async () => {
 });
 </script>
 
-<style lang="scss" scoped>
-.calendar-pop-up.v-popup {
-  position: static;
-}
-</style>
-
 <style lang="scss">
-.v-popup {
-  &__content {
-    &.center {
+.calendar-pop-up {
+  &.v-popup {
+    position: static;
+    .v-popup__content.center {
       left: auto;
       right: 1.5rem;
     }

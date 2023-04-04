@@ -2437,8 +2437,7 @@ function useCalendar(url, authorization, method, eventClass) {
   }
   return { getEvents };
 }
-var VCalendarButton_vue_vue_type_style_index_0_scoped_true_lang = "";
-var VCalendarButton_vue_vue_type_style_index_1_lang = "";
+var VCalendarButton_vue_vue_type_style_index_0_lang = "";
 const _hoisted_1$4 = { class: "search-events" };
 const _hoisted_2$2 = ["onKeyup"];
 const _hoisted_3$2 = {
@@ -2663,7 +2662,7 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-var VCalendarButton = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["__scopeId", "data-v-72de5ac5"], ["__file", "/home/jkranmer/Code/vert_design_system_ui/src/components/calendar/VCalendarButton.vue"]]);
+var VCalendarButton = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["__file", "/home/jkranmer/Code/vert_design_system_ui/src/components/calendar/VCalendarButton.vue"]]);
 const defaultOptions = {
   page: 1,
   pageSize: 5,
