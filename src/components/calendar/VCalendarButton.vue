@@ -1,8 +1,11 @@
+<!-- @format -->
+
 <template>
   <v-pop-up
-    position-content="center center"
+    position-content="center"
     title="Calendário de eventos"
     width-content="23rem"
+    class="calendar-pop-up"
   >
     <template #event-area>
       <icon-calendar />
@@ -230,8 +233,14 @@ onMounted(async () => {
 </script>
 
 <style lang="scss">
-.v-popup__content.center {
-  left: auto;
+.calendar-pop-up {
+  &.v-popup {
+    position: static;
+    .v-popup__content.center {
+      left: auto;
+      right: 1.5rem;
+    }
+  }
 }
 
 .find-empty {
@@ -289,7 +298,7 @@ onMounted(async () => {
 }
 
 #container-list {
-  height: 21rem;
+  height: calc(100vh - 25rem);
   overflow: auto;
   max-height: 100%;
   min-height: 0px;

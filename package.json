@@ -47,11 +47,11 @@
     "clean:dist": "rimraf dist",
     "clean:coverage": "rimraf coverage",
     "dev": "vite --mode dev",
-    "build": "pnpm clean:dist && vite build --mode prod && vue-tsc --emitDeclarationOnly",
+    "build": "yarn clean:dist && vite build --mode prod && vue-tsc --emitDeclarationOnly",
     "preview": "vite preview",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "test": "pnpm clean:coverage && vitest --coverage --mode test",
+    "test": "yarn clean:coverage && vitest --coverage --mode test",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:serve": "vitepress serve docs"
