@@ -17,20 +17,20 @@
 defineProps({
   showLoadingAnimation: {
     type: Boolean,
-    default: true
+    default: true,
   },
   showText: {
     type: Boolean,
-    default: true
+    default: true,
   },
   waitingText: {
     type: String,
-    default: 'Carregando...'
+    default: "Carregando...",
   },
   loadingType: {
     type: String,
-    default: 'ring'
-  }
+    default: "ring",
+  },
 });
 </script>
 <style lang="scss">
@@ -42,7 +42,7 @@ defineProps({
   width: 100%;
   font-size: 1rem;
   font-weight: bold;
-  color: $color-primary-pure;
+  color: $brand-color-primary-pure;
 }
 .v-loading {
   width: 100%;
@@ -58,7 +58,7 @@ defineProps({
     span {
       font-size: 1rem;
       font-weight: bold;
-      color: $color-primary-pure;
+      color: $brand-color-primary-pure;
       margin-left: 1rem;
     }
   }
@@ -76,10 +76,10 @@ defineProps({
   width: 2.5rem;
   height: 2.5rem;
   margin: 0.5rem;
-  border: 4px solid $color-primary-pure;
+  border: 4px solid $brand-color-primary-pure;
   border-radius: 50%;
   animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-  border-color: $color-primary-pure transparent transparent transparent;
+  border-color: $brand-color-primary-pure transparent transparent transparent;
 }
 .lds-ring div:nth-child(1) {
   animation-delay: -0.45s;
@@ -111,7 +111,7 @@ defineProps({
   width: 13px;
   height: 13px;
   border-radius: 50%;
-  background: $color-primary-pure;
+  background: $brand-color-primary-pure;
   animation-timing-function: cubic-bezier(0, 1, 1, 0);
 }
 .lds-ellipsis div:nth-child(1) {
@@ -154,5 +154,4 @@ defineProps({
     transform: translate(24px, 0);
   }
 }
-
 </style>

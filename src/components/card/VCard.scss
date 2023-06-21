@@ -9,7 +9,7 @@
     // @extend %shadow-level-1;
     a {
       text-decoration: none;
-      color: $color-primary-pure;
+      color: $brand-color-primary-pure;
       // @extend %transition-link;
     }
     h3 {
@@ -25,20 +25,20 @@
     box-shadow: 0 2px 8px 2px rgba(0, 0, 0, 0.08);
   }
   &--border {
-    border: solid 2px $color-primary-pure;
+    border: solid 2px $brand-color-primary-pure;
     box-shadow: 0 2px 8px 2px rgba(0, 0, 0, 0.08);
   }
   &--shadow {
     box-shadow: 0 2px 8px 2px rgba(0, 0, 0, 0.08);
   }
-  &__border{
-    &--sm{
+  &__border {
+    &--sm {
       border-radius: $border-radius-xs;
     }
-    &--md{
+    &--md {
       border-radius: $border-radius-sm;
     }
-    &--lg{
+    &--lg {
       border-radius: $border-radius-md;
     }
   }

@@ -2,13 +2,13 @@ $btns-color: (
   "helper": $feedback-color-helper-pure,
   "warning": $feedback-color-warning-pure,
   "success": $feedback-color-success-pure,
-  "primary": $feedback-color-default-pure,
-  "secondary": $neutral-color-low-medium
+  "primary": $brand-color-primary-pure,
+  "secondary": $neutral-color-low-medium,
 );
 
 .v__btn {
   font-family: "Lato", sans-serif;
-  margin: .25rem;
+  margin: 0.25rem;
   border-radius: $border-radius-pill;
   width: fit-content;
   font-size: 0.875rem;
@@ -31,6 +31,7 @@ $btns-color: (
   &:focus,
   &:focus-visible {
     outline: 0;
+    background: $brand-color-primary-light;
   }
 
   @include mq(sm) {
@@ -38,7 +39,7 @@ $btns-color: (
   }
 }
 
-@mixin btn($color, $type: solid) {
+@mixin btn($color, $type: solid, $name) {
   @extend .v__btn;
 
   @if $type ==solid {
@@ -51,6 +52,10 @@ $btns-color: (
     &:focus {
       background-color: darken($color, 5);
       border-color: darken($color, 5);
+      @if $name ==primary {
+        background: $brand-color-primary-light;
+        border-color: $brand-color-primary-light;
+      }
     }
 
     &:disabled {
@@ -65,33 +70,35 @@ $btns-color: (
       img {
         filter: invert(1);
         width: 1.25rem;
-
       }
     }
 
     &:focus {
-      box-shadow: 0 0 0 0.25rem rgba($color, 0.24)
+      box-shadow: 0 0 0 0.25rem rgba($color, 0.24);
     }
-  }
-
-  @else if $type ==outline {
+  } @else if $type ==outline {
     color: $color;
     border: solid 1px $color;
-    background-color: transparent;
+    background-color: $neutral-color-hight-pure;
 
     &:hover,
     &:active,
     &:focus {
-      background-color: rgba($color, $alpha: .2);
+      background-color: rgba($color, $alpha: 0.2);
+      @if $name ==primary {
+        background-color: $brand-color-primary-pure;
+        border-color: $brand-color-primary-pure;
+        color: $neutral-color-hight-pure;
+      }
     }
 
     &:focus {
-      box-shadow: 0 0 0 0.25rem rgba($color, 0.10)
+      box-shadow: 0 0 0 0.25rem rgba($color, 0.1);
     }
 
     & .v-btn--img {
       border-radius: 100%;
-      background-color: rgba($color, $alpha: .5);
+      background-color: rgba($color, $alpha: 0.5);
       width: 1.25rem;
       height: 1.25rem;
       display: flex;
@@ -102,9 +109,7 @@ $btns-color: (
         width: 1rem;
       }
     }
-  }
-
-  @else if $type ==shadow {
+  } @else if $type ==shadow {
     color: $color;
     border: solid 1px $color;
     background-color: $neutral-color-hight-pure;
@@ -114,31 +119,27 @@ $btns-color: (
     &:active,
     &:focus {
       background-color: $color;
-      color: $neutral-color-hight-pure
+      color: $neutral-color-hight-pure;
     }
 
     &:focus {
-      box-shadow: 0 0 0 0.25rem rgba($color, 0.10)
+      box-shadow: 0 0 0 0.25rem rgba($color, 0.1);
     }
-  }
-
-  @else {
+  } @else {
     @error "Erro no #{$color} ou no #{$type}";
   }
 }
 
 @mixin create-btn($btns) {
-
-  @each $name,
-  $color in $btns {
+  @each $name, $color in $btns {
     .v-btn__solid--#{$name} {
-      @include btn($color);
+      @include btn($color, solid, $name);
     }
     .v-btn__outline--#{$name} {
-      @include btn($color, outline);
+      @include btn($color, outline, $name);
     }
     .v-btn__shadow--#{$name} {
-      @include btn($color, shadow);
+      @include btn($color, shadow, $name);
     }
   }
 }
@@ -155,12 +156,12 @@ $btns-color: (
     }
 
     &--md {
-      padding: .5625rem 2rem;
+      padding: 0.5625rem 2rem;
     }
 
     &--lg {
       font-size: 1rem;
-      padding: .8125rem 2rem;
+      padding: 0.8125rem 2rem;
     }
 
     &--icon {
@@ -194,6 +195,6 @@ $btns-color: (
     align-items: center;
     justify-content: center;
     border-radius: 100%;
-    margin-right: .5rem;
+    margin-right: 0.5rem;
   }
 }

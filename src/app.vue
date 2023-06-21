@@ -37,14 +37,18 @@
       <v-button icon="alert" status="warning" @click="onClickButtonWarning"
         >Aviso</v-button
       >
-      <v-button icon="check" status="success" disabled>Sucesso</v-button>
-      <v-button icon="info" status="primary">Padrão</v-button>
+      <v-button icon="check" status="success">Sucesso</v-button>
+      <v-button icon="info" status="primary">Primary</v-button>
+      <v-button status="helper">Danger</v-button>
       <v-button
         icon="info"
         status="primary"
         style-type="outline"
         @click="onClickButtonWarning"
         >Padrão out</v-button
+      >
+      <v-button style-type="outline" @click="onClickButtonWarning"
+        >Secondary</v-button
       >
     </div>
     <br />
