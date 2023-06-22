@@ -7,11 +7,11 @@
     align-items: center;
     justify-content: center;
     font-family: "Lato-Regular", sans-serif;
-    font-size: .875rem;
+    font-size: 0.875rem;
 
     &-count {
       line-height: 1;
-      margin: 1.25rem .625rem;
+      margin: 1.25rem 0.625rem;
     }
 
     &-pages {
@@ -74,16 +74,16 @@
             }
 
             .arrow__pagination {
-              content: '.';
+              content: ".";
               color: transparent;
               background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' color='red' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M1 5l6 6 6-6'/%3e%3c/svg%3e");
               background-repeat: no-repeat;
               background-size: 14px 10px;
               display: block;
-              opacity: .5;
-              transition: ease-in-out .2s opacity;
+              opacity: 0.5;
+              transition: ease-in-out 0.2s opacity;
               &:hover {
-                opacity: 1
+                opacity: 1;
               }
             }
 
@@ -98,7 +98,7 @@
 
               &.active,
               .active {
-                color: $color-primary-pure  !important;
+                color: $brand-color-primary-pure !important;
                 font-weight: 800;
               }
 

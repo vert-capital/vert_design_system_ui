@@ -29,11 +29,11 @@
         border-color: $neutral-color-low-medium;
       }
       &.active {
-        border-color: $color-primary-pure;
+        border-color: $brand-color-primary-pure;
         color: $neutral-color-low-pure;
         box-shadow: 0 4px 8px -4px rgba(0, 116, 122, 0.24);
         &:hover {
-          border-color: lighten($color-primary-pure, 10);
+          border-color: lighten($brand-color-primary-pure, 10);
         }
       }
     }
@@ -102,7 +102,7 @@
         @include mq(sm) {
           max-width: 16.5rem;
         }
-        background-color: $color-primary-pure;
+        background-color: $brand-color-primary-pure;
         color: $neutral-color-hight-pure;
         &::after {
           filter: invert(1);

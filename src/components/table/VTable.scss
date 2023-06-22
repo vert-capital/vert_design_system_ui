@@ -25,7 +25,7 @@ table.responsive-table {
 
   thead {
     background: $table-bg-color-thead;
-    color: $color-primary-pure;
+    color: $brand-color-primary-pure;
   }
 
   th {
@@ -132,7 +132,7 @@ table.theme {
   box-sizing: border-box;
 
   thead tr {
-    background-color: $color-primary-light;
+    background-color: $brand-color-primary-light;
   }
 
   td,
@@ -145,7 +145,7 @@ table.theme {
   th {
     font-weight: normal;
     font-size: 0.75rem;
-    color: $color-primary-pure;
+    color: $brand-color-primary-pure;
   }
 
   td {
@@ -177,7 +177,7 @@ table.theme {
         }
 
         &.mdi-pencil {
-          color: $color-primary-pure;
+          color: $brand-color-primary-pure;
         }
       }
     }

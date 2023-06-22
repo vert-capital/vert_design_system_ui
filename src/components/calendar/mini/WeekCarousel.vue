@@ -91,7 +91,7 @@ export default defineComponent({
   display: flex;
   justify-content: space-evenly;
   padding-left: 0;
-  border-bottom: $color-primary-medium;
+  border-bottom: $brand-color-primary-medium;
   font-family: "Lato", sans-serif;
 
   .mode-is-day & {
@@ -137,12 +137,12 @@ export default defineComponent({
     }
 
     .is-today & {
-      color: $color-primary-pure;
+      color: $brand-color-primary-pure;
       font-weight: 700;
     }
 
     .is-selected & {
-      background-color: $color-primary-light;
+      background-color: $neutral-color-hight-extra-light;
     }
   }
 
