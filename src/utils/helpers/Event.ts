@@ -11,7 +11,7 @@ import {
   eventTypesEnum,
   IObligation,
   EStatus,
-} from '@/utils/types/calendar.d';
+} from "@/utils/types/calendar.d";
 export class Event implements IEvent {
   id: number | null | undefined;
   json: IJSON;
@@ -31,8 +31,8 @@ export class Event implements IEvent {
   public responsable: string;
   public application_link: string | undefined;
   public all_responsables: any[];
-  public url_ops = '';
-  public url_obrigacoes = '';
+  public url_ops = "";
+  public url_obrigacoes = "";
 
   constructor(
     event: IEvent | null = {
@@ -41,32 +41,32 @@ export class Event implements IEvent {
       series: {} as ISeries,
       emission: {} as IEmission,
       patrimony: {} as IPatrimony,
-      event_data: '',
-      event_title: '',
+      event_data: "",
+      event_title: "",
       application: {} as IApplication,
       event_type: {} as IEventType,
       obligation: {} as IObligation,
     } as IEvent,
-    url_ops = '',
-    url_obrigacoes = ''
+    url_ops = "",
+    url_obrigacoes = ""
   ) {
     this.json = event?.json || ({} as IJSON);
     this.series = event?.series || ({} as ISeries);
     this.emission = event?.emission || ({} as IEmission);
     this.patrimony = event?.patrimony || ({} as IPatrimony);
-    this.event_data = event?.event_data || '';
-    this.event_title = event?.event_title || '';
+    this.event_data = event?.event_data || "";
+    this.event_title = event?.event_title || "";
     this.application = event?.application || ({} as IApplication);
     this.event_type = event?.event_type || ({} as IEventType);
     this.obligation = event?.obligation || ({} as IObligation);
     this.id = event?.id || null;
     this.event_formated = {
-      title: '',
-      subtitle: '',
-      responsable: '',
-      event_data: '',
+      title: "",
+      subtitle: "",
+      responsable: "",
+      event_data: "",
       event_type: eventTypesEnum.OBRIGACOES,
-      color: '',
+      color: "",
       tag: null,
     };
     this.formatEvent();
@@ -85,9 +85,9 @@ export class Event implements IEvent {
     this.event_formated.title = this.event_title;
     this.event_formated.subtitle =
       this.getEmissionFormated() +
-      (this.getSeriesFormated() == ''
-        ? ''
-        : ' (' + this.getSeriesFormated() + ')');
+      (this.getSeriesFormated() == ""
+        ? ""
+        : " (" + this.getSeriesFormated() + ")");
     this.event_formated.responsable = this.getResponsableFormated();
     this.event_formated.event_data = this.event_data;
     this.event_formated.event_type = this.getEventTypeFormated();
@@ -99,57 +99,67 @@ export class Event implements IEvent {
     if (this.emission && Object.keys(this.emission).length != 0) {
       return `(${
         this.emission?._emission_code_name +
-        (this.patrimony?.number ? ' - ' + this.patrimony?.number : '')
+        (this.patrimony?.number ? " - " + this.patrimony?.number : "")
       })`;
     }
-    return '';
+    return "";
   }
 
   getEmissionName(): string {
     if (this.emission) {
       return `${this.emission?._emission_code_name} - ${this.patrimony?.number}`;
     }
-    return '';
+    return "";
   }
 
   getSeriesFormated(): string {
     if (this.series && Object.keys(this.series).length != 0) {
       return `#${this.series.external_series_id} | ${this.series.priority} - ${
-        this.series.name + (this.series.type ? ' - ' + this.series.type : '')
+        this.series.name + (this.series.type ? " - " + this.series.type : "")
       }`;
     }
-    return '';
+    return "";
   }
 
   getSeriesName(): string {
     if (this.series) {
       return `#${this.series.external_series_id} | ${this.series.priority} - ${this.series.name} - ${this.series.type}`;
     }
-    return '';
+    return "";
   }
 
   getResponsableFormated(): string {
     if (this.json.responsible_obligation) {
       return (
-        this.json.responsible_obligation +
-        ' (Responsável)' +
+        this.getResponsibleObligation() +
+        " (Responsável)" +
         (Object.keys(this.emission).length != 0
-          ? `, ${this.getCoresponsable().join(', ')}`
-          : '')
+          ? `, ${this.getCoresponsable().join(", ")}`
+          : "")
       );
     } else {
       return Object.keys(this.emission).length != 0
         ? this.emission?.principal_responsable_name +
-            ' (Responsável), ' +
-            this.getCoresponsable().join(', ')
-        : '';
+            " (Responsável), " +
+            this.getCoresponsable().join(", ")
+        : "";
     }
+  }
+
+  getResponsibleObligation(): string {
+    let responsable = "Não informado";
+    if (!this.json.responsible_obligation) return responsable;
+    if (typeof this.json.responsible_obligation === "string")
+      responsable = this.json.responsible_obligation;
+    if (typeof this.json.responsible_obligation === "object")
+      responsable = this.json.responsible_obligation.name;
+    return responsable;
   }
 
   getResponsable(): string {
     return this.json.responsible_obligation &&
-      this.json.responsible_obligation != ''
-      ? this.json.responsible_obligation
+      this.json.responsible_obligation != ""
+      ? this.getResponsibleObligation()
       : this.emission?.principal_responsable_name;
   }
 
@@ -173,15 +183,15 @@ export class Event implements IEvent {
         name: this.emission?.principal_responsable_name,
         isPrincipal: true,
         email: this.emission?.principal_responsable_email,
-        avatar: '',
+        avatar: "",
       });
 
       this.emission?.responsible?.forEach((responsable) => {
         responsables.push({
           name: responsable,
           isPrincipal: false,
-          email: '',
-          avatar: '',
+          email: "",
+          avatar: "",
         });
       });
     }
@@ -191,14 +201,14 @@ export class Event implements IEvent {
 
   getEventTypeFormated(): eventTypes {
     const events = [
-      'OBRIGACOES',
-      'EVENTOS_PAGAMENTO',
-      'INTEGRALIZACOES',
-      'SUBSCRICOES',
-      'ATUALIZACAO_STATUS_PATRIMONIOS',
-      'MARCOS_PATRIMONIOS',
-      'VENCIMENTO_SERIES',
-      'RATING',
+      "OBRIGACOES",
+      "EVENTOS_PAGAMENTO",
+      "INTEGRALIZACOES",
+      "SUBSCRICOES",
+      "ATUALIZACAO_STATUS_PATRIMONIOS",
+      "MARCOS_PATRIMONIOS",
+      "VENCIMENTO_SERIES",
+      "RATING",
     ];
     return eventTypesEnum[
       events[this.event_type?.id - 1] as keyof typeof eventTypesEnum
@@ -206,17 +216,17 @@ export class Event implements IEvent {
   }
 
   getLinkApplication(): string | undefined {
-    if (this.application?.slug === 'ops') {
+    if (this.application?.slug === "ops") {
       return (
-        this.url_ops + '/patrimony/' + this.patrimony?.external_patrimony_id
+        this.url_ops + "/patrimony/" + this.patrimony?.external_patrimony_id
       );
-    } else if (this.application?.slug === 'obrigacoes') {
+    } else if (this.application?.slug === "obrigacoes") {
       return this.url_obrigacoes;
     }
-    return '';
+    return "";
   }
   getEventTag(): object | null {
-    if (this.application.slug === 'obligation') {
+    if (this.application.slug === "obligation") {
       return {
         status: EStatus[this.json.status as keyof typeof EStatus],
         text: this.json.status,
