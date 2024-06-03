@@ -8,7 +8,7 @@ export interface IDay {
 
 export type eventId = string | number;
 
-export type modeType = 'month' | 'week' | 'day' | 'personalized' | 'mini';
+export type modeType = "month" | "week" | "day" | "personalized" | "mini";
 
 export interface IEventCard {
   id: number | null | undefined;
@@ -56,7 +56,7 @@ export interface DOMRect {
   y: number;
 }
 
-export type visionTypes = 'day' | 'month' | 'week' | 'personalized';
+export type visionTypes = "day" | "month" | "week" | "personalized";
 
 export interface IEvent {
   id?: number | null | undefined;
@@ -95,7 +95,12 @@ export interface IJSON {
   issuing_company: string;
   effective_period: string;
   financial_instrument: string;
-  responsible_obligation?: string;
+  responsible_obligation?: IResponsibleObligation | string;
+}
+
+export interface IResponsibleObligation {
+  name: string;
+  area?: string;
 }
 
 export interface IPatrimony {
@@ -120,31 +125,31 @@ export interface ISeries {
 }
 
 export type eventTypes =
-  | 'obrigacoes'
-  | 'eventos_pagamento'
-  | 'integralizacoes'
-  | 'subscricoes'
-  | 'atualizacao_status_patrimonios'
-  | 'marcos_patrimonios'
-  | 'vencimento_series'
-  | 'rating';
+  | "obrigacoes"
+  | "eventos_pagamento"
+  | "integralizacoes"
+  | "subscricoes"
+  | "atualizacao_status_patrimonios"
+  | "marcos_patrimonios"
+  | "vencimento_series"
+  | "rating";
 
 export enum eventTypesEnum {
-  OBRIGACOES = 'obrigacoes',
-  EVENTOS_PAGAMENTO = 'eventos_pagamento',
-  INTEGRALIZACOES = 'integralizacoes',
-  SUBSCRICOES = 'subscricoes',
-  ATUALIZACAO_STATUS_PATRIMONIOS = 'atualizacao_status_patrimonios',
-  MARCOS_PATRIMONIOS = 'marcos_patrimonios',
-  VENCIMENTO_SERIES = 'vencimento_series',
-  RATING = 'rating',
+  OBRIGACOES = "obrigacoes",
+  EVENTOS_PAGAMENTO = "eventos_pagamento",
+  INTEGRALIZACOES = "integralizacoes",
+  SUBSCRICOES = "subscricoes",
+  ATUALIZACAO_STATUS_PATRIMONIOS = "atualizacao_status_patrimonios",
+  MARCOS_PATRIMONIOS = "marcos_patrimonios",
+  VENCIMENTO_SERIES = "vencimento_series",
+  RATING = "rating",
 }
 
 export enum EStatus {
-  'À Vencer' = 'warning',
-  'Vencida' = 'helper',
-  'Cumprida' = 'success',
-  'Cumprida fora do vencimento' = 'secondary',
+  "À Vencer" = "warning",
+  "Vencida" = "helper",
+  "Cumprida" = "success",
+  "Cumprida fora do vencimento" = "secondary",
 }
 
 export interface IEventCard {
